@@ -1,5 +1,11 @@
 npm init --yes
-npm i --save express body-parser
-npm i --save-dev webpack
+
+if( (node -e "console.log(require('webpack/package.json').version||'')" ) -eq "" ){npm i -g webpack webpack-dev-server;echo "[webpack & webpack-dev-server]:(installed):"}
+npm link --save-dev webpack 
+npm link --save-dev webpack-dev-server
+
+npm i --save express
+
 npm i --save-dev react react-dom babel-loader babel-core babel-preset-react babel-preset-es2015 babel-preset-camo
-npm i --save-dev react-router-dom material-ui react-tap-event-plugin
+
+echo "npm i --save-dev react-router-dom material-ui react-tap-event-plugin"

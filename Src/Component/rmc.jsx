@@ -19,6 +19,7 @@ class ReactMockupComponent extends React.Component
             <div className="ReactMockupComponent" style={{
                 backgroundColor: this.props.color,
                 border: this.props.border,
+                outline: this.props.outline,
                 boxSizing: this.props.boxSizing,
                 position: this.props.position,
                 left: this.props.x,
@@ -27,6 +28,7 @@ class ReactMockupComponent extends React.Component
                 height: this.props.height,
             }}>
                 {this.props.name}
+                {this.props.children}
             </div>
         );
             
@@ -35,7 +37,8 @@ class ReactMockupComponent extends React.Component
 
 ReactMockupComponent.defaultProps = {
     color: "white",
-    border: "1px solid grey",
+    border: "1px solid lightgrey",
+    outline: "1px solid slategrey",
     boxSizing: "border-box",
     position: "relative",
     left: "0px",

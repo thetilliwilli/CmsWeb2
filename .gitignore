@@ -1,1 +1,4 @@
 node_modules
+.vscode/chrome
+WebRoot/bundle.js
+WebRoot/bundle.js.map
