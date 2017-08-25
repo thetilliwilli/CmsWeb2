@@ -1,3 +1,11 @@
+"use strict";
+
+/**
+ * 
+ * Application loader. Assemble App with AppEnviroment and mount it to Root DOM element in HTML
+ * 
+ */
+
 import React from "react";
 import ReactDOM from "react-dom";
 
