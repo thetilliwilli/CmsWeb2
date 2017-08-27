@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 
-router.all("*", ()=>{
+router.all("*", (req, res)=>{
     res.send("welcome");
 });
 

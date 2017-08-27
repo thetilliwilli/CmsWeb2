@@ -1,60 +1,83 @@
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import { Card, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+"use strict";
+import React from "react";
+import {Card, CardTitle, CardText} from "material-ui/Card";
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import {Link} from 'react-router-dom';
 
+export default class LoginPage extends React.Component
+{
+    constructor(props){
+        super(props);
 
-const LoginForm = ({
-  onSubmit,
-  onChange,
-  errors,
-  successMessage,
-  user
-}) => (
-  <Card className="container">
-    <form action="/" onSubmit={onSubmit}>
-      <h2 className="card-heading">Login</h2>
+        this.state = {login:"", password:""};
 
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {errors.summary && <p className="error-message">{errors.summary}</p>}
+        this.OnSubmit = this.OnSubmit.bind(this);
+        this.OnChange = this.OnChange.bind(this);
+    }
 
-      <div className="field-line">
-        <TextField
-          floatingLabelText="Email"
-          name="email"
-          errorText={errors.email}
-          onChange={onChange}
-          value={user.email}
-        />
-      </div>
+    componentDidMount(){
 
-      <div className="field-line">
-        <TextField
-          floatingLabelText="Password"
-          type="password"
-          name="password"
-          onChange={onChange}
-          errorText={errors.password}
-          value={user.password}
-        />
-      </div>
+    }
 
-      <div className="button-line">
-        <RaisedButton type="submit" label="Log in" primary />
-      </div>
+    componentWillUnmount(){
 
-      <CardText>Don't have an account? <Link to={'/signup'}>Create one</Link>.</CardText>
-    </form>
-  </Card>
-);
+    }
 
-LoginForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
-  successMessage: PropTypes.string.isRequired,
-  user: PropTypes.object.isRequired
-};
+    OnSubmit(event){
+        event.preventDefault();
+    
+        var login = this.state.login;
+        var password = this.state.password;
 
-export default LoginForm;
+        const jsonRequest = JSON.stringify({login, password});
+    
+        // create an AJAX request
+        const xhr = new XMLHttpRequest();
+        xhr.open('post', '/auth/login');
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.responseType = 'json';
+        xhr.addEventListener('load', () => {
+          if (xhr.status === 200) {
+
+            // this.setState({
+            //   errors: {}
+            // });
+    
+            console.log('The form is valid');
+            alert('The form is valid');
+          } else {
+            // failure
+    
+            const errors = xhr.response.errors ? xhr.response.errors : {};
+            errors.summary = xhr.response.message;
+    
+            this.setState({
+              errors
+            });
+            alert('Invalid form data');
+          }
+        });
+        xhr.send(jsonRequest);
+    }
+
+    OnChange(event){
+      var name = event.target.name;
+      this.state[name] = event.target.value;
+      this.setState(this.state);
+    }
+
+    render(){
+        return (
+            <div className="LoginPage">
+              <CardTitle title="Регистрация" />
+              <form action="/" onSubmit={this.OnSubmit}>
+                <TextField name="login" value={this.state.login} onChange={this.OnChange} hintText="Login" floatingLabelText="Type Login" /><br />
+                <TextField name="password" value={this.state.password} onChange={this.OnChange} type="password" hintText="Password" floatingLabelText="Type Password" /><br />
+                <RaisedButton type="submit" label="Create New Account" primary />
+                <CardText>Doesn't have an account? <Link to={'/signup'}>Signup</Link></CardText>
+              </form>
+            </div>
+        );
+    }
+}

@@ -8,7 +8,7 @@ module.exports = {
         path: path.resolve(__dirname, 'WebRoot'),
         // publicPath: "/WebRoot/"
     },
-    devServer: {contentBase: "./WebRoot", port: 80},
+    devServer: {contentBase: "./WebRoot", port: 80, historyApiFallback: true},
     module: {
         loaders: [
             { test: /\.jsx?$/, loader: 'babel-loader'}

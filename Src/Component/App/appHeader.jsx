@@ -7,7 +7,7 @@ export default function AppHeader(){
         <div className="AppHeader">
             <div style={{float:"left", paddingLeft:"5vw"}}></div>
             <div style={{float:"right", paddingRight:"5vw"}}>
-                <Link to="/Signup" style={{marginLeft:"10px"}}>Регистрация</Link>
+                {/* <Link to="/Signup" style={{marginLeft:"10px"}}>Регистрация</Link> */}
                 <Link to="/Login" style={{marginLeft:"10px"}}>Войти</Link>
             </div>
         </div>
