@@ -11,8 +11,7 @@ module.exports = {
     devServer: {contentBase: "./WebRoot", port: 80},
     module: {
         loaders: [
-            { test: /\.js$/, loader: 'babel-loader'},
-            { test: /\.jsx$/, loader: 'babel-loader'}
+            { test: /\.jsx?$/, loader: 'babel-loader'}
         ]
     },
     // plugins: [new HtmlWebpackPlugin()],

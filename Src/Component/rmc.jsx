@@ -154,7 +154,7 @@ class ReactMockupComponent extends React.Component
 {
     constructor(props){
         super(props);
-        this.color = colors[this.props.color || Math.ceil(Math.random(colors.length - 1)*(colors.length - 1))];
+        this.color = this.props.nobg ? "rgba(0,0,0,0.0)" : colors[this.props.color || Math.ceil(Math.random(colors.length - 1)*(colors.length - 1))];
     }
 
     componentDidMount(){
@@ -166,22 +166,26 @@ class ReactMockupComponent extends React.Component
     }
 
     render(){
-        return (
+        const el = (
             <div className="ReactMockupComponent" style={{
-                backgroundColor: this.color,
-                border: this.props.border,
-                outline: this.props.outline,
-                boxSizing: this.props.boxSizing,
-                position: this.props.position,
-                left: this.props.x,
-                top: this.props.y,
-                width: this.props.width,
-                height: this.props.height,
-            }}>
-                {this.props.name}
-                {this.props.children}
+                    backgroundColor: this.color,
+                    border: this.props.border,
+                    outline: this.props.outline,
+                    boxSizing: this.props.boxSizing,
+                    position: this.props.position,
+                    left: this.props.x,
+                    top: this.props.y,
+                    width: this.props.width,
+                    height: this.props.height,
+                    margin: this.props.margin,
+                    padding: this.props.padding,
+                    opacity: this.props.opacity,
+                }}>
+                    {this.props.name && !this.props.hideText && <span style={{position:"absolute", top:this.props.textY, left: this.props.textX}}>{this.props.name}</span>}
+                    {this.props.children}
             </div>
         );
+        return this.props.hide ? null : el;
             
     }
 }
@@ -196,8 +200,10 @@ ReactMockupComponent.defaultProps = {
     top: "0px",
     width: "100%",
     height: "100%",
+    hideText: false,
+    hide: false,
 
-    name: "ReactMockupComponent"
+    // name: "ReactMockupComponent"
 };
 
 export default ReactMockupComponent;
