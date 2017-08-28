@@ -2,3 +2,5 @@ node_modules
 .vscode/chrome
 WebRoot/bundle.js
 WebRoot/bundle.js.map
+WebRootAuth/bundle.js
+WebRootAuth/bundle.js.map

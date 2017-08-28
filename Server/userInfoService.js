@@ -1,3 +1,4 @@
+"use strict";
 const userStorage = [];
 
 userStorage.push({login: "tilli", password:"willi", name:"", id:1});

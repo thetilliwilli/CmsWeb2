@@ -7,9 +7,12 @@ npm link --save-dev webpack-dev-server
 npm i --save express
 npm i --save body-parser
 npm i --save validator
+npm i --save morgan
+npm i --save cookie
 
 npm install --save bcryptjs jsonwebtoken mongoose passport passport-local
 npm i --save cookie-parser
+npm i --save express-session
 
 npm i --save-dev react react-dom babel-loader babel-core babel-preset-react babel-preset-es2015 babel-preset-camo
 
