@@ -18,4 +18,9 @@ router.post("/login", (req, res, next)=>{
         res.status(302).redirect("/auth/login");
 });
 
+router.post("/logout", (req, res, next)=>{
+    auth.TryLogout();
+    res.redirect("/");
+});
+
 module.exports = router;

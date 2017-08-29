@@ -20,9 +20,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/auth", authRouter);
-app.use(auth.AuthFirewall);
-app.use("/", express.static(config.webRootPath));
 
+app.use("/auth", authRouter);//Все что связано с авторизацией, логаутами и логинами
+app.use(auth.AuthFirewall);//Access decider
+app.use("/", express.static(config.webRootPath));//Serve static assets from WebRoot
+app.get("*", (req, res)=>{res.redirect("/")});//Redirect to SPA again with new URL requested
 
 app.listen(config.port, ()=>{console.log(`[ContentManagerServer]:(StartListenPort):${config.port}`);});
