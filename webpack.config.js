@@ -2,7 +2,7 @@ var path = require('path');
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './Src/index.jsx',
+    entry: './Client/index.jsx',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'WebRoot'),

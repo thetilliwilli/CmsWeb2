@@ -67,7 +67,7 @@ export default class LoginPage extends React.Component {
       return <Redirect to="/" />;
 
     return (
-      <div className="LoginPage">
+      <Card className="LoginPage">
         <CardTitle title="Регистрация" />
         <form action="/" onSubmit={this.OnSubmit}>
           <TextField name="login" value={this.state.login} onChange={this.OnChange} hintText="Login" floatingLabelText="Type Login" /><br />
@@ -75,7 +75,7 @@ export default class LoginPage extends React.Component {
           <RaisedButton type="submit" label="Create New Account" primary />
           <CardText>Doesn't have an account? <Link to={'/signup'}>Signup</Link></CardText>
         </form>
-      </div>
+      </Card>
     );
   }
 }
