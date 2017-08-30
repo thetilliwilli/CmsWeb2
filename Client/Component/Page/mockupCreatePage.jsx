@@ -2,7 +2,7 @@
 import React from "react";
 export default function ExhibitMockupOverviewPage(p){
     return (
-        <div className="ExhibitMockupOverviewPage" {...p}>
+        <div className="ExhibitMockupOverviewPage">
             ExhibitMockupOverviewPage CONTENT
         </div>
     );
