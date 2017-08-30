@@ -29,7 +29,7 @@ class AppFooter extends React.Component
 
     Select(index){
         this.setState({selectedIndex: index});
-        this.props.history.push(contents[this.state.selectedIndex]);//Меняем страницу
+        this.props.history.push(contents[index]);//Меняем страницу
     }
     
     render(){

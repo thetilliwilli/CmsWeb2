@@ -29,7 +29,7 @@ export default class LangSelector extends React.Component
 LangSelector.defaultProps = {
     langList: [
         {label: "RUS"},
-        {label: "END"},
+        {label: "ENG"},
         {label: "ZHS"},
     ]
 };

@@ -13,7 +13,7 @@ export default class MainLayout extends React.Component
             <div className="MainLayout">
                 <div className="TopBar"><this.props.topBarResident /></div>
 
-                <div className="MiddleBar" style={{border:"2px solid lightgrey"}}>
+                <div className="MiddleBar">
                     <div className="PageContent">
                         {this.props.pageContentResident}
                     </div>
