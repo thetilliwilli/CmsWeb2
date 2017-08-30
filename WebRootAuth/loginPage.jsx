@@ -9,18 +9,10 @@ export default class LoginPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { login: "", password: "", redirect: false };
+    this.state = { login: "", password: ""};
 
     this.OnSubmit = this.OnSubmit.bind(this);
     this.OnChange = this.OnChange.bind(this);
-  }
-
-  componentDidMount() {
-
-  }
-
-  componentWillUnmount() {
-
   }
 
   OnSubmit(event) {
@@ -63,14 +55,11 @@ export default class LoginPage extends React.Component {
   }
 
   render() {
-    if (this.state.redirect)
-      return <Redirect to="/" />;
-
     return (
       <Card className="LoginPage">
         <CardTitle title="Регистрация" />
         <form action="/" onSubmit={this.OnSubmit}>
-          <TextField name="login" value={this.state.login} onChange={this.OnChange} hintText="Login" floatingLabelText="Type Login" /><br />
+          <TextField autoFocus name="login" value={this.state.login} onChange={this.OnChange} hintText="Login" floatingLabelText="Type Login" /><br />
           <TextField name="password" value={this.state.password} onChange={this.OnChange} type="password" hintText="Password" floatingLabelText="Type Password" /><br />
           <RaisedButton type="submit" label="Create New Account" primary />
           <CardText>Doesn't have an account? <Link to={'/signup'}>Signup</Link></CardText>
