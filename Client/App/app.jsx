@@ -1,12 +1,13 @@
 import React from "react";
-import RMC from "./Component/rmc.jsx";
-import MainLayout from "./Component/Layout/mainLayout.jsx";
+import MainLayout from "../Component/Layout/mainLayout.jsx";
+import AppHeader from "../Component/App/AppHeader.jsx";
+import AppNavbar from "../Component/App/AppNavbar.jsx";
+import AppFooter from "../Component/App/AppFooter.jsx";
+import PageSelectorRouting from "../Component/Routing/pageSelectorRouting.jsx";
 
-import AppHeader from "./Component/App/AppHeader.jsx";
-import AppNavbar from "./Component/App/AppNavbar.jsx";
-import AppFooter from "./Component/App/AppFooter.jsx";
-
-import PageSelectorRouting from "./Component/Routing/pageSelectorRouting.jsx";
+import appStore from "./appStore";
+console.log(appStore.getState());//Показать начлаьное состояние
+appStore.subscribe(()=>console.log(appStore.getState()));//Начать логировать изменение состояния
 
 export default class App extends React.Component
 {

@@ -11,9 +11,9 @@ module.exports = {
     devServer: {contentBase: "./WebRoot", port: 80, historyApiFallback: true},
     module: {
         loaders: [
-            { test: /\.jsx?$/, loader: 'babel-loader'}
+            { test: /\.jsx?$/, loader: 'babel-loader'/* , options: {"plugins": ["transform-object-rest-spread"], presets:["es2015","react","camo"]} */}
         ]
     },
     // plugins: [new HtmlWebpackPlugin()],
-    devtool: "source-map"
+    // devtool: "source-map"
 };

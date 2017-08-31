@@ -15,4 +15,8 @@ npm i --save cookie-parser
 npm i --save express-session
 npm i --save react-router-dom material-ui react-tap-event-plugin
 
+npm i --save redux
+npm i --save react-redux
+
 npm i --save-dev react react-dom babel-loader babel-core babel-preset-react babel-preset-es2015 babel-preset-camo
+npm i --save-dev babel-plugin-transform-object-rest-spread
