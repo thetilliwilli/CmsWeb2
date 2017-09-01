@@ -21,8 +21,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "buildClient": "webpack -w",
+    "buildAuth": "webpack -w --config webpack.config2.js",
     "start": "node server.js",
-    "startDev": "webpack-dev-server --hot"
+    "startNodemon": "nodemon server.js",
+    "startWebpackDevServer": "webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",
