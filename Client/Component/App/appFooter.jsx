@@ -21,29 +21,30 @@ class AppFooter extends React.Component
 {
     constructor(props){
         super(props);
-        this.state = {
-            selectedIndex: 0,
-          };
-        this.Select = this.Select.bind(this);
     }
 
-    Select(index){
-        this.setState({selectedIndex: index});
-        this.props.history.push(contents[index]);//Меняем страницу
-    }
-    
     render(){
         return (
             <Paper zDepth={1}>
-                <BottomNavigation selectedIndex={this.state.selectedIndex}>
-                    <BottomNavigationItem label="Создать экспонат" icon={recentsIcon} onClick={() => this.Select(0)} />
-                    <BottomNavigationItem label="Обзор экспонатов" icon={favoritesIcon} onClick={() => this.Select(1)} />
-                    <BottomNavigationItem label="Создать шаблон" icon={mockupNew} onClick={() => this.Select(2)} />
-                    <BottomNavigationItem label="Выбрать шаблон" icon={mockupOverview} onClick={() => this.Select(3)} />
+                <BottomNavigation selectedIndex={this.props.selectedIndex}>
+                    <BottomNavigationItem label="Создать экспонат" icon={recentsIcon} onClick={() => this.props.InvokeChangePage(0)} />
+                    <BottomNavigationItem label="Обзор экспонатов" icon={favoritesIcon} onClick={() => this.props.InvokeChangePage(1)} />
+                    <BottomNavigationItem label="Создать шаблон" icon={mockupNew} onClick={() => this.props.InvokeChangePage(2)} />
+                    <BottomNavigationItem label="Выбрать шаблон" icon={mockupOverview} onClick={() => this.props.InvokeChangePage(3)} />
                 </BottomNavigation>
             </Paper>
         );
     }
 }
-
-export default withRouter(AppFooter);
+//CONTAINER-------------------------------------------------------------------------------------------------
+import {connect} from "react-redux";
+import {ChangePage} from "../../App/appActionCreators.js";
+const MapStateToProps = (state)=>{ return {selectedIndex: state.currentPage}; };
+const MapDispatchToProps = (dispatch)=>{
+    return {
+        InvokeChangePage: (index)=>{
+            dispatch(ChangePage(index))
+        }
+    };
+}
+export default connect(MapStateToProps, MapDispatchToProps)(AppFooter);

@@ -7,9 +7,3 @@ export function ChangePage(index){
         payload: {index}
     };
 }
-
-export function InvokeSecondTypeAction(){
-    return {
-        type: at.SECOND_TYPE,
-    }
-}

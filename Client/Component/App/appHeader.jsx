@@ -16,7 +16,7 @@ function ClearCookieAndRefresh(){
     window.location.reload();
 }
 
-export default class AppHeader extends React.Component
+class AppHeader extends React.Component
 {
     constructor(props){
         super(props);
@@ -27,7 +27,7 @@ export default class AppHeader extends React.Component
     render(){
         return (
                 <AppBar
-                    title="ExhibitApp"
+                    title={"Page# " + this.props.pageLabel}
                     iconElementRight={this.props.logged ? <FlatButton label="Logout" onClick={ClearCookieAndRefresh}/> : null}
                 />
         );
@@ -37,3 +37,12 @@ export default class AppHeader extends React.Component
 AppHeader.defaultProps = {
     logged: true
 };
+
+//CONTAINER-------------------------------------------------------------------------------------------------
+import {connect} from "react-redux";
+function MapStateToProps(state){
+    return {
+        pageLabel: state.currentPage
+    };
+};
+export default connect(MapStateToProps)(AppHeader);

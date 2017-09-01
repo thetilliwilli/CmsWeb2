@@ -8,8 +8,7 @@ export default function AppReducer(state = initState, action){
     switch(action.type)
     {
         case at.CHANGE_PAGE:
-            //return Object.assign({}, state, {currentPage: action.index});
-            return { ...state, ...{currentPage: action.index} };
+            return { ...state, ...{currentPage: action.payload.index} };
         case at.SECOND_TYPE: return state;
         default: return state;
     }
