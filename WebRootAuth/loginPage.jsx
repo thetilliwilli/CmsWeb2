@@ -3,7 +3,6 @@ import React from "react";
 import { Card, CardTitle, CardText } from "material-ui/Card";
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Link, Redirect } from 'react-router-dom';
 
 export default class LoginPage extends React.Component {
   constructor(props) {
@@ -57,13 +56,13 @@ export default class LoginPage extends React.Component {
   render() {
     return (
       <Card className="LoginPage">
-        <CardTitle title="Регистрация" />
-        <form action="/" onSubmit={this.OnSubmit}>
-          <TextField autoFocus name="login" value={this.state.login} onChange={this.OnChange} hintText="Login" floatingLabelText="Type Login" /><br />
-          <TextField name="password" value={this.state.password} onChange={this.OnChange} type="password" hintText="Password" floatingLabelText="Type Password" /><br />
-          <RaisedButton type="submit" label="Create New Account" primary />
-          <CardText>Doesn't have an account? <Link to={'/signup'}>Signup</Link></CardText>
-        </form>
+          <CardTitle title="Login" />
+          <form action="/" onSubmit={this.OnSubmit}>
+            <TextField autoFocus name="login" value={this.state.login} onChange={this.OnChange} hintText="Login" floatingLabelText="Type Login" /><br />
+            <TextField name="password" value={this.state.password} onChange={this.OnChange} type="password" hintText="Password" floatingLabelText="Type Password" /><br />
+            <RaisedButton type="submit" label="Create New Account" primary />
+            {/* <CardText>Doesn't have an account? <Link to={'/signup'}>Signup</Link></CardText> */}
+          </form>
       </Card>
     );
   }

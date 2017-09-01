@@ -11,13 +11,13 @@ TapEventPlugin();
 
 function App(props){
     return (
-        <div className="App">
-            <MuiThemeProvider>
-                <Router>
+        <MuiThemeProvider>
+            <Router>
+                <div className="App">
                     <LoginPage />
-                </Router>
-            </MuiThemeProvider>
-        </div>
+                </div>
+            </Router>
+        </MuiThemeProvider>
     );
 };
 
