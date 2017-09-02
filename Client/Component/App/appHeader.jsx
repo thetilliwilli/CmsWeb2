@@ -10,6 +10,8 @@ import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
+import siteMap from "../../Modules/siteMap.js";
+
 function ClearCookieAndRefresh(){
     document.cookie = "login=; Max-Age=0";
     document.cookie = "password=; Max-Age=0";
@@ -27,7 +29,7 @@ class AppHeader extends React.Component
     render(){
         return (
                 <AppBar
-                    title={"Page# " + this.props.pageLabel}
+                    title={"Page# " + siteMap.GetPageById(this.props.pageIndex).label}
                     iconElementRight={this.props.logged ? <FlatButton label="Logout" onClick={ClearCookieAndRefresh}/> : null}
                 />
         );
@@ -42,7 +44,7 @@ AppHeader.defaultProps = {
 import {connect} from "react-redux";
 function MapStateToProps(state){
     return {
-        pageLabel: state.currentPage
+        pageIndex: state.currentPage
     };
 };
 export default connect(MapStateToProps)(AppHeader);

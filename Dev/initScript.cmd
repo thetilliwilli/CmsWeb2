@@ -14,6 +14,7 @@ npm install --save bcryptjs jsonwebtoken mongoose passport passport-local
 npm i --save cookie-parser
 npm i --save express-session
 npm i --save react-router-dom material-ui react-tap-event-plugin
+npm i --save history
 
 npm i --save redux
 npm i --save react-redux

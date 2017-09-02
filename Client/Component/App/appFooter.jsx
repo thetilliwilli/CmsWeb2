@@ -21,16 +21,22 @@ class AppFooter extends React.Component
 {
     constructor(props){
         super(props);
+        this.Select = this.Select.bind(this);
+    }
+
+    Select(index){
+        this.props.history.push(contents[index]);//Меняем страницу
+        this.props.InvokeChangePage(index);
     }
 
     render(){
         return (
             <Paper zDepth={1}>
                 <BottomNavigation selectedIndex={this.props.selectedIndex}>
-                    <BottomNavigationItem label="Создать экспонат" icon={recentsIcon} onClick={() => this.props.InvokeChangePage(0)} />
-                    <BottomNavigationItem label="Обзор экспонатов" icon={favoritesIcon} onClick={() => this.props.InvokeChangePage(1)} />
-                    <BottomNavigationItem label="Создать шаблон" icon={mockupNew} onClick={() => this.props.InvokeChangePage(2)} />
-                    <BottomNavigationItem label="Выбрать шаблон" icon={mockupOverview} onClick={() => this.props.InvokeChangePage(3)} />
+                    <BottomNavigationItem label="Создать экспонат" icon={recentsIcon} onClick={() => this.Select(0)} />
+                    <BottomNavigationItem label="Обзор экспонатов" icon={favoritesIcon} onClick={() => this.Select(1)} />
+                    <BottomNavigationItem label="Создать шаблон" icon={mockupNew} onClick={() => this.Select(2)} />
+                    <BottomNavigationItem label="Выбрать шаблон" icon={mockupOverview} onClick={() => this.Select(3)} />
                 </BottomNavigation>
             </Paper>
         );
@@ -47,4 +53,4 @@ const MapDispatchToProps = (dispatch)=>{
         }
     };
 }
-export default connect(MapStateToProps, MapDispatchToProps)(AppFooter);
+export default connect(MapStateToProps, MapDispatchToProps)(withRouter(AppFooter));
