@@ -18,10 +18,7 @@ export default class ExhibitCard extends React.Component {
         return (
             <div className="ExhibitCard">
                 <CardHeader  subtitle="КАРТОЧКА" />
-                <TextField floatingLabelText="Название экспоната" />
-                <UploadButton onFileChanged={this.ChangeImage}/>
-                <br />
-                <img className="ExhibitCard_image" src={this.state.imageSrc} style={{position:"relative", top:"0", left:"0", width:"100px", height:"100px", backgroundSize: "contain"}}/>
+                <UploadImage onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrc}/>
             </div>
         );
     }
@@ -31,13 +28,17 @@ ExhibitCard.defaultProps = {
     imageHref: "http://www.imasgrafica.com/images/nophotomaxi.jpg"
 };
 
-class UploadButton extends React.Component {
+class UploadImage extends React.Component {
     constructor(props) {
         super(props);
-        this.onFileSelected = this.onFileSelected.bind(this);
+
+        this.OnFileSelected = this.OnFileSelected.bind(this);
+        this.OnImageClick = this.OnImageClick.bind(this);
+
+        this.fileUploadInput = null;
     }
 
-    onFileSelected(event) {
+    OnFileSelected(event) {
         var selectedFile = event.target.files[0];
         var reader = new FileReader();
         let self = this;
@@ -48,11 +49,16 @@ class UploadButton extends React.Component {
         reader.readAsDataURL(selectedFile);
     }
 
+    OnImageClick(){
+        this.fileUploadInput.click();
+    }
+
     render() {
         return (
-            <RaisedButton className="ExhibitCard_upload" label="Choose an Image" labelPosition="before" style={{ verticalAlign: 'middle' }} containerElement="label">
-                <input type="file" style={{ cursor: 'pointer', position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, width: '100%', opacity: 0, }} onChange={this.onFileSelected} />
-            </RaisedButton>
+            <div>
+                <img className="ExhibitCard_image" onClick={this.OnImageClick} src={this.props.imageSrc} style={{position:"relative", top:"0", left:"0", width:"100px", height:"100px", backgroundSize: "contain"}}/>
+                <input ref={(input)=>{this.fileUploadInput = input;}} type="file" style={{ cursor: 'pointer', position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, width: '100%', opacity: 0, }} onChange={this.OnFileSelected} />
+            </div>
         );
     }
 }
