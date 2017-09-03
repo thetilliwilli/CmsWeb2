@@ -9,7 +9,7 @@ class LangSelector extends React.Component
     }
 
     render(){
-    var LangTabList = this.props.langList.map(i=><Tab label={i.label} value={i.label} key={i.label}/>);
+        var LangTabList = this.props.langList.map(i=><Tab label={i.label} value={i.label} key={i.label}/>);
         return (
             <Tabs onChange={this.props.ChangeLang}>
                 {LangTabList}

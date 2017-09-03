@@ -7,14 +7,21 @@ import ExhibitOverviewPage from "./Page/exhibitOverviewPage.jsx";
 import MockupCreatePage from "./Page/mockupCreatePage.jsx";
 import MockupOverviewPage from "./Page/mockupOverviewPage.jsx";
 
-export default function MainRouting(props){
+function MainRouting(props){
+    let curIndex = props.pageIndex;
     return (
-        <Switch>
-            <Route exact path="/" render={p=><Redirect to="/ExhibitCreatorPage" />} />
-            <Route exact path="/ExhibitCreatorPage" component={ExhibitCreatorPage} />
-            <Route exact path="/ExhibitOverview" component={ExhibitOverviewPage}></Route>
-            <Route exact path="/MockupCreatePage" component={MockupCreatePage}></Route>
-            <Route exact path="/ExhibitMockupOverviewPage" component={MockupOverviewPage}></Route>
-        </Switch>
+        <div className="PageSwitcher">
+            <div style={{display:( curIndex === 0 ? "initial":"none")}}><ExhibitCreatorPage /></div>
+            <div style={{display:( curIndex === 1 ? "initial":"none")}}><ExhibitOverviewPage /></div>
+            <div style={{display:( curIndex === 2 ? "initial":"none")}}><MockupCreatePage /></div>
+            <div style={{display:( curIndex === 3 ? "initial":"none")}}><MockupOverviewPage /></div>
+        </div>
     );
 };
+
+import {connect} from "react-redux";
+export default connect((state)=>{
+    return {
+        pageIndex: state.navigation.currentPage
+    };
+})(MainRouting);

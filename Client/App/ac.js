@@ -14,10 +14,3 @@ export function ChangeExhibitLanguage(lang){
         payload: {language: lang}
     }
 }
-
-export function SaveStateStaticPropsRu(fields){
-    return {
-        type: at.SAVE_STATE_STATIC_PROPS_EN,
-        payload: {fields}
-    }
-}

@@ -26,19 +26,8 @@ class Exhibit extends React.Component
         super(props);
     }
 
-    MakeRuStaticProps(){
-        return {
-            title: this.props.ru.title,
-            subtitle: this.props.ru.subtitle,
-            creationLocation: this.props.ru.creationLocation,
-            description: this.props.ru.description,
-            history: this.props.ru.history,
-            name: this.props.ru.name,
-        };
-    }
-
     render(){
-        let staticPropsData = this.props.language === "ru" ? this.props.data.ru : this.props.data.en;
+        // let staticPropsData = this.props.language === "ru" ? this.props.data.ru : this.props.data.en;
         return (
             <div className="Exhibit" style={{height:"100%"}}>
                 <ControlPanel />
@@ -48,7 +37,7 @@ class Exhibit extends React.Component
                     </div>
                     <div className="ExhibitParts" style={{position:"relative", height:"100%"}}>
                         <Card className="StaticPropsField" style={{width:"30%", height:"100%", float:"left"}}>
-                            <StaticProps data={staticPropsData} language={this.props.language}/>
+                            <StaticProps data={{ru:this.props.data.ru, en:this.props.data.en}} language={this.props.language}/>
                         </Card>
                         <Card className="VariablePropsField" style={{width:"30%", height:"100%", float:"left"}}>
                             <VariableProps />
