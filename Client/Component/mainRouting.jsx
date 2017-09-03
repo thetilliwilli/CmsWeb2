@@ -2,16 +2,12 @@
 import React from "react";
 import {Route, Switch, Redirect} from "react-router-dom";
 //Pages import---------------------------------------------
-// import HomePage from "../Page/homePage.jsx";
-// import SignupPage from "../Page/signupPage.jsx";
-// import LoginPage from "../Page/loginPage.jsx";
-import ExhibitCreatorPage from "../Page/exhibitCreatorPage.jsx";
-import ExhibitOverviewPage from "../Page/exhibitOverviewPage.jsx";
-import MockupCreatePage from "../Page/mockupCreatePage.jsx";
-import MockupOverviewPage from "../Page/mockupOverviewPage.jsx";
+import ExhibitCreatorPage from "./Page/exhibitCreatorPage.jsx";
+import ExhibitOverviewPage from "./Page/exhibitOverviewPage.jsx";
+import MockupCreatePage from "./Page/mockupCreatePage.jsx";
+import MockupOverviewPage from "./Page/mockupOverviewPage.jsx";
 
-
-export default function PageSelectorRouting(props){
+export default function MainRouting(props){
     return (
         <Switch>
             <Route exact path="/" render={p=><Redirect to="/ExhibitCreatorPage" />} />

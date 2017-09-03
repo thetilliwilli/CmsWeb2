@@ -1,9 +1,9 @@
 import React from "react";
-import MainLayout from "../Component/Layout/mainLayout.jsx";
-import AppHeader from "../Component/App/AppHeader.jsx";
-import AppNavbar from "../Component/App/AppNavbar.jsx";
-import AppFooter from "../Component/App/AppFooter.jsx";
-import PageSelectorRouting from "../Component/Routing/pageSelectorRouting.jsx";
+import MainLayout from "../Component/mainLayout.jsx";
+import AppHeader from "../Component/Window/AppHeader.jsx";
+import AppNavbar from "../Component/Window/AppNavbar.jsx";
+import AppFooter from "../Component/Window/AppFooter.jsx";
+import PageSelectorRouting from "../Component/MainRouting.jsx";
 
 export default class App extends React.Component
 {
