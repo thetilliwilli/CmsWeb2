@@ -1,7 +1,6 @@
 import React from "react";
 import RMC from "../rmc.jsx";
 import {Card, CardTitle} from "material-ui/Card";
-import Grid from 'material-ui/Grid';
 
 export default class MainLayout extends React.Component
 {

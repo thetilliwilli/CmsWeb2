@@ -28,24 +28,28 @@ export default class Exhibit extends React.Component
 
     render(){
         return (
-            <Card className="Exhibit">
+            <div className="Exhibit" style={{height:"100%"}}>
                 <ControlPanel />
-                <div className="ExhibitForm">
-                    <LangSelector />
-                    <div className="ExhibitParts" style={{position:"relative"}}>
-                        <Card className="PropsField" style={{width:"50%", height:"100%",  position:"relative"}}>
-                            <StaticProps />
+                <div className="ExhibitForm" style={{height:"100%"}}>
+                    <div>
+                        <LangSelector/>
+                    </div>
+                    <div className="ExhibitParts" style={{position:"relative", height:"100%"}}>
+                        <Card className="StaticPropsField" style={{width:"30%", height:"100%", float:"left"}}>
+                            <StaticProps/>
+                        </Card>
+                        <Card className="VariablePropsField" style={{width:"30%", height:"100%", float:"left"}}>
                             <VariableProps />
                         </Card>
-                        <Card className="AvatarField" style={{width:"50%", height:"50%", left:"50%", position:"relative"}}>
+                        <Card className="AvatarField" style={{width:"40%", float:"left"}}>
                             <ExhibitAvatar />
                         </Card>
-                        <Card className="GalleryField" style={{width:"50%", height:"50%", left:"50%", position:"relative"}}>
+                        <Card className="GalleryField" style={{width:"40%", float:"left"}}>
                             <ExhibitImageGallery />
                         </Card>
                     </div>
                 </div>
-            </Card>
+            </div>
         );
     }
 }

@@ -8,14 +8,6 @@ export default class LangSelector extends React.Component
         super(props);
     }
 
-    componentDidMount(){
-
-    }
-
-    componentWillUnmount(){
-
-    }
-
     render(){
     var LangTabList = this.props.langList.map(i=><Tab label={i.label} value={i.label} key={i.label}/>);
         return (

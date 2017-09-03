@@ -1,19 +1,13 @@
 import React from "react";
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import {Card, CardHeader} from 'material-ui/Card';
 
 export default class ExhibitCard extends React.Component {
     constructor(props) {
         super(props);
         this.ChangeImage = this.ChangeImage.bind(this);
         this.state = {imageSrc: this.props.imageHref};
-    }
-
-    componentDidMount() {
-
-    }
-
-    componentWillUnmount() {
-
     }
 
     ChangeImage(newSrc){
@@ -23,9 +17,11 @@ export default class ExhibitCard extends React.Component {
     render() {
         return (
             <div className="ExhibitCard">
-                <div className="ExhibitCard_title">{this.props.title}</div>
-                <img className="ExhibitCard_image" src={this.state.imageSrc} style={{height:"200px",width:"200px", backgroundSize: "contain"}}/>
+                <CardHeader  subtitle="КАРТОЧКА" />
+                <TextField floatingLabelText="Название экспоната" />
                 <UploadButton onFileChanged={this.ChangeImage}/>
+                <br />
+                <img className="ExhibitCard_image" src={this.state.imageSrc} style={{position:"relative", top:"0", left:"0", width:"100px", height:"100px", backgroundSize: "contain"}}/>
             </div>
         );
     }
@@ -39,14 +35,6 @@ class UploadButton extends React.Component {
     constructor(props) {
         super(props);
         this.onFileSelected = this.onFileSelected.bind(this);
-    }
-
-    componentDidMount() {
-
-    }
-
-    componentWillUnmount() {
-
     }
 
     onFileSelected(event) {

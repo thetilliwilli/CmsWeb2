@@ -13,7 +13,8 @@ npm i --save cookie
 npm install --save bcryptjs jsonwebtoken mongoose passport passport-local
 npm i --save cookie-parser
 npm i --save express-session
-npm i --save react-router-dom material-ui react-tap-event-plugin
+npm i --save react-router-dom react-tap-event-plugin
+npm i --save material-ui
 npm i --save history
 
 npm i --save redux
