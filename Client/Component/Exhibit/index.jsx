@@ -20,13 +20,25 @@ function ControlPanel(props){
     );
 }
 
-export default class Exhibit extends React.Component
+class Exhibit extends React.Component
 {
     constructor(props){
         super(props);
     }
 
+    MakeRuStaticProps(){
+        return {
+            title: this.props.ru.title,
+            subtitle: this.props.ru.subtitle,
+            creationLocation: this.props.ru.creationLocation,
+            description: this.props.ru.description,
+            history: this.props.ru.history,
+            name: this.props.ru.name,
+        };
+    }
+
     render(){
+        let staticPropsData = this.props.language === "ru" ? this.props.data.ru : this.props.data.en;
         return (
             <div className="Exhibit" style={{height:"100%"}}>
                 <ControlPanel />
@@ -36,7 +48,7 @@ export default class Exhibit extends React.Component
                     </div>
                     <div className="ExhibitParts" style={{position:"relative", height:"100%"}}>
                         <Card className="StaticPropsField" style={{width:"30%", height:"100%", float:"left"}}>
-                            <StaticProps/>
+                            <StaticProps data={staticPropsData} language={this.props.language}/>
                         </Card>
                         <Card className="VariablePropsField" style={{width:"30%", height:"100%", float:"left"}}>
                             <VariableProps />
@@ -53,3 +65,12 @@ export default class Exhibit extends React.Component
         );
     }
 }
+
+import {connect} from "react-redux";
+
+export default connect(
+    (state)=>{return {
+        data: state.draftExhibit,
+        language: state.exhibitCreator.language,
+    }}
+)(Exhibit);

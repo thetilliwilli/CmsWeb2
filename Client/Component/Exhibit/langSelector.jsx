@@ -2,7 +2,7 @@ import React from "react";
 import {Tabs, Tab} from 'material-ui/Tabs';
 import FontIcon from 'material-ui/FontIcon';
 
-export default class LangSelector extends React.Component
+class LangSelector extends React.Component
 {
     constructor(props){
         super(props);
@@ -11,7 +11,7 @@ export default class LangSelector extends React.Component
     render(){
     var LangTabList = this.props.langList.map(i=><Tab label={i.label} value={i.label} key={i.label}/>);
         return (
-            <Tabs>
+            <Tabs onChange={this.props.ChangeLang}>
                 {LangTabList}
             </Tabs>
         );
@@ -20,7 +20,14 @@ export default class LangSelector extends React.Component
 
 LangSelector.defaultProps = {
     langList: [
-        {label: "RUS"},
-        {label: "ENG"}
+        {label: "ru"},
+        {label: "en"}
     ]
 };
+
+import {connect} from "react-redux";
+import {ChangeExhibitLanguage} from "../../App/ac.js";
+const MapDispatchToProps = dispatch=>({
+    ChangeLang: (v)=>{dispatch(ChangeExhibitLanguage(v))}
+});
+export default connect(null, MapDispatchToProps)(LangSelector)

@@ -8,8 +8,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import AppEnvironment from "./App/appEnvironment.jsx";
-import App from "./App/app.jsx";
+import AppEnvironment from "./App/env.jsx";
+import App from "./App/index.jsx";
 
 function CompiledApp(props){
     return (
