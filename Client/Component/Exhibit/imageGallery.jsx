@@ -94,7 +94,6 @@ class ImageGallery extends React.Component
     
     //METHODS-------------------------------------
     HandleFiles(files){
-        console.log(files);
         var images = this.state.images.slice();
         let self = this;
         Array.prototype.forEach.call(files, (file)=>{
@@ -146,7 +145,7 @@ class ImageGallery extends React.Component
                 {/* <div style={{position:"fixed", width:"100%", height:"100%", top:"50%", margin:"auto", fontSize:"100px", zIndex:"0", color:"rgba(0,0,0,0.2)"}}>ЗАГРУЗИТЬ<br/>ФОТО</div> */}
                 <CardHeader  subtitle="ФОТОГАЛЛЕРЕЯ" />
                 
-                <FlatButton iconStyle={{color:"grey"}} icon={<ContentAdd/>} label="ЗАГРУЗИТЬ ЕЩЕ" fullWidth containerElement="label">
+                <FlatButton style={{color:"grey"}} icon={<ContentAdd/>} label="ЗАГРУЗИТЬ ЕЩЕ" fullWidth containerElement="label">
                     <input ref={el=>this.fileUploadInput=el} type="file" style={inputStyle} multiple accept=".png,.jpg,.jpeg" onChange={this.OnFileSelected}/>
                 </FlatButton>
 
