@@ -13,7 +13,6 @@ export default class App extends React.Component
 
 
     componentDidMount(){
-        console.log("App componentDidMount");
         window.addEventListener("dragenter", this.PreventDefaultBehaviour);
         window.addEventListener("dragover", this.PreventDefaultBehaviour);
         window.addEventListener("drop", this.PreventDefaultBehaviour);

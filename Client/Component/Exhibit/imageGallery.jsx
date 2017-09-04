@@ -21,10 +21,10 @@ class ImageThumb extends React.Component
     render(){
         return (
             <div className="ImageThumb">
-                <img src={this.props.src} width={40} height={40}/>
+                <img src={this.props.src} width="60px" height="60px"/>
                     <div style={{margin:"10px", position:"relative", top:"-10px", display:(this.props.lang==="ru"?"initial":"none")}}><TextField hintText="Описание по рууски" defaultValue={this.props.description.ru} underlineShow={false}/></div>
                     <div style={{position:"relative", top:"-10px", display:(this.props.lang==="en"?"initial":"none")}}><TextField hintText="Описание на английском" defaultValue={this.props.description.en} underlineShow={false}/></div>
-                <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.data.id)}}/></IconButton>
+                <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.id)}}/></IconButton>
                 <Divider />
             </div>
         );
@@ -71,26 +71,21 @@ class ImageGallery extends React.Component
     }
 
     //HANDLERS-------------------------------------
-    OnDragEnter(event){
+    PreventDefaultBehaviour(event){
         event.stopPropagation();
         event.preventDefault();
     }
 
-    OnDragOver(event){
-        event.stopPropagation();
-        event.preventDefault();
-    }
+    OnDragEnter(event){ this.PreventDefaultBehaviour(event); }
+    
+    OnDragOver(event){ this.PreventDefaultBehaviour(event); }
 
     OnDrop(event){
-        event.stopPropagation();
-        event.preventDefault();
-
+        this.PreventDefaultBehaviour(event);
         this.HandleFiles(event.dataTransfer.files);
     }
 
-    OnFileSelected(event) {
-        this.HandleFiles(event.target.files);
-    }
+    OnFileSelected(event) { this.HandleFiles(event.target.files); }
     
     //METHODS-------------------------------------
     HandleFiles(files){
@@ -104,7 +99,8 @@ class ImageGallery extends React.Component
             fileReader.onload = (event)=>{
                 var updatedImage = self.state.images.find(i=>i.id===newId);
                 updatedImage.src = event.target.result;
-                self.setState({});
+                // self.setState({});
+                self.forceUpdate();
             };
             fileReader.readAsDataURL(file);
         });
@@ -115,8 +111,9 @@ class ImageGallery extends React.Component
         alert(`OnAddImage`);
     }
 
-    DeleteImage(){
-        alert(`OnDeleteImage`);
+    DeleteImage(id){
+        var x = this.state.images.filter(i=>i.id!==id);
+        this.setState({images:x});
     }
 
     ChangeDescription(){
@@ -138,7 +135,7 @@ class ImageGallery extends React.Component
         // var images = util.deepCopy(this.state.images);
         // images.push({src:addNewImageBase64, description:{ru:"Добавьте новое изображение, щелкнув на этой изображение", en:"Add new image, by tap this image"}});
         var imageThumbs = this.state.images.map(
-            i=><ImageThumb key={i.id} src={i.src} lang={this.props.lang} description={i.description}/>
+            i=><ImageThumb key={i.id} src={i.src} lang={this.props.lang} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
         );
         return (
             <div className="ImageGallery">
