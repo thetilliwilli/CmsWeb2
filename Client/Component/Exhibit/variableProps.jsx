@@ -8,6 +8,9 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import IconButton from 'material-ui/IconButton';
 import ActionDelete from "material-ui/svg-icons/action/delete"
 
+import util from "../../Modules/util.js";
+
+
 class ControlPanel extends React.Component
 {
     render(){
@@ -66,7 +69,7 @@ export default class VariableProps extends React.Component
         this.DeleteProp = this.DeleteProp.bind(this);
         this.ChangeProp = this.ChangeProp.bind(this);
 
-        var items = JSON.parse(JSON.stringify(this.props.items));
+        var items = util.deepCopy(this.props.items);
         if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
             items.push({ru:{name:"",value:""},en:{name:"",value:""}});
         items = items.map((it, ix)=>({...it, id:ix}));//Проставляем всем айдишники
@@ -75,14 +78,14 @@ export default class VariableProps extends React.Component
     }
 
     AddProp(){
-        var items = JSON.parse(JSON.stringify(this.state.items));
+        var items = util.deepCopy(this.state.items);
         items.push({ru:{name:"",value:""},en:{name:"",value:""}, id:this.counter++});
         this.setState({items});
     }
 
     DeleteProp(id){
         var items = this.state.items.filter(i=>i.id!==id);
-        this.setState({items: JSON.parse(JSON.stringify(items))});
+        this.setState({items: util.deepCopy(items)});
     }
 
     ChangeProp(newName, newValue, id, lang){

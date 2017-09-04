@@ -1,40 +1,6 @@
 import * as at from "./at";
 
-const initState = {
-    navigation:{
-        currentPage: 0
-    },
-
-    exhibitCreator:{
-        language: "ru"
-    },
-    
-    draftExhibit:{
-        ru:{
-            title:"",
-            subtitle:"",
-            location:"",
-            description:"",
-            history:"",
-            name:"",
-            date:Date.now()
-        },
-        en:{
-            title:"",
-            subtitle:"",
-            location:"",
-            description:"",
-            history:"",
-            name:"",
-            date:Date.now(),
-        },
-        variableProps:[
-        ]
-    },
-    exhibitOverview:{
-    },
-
-};
+import initState from "./initState.js";
 
 export default function AppReducer(state = initState, action){
     switch(action.type)

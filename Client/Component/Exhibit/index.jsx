@@ -5,10 +5,10 @@ import {Card} from "material-ui/Card";
 
 
 import LangSelector from "./langSelector.jsx";
-import ExhibitAvatar from "./exhibitAvatar.jsx";
+import ExhibitAvatar from "./avatar.jsx";
 import StaticProps from "./staticProps.jsx";
 import VariableProps from "./variableProps.jsx";
-import ExhibitImageGallery from "./exhibitImageGallery.jsx";
+import ExhibitImageGallery from "./imageGallery.jsx";
 
 
 function ControlPanel(props){

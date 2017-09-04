@@ -39,8 +39,8 @@ class Auth
         var userInfo = userInfoService.GetUserInfo(user.login);
         if(userInfo && (user.login === userInfo.login) && (user.password === userInfo.password))
         {
-            res.cookie("login", userInfo.login, { maxAge: 900000/* , httpOnly: true  */});
-            res.cookie("password", userInfo.password, { maxAge: 900000/* , httpOnly: true  */});
+            res.cookie("login", userInfo.login, { maxAge: 90000000/* , httpOnly: true  */});
+            res.cookie("password", userInfo.password, { maxAge: 90000000/* , httpOnly: true  */});
             return true;
         }
         else
