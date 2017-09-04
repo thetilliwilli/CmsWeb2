@@ -14,8 +14,8 @@ import ExhibitImageGallery from "./imageGallery.jsx";
 function ControlPanel(props){
     return (
         <div className="ControlPanel">
-            <RaisedButton label="Save"/>
-            <RaisedButton label="Save as Template"/>
+            <RaisedButton label="ЗАГРУЗИТЬ В БАЗУ" style={{margin:"10px"}}/>
+            <RaisedButton label="СОХРАНИТЬ КАК ШАБЛОН" style={{margin:"10px"}}/>
         </div>
     );
 }
