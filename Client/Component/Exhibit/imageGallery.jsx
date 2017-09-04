@@ -1,22 +1,16 @@
 import React from "react";
 import {Card, CardHeader} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import ActionDelete from "material-ui/svg-icons/action/delete"
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import util from "../../Modules/util.js";
 import {addNewImage as addNewImageBase64} from "../../Assets/images";
 
-// const SelectImagesButton = ()=>{
-//     const inputStyle={cursor: 'pointer',position: 'absolute',top: 0,bottom: 0,right: 0,left: 0,width: '100%',opacity: 0,};
-//     return (
-//         <RaisedButton label="Выбрать" labelPosition="before" containerElement="label">
-//             <input type="file" style={inputStyle} />
-//         </RaisedButton>  
-//     );
-// };
+import uuid from "uuid";
 
 class ImageThumb extends React.Component
 {
@@ -27,10 +21,10 @@ class ImageThumb extends React.Component
     render(){
         return (
             <div className="ImageThumb">
-                <img src={this.props.src} width={70} height={70}/>
-                <div style={{display:(this.props.lang==="ru"?"initial":"none")}}><TextField hintText="Описание по рууски" defaultValue={this.props.description.ru} /></div>
-                <div style={{display:(this.props.lang==="en"?"initial":"none")}}><TextField hintText="Описание на английском" defaultValue={this.props.description.en} /></div>
-                <IconButton><ActionDelete onClick={()=>{this.props.OnDelete(this.props.data.id)}}/></IconButton>
+                <img src={this.props.src} width={40} height={40}/>
+                    <div style={{margin:"10px", position:"relative", top:"-10px", display:(this.props.lang==="ru"?"initial":"none")}}><TextField hintText="Описание по рууски" defaultValue={this.props.description.ru} underlineShow={false}/></div>
+                    <div style={{position:"relative", top:"-10px", display:(this.props.lang==="en"?"initial":"none")}}><TextField hintText="Описание на английском" defaultValue={this.props.description.en} underlineShow={false}/></div>
+                <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.data.id)}}/></IconButton>
                 <Divider />
             </div>
         );
@@ -43,9 +37,10 @@ class ImageGallery extends React.Component
     constructor(props){
         super(props);
 
-        this.DragEnter = this.DragEnter.bind(this);
-        this.DragOver = this.DragOver.bind(this);
-        this.Drop = this.Drop.bind(this);
+        this.OnDragEnter = this.OnDragEnter.bind(this);
+        this.OnDragOver = this.OnDragOver.bind(this);
+        this.OnDrop = this.OnDrop.bind(this);
+        this.OnFileSelected = this.OnFileSelected.bind(this);
 
         this.HandleFiles = this.HandleFiles.bind(this);
         this.AddImage = this.AddImage.bind(this);
@@ -53,49 +48,75 @@ class ImageGallery extends React.Component
         this.ChangeDescription = this.ChangeDescription.bind(this);
         
         this.DropZone = null;
-        
-        var images = util.deepCopy(this.props.images);
-        images.push({src:addNewImageBase64, description:{ru:"Добавьте новое изображение, щелкнув на этой изображение", en:"Add new image, by tap this image"}});
+        this.fileUploadInput = null;
+
+        var images = util.deepCopy(this.props.images).map((img)=>{
+            if(!img.id)
+                img.id = uuid();
+        });
 
         this.state = {images};
     }
 
     componentDidMount(){
-        this.DropZone.addEventListener("dragenter", this.DragEnter);
-        this.DropZone.addEventListener("dragover", this.DragOver);
-        this.DropZone.addEventListener("drop", this.Drop);
+        this.DropZone.addEventListener("dragenter", this.OnDragEnter);
+        this.DropZone.addEventListener("dragover", this.OnDragOver);
+        this.DropZone.addEventListener("drop", this.OnDrop);
     }
 
-    //EVENTS-------------------------------------
-    DragEnter(event){
+    componentWillUnmount(){
+        this.DropZone.removeEventListener("dragenter", this.OnDragEnter);
+        this.DropZone.removeEventListener("dragover", this.OnDragOver);
+        this.DropZone.removeEventListener("drop", this.OnDrop);
+    }
+
+    //HANDLERS-------------------------------------
+    OnDragEnter(event){
         event.stopPropagation();
         event.preventDefault();
     }
 
-    DragOver(event){
+    OnDragOver(event){
         event.stopPropagation();
         event.preventDefault();
     }
 
-    Drop(event){
+    OnDrop(event){
         event.stopPropagation();
         event.preventDefault();
 
-        var files = event.dataTransfer.files;
-
-        this.props.HandleFiles(files);
+        this.HandleFiles(event.dataTransfer.files);
     }
 
-    //FILES-------------------------------------
+    OnFileSelected(event) {
+        this.HandleFiles(event.target.files);
+    }
+    
+    //METHODS-------------------------------------
     HandleFiles(files){
         console.log(files);
+        var images = this.state.images.slice();
+        let self = this;
+        Array.prototype.forEach.call(files, (file)=>{
+            let newId = uuid();
+            var newImage = {src:"/Static/img/spinner.gif", description:{ru:"", en:""}, id:newId};
+            images.push(newImage);
+            var fileReader = new FileReader();
+            fileReader.onload = (event)=>{
+                var updatedImage = self.state.images.find(i=>i.id===newId);
+                updatedImage.src = event.target.result;
+                self.setState({});
+            };
+            fileReader.readAsDataURL(file);
+        });
+        this.setState({images});
     }
 
     AddImage(){
         alert(`OnAddImage`);
     }
 
-    DeleteImage(imageId){
+    DeleteImage(){
         alert(`OnDeleteImage`);
     }
 
@@ -104,18 +125,34 @@ class ImageGallery extends React.Component
     }
 
     render(){
-        const dropZoneStyle = {border:"1px solid grey", height:"100%", minHeight:"400px"};
-        var imageThumbs = this.props.images.map(
-            i=><ImageThumb key={i.src} src={i.src} lang={this.props.lang} description={i.description}/>
+        const inputStyle = {
+            cursor: 'pointer',
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            right: 0,
+            left: 0,
+            width: '100%',
+            opacity: 0,
+          };
+        const dropZoneStyle = {border:"1px solid lightgrey", height:"100%", minHeight:"400px", overflow:"auto"};
+        // var images = util.deepCopy(this.state.images);
+        // images.push({src:addNewImageBase64, description:{ru:"Добавьте новое изображение, щелкнув на этой изображение", en:"Add new image, by tap this image"}});
+        var imageThumbs = this.state.images.map(
+            i=><ImageThumb key={i.id} src={i.src} lang={this.props.lang} description={i.description}/>
         );
         return (
             <div className="ImageGallery">
+                {/* <div style={{position:"fixed", width:"100%", height:"100%", top:"50%", margin:"auto", fontSize:"100px", zIndex:"0", color:"rgba(0,0,0,0.2)"}}>ЗАГРУЗИТЬ<br/>ФОТО</div> */}
                 <CardHeader  subtitle="ФОТОГАЛЛЕРЕЯ" />
                 
+                <FlatButton iconStyle={{color:"grey"}} icon={<ContentAdd/>} label="ЗАГРУЗИТЬ ЕЩЕ" fullWidth containerElement="label">
+                    <input ref={el=>this.fileUploadInput=el} type="file" style={inputStyle} multiple accept=".png,.jpg,.jpeg" onChange={this.OnFileSelected}/>
+                </FlatButton>
+
                 <div className="DropZone" ref={el=>this.DropZone=el} style={dropZoneStyle}>
                     {imageThumbs}
                 </div>
-
             </div>
         );
     }

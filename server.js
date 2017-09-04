@@ -23,7 +23,8 @@ app.use(cookieParser());
 
 app.use("/auth", authRouter);//Все что связано с авторизацией, логаутами и логинами
 app.use(auth.AuthFirewall);//Access decider
-app.use("/", express.static(config.webRootPath));//Serve static assets from WebRoot
+app.use("/Static", express.static(config.staticPath));//Serve static assets (images, css, js, html) from Static
+/* Вот здесь надо будет переделать на app.get("*",file.readAll("index.html")) */app.use("/", express.static(config.webRootPath));//Serve static assets from WebRoot
 app.get("*", (req, res)=>{res.redirect("/")});//Redirect to SPA again with new URL requested
 
 app.listen(config.port, ()=>{console.log(`[ContentManagerServer]:(StartListenPort):${config.port}`);});
