@@ -17,8 +17,7 @@ const initState = {
             description:"",
             history:"",
             name:"",
-            date:Date.now(),
-            variableProps:[]
+            date:Date.now()
         },
         en:{
             title:"",
@@ -28,8 +27,9 @@ const initState = {
             history:"",
             name:"",
             date:Date.now(),
-            variableProps:[]
         },
+        variableProps:[
+        ]
     },
     exhibitOverview:{
     },

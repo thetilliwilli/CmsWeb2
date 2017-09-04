@@ -40,7 +40,7 @@ class Exhibit extends React.Component
                             <StaticProps data={{ru:this.props.data.ru, en:this.props.data.en}} language={this.props.language}/>
                         </Card>
                         <Card className="VariablePropsField" style={{width:"30%", height:"100%", float:"left"}}>
-                            <VariableProps />
+                            <VariableProps items={this.props.data.variableProps} language={this.props.language} />
                         </Card>
                         <Card className="AvatarField" style={{width:"40%", float:"left"}}>
                             <ExhibitAvatar />

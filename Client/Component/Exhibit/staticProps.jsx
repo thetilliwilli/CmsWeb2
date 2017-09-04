@@ -35,9 +35,9 @@ export default class StaticProps extends React.Component
                 </div>
 
                 <div className="StaticProps_EnVersion" style={{display:( lang === "en" ? "initial":"none")}}>
-                        <CardHeader  subtitle="ОБЩИЕ EN" />
+                        <CardHeader  subtitle="ОБЩИЕ - Английский" />
 
-                        <TextField underlineShow={false} name="name" floatingLabelText="Заголовок Экспоната" defaultValue={this.props.data.en.name} />
+                        <TextField underlineShow={false} name="name" floatingLabelText="Название Экспоната" defaultValue={this.props.data.en.name} />
                         <Divider />
                         <TextField underlineShow={false} name="title" floatingLabelText="Заголовок Экспоната" defaultValue={this.props.data.en.title} />
                         <Divider />
