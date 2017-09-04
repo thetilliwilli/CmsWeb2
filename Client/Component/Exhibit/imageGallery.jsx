@@ -36,6 +36,7 @@ class ImageGallery extends React.Component
 
     constructor(props){
         super(props);
+        props.RegCom(this);
 
         this.OnDragEnter = this.OnDragEnter.bind(this);
         this.OnDragOver = this.OnDragOver.bind(this);
@@ -86,6 +87,8 @@ class ImageGallery extends React.Component
     }
 
     OnFileSelected(event) { this.HandleFiles(event.target.files); }
+
+    Data(){ return this.state.images; }
     
     //METHODS-------------------------------------
     HandleFiles(files){

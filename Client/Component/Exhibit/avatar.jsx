@@ -3,9 +3,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import {Card, CardHeader} from 'material-ui/Card';
 
-export default class ExhibitCard extends React.Component {
+export default class Avatar extends React.Component {
     constructor(props) {
         super(props);
+        props.RegCom(this);
+        
         this.ChangeImage = this.ChangeImage.bind(this);
         this.state = {imageSrc: this.props.imageHref};
     }
@@ -13,6 +15,8 @@ export default class ExhibitCard extends React.Component {
     ChangeImage(newSrc){
         this.setState({imageSrc: newSrc});
     }
+
+    Data(){ return {src: this.state.imageSrc} }
 
     render() {
         return (
@@ -24,7 +28,7 @@ export default class ExhibitCard extends React.Component {
     }
 }
 
-ExhibitCard.defaultProps = {
+Avatar.defaultProps = {
     imageHref: "http://www.imasgrafica.com/images/nophotomaxi.jpg"
 };
 

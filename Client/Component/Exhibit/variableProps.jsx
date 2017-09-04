@@ -64,6 +64,7 @@ export default class VariableProps extends React.Component
 {
     constructor(props){
         super(props);
+        props.RegCom(this);
 
         this.AddProp = this.AddProp.bind(this);
         this.DeleteProp = this.DeleteProp.bind(this);
@@ -94,6 +95,8 @@ export default class VariableProps extends React.Component
         item.name = newName === null ? item.name : newName;
         item.value = newValue === null ? item.value : newValue;
     }
+
+    Data(){ return this.state.items; }
 
     render(){
         return (

@@ -9,6 +9,20 @@ export default class StaticProps extends React.Component
 {
     constructor(props){
         super(props);
+        props.RegCom(this);
+    }
+
+    Data(){
+        var result = {ru:{},en:{}};
+        var formRu = window.document.querySelector("#staticPropsRu");
+        var formEn = window.document.querySelector("#staticPropsEn");
+
+        for(let el in this.props.data.ru)
+            result.ru[el] = formRu.elements[el].value;
+        for(let el in this.props.data.ru)
+            result.en[el] = formEn.elements[el].value;
+
+        return result;
     }
 
     render(){
@@ -16,7 +30,7 @@ export default class StaticProps extends React.Component
         return (
             <div className="StaticProps">
 
-                <div className="StaticProps_RuVersion" style={{display:( lang === "ru" ? "initial":"none")}}>
+                <form id="staticPropsRu" className="StaticProps_RuVersion" style={{display:( lang === "ru" ? "initial":"none")}}>
                     <CardHeader  subtitle="ОБЩИЕ - Русский" />
 
                     <TextField underlineShow={false} name="name" floatingLabelText="Название Экспоната" defaultValue={this.props.data.ru.name}/>
@@ -32,9 +46,9 @@ export default class StaticProps extends React.Component
                     <TextField underlineShow={false} name="history" floatingLabelText="История создания"  defaultValue={this.props.data.ru.history} multiLine rowsMax={6} fullWidth />
                     <Divider />
                     <TextField underlineShow={false} name="description" floatingLabelText="Подробное описание"  defaultValue={this.props.data.ru.description} multiLine rowsMax={6} fullWidth/>
-                </div>
+                </form>
 
-                <div className="StaticProps_EnVersion" style={{display:( lang === "en" ? "initial":"none")}}>
+                <form  id="staticPropsEn" className="StaticProps_EnVersion" style={{display:( lang === "en" ? "initial":"none")}}>
                         <CardHeader  subtitle="ОБЩИЕ - Английский" />
 
                         <TextField underlineShow={false} name="name" floatingLabelText="Название Экспоната" defaultValue={this.props.data.en.name} />
@@ -50,7 +64,7 @@ export default class StaticProps extends React.Component
                         <TextField underlineShow={false} name="history" floatingLabelText="История создания" defaultValue={this.props.data.en.history} multiLine rowsMax={6} fullWidth/>
                         <Divider />
                         <TextField underlineShow={false} name="description" floatingLabelText="Подробное описание" defaultValue={this.props.data.en.description} multiLine rowsMax={6} fullWidth/>
-                    </div>
+                </form>
             </div>
         );
     }
