@@ -28,7 +28,7 @@
     "buildAuth": "webpack -w --config webpack.config2.js",
     "start": "node server.js",
     "startNodemon": "nodemon server.js",
-    "startWebpackDevServer": "webpack-dev-server --hot"
+    "startWebpackDevServer": "webpack-dev-server --hot --host 0.0.0.0"
   },
   "repository": {
     "type": "git",
