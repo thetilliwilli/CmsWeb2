@@ -20,6 +20,9 @@ npm i --save history
 npm i --save redux
 npm i --save react-redux
 npm i --save uuid
+npm i --save redux-thunk
+npm i --save isomorphic-fetch
+npm i --save redux-logger
 
 npm i --save-dev react react-dom babel-loader babel-core babel-preset-react babel-preset-es2015 babel-preset-camo
 npm i --save-dev babel-plugin-transform-object-rest-spread

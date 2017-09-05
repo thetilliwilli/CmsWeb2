@@ -46,13 +46,13 @@ class Exhibit extends React.Component
         var gallery = this.ImageGalleryRef.Data();
 
         var result = {staticProps, variableProps, avatar, gallery};
-        console.log("Data ready. Total length: " + JSON.stringify(result).length );
         return result;
     }
 
     Submit(){
-        alert(`Not implemented`);
-        throw new Error(`Not implemented`);
+        var exhibitData = this.Data();
+        console.log(`[Submit new Exhibit]: ${exhibitData.staticProps.ru.name}`);
+        this.props.SubmitNewExhibit(exhibitData);
     }
 
     RegisterStaticPropsRef(component){ this.StaticPropsRef = component;}
@@ -89,10 +89,13 @@ class Exhibit extends React.Component
 }
 
 import {connect} from "react-redux";
-
+import {SubmitNewExhibit} from "../../App/ac.js";
 export default connect(
     (state)=>{return {
-        data: state.draftExhibit,
+        data: state.draft,
         language: state.exhibitCreator.language,
+    }},
+    (dispatch)=>{ return {
+        SubmitNewExhibit: exhibitData=>dispatch(SubmitNewExhibit(exhibitData))
     }}
 )(Exhibit);

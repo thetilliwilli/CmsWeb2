@@ -21,7 +21,7 @@ class ImageThumb extends React.Component
     render(){
         return (
             <div className="ImageThumb">
-                <img src={this.props.src} width="60px" height="60px"/>
+                <img src={this.props.src}/>
                     <div style={{margin:"10px", position:"relative", top:"-10px", display:(this.props.lang==="ru"?"initial":"none")}}><TextField hintText="Описание по рууски" defaultValue={this.props.description.ru} underlineShow={false}/></div>
                     <div style={{position:"relative", top:"-10px", display:(this.props.lang==="en"?"initial":"none")}}><TextField hintText="Описание на английском" defaultValue={this.props.description.en} underlineShow={false}/></div>
                 <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.id)}}/></IconButton>
@@ -158,4 +158,4 @@ class ImageGallery extends React.Component
 }
 
 import {connect} from "react-redux";
-export default connect(s=>({images: s.draftExhibit.imageGallery.images, lang: s.exhibitCreator.language}))(ImageGallery);
+export default connect(s=>({images: s.draft.imageGallery.images, lang: s.exhibitCreator.language}))(ImageGallery);
