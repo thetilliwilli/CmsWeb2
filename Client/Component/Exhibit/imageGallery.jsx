@@ -8,7 +8,6 @@ import Divider from 'material-ui/Divider';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import util from "../../Modules/util.js";
-import {addNewImage as addNewImageBase64} from "../../Assets/images";
 
 import uuid from "uuid";
 
@@ -136,7 +135,6 @@ class ImageGallery extends React.Component
           };
         const dropZoneStyle = {border:"1px solid lightgrey", height:"100%", minHeight:"400px", overflow:"auto"};
         // var images = util.deepCopy(this.state.images);
-        // images.push({src:addNewImageBase64, description:{ru:"Добавьте новое изображение, щелкнув на этой изображение", en:"Add new image, by tap this image"}});
         var imageThumbs = this.state.images.map(
             i=><ImageThumb key={i.id} src={i.src} lang={this.props.lang} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
         );
