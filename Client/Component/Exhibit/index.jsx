@@ -70,7 +70,7 @@ class Exhibit extends React.Component
                     </div>
                     <div className="ExhibitParts" style={{position:"relative", height:"100%"}}>
                         <Card className="StaticPropsField" style={{width:"30%", height:"100%", float:"left"}}>
-                            <StaticProps RegCom={this.RegisterStaticPropsRef} data={{ru:this.props.data.ru, en:this.props.data.en}} language={this.props.language}/>
+                            <StaticProps RegCom={this.RegisterStaticPropsRef} propList={this.props.data.staticProps} language={this.props.language}/>
                         </Card>
                         <Card className="VariablePropsField" style={{width:"30%", height:"100%", float:"left"}}>
                             <VariableProps RegCom={this.RegisterVariablePropsRef} items={this.props.data.variableProps} language={this.props.language} />
