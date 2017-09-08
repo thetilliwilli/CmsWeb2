@@ -40,12 +40,12 @@ class PostmanService
 
         const options = {
             method: "POST",
-            mode: "no-cors",
+            mode: "cors",
             headers,
             body: (typeof data === "string" ? data : JSON.stringify(data))
         };
 
-        return window.fetch(`${this.rootUrl}/${channel}`, options);
+        return fetch(`${this.rootUrl}/${channel}`, options);
     }
 
     Put(channel, id, data){

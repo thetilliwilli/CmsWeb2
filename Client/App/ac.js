@@ -23,12 +23,17 @@ export function SubmitNewExhibit(exhibitData){
 
         postman.Post("exhibit", exhibitData).then(res=>{
                 if(res.ok)
-                    return res.json();
+                    return res.json();//!!!Здесь неправильно одно и тоже возвращаю
                 else
-                    return res.json();
+                    return res.json();//!!!Здесь неправильно одно и тоже возвращаю
             })
-            .then(json=>dispatch(SubmitNewExhibitResponse(null, json)))
-            .catch(json=>dispatch(SubmitNewExhibitResponse(json, null)));
+            .then((json)=>{
+                console.log(json);
+                dispatch(SubmitNewExhibitResponse(null, json))
+            },(json)=>{
+                console.error(json);
+                dispatch(SubmitNewExhibitResponse(json, null));
+            })
     };
 }
 
@@ -45,7 +50,7 @@ export function SubmitNewExhibitResponse(error, response){
             error: true
         }
     else return {
-        typ: at.SUBMIT_NEW_EXHIBIT_RESPONSE,
+        type: at.SUBMIT_NEW_EXHIBIT_RESPONSE,
         payload: response,
     }
 }

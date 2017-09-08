@@ -41,6 +41,7 @@ class Exhibit extends React.Component
 
     Data(){
         var staticProps = this.StaticPropsRef.Data();
+        staticProps.date = staticProps.date.ru;//Берем только одно значение
         var variableProps = this.VariablePropsRef.Data();
         var avatar = this.AvatarRef.Data();
         var gallery = this.ImageGalleryRef.Data();
