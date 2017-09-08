@@ -45,13 +45,13 @@ class Exhibit extends React.Component
         var avatar = this.AvatarRef.Data();
         var gallery = this.ImageGalleryRef.Data();
 
-        var result = {staticProps, variableProps, avatar, gallery};
+        var result = {...staticProps, fields: variableProps, coverImage: avatar, imageGallery: gallery};
         return result;
     }
 
     Submit(){
         var exhibitData = this.Data();
-        console.log(`[Submit new Exhibit]: ${exhibitData.staticProps.ru.name}`);
+        console.log(`[Submit new Exhibit]: `, exhibitData);
         this.props.SubmitNewExhibit(exhibitData);
     }
 

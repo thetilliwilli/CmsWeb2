@@ -21,8 +21,14 @@ export function SubmitNewExhibit(exhibitData){
     return function(dispatch){
         dispatch(SubmitNewExhibitRequest());//Меняем состояние чтобы оповестить что пора показывать крутилки
 
-        postman.Post("exhibit", exhibitData)
-            .then(res=>dispatch(SubmitNewExhibitResponse(null, res)), err=>dispatch(SubmitNewExhibitResponse(err, null)));
+        postman.Post("exhibit", exhibitData).then(res=>{
+                if(res.ok)
+                    return res.json();
+                else
+                    return res.json();
+            })
+            .then(json=>dispatch(SubmitNewExhibitResponse(null, json)))
+            .catch(json=>dispatch(SubmitNewExhibitResponse(json, null)));
     };
 }
 
@@ -33,14 +39,15 @@ export function SubmitNewExhibitRequest(){
 }
 
 export function SubmitNewExhibitResponse(error, response){
-    var action = {type: at.SUBMIT_NEW_EXHIBIT_RESPONSE};
-    action.payload = response;
-    if(error)
-    {
-        action.error = true;
-        action.payload = new Error(error);
+    if(error) return {
+            type: at.SUBMIT_NEW_EXHIBIT_RESPONSE,
+            payload: error,
+            error: true
+        }
+    else return {
+        typ: at.SUBMIT_NEW_EXHIBIT_RESPONSE,
+        payload: response,
     }
-    return action;
 }
 
 
