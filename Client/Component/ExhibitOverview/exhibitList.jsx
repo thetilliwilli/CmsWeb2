@@ -19,7 +19,14 @@ export default class ExhibitList extends React.Component
 
     render(){
         var tableRows = this.props.exhibitList.map(
-            ex=><ExhibitSummary key={ex.id} id={ex.id} coverImage={ex.coverImage} name={ex.name} title={ex.title} />
+            ex=>(
+                <TableRow key={ex.id}>
+                    <TableRowColumn><img src={ex.coverImage} width="50" height="50"></img></TableRowColumn>
+                    <TableRowColumn>{ex.id}</TableRowColumn>
+                    <TableRowColumn>{ex.name}</TableRowColumn>
+                    <TableRowColumn>{ex.title}</TableRowColumn>
+                </TableRow>
+            )
         );
         return (
             <Table className="ExhibitOverview_ExhibitList">

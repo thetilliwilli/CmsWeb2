@@ -29,14 +29,13 @@ const Controls = function(props){
 }
 
 const SummaryInfo = function(props){
-    // const style={};
     return (
-        <TableRow key={props.id}>
+        <div>
             <TableRowColumn><img src={props.coverImage} width="50" height="50"></img></TableRowColumn>
             <TableRowColumn>{props.id}</TableRowColumn>
             <TableRowColumn>{props.name}</TableRowColumn>
             <TableRowColumn>{props.title}</TableRowColumn>
-        </TableRow>
+        </div>
     );
 }
 
@@ -49,7 +48,7 @@ export default class ExhibitSummary extends React.Component
     render(){
         // coverImage={this.props.coverImage} id={this.props.id} name={this.props.name} title={this.props.title}
         return (
-                <SummaryInfo {...this.props}/>
+                <SummaryInfo/>
         );
     }
 }
