@@ -1,3 +1,11 @@
 "use strict";
 import React from "react";
-export default function ExhibitOverviewPage(p){return <div className="ExhibitOverviewPage">ExhibitOverviewPage CONTENT</div>};
+import ExhibitOverview from "../ExhibitOverview/index.jsx";
+
+export default function ExhibitOverviewPage(p){
+    return (
+        <div className="ExhibitOverviewPage">
+            <ExhibitOverview />
+        </div>
+    );
+};

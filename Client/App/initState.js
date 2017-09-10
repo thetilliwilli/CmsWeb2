@@ -1,7 +1,7 @@
 export default 
 {
     navigation:{
-        currentPage: 0
+        currentPage: 1
     },
 
     exhibitCreator:{
@@ -28,7 +28,12 @@ export default
         result: null,
         error: null
     },
-    exhibitOverview:{
+    overview:{
+        exhibitList:[
+            {id: "some unique id", name:"Калаш", coverImage:"/static/img/defaultExhibitAvatar.jpg", title:"Ак47 - VIP"},
+            {id: "some unique id2", name:"Калаш", coverImage:"/static/img/defaultExhibitAvatar.jpg", title:"Ак47 - VIP"},
+            {id: "some unique id3", name:"Калаш", coverImage:"/static/img/defaultExhibitAvatar.jpg", title:"Ак47 - VIP"},
+        ]
     },
 
 };
