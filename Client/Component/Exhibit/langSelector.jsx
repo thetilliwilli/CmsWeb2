@@ -11,7 +11,7 @@ class LangSelector extends React.Component
     render(){
         var LangTabList = this.props.langList.map(i=><Tab label={i.label} value={i.label} key={i.label}/>);
         return (
-            <Tabs onChange={this.props.ChangeLang}>
+            <Tabs onChange={this.props.ChangeLang} value={this.props.lang}>
                 {LangTabList}
             </Tabs>
         );
@@ -30,4 +30,4 @@ import {ChangeExhibitLanguage} from "../../App/ac.js";
 const MapDispatchToProps = dispatch=>({
     ChangeLang: (v)=>{dispatch(ChangeExhibitLanguage(v))}
 });
-export default connect(null, MapDispatchToProps)(LangSelector)
+export default connect(state=>({lang: state.exhibitCreator.language}), MapDispatchToProps)(LangSelector)

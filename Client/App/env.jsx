@@ -4,6 +4,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import {BrowserRouter as Router} from "react-router-dom";
 import {Provider} from "react-redux";
 import store from "./store.js";
+import InputController from "../Modules/inputController.js";//Для того что бы проинициализорався конструктор
 
 TapEventPlugin();
 
