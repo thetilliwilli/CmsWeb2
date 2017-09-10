@@ -2,6 +2,8 @@
 import React from "react";
 import RaisedButton from 'material-ui/RaisedButton';
 import {Card} from "material-ui/Card";
+import CircularProgress from 'material-ui/CircularProgress';
+import LinearProgress from 'material-ui/LinearProgress';
 
 
 import LangSelector from "./langSelector.jsx";
@@ -9,13 +11,23 @@ import Avatar from "./avatar.jsx";
 import StaticProps from "./staticProps.jsx";
 import VariableProps from "./variableProps.jsx";
 import ImageGallery from "./imageGallery.jsx";
+import ErrorInformer from "./errorInformer.jsx";
 
 
 function ControlPanel(props){
     return (
-        <div className="ControlPanel">
-            <RaisedButton label="ЗАГРУЗИТЬ В БАЗУ" style={{margin:"10px"}} onClick={props.OnClick}/>
+        <div className="ControlPanel" style={{position:"relative"}}>{/* Здесь relative для того что бы нормально работал blockerUi*/}
+            <RaisedButton label="ЗАГРУЗИТЬ В БАЗУ" style={{margin:"10px"}} onClick={props.OnClick}></RaisedButton>
             <RaisedButton label="СОХРАНИТЬ КАК ШАБЛОН" style={{margin:"10px"}}/>
+            {
+                props.blockControl &&
+                /* убираем доступность кнопок при любом запросе на сервер */
+                <div className="blockerUi"
+                    style={{position:"absolute", lef:"0", top:"0", width:"100%", height:"100%", backgroundColor:"rgba(255,255,255,0.95)", zIndex:"2", color:"grey", fontSize:"1.75em"}}
+                >
+                Выполняется операция <CircularProgress size={30} thickness={3} />
+                </div>
+            }
         </div>
     );
 }
@@ -31,7 +43,7 @@ class Exhibit extends React.Component
         this.VariablePropsRef = null;
         this.AvatarRef = null;
         this.ImageGalleryRef = null;
-
+        
         this.RegisterStaticPropsRef = this.RegisterStaticPropsRef.bind(this);
         this.RegisterVariablePropsRef = this.RegisterVariablePropsRef.bind(this);
         this.RegisterAvatarRef = this.RegisterAvatarRef.bind(this);
@@ -42,18 +54,37 @@ class Exhibit extends React.Component
     Data(){
         var staticProps = this.StaticPropsRef.Data();
         staticProps.date = staticProps.date.ru;//Берем только одно значение
-        var variableProps = this.VariablePropsRef.Data();
-        var avatar = this.AvatarRef.Data();
-        var gallery = this.ImageGalleryRef.Data();
 
-        var result = {...staticProps, fields: variableProps, coverImage: avatar, imageGallery: gallery};
+        var variableProps = this.VariablePropsRef.Data();
+
+        var avatar = this.AvatarRef.Data();
+        var coverImageOrUndefined = avatar.src === "/static/img/defaultExhibitAvatar.jpg" ? undefined : avatar.src;
+
+        var gallery = this.ImageGalleryRef.Data();
+        gallery = gallery.map(img=>({image:img.src, description:img.description}));
+
+        var result = {...staticProps, fields: variableProps, coverImage: coverImageOrUndefined, imageGallery: gallery};
         return result;
     }
 
     Submit(){
         var exhibitData = this.Data();
-        console.log(`[Submit new Exhibit]: `, exhibitData);
-        this.props.SubmitNewExhibit(exhibitData);
+        var error = this.HasError(exhibitData);
+        if(error)
+            this.props.ShowErrorWindow(error);
+        else
+            this.props.SubmitNewExhibit(exhibitData);
+    }
+
+    HasError(data){
+        var errors = data.fields.reduce((result, field, index)=>{
+            var ruError = field.ru.name.trim() == "" || field.ru.value.trim() == "";
+            var enError = field.en.name.trim() == "" || field.en.value.trim() == "";
+            if(ruError || enError)
+                result.push(`${index}) [${field.ru.name}] [${field.ru.value}] [${field.en.name}] [${field.en.value}]`);
+            return result;
+        }, []);
+        return errors.length === 0 ? null : {message: `[Характеристики]: Остались незаполненные поля.\n${errors.join("\n")}`};
     }
 
     RegisterStaticPropsRef(component){ this.StaticPropsRef = component;}
@@ -64,7 +95,7 @@ class Exhibit extends React.Component
     render(){
         return (
             <div className="Exhibit" style={{height:"100%"}}>
-                <ControlPanel OnClick={this.Submit}/>
+                <ControlPanel OnClick={this.Submit} blockControl={this.props.data.blockControl}/>
                 <div className="ExhibitForm" style={{height:"100%"}}>
                     <div>
                         <LangSelector/>
@@ -84,19 +115,21 @@ class Exhibit extends React.Component
                         </Card>
                     </div>
                 </div>
+                <ErrorInformer />
             </div>
         );
     }
 }
 
 import {connect} from "react-redux";
-import {SubmitNewExhibit} from "../../App/ac.js";
+import {SubmitNewExhibit, ShowErrorWindow} from "../../App/ac.js";
 export default connect(
     (state)=>{return {
         data: state.draft,
         language: state.exhibitCreator.language,
     }},
     (dispatch)=>{ return {
-        SubmitNewExhibit: exhibitData=>dispatch(SubmitNewExhibit(exhibitData))
+        SubmitNewExhibit: exhibitData=>dispatch(SubmitNewExhibit(exhibitData)),
+        ShowErrorWindow: error=>dispatch(ShowErrorWindow(error))
     }}
 )(Exhibit);

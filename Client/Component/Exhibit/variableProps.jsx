@@ -29,7 +29,7 @@ class VariablePropsList extends React.Component
             i=><VarProp key={i.id} data={i} language={this.props.language} OnDelete={this.props.OnDelete} OnPropChange={this.props.OnPropChange}/>
         );
         return (
-            <ul className="VariablePropsList" style={{listStyle:"none"}}>
+            <ul className="VariablePropsList" style={{listStyle:"none", margin:"20px 20px", padding:"0"}}>
                 {itemList}
             </ul>
         );
@@ -47,12 +47,12 @@ class VarProp extends React.Component
         return (
             <li className="VarProp">
                 <div className="VarProp_Ru" style={{display:( lang === "ru" ? "initial":"none")}}>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" style={{width:"40%"}} hintText={this.props.data.ru.name||"Свойство"} defaultValue={this.props.data.ru.name}/>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "ru")}} className="VarProp_Value" style={{width:"40%"}} hintText={this.props.data.ru.value||"Значение"} defaultValue={this.props.data.ru.value}/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" style={{width:"40%"}} defaultValue={this.props.data.ru.name} floatingLabelText="Свойство"/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "ru")}} className="VarProp_Value" style={{width:"40%"}} defaultValue={this.props.data.ru.value} floatingLabelText="Значение"/>
                 </div>
                 <div className="VarProp_En" style={{display:( lang === "en" ? "initial":"none")}}>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "en")}} className="VarProp_Name" style={{width:"40%"}} hintText={this.props.data.en.name||"Свойство"} defaultValue={this.props.data.en.name}/>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "en")}} className="VarProp_Value" style={{width:"40%"}} hintText={this.props.data.en.value||"Значение"} defaultValue={this.props.data.en.value}/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "en")}} className="VarProp_Name" style={{width:"40%"}} defaultValue={this.props.data.en.name} floatingLabelText="Свойство"/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "en")}} className="VarProp_Value" style={{width:"40%"}} defaultValue={this.props.data.en.value} floatingLabelText="Значение"/>
                 </div>
                 <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.data.id)}}/></IconButton>
             </li>
@@ -102,12 +102,12 @@ export default class VariableProps extends React.Component
         return (
             <div className="VariableProps">
                 <CardHeader  subtitle="ХАРАКТЕРИСТИКИ" />
-                <ControlPanel OnClick={this.AddProp} />
                 <VariablePropsList
                     items={this.state.items}
                     language={this.props.language}
                     OnDelete={this.DeleteProp}
                     OnPropChange={this.ChangeProp} />
+                <ControlPanel OnClick={this.AddProp} />
             </div>
         );
     }

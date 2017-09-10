@@ -13,7 +13,7 @@ class PostmanService
 
         const options = {
             method: "GET",
-            mode: "no-cors",
+            mode: "cors",
         };
 
         return window.fetch(`${this.rootUrl}/${channel}`, options);
@@ -25,7 +25,7 @@ class PostmanService
 
         const options = {
             method: "GET",
-            mode: "no-cors",
+            mode: "cors",
         };
 
         return window.fetch(`${this.rootUrl}/${channel}/${id}`, options);
@@ -44,8 +44,9 @@ class PostmanService
             headers,
             body: (typeof data === "string" ? data : JSON.stringify(data))
         };
-
-        return fetch(`${this.rootUrl}/${channel}`, options);
+        var urlEndPoint = `${this.rootUrl}/${channel}`;
+        console.log(`Post request to ${urlEndPoint} with length ${options.body.length}, KB`);
+        return fetch(urlEndPoint, options);
     }
 
     Put(channel, id, data){
@@ -57,7 +58,7 @@ class PostmanService
 
         const options = {
             method: "Put",
-            mode: "no-cors",
+            mode: "cors",
             headers,
             body: (typeof data === "string" ? data : JSON.stringify(data))
         };
@@ -74,7 +75,7 @@ class PostmanService
 
         const options = {
             method: "Delete",
-            mode: "no-cors",
+            mode: "cors",
             headers
         };
 

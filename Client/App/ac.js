@@ -23,17 +23,26 @@ export function SubmitNewExhibit(exhibitData){
 
         postman.Post("exhibit", exhibitData).then(res=>{
                 if(res.ok)
-                    return res.json();//!!!Здесь неправильно одно и тоже возвращаю
+                    return res.json();
                 else
-                    return res.json();//!!!Здесь неправильно одно и тоже возвращаю
+                    throw new Error(res.statusText);
             })
-            .then((json)=>{
-                console.log(json);
-                dispatch(SubmitNewExhibitResponse(null, json))
-            },(json)=>{
-                console.error(json);
-                dispatch(SubmitNewExhibitResponse(json, null));
+            .then(json=>{
+                if(json.error)
+                {
+                    console.warn(json.error);
+                    dispatch(SubmitNewExhibitResponse(json.error, null));
+                }
+                else
+                {
+                    console.log(json.message);
+                    dispatch(SubmitNewExhibitResponse(null, json.message));
+                }
             })
+            .catch(error=>{//Ошибка при соединении с сервером: плохой запрос, нет интернета итд
+                console.error(`Попытка запроса на сервер не удалась: ${error}`);
+                dispatch(SubmitNewExhibitResponse(error, null));
+            });
     };
 }
 
@@ -55,5 +64,10 @@ export function SubmitNewExhibitResponse(error, response){
     }
 }
 
+export function HideErrorWindow(){
+    return { type: at.HIDE_ERROR_WINDOW }
+}
 
-
+export function ShowErrorWindow(error){
+    return { type: at.SHOW_ERROR_WINDOW, payload: error }
+}

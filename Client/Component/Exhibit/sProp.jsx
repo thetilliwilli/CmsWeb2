@@ -23,18 +23,17 @@ export default class SProp extends React.Component
                 <div className="SProp_Ru" style={{display:displayRu}}>
                     {
                         this.props.propData.type === "string"
-                            ? <TextField underlineShow={false} name={"ru."+this.props.propName} floatingLabelText={this.props.propData.label} defaultValue={this.props.propData.ru} fullWidth/>
-                            : <DatePicker underlineShow={false} name={"ru."+this.props.propName} floatingLabelText={this.props.propData.label} openToYearSelection defaultDate={new Date(this.props.propData.ru)}/>
+                            ? <TextField name={"ru."+this.props.propName} floatingLabelText={this.props.propData.label} defaultValue={this.props.propData.ru} fullWidth/>
+                            : <DatePicker name={"ru."+this.props.propName} floatingLabelText={this.props.propData.label} openToYearSelection defaultDate={new Date(this.props.propData.ru)}/>
                     }
                 </div>
                 <div className="SProp_En" style={{display:displayEn}}>
                     {
                         this.props.propData.type === "string"
-                            ? <TextField underlineShow={false} name={"en."+this.props.propName} floatingLabelText={this.props.propData.label} defaultValue={this.props.propData.en} fullWidth/>
-                            : <DatePicker underlineShow={false} name={"en."+this.props.propName} floatingLabelText={this.props.propData.label} openToYearSelection defaultDate={new Date(this.props.propData.en)}/>
+                            ? <TextField name={"en."+this.props.propName} floatingLabelText={this.props.propData.label} defaultValue={this.props.propData.en} fullWidth/>
+                            : <DatePicker name={"en."+this.props.propName} floatingLabelText={this.props.propData.label} openToYearSelection defaultDate={new Date(this.props.propData.en)}/>
                     }
                 </div>
-                <Divider />
             </li>
         );
     }

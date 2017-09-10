@@ -17,13 +17,20 @@ export default function AppReducer(state = initState, action){
             return newState;
         case at.SUBMIT_NEW_EXHIBIT_RESPONSE:
             var newState = util.deepCopy(state);
+            newState.draft.blockControl = false;
             if(action.error)
                 newState.draft.error = action.payload;
             else
                 newState.draft.result = action.payload;
-            newState.draft.blockControl = false;
             return newState;
-
+        case at.HIDE_ERROR_WINDOW:
+            var newState = util.deepCopy(state);
+            newState.draft.error = null;
+            return newState;
+        case at.SHOW_ERROR_WINDOW:
+            var newState = util.deepCopy(state);
+            newState.draft.error = action.payload;
+            return newState;
 
         default: return state;
     }

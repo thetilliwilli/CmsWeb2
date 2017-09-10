@@ -11,7 +11,7 @@ export default class MainLayout extends React.Component
         return (
             <div className="MainLayout" style={{height:"100%"}}>
                 
-                <div className="TopBar" style={{height:"10%"}}>
+                <div className="TopBar">
                     <this.props.topBarResident />
                 </div>
 

@@ -29,7 +29,7 @@ export default class Avatar extends React.Component {
 }
 
 Avatar.defaultProps = {
-    imageHref: "http://www.imasgrafica.com/images/nophotomaxi.jpg"
+    imageHref: "/static/img/defaultExhibitAvatar.jpg"
 };
 
 class UploadImage extends React.Component {
