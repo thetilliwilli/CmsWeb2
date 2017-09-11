@@ -1,7 +1,7 @@
 export default 
 {
     navigation:{
-        currentPage: 1
+        currentPage: 0
     },
 
     exhibitCreator:{
