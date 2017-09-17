@@ -8,6 +8,10 @@ export default
         language: "ru"
     },
     
+    errorInformer: {
+        error: null
+    },
+
     draft:{
         staticProps:{
             name:{ru:"", en:"", label:"Название Экспоната", type:"string"},

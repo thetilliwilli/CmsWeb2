@@ -31,10 +31,10 @@ function ErrorToMessage(error){
 }
 
 import {connect} from "react-redux";
-import {HideErrorWindow} from "../../App/ac.js";
+import {HideErrorWindow} from "../App/ac.js";
 const MapStateToProps = (state)=>{
     return {
-        error: state.draft.error
+        error: state.errorInformer.error
     };
 };
 const MapDispatchToProps = (dispatch)=>{

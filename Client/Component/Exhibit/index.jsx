@@ -11,7 +11,6 @@ import Avatar from "./avatar.jsx";
 import StaticProps from "./staticProps.jsx";
 import VariableProps from "./variableProps.jsx";
 import ImageGallery from "./imageGallery.jsx";
-import ErrorInformer from "./errorInformer.jsx";
 
 
 function ControlPanel(props){
@@ -115,7 +114,6 @@ class Exhibit extends React.Component
                         </Card>
                     </div>
                 </div>
-                <ErrorInformer />
             </div>
         );
     }

@@ -18,7 +18,7 @@ class ExhibitOverview extends React.Component
     }
 
     componentWillMount(){
-        
+
     }
 
     OnFilterChange(event){
@@ -41,6 +41,7 @@ const S2P = state => ({
     model: state.overview
 });
 const D2P = dsp => ({
-    DeleteExhibit: exhibitId => dsp(ac.DeleteExhibit(exhibitId))
+    DeleteExhibit: exhibitId => dsp(ac.DeleteExhibit(exhibitId)),
+    FetchOverview: () => dsp(ac.FetchOverview())
 });
 export default connect(S2P,D2P)(ExhibitOverview);

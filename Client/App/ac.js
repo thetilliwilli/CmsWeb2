@@ -21,27 +21,13 @@ export function SubmitNewExhibit(exhibitData){
     return function(dispatch){
         dispatch(SubmitNewExhibitRequest());//Меняем состояние чтобы оповестить что пора показывать крутилки
 
-        postman.Post("exhibit", exhibitData).then(res=>{
-                if(res.ok)
-                    return res.json();
-                else
-                    throw new Error(res.statusText);
-            })
-            .then(json=>{
-                if(json.error)
-                {
-                    console.warn(json.error);
-                    dispatch(SubmitNewExhibitResponse(json.error, null));
-                }
-                else
-                {
-                    console.log(json.message);
-                    dispatch(SubmitNewExhibitResponse(null, json.message));
-                }
+        postman.Post("exhibit", exhibitData)
+            .then(json => {
+                dispatch(SubmitNewExhibitResponse(json));
             })
             .catch(error=>{//Ошибка при соединении с сервером: плохой запрос, нет интернета итд
                 console.error(`Попытка запроса на сервер не удалась: ${error}`);
-                dispatch(SubmitNewExhibitResponse(error, null));
+                dispatch(SubmitNewExhibitResponse({error}));
             });
     };
 }
@@ -52,16 +38,25 @@ export function SubmitNewExhibitRequest(){
     }
 }
 
-export function SubmitNewExhibitResponse(error, response){
-    if(error) return {
+export function SubmitNewExhibitResponse(response){
+    if(response.error)
+    {
+        console.warn(response.error);
+        return {
             type: at.SUBMIT_NEW_EXHIBIT_RESPONSE,
-            payload: error,
+            payload: response.error,
             error: true
         }
-    else return {
-        type: at.SUBMIT_NEW_EXHIBIT_RESPONSE,
-        payload: response,
     }
+    else
+    {
+        console.log(response.message);
+        return {
+            type: at.SUBMIT_NEW_EXHIBIT_RESPONSE,
+            payload: response.message,
+        }
+    } 
+    
 }
 
 export function HideErrorWindow(){
@@ -70,4 +65,23 @@ export function HideErrorWindow(){
 
 export function ShowErrorWindow(error){
     return { type: at.SHOW_ERROR_WINDOW, payload: error }
+}
+
+
+export function FetchOverview(){
+    return function(dispatch){
+        dispatch(FetchOverviewRequest());
+
+        postman.GetAll("exhibit")
+            .then(json => {
+
+            })
+            .catch(error => {
+
+            })
+    }
+}
+
+export function FetchOverviewRequest(){
+
 }

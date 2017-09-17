@@ -16,7 +16,7 @@ class PostmanService
             mode: "cors",
         };
 
-        return window.fetch(`${this.rootUrl}/${channel}`, options);
+        return this._PromiseToJsonOrError(window.fetch(`${this.rootUrl}/${channel}`, options));
     }
 
     GetById(channel, id){
@@ -28,7 +28,7 @@ class PostmanService
             mode: "cors",
         };
 
-        return window.fetch(`${this.rootUrl}/${channel}/${id}`, options);
+        return this._PromiseToJsonOrError(window.fetch(`${this.rootUrl}/${channel}/${id}`, options));
     }
 
     Post(channel, data){
@@ -46,7 +46,7 @@ class PostmanService
         };
         var urlEndPoint = `${this.rootUrl}/${channel}`;
         console.log(`Post request to ${urlEndPoint} with length ${options.body.length}, KB`);
-        return fetch(urlEndPoint, options);
+        return this._PromiseToJsonOrError(fetch(urlEndPoint, options));
     }
 
     Put(channel, id, data){
@@ -63,7 +63,7 @@ class PostmanService
             body: (typeof data === "string" ? data : JSON.stringify(data))
         };
 
-        return window.fetch(`${this.rootUrl}/${channel}/${id}`, options);
+        return this._PromiseToJsonOrError(window.fetch(`${this.rootUrl}/${channel}/${id}`, options));
     }
 
     Delete(channel, id){
@@ -79,7 +79,17 @@ class PostmanService
             headers
         };
 
-        return window.fetch(`${this.rootUrl}/${channel}/${id}`, options);
+        return this._PromiseToJsonOrError(window.fetch(`${this.rootUrl}/${channel}/${id}`, options));
+    }
+
+    //PRIVATE
+    _PromiseToJsonOrError(promise){
+        return promise.then(res=>{
+                if(res.ok)
+                    return res.json();
+                else
+                    throw new Error(res.statusText);
+            });
     }
 }
 

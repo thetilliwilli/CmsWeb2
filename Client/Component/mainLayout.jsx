@@ -1,6 +1,8 @@
 import React from "react";
 import {Card, CardTitle} from "material-ui/Card";
 
+import ErrorInformer from "./errorInformer.jsx";
+
 export default class MainLayout extends React.Component
 {
     constructor(props){
@@ -26,6 +28,8 @@ export default class MainLayout extends React.Component
                 </div>
 
                 {/* <div className="SideBar"> <this.props.sideBarResident /> </div> */}
+
+                <ErrorInformer />
             </div>
         );
     }
