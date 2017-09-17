@@ -46,7 +46,7 @@ class PostmanService
         };
         var urlEndPoint = `${this.rootUrl}/${channel}`;
         console.log(`Post request to ${urlEndPoint} with length ${options.body.length}, KB`);
-        return this._PromiseToJsonOrError(fetch(urlEndPoint, options));
+        return this._PromiseToJsonOrError(window.fetch(urlEndPoint, options));
     }
 
     Put(channel, id, data){

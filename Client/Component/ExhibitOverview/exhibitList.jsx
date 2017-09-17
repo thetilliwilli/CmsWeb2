@@ -21,7 +21,6 @@ export default class ExhibitList extends React.Component
                     style={{borderBottom:"1px solid lightgrey"}}
                     key={ex.id}
                     primaryText={ex.name}
-                    leftAvatar={<Avatar src={ex.coverImage} />}
                     rightIconButton={<IconButton iconStyle={{color:"crimson"}}><ActionDelete/></IconButton>}
               />
             )

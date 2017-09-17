@@ -18,7 +18,7 @@ export default class ControlPanel extends React.Component
                     floatingLabelText="Поиск по имени экспоната" floatingLabelFixed={true}
                 />
                 <br/>
-                <RaisedButton label="Обновить список"/>
+                <RaisedButton label="Обновить список" onClick={this.props.OnRefresh}/>
             </div>
         );
     }

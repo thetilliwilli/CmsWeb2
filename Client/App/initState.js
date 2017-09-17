@@ -32,12 +32,6 @@ export default
         result: null,
         error: null
     },
-    overview:{
-        exhibitList:[
-            {id: "some unique id", name:"Калаш1", coverImage:"/static/img/defaultExhibitAvatar.jpg", title:"Ак47 - VIP"},
-            {id: "some unique id2", name:"Калаш Учебный", coverImage:"/static/img/defaultExhibitAvatar.jpg", title:"Ак47 - VIP"},
-            {id: "some unique id3", name:"Ак47", coverImage:"/static/img/defaultExhibitAvatar.jpg", title:"Ак47 - VIP"},
-        ]
-    },
-
+    overview: [
+    ]
 };

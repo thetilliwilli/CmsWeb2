@@ -1,5 +1,5 @@
 const util = {};
 
-util.deepCopy = donor=>JSON.parse(JSON.stringify(donor));
+util.DeepCopy = donor=>JSON.parse(JSON.stringify(donor));
 
 export default util;

@@ -56,7 +56,6 @@ export function SubmitNewExhibitResponse(response){
             payload: response.message,
         }
     } 
-    
 }
 
 export function HideErrorWindow(){
@@ -74,14 +73,36 @@ export function FetchOverview(){
 
         postman.GetAll("exhibit")
             .then(json => {
-
+                dispatch(FetchOverviewResponse(json))
             })
             .catch(error => {
-
+                dispatch(FetchOverviewResponse({error}))
             })
     }
 }
 
 export function FetchOverviewRequest(){
+    return {
+        type: at.OVERVIEW_FETCH_LIST_REQUEST
+    };
+}
 
+export function FetchOverviewResponse(response){
+    if(response.error)
+    {
+        console.warn(response.error);
+        return {
+            type: at.OVERVIEW_FETCH_LIST_RESPOSE,
+            payload: response.error,
+            error: true
+        }
+    }
+    else
+    {
+        console.log(response.message);
+        return {
+            type: at.OVERVIEW_FETCH_LIST_RESPOSE,
+            payload: response,
+        }
+    } 
 }

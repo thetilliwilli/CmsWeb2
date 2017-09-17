@@ -76,6 +76,7 @@ class Exhibit extends React.Component
     }
 
     HasError(data){
+        return null;
         var errors = data.fields.reduce((result, field, index)=>{
             var ruError = field.ru.name.trim() == "" || field.ru.value.trim() == "";
             var enError = field.en.name.trim() == "" || field.en.value.trim() == "";

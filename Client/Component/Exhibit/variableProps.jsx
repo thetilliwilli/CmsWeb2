@@ -70,7 +70,7 @@ export default class VariableProps extends React.Component
         this.DeleteProp = this.DeleteProp.bind(this);
         this.ChangeProp = this.ChangeProp.bind(this);
 
-        var items = util.deepCopy(this.props.items);
+        var items = util.DeepCopy(this.props.items);
         if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
             items.push({ru:{name:"",value:""},en:{name:"",value:""}});
         items = items.map((it, ix)=>({...it, id:ix}));//Проставляем всем айдишники
@@ -79,14 +79,14 @@ export default class VariableProps extends React.Component
     }
 
     AddProp(){
-        var items = util.deepCopy(this.state.items);
+        var items = util.DeepCopy(this.state.items);
         items.push({ru:{name:"",value:""},en:{name:"",value:""}, id:this.counter++});
         this.setState({items});
     }
 
     DeleteProp(id){
         var items = this.state.items.filter(i=>i.id!==id);
-        this.setState({items: util.deepCopy(items)});
+        this.setState({items: util.DeepCopy(items)});
     }
 
     ChangeProp(newName, newValue, id, lang){

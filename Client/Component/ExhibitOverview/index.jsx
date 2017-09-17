@@ -18,7 +18,7 @@ class ExhibitOverview extends React.Component
     }
 
     componentWillMount(){
-
+        this.props.FetchOverview();
     }
 
     OnFilterChange(event){
@@ -28,8 +28,8 @@ class ExhibitOverview extends React.Component
     render(){
         return (
             <div className="ExhibitOverview">
-                <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter}/>
-                <ExhibitList exhibitList={this.props.model.exhibitList} filter={this.state.filter} filterValue={this.state.filter}/>
+                <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter} OnRefresh={this.props.FetchOverview}/>
+                <ExhibitList exhibitList={this.props.model} filter={this.state.filter} filterValue={this.state.filter}/>
             </div>
         );
     }

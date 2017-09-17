@@ -50,7 +50,7 @@ class ImageGallery extends React.Component
         this.DropZone = null;
         this.fileUploadInput = null;
 
-        var images = util.deepCopy(this.props.images).map((img)=>{
+        var images = util.DeepCopy(this.props.images).map((img)=>{
             if(!img.id)
                 img.id = uuid();
         });
@@ -134,7 +134,7 @@ class ImageGallery extends React.Component
             opacity: 0,
           };
         const dropZoneStyle = {border:"1px solid lightgrey", height:"100%", minHeight:"400px", overflow:"auto"};
-        // var images = util.deepCopy(this.state.images);
+        // var images = util.DeepCopy(this.state.images);
         var imageThumbs = this.state.images.map(
             i=><ImageThumb key={i.id} src={i.src} lang={this.props.lang} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
         );
