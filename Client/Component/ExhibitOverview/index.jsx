@@ -12,14 +12,24 @@ class ExhibitOverview extends React.Component
     constructor(props){
         super(props);
 
+        this.state = {filter:""};
+        
+        this.OnFilterChange = this.OnFilterChange.bind(this);
     }
 
+    componentWillMount(){
+        
+    }
+
+    OnFilterChange(event){
+        this.setState({filter:event.target.value});
+    }
 
     render(){
         return (
             <div className="ExhibitOverview">
-                <ControlPanel />
-                <ExhibitList exhibitList={this.props.model.exhibitList}/>
+                <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter}/>
+                <ExhibitList exhibitList={this.props.model.exhibitList} filter={this.state.filter} filterValue={this.state.filter}/>
             </div>
         );
     }

@@ -1,5 +1,8 @@
 "use strict";
 import React from "react";
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class ControlPanel extends React.Component
 {
@@ -10,7 +13,12 @@ export default class ControlPanel extends React.Component
     render(){
         return (
             <div className="ExhibitOverview_ControlPanel">
-                CONTRO PANNEL
+                <TextField 
+                    value={this.props.filterValue} onChange={this.props.OnChange}
+                    floatingLabelText="Поиск по имени экспоната" floatingLabelFixed={true}
+                />
+                <br/>
+                <RaisedButton label="Обновить список"/>
             </div>
         );
     }

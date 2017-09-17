@@ -1,15 +1,11 @@
 "use strict";
 import React from "react";
 
-import ExhibitSummary from "./exhibitSummary.jsx";
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
-} from 'material-ui/Table';
+import {List, ListItem} from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import IconButton from 'material-ui/IconButton';
+import ActionDelete from "material-ui/svg-icons/action/delete";
+import Subheader from 'material-ui/Subheader';
 
 export default class ExhibitList extends React.Component
 {
@@ -18,30 +14,23 @@ export default class ExhibitList extends React.Component
     }
 
     render(){
-        var tableRows = this.props.exhibitList.map(
+        var tableRows = this.props.exhibitList.filter(i=>i.name.toLowerCase().indexOf(this.props.filterValue.toLowerCase())!==-1);
+        tableRows = tableRows.map(
             ex=>(
-                <TableRow key={ex.id}>
-                    <TableRowColumn><img src={ex.coverImage} width="50" height="50"></img></TableRowColumn>
-                    <TableRowColumn>{ex.id}</TableRowColumn>
-                    <TableRowColumn>{ex.name}</TableRowColumn>
-                    <TableRowColumn>{ex.title}</TableRowColumn>
-                </TableRow>
+                <ListItem
+                    style={{borderBottom:"1px solid lightgrey"}}
+                    key={ex.id}
+                    primaryText={ex.name}
+                    leftAvatar={<Avatar src={ex.coverImage} />}
+                    rightIconButton={<IconButton iconStyle={{color:"crimson"}}><ActionDelete/></IconButton>}
+              />
             )
         );
         return (
-            <Table className="ExhibitOverview_ExhibitList">
-                <TableHeader>
-                    <TableRow>
-                    <TableHeaderColumn>IMAGE</TableHeaderColumn>
-                    <TableHeaderColumn>ID</TableHeaderColumn>
-                    <TableHeaderColumn>NAME</TableHeaderColumn>
-                    <TableHeaderColumn>TITLE</TableHeaderColumn>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {tableRows}
-                </TableBody>
-            </Table>
+            <List className="ExhibitOverview_ExhibitList">
+                <Subheader>Список экспонатов</Subheader>
+                {tableRows}
+            </List>
         );
     }
 }

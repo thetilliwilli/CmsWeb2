@@ -1,7 +1,7 @@
 export default 
 {
     navigation:{
-        currentPage: 0
+        currentPage: 1
     },
 
     exhibitCreator:{
@@ -30,9 +30,9 @@ export default
     },
     overview:{
         exhibitList:[
-            {id: "some unique id", name:"Калаш", coverImage:"/static/img/defaultExhibitAvatar.jpg", title:"Ак47 - VIP"},
-            {id: "some unique id2", name:"Калаш", coverImage:"/static/img/defaultExhibitAvatar.jpg", title:"Ак47 - VIP"},
-            {id: "some unique id3", name:"Калаш", coverImage:"/static/img/defaultExhibitAvatar.jpg", title:"Ак47 - VIP"},
+            {id: "some unique id", name:"Калаш1", coverImage:"/static/img/defaultExhibitAvatar.jpg", title:"Ак47 - VIP"},
+            {id: "some unique id2", name:"Калаш Учебный", coverImage:"/static/img/defaultExhibitAvatar.jpg", title:"Ак47 - VIP"},
+            {id: "some unique id3", name:"Ак47", coverImage:"/static/img/defaultExhibitAvatar.jpg", title:"Ак47 - VIP"},
         ]
     },
 
