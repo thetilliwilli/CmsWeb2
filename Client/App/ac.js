@@ -90,7 +90,15 @@ export function FetchOverviewResponse(response){
 
 export function DeleteExhibit(id){
     return (dispatch) => {
-        postman.Delete("exhibit", DeleteExhibitResponse, id);//Отправляем запрос на удаление из базы
+        postman.Delete("exhibit", null, id);//Отправляем запрос на удаление из базы
+        dispatch(DeleteExhibitFromList(id));
+    };
+}
+
+export function DeleteExhibitFromList(id){
+    return {
+        type: at.DELETE_EXHIBIT_FROM_LIST,
+        payload: id
     };
 }
 

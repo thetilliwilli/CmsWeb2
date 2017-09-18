@@ -19,13 +19,13 @@ class PostmanService
         };
 
         var urlEndPoint = `${this.rootUrl}/${channel}`;
-        // console.log(`Get request to ${urlEndPoint} with length ${options.body.length}, KB`);
+        console.info(`[Request.GetAll]:(${urlEndPoint}):`);
         let jsonOrError = this._PromiseToJsonOrError(window.fetch(urlEndPoint, options));
         return this._DispatchCallbackAction(jsonOrError, actionCreator);
     }
 
     GetById(channel, actionCreator, id){
-        if(!channel || !id)
+        if(!channel || id === undefined)
             throw new Error("Invalid arguments");
 
         const options = {
@@ -34,7 +34,7 @@ class PostmanService
         };
 
         var urlEndPoint = `${this.rootUrl}/${channel}/${id}`;
-        // console.log(`Post request to ${urlEndPoint} with length ${options.body.length}, KB`);
+        console.info(`[Request.GetById]:(${urlEndPoint}):`);
         let jsonOrError = this._PromiseToJsonOrError(window.fetch(urlEndPoint, options));
         return this._DispatchCallbackAction(jsonOrError, actionCreator);
     }
@@ -54,13 +54,13 @@ class PostmanService
         };
         
         var urlEndPoint = `${this.rootUrl}/${channel}`;
-        console.log(`Post request to ${urlEndPoint} with length ${options.body.length}, KB`);
+        console.info(`[Request.Post]:(${urlEndPoint}):BodyLength ${options.body.length}, KB`);
         let jsonOrError = this._PromiseToJsonOrError(window.fetch(urlEndPoint, options));
         return this._DispatchCallbackAction(jsonOrError, actionCreator);
     }
 
     Put(channel, actionCreator, id, data){
-        if(!channel || !id || !data)
+        if(!channel || id === undefined || !data)
             throw new Error("Invalid arguments");
 
         var headers = new Headers();
@@ -74,13 +74,13 @@ class PostmanService
         };
 
         var urlEndPoint = `${this.rootUrl}/${channel}/${id}`;
-        // console.log(`Post request to ${urlEndPoint} with length ${options.body.length}, KB`);
+        console.info(`[Request.Put]:(${urlEndPoint}):BodyLength ${options.body.length}, KB`);
         let jsonOrError = this._PromiseToJsonOrError(window.fetch(urlEndPoint, options));
         return this._DispatchCallbackAction(jsonOrError, actionCreator);
     }
 
     Delete(channel, actionCreator, id){
-        if(!channel || !id)
+        if(!channel || id === undefined)
             throw new Error("Invalid arguments");
 
         var headers = new Headers();
@@ -93,9 +93,9 @@ class PostmanService
         };
 
         var urlEndPoint = `${this.rootUrl}/${channel}/${id}`;
-        console.log(`Post request to ${urlEndPoint} with length ${options.body.length}, KB`);
+        console.info(`[Request.Delete]:(${urlEndPoint}):`);
         let jsonOrError = this._PromiseToJsonOrError(window.fetch(urlEndPoint, options));
-        return this._DispatchCallbackAction(jsonOrError, actionCreator);
+        return this._DispatchCallbackAction(jsonOrError, actionCreator, id);
     }
 
     //PRIVATE
@@ -110,11 +110,13 @@ class PostmanService
 
     _DispatchCallbackAction(promise, actionCreator){
         return promise.then(json => {
-                this.Dispatch(actionCreator(json))
+                if(actionCreator)
+                    this.Dispatch(actionCreator(json))
             })
             .catch(error => {
                 console.error(`Попытка запроса на сервер не удалась: ${error}`);
-                this.Dispatch(actionCreator({error}))
+                if(actionCreator)
+                    this.Dispatch(actionCreator({error}))
             });
     }
 }

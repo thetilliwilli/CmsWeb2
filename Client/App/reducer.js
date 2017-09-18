@@ -52,9 +52,9 @@ export default function AppReducer(state = initState, action){
             }
             return newState;
 
-        case at.DELETE_EXHIBIT:
+        case at.DELETE_EXHIBIT_FROM_LIST:
             var newState = util.DeepCopy(state);
-            newState.overview.filter(exhibit => exhibit.id!==action.payload)
+            newState.overview = newState.overview.filter(exhibit => exhibit.id!==action.payload)
             return newState;
 
         //DEFAULT    

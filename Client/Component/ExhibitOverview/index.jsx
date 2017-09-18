@@ -29,7 +29,7 @@ class ExhibitOverview extends React.Component
         return (
             <div className="ExhibitOverview">
                 <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter} OnRefresh={this.props.FetchOverview}/>
-                <ExhibitList exhibitList={this.props.model} filter={this.state.filter} filterValue={this.state.filter}/>
+                <ExhibitList OnDelete={this.props.DeleteExhibit} exhibitList={this.props.model} filter={this.state.filter} filterValue={this.state.filter}/>
             </div>
         );
     }
