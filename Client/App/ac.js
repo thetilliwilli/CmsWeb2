@@ -1,6 +1,32 @@
 import * as at from "./at.js";
 import postman from "../Modules/postmanService.js";
 
+
+//Helpers--------------------------------------------------------------------------
+
+function _ResponseHandler(postmanResponse, returnedActionType){
+    return function(dispatch){
+        if(postmanResponse.error)
+        {
+            console.warn(postmanResponse.error);
+            dispatch(ShowErrorWindow(postmanResponse.error));
+            dispatch({
+                type: returnedActionType,
+                error: postmanResponse.error,
+            });
+        }
+        else
+        {
+            console.log(postmanResponse);
+            dispatch({
+                type: returnedActionType,
+                payload: postmanResponse,
+            });
+        } 
+
+    };
+}
+
 //Action creators------------------------------------------------------------------
 export function ChangePage(index){
     return {
@@ -21,14 +47,7 @@ export function SubmitNewExhibit(exhibitData){
     return function(dispatch){
         dispatch(SubmitNewExhibitRequest());//Меняем состояние чтобы оповестить что пора показывать крутилки
 
-        postman.Post("exhibit", exhibitData)
-            .then(json => {
-                dispatch(SubmitNewExhibitResponse(json));
-            })
-            .catch(error=>{//Ошибка при соединении с сервером: плохой запрос, нет интернета итд
-                console.error(`Попытка запроса на сервер не удалась: ${error}`);
-                dispatch(SubmitNewExhibitResponse({error}));
-            });
+        postman.Post("exhibit", SubmitNewExhibitResponse, exhibitData);
     };
 }
 
@@ -39,23 +58,7 @@ export function SubmitNewExhibitRequest(){
 }
 
 export function SubmitNewExhibitResponse(response){
-    if(response.error)
-    {
-        console.warn(response.error);
-        return {
-            type: at.SUBMIT_NEW_EXHIBIT_RESPONSE,
-            payload: response.error,
-            error: true
-        }
-    }
-    else
-    {
-        console.log(response.message);
-        return {
-            type: at.SUBMIT_NEW_EXHIBIT_RESPONSE,
-            payload: response.message,
-        }
-    } 
+    return _ResponseHandler(response, at.SUBMIT_NEW_EXHIBIT_RESPONSE);
 }
 
 export function HideErrorWindow(){
@@ -71,13 +74,7 @@ export function FetchOverview(){
     return function(dispatch){
         dispatch(FetchOverviewRequest());
 
-        postman.GetAll("exhibit")
-            .then(json => {
-                dispatch(FetchOverviewResponse(json))
-            })
-            .catch(error => {
-                dispatch(FetchOverviewResponse({error}))
-            })
+        postman.GetAll("exhibit", FetchOverviewResponse);
     }
 }
 
@@ -88,21 +85,15 @@ export function FetchOverviewRequest(){
 }
 
 export function FetchOverviewResponse(response){
-    if(response.error)
-    {
-        console.warn(response.error);
-        return {
-            type: at.OVERVIEW_FETCH_LIST_RESPOSE,
-            payload: response.error,
-            error: true
-        }
-    }
-    else
-    {
-        console.log(response.message);
-        return {
-            type: at.OVERVIEW_FETCH_LIST_RESPOSE,
-            payload: response,
-        }
-    } 
+    return _ResponseHandler(response, at.OVERVIEW_FETCH_LIST_RESPOSE);
+}
+
+export function DeleteExhibit(id){
+    return (dispatch) => {
+        postman.Delete("exhibit", DeleteExhibitResponse, id);//Отправляем запрос на удаление из базы
+    };
+}
+
+export function DeleteExhibitResponse(response){
+    return _ResponseHandler(response, at.DELETE_EXHIBIT_RESPONSE);
 }

@@ -20,11 +20,11 @@ export default function AppReducer(state = initState, action){
         case at.SUBMIT_NEW_EXHIBIT_RESPONSE:
             var newState = util.DeepCopy(state);
             newState.draft.blockControl = false;
-            if(action.error)
-                newState.errorInformer.error = action.payload;
-            else
+            if(action.payload)
                 newState.draft.result = action.payload;
             return newState;
+
+        //USER FRIENDLY ERROR WINDOW
         case at.HIDE_ERROR_WINDOW:
             var newState = util.DeepCopy(state);
             newState.errorInformer.error = null;
@@ -41,9 +41,7 @@ export default function AppReducer(state = initState, action){
             return newState;
         case at.OVERVIEW_FETCH_LIST_RESPOSE:
             var newState = util.DeepCopy(state);
-            if(action.error)
-                newState.errorInformer.error = action.payload;
-            else
+            if(action.payload)
             {
                 newState.overview = [];
                 action.payload.forEach(exhibit => newState.overview.push({
@@ -52,6 +50,11 @@ export default function AppReducer(state = initState, action){
                     coverImage: exhibit.coverImage
                 }));
             }
+            return newState;
+
+        case at.DELETE_EXHIBIT:
+            var newState = util.DeepCopy(state);
+            newState.overview.filter(exhibit => exhibit.id!==action.payload)
             return newState;
 
         //DEFAULT    

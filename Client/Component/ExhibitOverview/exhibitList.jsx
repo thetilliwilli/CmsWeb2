@@ -20,7 +20,7 @@ export default class ExhibitList extends React.Component
                 <ListItem
                     style={{borderBottom:"1px solid lightgrey"}}
                     key={ex.id}
-                    primaryText={ex.name}
+                    primaryText={<span> <span style={{color:"lightgrey"}}>{`#${("0000" + ex.id).slice(-3)}`}</span> <span>{ex.name}</span> </span>}
                     rightIconButton={<IconButton iconStyle={{color:"crimson"}}><ActionDelete/></IconButton>}
               />
             )
