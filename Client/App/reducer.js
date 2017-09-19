@@ -56,6 +56,14 @@ export default function AppReducer(state = initState, action){
             var newState = util.DeepCopy(state);
             newState.overview = newState.overview.filter(exhibit => exhibit.id!==action.payload)
             return newState;
+            
+        case at.GET_EXHIBIT_RESPONSE:
+            var newState = util.DeepCopy(state);
+            if(action.payload)
+            {
+                newState.exhibitEdit = action.payload
+            }
+            return newState;
 
         //DEFAULT    
         default: return state;

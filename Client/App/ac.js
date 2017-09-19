@@ -4,6 +4,11 @@ import postman from "../Modules/postmanService.js";
 
 //Helpers--------------------------------------------------------------------------
 
+/** 
+ * Обрабатывает ответ от postman
+ * @param {Object} postmanResponse ответный Promise от postman'a
+ * @param {Object} returnedActionType какой тип Action'a надо вернуть в reducer
+ * */
 function _ResponseHandler(postmanResponse, returnedActionType){
     return function(dispatch){
         if(postmanResponse.error)
@@ -104,4 +109,44 @@ export function DeleteExhibitFromList(id){
 
 export function DeleteExhibitResponse(response){
     return _ResponseHandler(response, at.DELETE_EXHIBIT_RESPONSE);
+}
+
+/** Пользователь хочет открыть страницу с формой для редактирования и загрузить экспонат с указаным id */
+export function EditExhibit(exhibitId){
+    return (dispatch) => {
+        dispatch(ChangePage(2));
+        dispatch(GetExhibitRequest(exhibitId));
+    };
+}
+
+/** Запрос на сервер чтобы получить полную информацию по выбранному экспонату */
+export function GetExhibitRequest(exhibitId){
+    return (dispatch) => {
+        postman.GetById("exhibit", GetExhibitResponse, exhibitId);
+    };
+}
+
+/** Ответ от сервера содержащий полную информацию по выбранному экспонату */
+export function GetExhibitResponse(response){
+    return _ResponseHandler(response, at.GET_EXHIBIT_RESPONSE);
+}
+
+/** Пользователь внес изменения и хочет обновить экспонат на сервере */
+export function SubmitExhibitUpdate(exhibitData){
+
+    return function(dispatch){
+        dispatch(SubmitExhibitUpdateRequest());//Меняем состояние чтобы оповестить что пора показывать крутилки
+
+        postman.Put("exhibit", SubmitExhibitUpdateResponse, exhibitData);
+    };
+}
+
+export function SubmitExhibitUpdateRequest(){
+    return {
+        type: at.SUBMIT_EXHIBIT_UPDATE_REQUEST
+    }
+}
+
+export function SubmitExhibitUpdateResponse(response){
+    return _ResponseHandler(response, at.SUBMIT_EXHIBIT_UPDATE_RESPONSE);
 }

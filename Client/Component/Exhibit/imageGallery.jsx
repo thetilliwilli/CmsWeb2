@@ -30,7 +30,7 @@ class ImageThumb extends React.Component
     }
 }
 
-class ImageGallery extends React.Component
+export default class ImageGallery extends React.Component
 {
 
     constructor(props){
@@ -155,5 +155,9 @@ class ImageGallery extends React.Component
     }
 }
 
-import {connect} from "react-redux";
-export default connect(s=>({images: s.draft.imageGallery.images, lang: s.exhibitCreator.language}))(ImageGallery);
+// import {connect} from "react-redux";
+// const S2P = state => ({
+//     images: state.draft.imageGallery.images,
+//     lang: state.exhibitCreator.language
+// });
+// export default connect(S2P)(ImageGallery);

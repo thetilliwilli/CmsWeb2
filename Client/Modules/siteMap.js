@@ -11,9 +11,9 @@ let pages = {
         label: "Обзор коллекции экспонатов",
         id: 1
     },
-    mockupCreatePage:{
-        index: "/MockupCreate",
-        label: "Создание нового шаблона",
+    exhibitEditPage:{
+        index: "/exhibitEdit",
+        label: "Редактирование экспоната",
         id: 2
     },
     mockupOverviewPage:{

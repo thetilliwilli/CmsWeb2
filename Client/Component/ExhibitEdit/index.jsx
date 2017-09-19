@@ -1,11 +1,11 @@
-import Exhibit from "./exhibit.jsx";
+import Exhibit from "../Exhibit/exhibit.jsx";
 import {connect} from "react-redux";
 import {SubmitNewExhibit, ShowErrorWindow} from "../../App/ac.js";
 
 const S2P = state => ({
-    data: state.draft,
+    data: state.exhibitEdit,
     language: state.exhibitCreator.language,
-    imageGallery: state.draft.imageGallery
+    imageGallery: state.exhibitEdit.imageGallery
 });
 const D2P = dsp => ({
     SubmitNewExhibit: exhibitData=>dsp(SubmitNewExhibit(exhibitData)),

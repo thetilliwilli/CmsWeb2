@@ -4,7 +4,7 @@ import {Route, Switch, Redirect} from "react-router-dom";
 //Pages import---------------------------------------------
 import ExhibitCreatorPage from "./Page/exhibitCreatorPage.jsx";
 import ExhibitOverviewPage from "./Page/exhibitOverviewPage.jsx";
-import MockupCreatePage from "./Page/mockupCreatePage.jsx";
+import ExhibitEditPage from "./Page/exhibitEditPage.jsx";
 import MockupOverviewPage from "./Page/mockupOverviewPage.jsx";
 
 function MainRouting(props){
@@ -13,7 +13,7 @@ function MainRouting(props){
         <div className="PageSwitcher">
             <div style={{display:( curIndex === 0 ? "initial":"none")}}><ExhibitCreatorPage /></div>
             <div style={{display:( curIndex === 1 ? "initial":"none")}}><ExhibitOverviewPage /></div>
-            <div style={{display:( curIndex === 2 ? "initial":"none")}}><MockupCreatePage /></div>
+            <div style={{display:( curIndex === 2 ? "initial":"none")}}><ExhibitEditPage /></div>
             <div style={{display:( curIndex === 3 ? "initial":"none")}}><MockupOverviewPage /></div>
         </div>
     );
