@@ -1,7 +1,7 @@
 export default 
 {
     navigation:{
-        currentPage: 1
+        currentPage: 0
     },
 
     exhibitCreator:{
@@ -12,44 +12,71 @@ export default
         error: null
     },
 
-    draft:{
-        staticProps:{
-            name:{ru:"", en:"", label:"Название Экспоната", type:"string"},
-            title:{ru:"", en:"", label:"Заголовок Экспоната", type:"string"},
-            subtitle:{ru:"", en:"", label:"Подзаголовок Экспоната", type:"string"},
-            location:{ru:"", en:"", label:"Место производство", type:"string"},
-            description:{ru:"", en:"", label:"Подробное описание", type:"string"},
-            history:{ru:"", en:"", label:"История создания", type:"string"},
-            date:{ru:Date.now(), en:Date.now(), label:"Дата создания", type:"date", notMultiLang:true}
-        },
-        variableProps:[
-        ],
-        // imageGallery:{
-        //     images:[
-        //     ]
-        // },
-        imageGallery:[],
+    draft: {
         blockControl: false,
         result: null,
-        error: null
+        error: null,
+        "imageGallery": [],
+        "fields": [],
+        "date": "2017-09-20T00:00:00.000Z",
+        "history": {
+            "ru": "",
+            "en": ""
+        },
+        "description": {
+            "ru": "",
+            "en": ""
+        },
+        "location": {
+            "ru": "",
+            "en": ""
+        },
+        "subtitle": {
+            "ru": "",
+            "en": ""
+        },
+        "title": {
+            "ru": "",
+            "en": ""
+        },
+        "name": {
+            "ru": "",
+            "en": ""
+        },
+        "guid": "1f586ff6-4516-4b87-bad6-94f28d677d72"
     },
-    overview: [
-    ],
+    overview: [],
     exhibitEdit: {
-        staticProps:{
-            name:{ru:"", en:"", label:"Название Экспоната", type:"string"},
-            title:{ru:"", en:"", label:"Заголовок Экспоната", type:"string"},
-            subtitle:{ru:"", en:"", label:"Подзаголовок Экспоната", type:"string"},
-            location:{ru:"", en:"", label:"Место производство", type:"string"},
-            description:{ru:"", en:"", label:"Подробное описание", type:"string"},
-            history:{ru:"", en:"", label:"История создания", type:"string"},
-            date:{ru:Date.now(), en:Date.now(), label:"Дата создания", type:"date", notMultiLang:true}
-        },
-        variableProps:[
-        ],
-        imageGallery:[],
         blockControl: false,
         result: null,
-        error: null
+        error: null,
+        "imageGallery": [],
+        "fields": [],
+        "date": "2017-09-20T00:00:00.000Z",
+        "history": {
+            "ru": "",
+            "en": ""
+        },
+        "description": {
+            "ru": "",
+            "en": ""
+        },
+        "location": {
+            "ru": "",
+            "en": ""
+        },
+        "subtitle": {
+            "ru": "",
+            "en": ""
+        },
+        "title": {
+            "ru": "",
+            "en": ""
+        },
+        "name": {
+            "ru": "",
+            "en": ""
+        },
+        "guid": "1f586ff6-4516-4b87-bad6-94f28d677d72"
     }
 };

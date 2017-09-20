@@ -5,7 +5,6 @@ import {SubmitNewExhibit, ShowErrorWindow} from "../../App/ac.js";
 const S2P = state => ({
     data: state.exhibitEdit,
     language: state.exhibitCreator.language,
-    imageGallery: state.exhibitEdit.imageGallery
 });
 const D2P = dsp => ({
     SubmitNewExhibit: exhibitData=>dsp(SubmitNewExhibit(exhibitData)),

@@ -47,12 +47,12 @@ class VarProp extends React.Component
         return (
             <li className="VarProp">
                 <div className="VarProp_Ru" style={{display:( lang === "ru" ? "initial":"none")}}>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" style={{width:"40%"}} defaultValue={this.props.data.ru.name} floatingLabelText="Свойство"/>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "ru")}} className="VarProp_Value" style={{width:"40%"}} defaultValue={this.props.data.ru.value} floatingLabelText="Значение"/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" style={{width:"40%"}} defaultValue={this.props.data.name.ru} floatingLabelText="Свойство"/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "ru")}} className="VarProp_Value" style={{width:"40%"}} defaultValue={this.props.data.value.ru} floatingLabelText="Значение"/>
                 </div>
                 <div className="VarProp_En" style={{display:( lang === "en" ? "initial":"none")}}>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "en")}} className="VarProp_Name" style={{width:"40%"}} defaultValue={this.props.data.en.name} floatingLabelText="Свойство"/>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "en")}} className="VarProp_Value" style={{width:"40%"}} defaultValue={this.props.data.en.value} floatingLabelText="Значение"/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "en")}} className="VarProp_Name" style={{width:"40%"}} defaultValue={this.props.data.name.en} floatingLabelText="Свойство"/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "en")}} className="VarProp_Value" style={{width:"40%"}} defaultValue={this.props.data.value.en} floatingLabelText="Значение"/>
                 </div>
                 <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.data.id)}}/></IconButton>
             </li>
@@ -72,7 +72,7 @@ export default class VariableProps extends React.Component
 
         var items = util.DeepCopy(this.props.items);
         if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
-            items.push({ru:{name:"",value:""},en:{name:"",value:""}});
+            items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}});
         items = items.map((it, ix)=>({...it, id:ix}));//Проставляем всем айдишники
         this.state = {items};
         this.counter = items.length;
@@ -80,7 +80,7 @@ export default class VariableProps extends React.Component
 
     AddProp(){
         var items = util.DeepCopy(this.state.items);
-        items.push({ru:{name:"",value:""},en:{name:"",value:""}, id:this.counter++});
+        items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}, id:this.counter++});
         this.setState({items});
     }
 
@@ -96,7 +96,11 @@ export default class VariableProps extends React.Component
         item.value = newValue === null ? item.value : newValue;
     }
 
-    Data(){ return this.state.items; }
+    Data() {
+        return this.state.items.filter(
+            i => !(i.name.ru.trim()==="" && i.name.en.trim()==="" && i.value.ru.trim()==="" && i.value.en.trim()==="")//Убрать те, в которых все четыре поля незаполнены
+        );
+    }
 
     render(){
         return (
