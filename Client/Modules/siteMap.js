@@ -12,7 +12,7 @@ let pages = {
         id: 1
     },
     exhibitEditPage:{
-        index: "/exhibitEdit",
+        index: "/ExhibitEdit",
         label: "Редактирование экспоната",
         id: 2
     },

@@ -36,8 +36,6 @@ export default class Exhibit extends React.Component
     constructor(props){
         super(props);
 
-        window.Exhibit = this;//Экспорт Компонента в глобальную переменную, для удобства разработки
-
         this.StaticPropsRef = null;
         this.VariablePropsRef = null;
         this.AvatarRef = null;
@@ -108,7 +106,7 @@ export default class Exhibit extends React.Component
 
         return {staticProps, variableProps, imageGallery};
     }
-
+    
     render(){
         const exhibitData = this.ToExhibitData(this.props.data);
         return (
