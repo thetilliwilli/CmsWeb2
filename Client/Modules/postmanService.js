@@ -59,7 +59,7 @@ class PostmanService
         return this._DispatchCallbackAction(jsonOrError, actionCreator);
     }
 
-    Put(channel, actionCreator, id, data){
+    Put(channel, id, data, actionCreator){
         if(!channel || id === undefined || !data)
             throw new Error("Invalid arguments");
 

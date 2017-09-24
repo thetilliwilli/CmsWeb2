@@ -11,7 +11,7 @@ const S2P = state => ({
     isEditMode: true,
 });
 const D2P = dsp => ({
-    Submit: exhibitData=>dsp(SubmitExhibitUpdate(exhibitData)),
+    Submit: (exhibitData, id) => dsp(SubmitExhibitUpdate(exhibitData, id)),
     ShowErrorWindow: error=>dsp(ShowErrorWindow(error))
 });
 

@@ -56,7 +56,12 @@ export default class Exhibit extends React.Component
         if(error)
             this.props.ShowErrorWindow(error);
         else
-            this.props.Submit(exhibitData);
+        {
+            if(this.props.isEditMode)
+                this.props.Submit(exhibitData, this.props.data._id);
+            else
+                this.props.Submit(exhibitData);
+        }
     }
 
     HasError(data){

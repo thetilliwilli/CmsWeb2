@@ -139,12 +139,12 @@ export function GetExhibitResponse(response){
 }
 
 /** Пользователь внес изменения и хочет обновить экспонат на сервере */
-export function SubmitExhibitUpdate(exhibitData){
+export function SubmitExhibitUpdate(exhibitData, id){
 
     return function(dispatch){
         dispatch(SubmitExhibitUpdateRequest());//Меняем состояние чтобы оповестить что пора показывать крутилки
 
-        postman.Put("exhibit", SubmitExhibitUpdateResponse, exhibitData);
+        postman.Put("exhibit", id, exhibitData, SubmitExhibitUpdateResponse);
     };
 }
 

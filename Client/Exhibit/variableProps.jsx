@@ -47,12 +47,12 @@ class VarProp extends React.Component
         return (
             <li className="VarProp">
                 <div className="VarProp_Ru" style={{display:( lang === "ru" ? "initial":"none")}}>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" style={{width:"40%"}} defaultValue={this.props.data.name.ru} floatingLabelText="Свойство"/>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "ru")}} className="VarProp_Value" style={{width:"40%"}} defaultValue={this.props.data.value.ru} floatingLabelText="Значение"/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" style={{width:"40%"}} value={this.props.data.name.ru} floatingLabelText="Свойство"/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "ru")}} className="VarProp_Value" style={{width:"40%"}} value={this.props.data.value.ru} floatingLabelText="Значение"/>
                 </div>
                 <div className="VarProp_En" style={{display:( lang === "en" ? "initial":"none")}}>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "en")}} className="VarProp_Name" style={{width:"40%"}} defaultValue={this.props.data.name.en} floatingLabelText="Свойство"/>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "en")}} className="VarProp_Value" style={{width:"40%"}} defaultValue={this.props.data.value.en} floatingLabelText="Значение"/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "en")}} className="VarProp_Name" style={{width:"40%"}} value={this.props.data.name.en} floatingLabelText="Свойство"/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "en")}} className="VarProp_Value" style={{width:"40%"}} value={this.props.data.value.en} floatingLabelText="Значение"/>
                 </div>
                 <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.data.id)}}/></IconButton>
             </li>
@@ -91,9 +91,10 @@ export default class VariableProps extends React.Component
 
     ChangeProp(newName, newValue, id, lang){
         console.log(newName, newValue, id, lang);
-        var item = this.state.items.find(i=>i.id===id)[lang];
-        item.name = newName === null ? item.name : newName;
-        item.value = newValue === null ? item.value : newValue;
+        var item = this.state.items[id];
+        item.name[lang] = newName === null ? item.name[lang] : newName;
+        item.value[lang] = newValue === null ? item.value[lang] : newValue;
+        this.forceUpdate();
     }
 
     Data() {
