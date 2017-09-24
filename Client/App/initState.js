@@ -7,7 +7,7 @@ export default
         error: null
     },
 
-    draft: {
+    exhibitCreate: {
         blockControl: false,
         result: null,
         error: null,

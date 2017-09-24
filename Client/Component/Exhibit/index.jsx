@@ -11,25 +11,7 @@ import Avatar from "./avatar.jsx";
 import StaticProps from "./staticProps.jsx";
 import VariableProps from "./variableProps.jsx";
 import ImageGallery from "./imageGallery.jsx";
-
-
-function ControlPanel(props){
-    return (
-        <div className="ControlPanel" style={{position:"relative"}}>{/* Здесь relative для того что бы нормально работал blockerUi*/}
-            <RaisedButton label="ЗАГРУЗИТЬ В БАЗУ" style={{margin:"10px"}} onClick={props.OnClick}></RaisedButton>
-            <RaisedButton label="СОХРАНИТЬ КАК ШАБЛОН" style={{margin:"10px"}}/>
-            {
-                props.blockControl &&
-                /* убираем доступность кнопок при любом запросе на сервер */
-                <div className="blockerUi"
-                    style={{position:"absolute", lef:"0", top:"0", width:"100%", height:"100%", backgroundColor:"rgba(255,255,255,0.95)", zIndex:"2", color:"grey", fontSize:"1.75em"}}
-                >
-                Выполняется операция <CircularProgress size={30} thickness={3} />
-                </div>
-            }
-        </div>
-    );
-}
+import ControlPanel from "./controlPanel.jsx";
 
 export default class Exhibit extends React.Component
 {
@@ -111,7 +93,7 @@ export default class Exhibit extends React.Component
         const exhibitData = this.ToExhibitData(this.props.data);
         return (
             <div className="Exhibit" style={{height:"100%"}}>
-                <ControlPanel OnClick={this.Submit} blockControl={this.props.data.blockControl}/>
+                <ControlPanel OnClick={this.Submit} blockControl={this.props.data.blockControl} isEditMode={this.props.isEditMode} />
                 <div className="ExhibitForm" style={{height:"100%"}}>
                     <div>
                         <LangSelector/>

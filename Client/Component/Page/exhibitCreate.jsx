@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {SubmitNewExhibit, ShowErrorWindow} from "../../App/ac.js";
 
 const S2P = state => ({
-    data: state.draft,
+    data: state.exhibitCreate,
     language: state.language,
 });
 const D2P = dsp => ({

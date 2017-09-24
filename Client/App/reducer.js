@@ -20,14 +20,14 @@ export default function AppReducer(state = initState, action){
 
         //NEW EXHIBIT PAGE
         case at.SUBMIT_NEW_EXHIBIT_REQUEST: return CloneState(state, newState => {
-            newState.draft.result = null;
+            newState.exhibitCreate.result = null;
             newState.errorInformer.error = null;
-            newState.draft.blockControl = true;
+            newState.exhibitCreate.blockControl = true;
         });
         case at.SUBMIT_NEW_EXHIBIT_RESPONSE: return CloneState(state, newState => {
-            newState.draft.blockControl = false;
+            newState.exhibitCreate.blockControl = false;
             if(action.payload)
-                newState.draft.result = action.payload;
+                newState.exhibitCreate.result = action.payload;
         });
 
         //USER FRIENDLY ERROR WINDOW
