@@ -22,6 +22,6 @@ function MainRouting(props){
 import {connect} from "react-redux";
 export default connect((state)=>{
     return {
-        pageIndex: state.navigation.currentPage
+        pageIndex: state.page
     };
 })(MainRouting);

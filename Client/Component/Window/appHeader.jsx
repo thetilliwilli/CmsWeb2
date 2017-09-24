@@ -44,7 +44,7 @@ AppHeader.defaultProps = {
 import {connect} from "react-redux";
 function MapStateToProps(state){
     return {
-        pageIndex: state.navigation.currentPage
+        pageIndex: state.page
     };
 };
 export default connect(MapStateToProps)(AppHeader);

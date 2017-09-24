@@ -1,12 +1,7 @@
 export default 
 {
-    navigation:{
-        currentPage: 0
-    },
-
-    exhibitCreator:{
-        language: "ru"
-    },
+    page: 0,
+    language: "ru",
     
     errorInformer: {
         error: null

@@ -12,10 +12,10 @@ export default function AppReducer(state = initState, action){
     switch(action.type)
     {
         case at.CHANGE_PAGE: return CloneState(state, newState => {  
-            newState.navigation = {currentPage: action.payload.index};
+            newState.page = action.payload;
         });
         case at.CHANGE_EXHIBIT_LANGUAGE: return CloneState(state, newState => {
-            newState.exhibitCreator = {language: action.payload.language};
+            newState.language = action.payload;
         });
 
         //NEW EXHIBIT PAGE

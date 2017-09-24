@@ -27,7 +27,10 @@ LangSelector.defaultProps = {
 
 import {connect} from "react-redux";
 import {ChangeExhibitLanguage} from "../../App/ac.js";
-const MapDispatchToProps = dispatch=>({
-    ChangeLang: (v)=>{dispatch(ChangeExhibitLanguage(v))}
+const S2P = state => ({
+    lang: state.language
 });
-export default connect(state=>({lang: state.exhibitCreator.language}), MapDispatchToProps)(LangSelector)
+const D2P = dsp=>({
+    ChangeLang: (value)=>{dsp(ChangeExhibitLanguage(value))}
+});
+export default connect(S2P, D2P)(LangSelector);

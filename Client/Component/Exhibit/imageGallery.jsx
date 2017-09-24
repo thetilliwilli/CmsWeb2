@@ -154,10 +154,3 @@ export default class ImageGallery extends React.Component
         );
     }
 }
-
-// import {connect} from "react-redux";
-// const S2P = state => ({
-//     images: state.draft.imageGallery.images,
-//     lang: state.exhibitCreator.language
-// });
-// export default connect(S2P)(ImageGallery);

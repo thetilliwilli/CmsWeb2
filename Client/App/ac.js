@@ -36,14 +36,14 @@ function _ResponseHandler(postmanResponse, returnedActionType){
 export function ChangePage(index){
     return {
         type: at.CHANGE_PAGE,
-        payload: {index}
+        payload: index
     };
 }
 
-export function ChangeExhibitLanguage(lang){
+export function ChangeExhibitLanguage(language){
     return {
         type: at.CHANGE_EXHIBIT_LANGUAGE,
-        payload: {language: lang}
+        payload: language
     }
 }
 

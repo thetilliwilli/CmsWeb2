@@ -45,7 +45,7 @@ class AppFooter extends React.Component
 //CONTAINER-------------------------------------------------------------------------------------------------
 import {connect} from "react-redux";
 import {ChangePage} from "../../App/ac.js";
-const MapStateToProps = (state)=>{ return {selectedIndex: state.navigation.currentPage}; };
+const MapStateToProps = (state)=>{ return {selectedIndex: state.page}; };
 const MapDispatchToProps = (dispatch)=>{
     return {
         InvokeChangePage: (index)=>{
