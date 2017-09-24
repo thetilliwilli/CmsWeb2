@@ -7,6 +7,7 @@ import {SubmitNewExhibit, ShowErrorWindow, ClearCreateExhibit} from "../App/ac.j
 const S2P = state => ({
     data: state.exhibitCreate.data,
     language: state.language,
+    uuid: state.exhibitCreate.uuid
 });
 const D2P = dsp => ({
     Submit: exhibitData=>dsp(SubmitNewExhibit(exhibitData)),

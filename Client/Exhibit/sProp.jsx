@@ -4,10 +4,27 @@ import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import Divider from "material-ui/Divider";
 
+import util from "../Modules/util.js";
+
 export default class SProp extends React.Component
 {
     constructor(props){
         super(props);
+
+        this.state = {data: props.propData};
+
+        this.OnChange = this.OnChange.bind(this);
+    }
+
+    OnChange(event, newValue){
+        let newState = util.DeepCopy(this.state);
+
+        if(this.props.lang==="ru")
+            newState.data.ru = newValue;
+        else
+            newState.data.en = newValue;
+
+        this.setState(newState);
     }
 
     render(){
@@ -18,20 +35,23 @@ export default class SProp extends React.Component
             ? "none"
             : (this.props.lang === "en" ? "initial":"none");
 
+        const ruDate = this.state.data.ru && new Date(this.state.data.ru) || null;
+        const enDate = this.state.data.en && new Date(this.state.data.en) || null;
+
         return (
             <li className="SProp">
                 <div className="SProp_Ru" style={{display:displayRu}}>
                     {
                         this.props.propData.type === "string"
-                            ? <TextField name={"ru."+this.props.propName} floatingLabelText={this.props.propData.label} defaultValue={this.props.propData.ru} fullWidth/>
-                            : <DatePicker name={"ru."+this.props.propName} floatingLabelText={this.props.propData.label} openToYearSelection defaultDate={new Date(this.props.propData.ru)}/>
+                            ? <TextField onChange={this.OnChange} name={"ru."+this.props.propName} floatingLabelText={this.props.propData.label} value={this.state.data.ru} fullWidth/>
+                            : <DatePicker onChange={this.OnChange} name={"ru."+this.props.propName} floatingLabelText={this.props.propData.label} value={ruDate} openToYearSelection/>
                     }
                 </div>
                 <div className="SProp_En" style={{display:displayEn}}>
                     {
                         this.props.propData.type === "string"
-                            ? <TextField name={"en."+this.props.propName} floatingLabelText={this.props.propData.label} defaultValue={this.props.propData.en} fullWidth/>
-                            : <DatePicker name={"en."+this.props.propName} floatingLabelText={this.props.propData.label} openToYearSelection defaultDate={new Date(this.props.propData.en)}/>
+                            ? <TextField onChange={this.OnChange} name={"en."+this.props.propName} floatingLabelText={this.props.propData.label} value={this.state.data.en} fullWidth/>
+                            : <DatePicker onChange={this.OnChange} name={"en."+this.props.propName} floatingLabelText={this.props.propData.label} value={enDate} openToYearSelection/>
                     }
                 </div>
             </li>

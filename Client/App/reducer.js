@@ -1,6 +1,7 @@
 import * as at from "./at";
 import initState from "./initState.js";
 import util from "../Modules/util.js";
+import uuid from "uuid/v4";
 
 function CloneState(oldState, callback){
     var newState = util.DeepCopy(oldState);
@@ -36,10 +37,12 @@ export default function AppReducer(state = initState, action){
                 name: {ru: "", en: "", label:"Название Экспоната", type:"string"},
                 title: {ru: "", en: "", label:"Заголовок Экспоната", type:"string"},
                 subtitle: {ru: "", en: "", label:"Подзаголовок Экспоната", type:"string"},
-                date: {ru: DEFAULT_DATE, en: DEFAULT_DATE, label:"Дата создания", type:"date"},
+                date: "2017-01-01T00:00:00.000Z",
+                location: {ru: "", en: "", label:"Место производство", type:"string"},
                 history: {ru: "", en: "", label:"История создания", type:"string"},
                 description: {ru: "", en: "", label:"Подробное описание", type:"string"},
             };
+            newState.exhibitCreate.uuid = uuid();//Форсим апдейт вьюхи
         });
 
         //USER FRIENDLY ERROR WINDOW
@@ -72,7 +75,10 @@ export default function AppReducer(state = initState, action){
         case at.GET_EXHIBIT_RESPONSE: return CloneState(state, newState => {
             if(action.payload)
                 newState.exhibitEdit.data = util.DeepCopy(action.payload);
+            // let dt = action.payload.date;
+            // newState.exhibitEdit.data.date = {ru: dt, en: dt, type: "date", notMultiLang: true, label: "Дата создания"};
             newState.exhibitEdit.blockControl = false;
+            newState.exhibitEdit.uuid = uuid();
         });
 
         //DEFAULT    
