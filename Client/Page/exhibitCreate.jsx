@@ -2,7 +2,7 @@
 import React from "react";
 import Exhibit from "../Exhibit/index.jsx";
 import {connect} from "react-redux";
-import {SubmitNewExhibit, ShowErrorWindow} from "../../App/ac.js";
+import {SubmitNewExhibit, ShowErrorWindow} from "../App/ac.js";
 
 const S2P = state => ({
     data: state.exhibitCreate,

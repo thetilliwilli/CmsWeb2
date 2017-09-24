@@ -8,7 +8,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import IconButton from 'material-ui/IconButton';
 import ActionDelete from "material-ui/svg-icons/action/delete"
 
-import util from "../../Modules/util.js";
+import util from "../Modules/util.js";
 
 
 class ControlPanel extends React.Component

@@ -10,7 +10,7 @@ import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
-import siteMap from "../../Modules/siteMap.js";
+import siteMap from "../Modules/siteMap.js";
 
 function ClearCookieAndRefresh(){
     document.cookie = "login=; Max-Age=0";

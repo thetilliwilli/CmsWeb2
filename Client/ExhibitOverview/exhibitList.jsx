@@ -36,7 +36,7 @@ class ExhibitList extends React.Component
 }
 
 import {connect} from "react-redux";
-import * as ac from "../../App/ac.js";
+import * as ac from "../App/ac.js";
 const D2P = dsp => ({
     EditExhibit: (exhibitId) => dsp(ac.EditExhibit(exhibitId))
 });

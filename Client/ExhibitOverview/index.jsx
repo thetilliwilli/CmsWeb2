@@ -36,7 +36,7 @@ class ExhibitOverview extends React.Component
 }
 
 import {connect} from "react-redux";
-import * as ac from "../../App/ac.js";
+import * as ac from "../App/ac.js";
 const S2P = state => ({
     model: state.overview
 });

@@ -1,3 +1,4 @@
+"use strict";
 const util = {};
 
 util.DeepCopy = donor=>JSON.parse(JSON.stringify(donor));

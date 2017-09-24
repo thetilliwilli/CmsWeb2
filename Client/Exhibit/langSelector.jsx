@@ -26,7 +26,7 @@ LangSelector.defaultProps = {
 };
 
 import {connect} from "react-redux";
-import {ChangeExhibitLanguage} from "../../App/ac.js";
+import {ChangeExhibitLanguage} from "../App/ac.js";
 const S2P = state => ({
     lang: state.language
 });
