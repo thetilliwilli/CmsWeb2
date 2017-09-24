@@ -2,10 +2,10 @@
 import React from "react";
 import {Route, Switch, Redirect} from "react-router-dom";
 //Pages import---------------------------------------------
-import ExhibitCreatorPage from "./Page/exhibitCreatorPage.jsx";
-import ExhibitOverviewPage from "./Page/exhibitOverviewPage.jsx";
-import ExhibitEditPage from "./Page/exhibitEditPage.jsx";
-import MockupOverviewPage from "./Page/mockupOverviewPage.jsx";
+import ExhibitCreatorPage from "./Page/exhibitCreate.jsx";
+import ExhibitOverviewPage from "./Page/exhibitOverview.jsx";
+import ExhibitEditPage from "./Page/exhibitEdit.jsx";
+import MockupOverviewPage from "./Page/mockupOverview.jsx";
 
 function MainRouting(props){
     let curIndex = props.pageIndex;

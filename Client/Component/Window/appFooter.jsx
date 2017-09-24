@@ -13,7 +13,7 @@ const mockupOverview = <FontIcon className="material-icons">MOCKUP</FontIcon>;
 const contents = [
     "/ExhibitCreatorPage",
     "/ExhibitOverview",
-    "/ExhibitEditPage",
+    "/ExhibitEdit",
     "/ExhibitMockupOverviewPage"
 ];
 
