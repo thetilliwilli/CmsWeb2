@@ -30,6 +30,10 @@ export default class Exhibit extends React.Component
         this.Submit = this.Submit.bind(this);
     }
 
+    shouldComponentUpdate(){
+        return true;
+    }
+
     Data(){
         var staticProps = this.StaticPropsRef.Data();
         staticProps.date = staticProps.date.ru;//Берем только одно значение
@@ -52,7 +56,7 @@ export default class Exhibit extends React.Component
         if(error)
             this.props.ShowErrorWindow(error);
         else
-            this.props.SubmitNewExhibit(exhibitData);
+            this.props.Submit(exhibitData);
     }
 
     HasError(data){
@@ -74,13 +78,13 @@ export default class Exhibit extends React.Component
 
     ToExhibitData(dto){
         var staticProps = {};
-            staticProps.name = {...dto.name, label:"Название Экспоната", type:"string"};
-            staticProps.title = {...dto.title, label:"Заголовок Экспоната", type:"string"};
-            staticProps.subtitle = {...dto.subtitle, label:"Подзаголовок Экспоната", type:"string"};
-            staticProps.location = {...dto.location, label:"Место производство", type:"string"};
-            staticProps.description = {...dto.description, label:"Подробное описание", type:"string"};
-            staticProps.history = {...dto.history, label:"История создания", type:"string"};
-            staticProps.date = {ru: dto.date, en: dto.date, label:"Дата создания", type:"date", notMultiLang:true};
+            staticProps.name = dto.name;
+            staticProps.title = dto.title;
+            staticProps.subtitle = dto.subtitle;
+            staticProps.location = dto.location;
+            staticProps.description = dto.description;
+            staticProps.history = dto.history;
+            staticProps.date = dto.date;
 
         var variableProps = dto.fields;
 
@@ -88,12 +92,15 @@ export default class Exhibit extends React.Component
 
         return {staticProps, variableProps, imageGallery};
     }
-    
+
     render(){
         const exhibitData = this.ToExhibitData(this.props.data);
         return (
             <div className="Exhibit" style={{height:"100%"}}>
-                <ControlPanel OnClick={this.Submit} blockControl={this.props.data.blockControl} isEditMode={this.props.isEditMode} />
+                <ControlPanel
+                    handlers={{OnClear: this.props.Clear, OnSubmit: this.Submit}}
+                    blockControl={this.props.data.blockControl} isEditMode={this.props.isEditMode}
+                />
                 <div className="ExhibitForm" style={{height:"100%"}}>
                     <div>
                         <LangSelector/>

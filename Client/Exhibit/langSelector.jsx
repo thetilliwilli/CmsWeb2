@@ -26,11 +26,11 @@ LangSelector.defaultProps = {
 };
 
 import {connect} from "react-redux";
-import {ChangeExhibitLanguage} from "../App/ac.js";
+import {ChangeLanguage} from "../App/ac.js";
 const S2P = state => ({
     lang: state.language
 });
 const D2P = dsp=>({
-    ChangeLang: (value)=>{dsp(ChangeExhibitLanguage(value))}
+    ChangeLang: (value)=>{dsp(ChangeLanguage(value))}
 });
 export default connect(S2P, D2P)(LangSelector);

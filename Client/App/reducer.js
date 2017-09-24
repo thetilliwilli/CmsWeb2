@@ -18,7 +18,7 @@ export default function AppReducer(state = initState, action){
             newState.language = action.payload;
         });
 
-        //NEW EXHIBIT PAGE
+        //EXHIBIT CREATE PAGE
         case at.SUBMIT_NEW_EXHIBIT_REQUEST: return CloneState(state, newState => {
             newState.exhibitCreate.result = null;
             newState.errorInformer.error = null;
@@ -26,8 +26,20 @@ export default function AppReducer(state = initState, action){
         });
         case at.SUBMIT_NEW_EXHIBIT_RESPONSE: return CloneState(state, newState => {
             newState.exhibitCreate.blockControl = false;
-            if(action.payload)
-                newState.exhibitCreate.result = action.payload;
+            // if(action.payload)
+            //     newState.exhibitCreate.result = action.payload;
+        });
+        case at.CLEAR_CREATE_EXHIBIT: return CloneState(state, newState => {
+            newState.exhibitCreate.data = {
+                imageGallery: [],
+                fields: [],
+                name: {ru: "", en: "", label:"Название Экспоната", type:"string"},
+                title: {ru: "", en: "", label:"Заголовок Экспоната", type:"string"},
+                subtitle: {ru: "", en: "", label:"Подзаголовок Экспоната", type:"string"},
+                date: {ru: DEFAULT_DATE, en: DEFAULT_DATE, label:"Дата создания", type:"date"},
+                history: {ru: "", en: "", label:"История создания", type:"string"},
+                description: {ru: "", en: "", label:"Подробное описание", type:"string"},
+            };
         });
 
         //USER FRIENDLY ERROR WINDOW
@@ -59,7 +71,7 @@ export default function AppReducer(state = initState, action){
 
         case at.GET_EXHIBIT_RESPONSE: return CloneState(state, newState => {
             if(action.payload)
-                newState.exhibitEdit = util.DeepCopy(action.payload);
+                newState.exhibitEdit.data = util.DeepCopy(action.payload);
             newState.exhibitEdit.blockControl = false;
         });
 

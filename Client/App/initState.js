@@ -1,3 +1,5 @@
+const DEFAULT_DATE = "2017-01-01T00:00:00.000Z";
+
 export default 
 {
     page: 0,
@@ -11,67 +13,33 @@ export default
         blockControl: false,
         result: null,
         error: null,
-        "imageGallery": [],
-        "fields": [],
-        "date": "2017-09-20T00:00:00.000Z",
-        "history": {
-            "ru": "",
-            "en": ""
+        data: {
+            imageGallery: [],
+            fields: [],
+            name: {ru: "", en: "", label:"Название Экспоната", type:"string"},
+            title: {ru: "", en: "", label:"Заголовок Экспоната", type:"string"},
+            subtitle: {ru: "", en: "", label:"Подзаголовок Экспоната", type:"string"},
+            date: {ru: DEFAULT_DATE, en: DEFAULT_DATE, label:"Дата создания", type:"date", notMultiLang:true},
+            location: {ru: "", en: "", label:"Место производство", type:"string"},
+            history: {ru: "", en: "", label:"История создания", type:"string"},
+            description: {ru: "", en: "", label:"Подробное описание", type:"string"},
         },
-        "description": {
-            "ru": "",
-            "en": ""
-        },
-        "location": {
-            "ru": "",
-            "en": ""
-        },
-        "subtitle": {
-            "ru": "",
-            "en": ""
-        },
-        "title": {
-            "ru": "",
-            "en": ""
-        },
-        "name": {
-            "ru": "",
-            "en": ""
-        },
-        "guid": "1f586ff6-4516-4b87-bad6-94f28d677d72"
     },
     overview: [],
     exhibitEdit: {
         blockControl: false,
         result: null,
         error: null,
-        "imageGallery": [],
-        "fields": [],
-        "date": "2017-09-20T00:00:00.000Z",
-        "history": {
-            "ru": "",
-            "en": ""
+        data: {
+            imageGallery: [],
+            fields: [],
+            name: {ru: "", en: "", label:"Название Экспоната", type:"string"},
+            title: {ru: "", en: "", label:"Заголовок Экспоната", type:"string"},
+            subtitle: {ru: "", en: "", label:"Подзаголовок Экспоната", type:"string"},
+            date: {ru: DEFAULT_DATE, en: DEFAULT_DATE, label:"Дата создания", type:"date", notMultiLang:true},
+            location: {ru: "", en: "", label:"Место производство", type:"string"},
+            history: {ru: "", en: "", label:"История создания", type:"string"},
+            description: {ru: "", en: "", label:"Подробное описание", type:"string"},
         },
-        "description": {
-            "ru": "",
-            "en": ""
-        },
-        "location": {
-            "ru": "",
-            "en": ""
-        },
-        "subtitle": {
-            "ru": "",
-            "en": ""
-        },
-        "title": {
-            "ru": "",
-            "en": ""
-        },
-        "name": {
-            "ru": "",
-            "en": ""
-        },
-        "guid": "1f586ff6-4516-4b87-bad6-94f28d677d72"
     }
 };

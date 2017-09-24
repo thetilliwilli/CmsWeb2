@@ -40,13 +40,15 @@ export function ChangePage(index){
     };
 }
 
-export function ChangeExhibitLanguage(language){
+export function ChangeLanguage(language){
     return {
         type: at.CHANGE_EXHIBIT_LANGUAGE,
         payload: language
     }
 }
 
+
+//EXHIBIT CREATE PAGE----------------------------------------------------------------------
 export function SubmitNewExhibit(exhibitData){
 
     return function(dispatch){
@@ -66,6 +68,11 @@ export function SubmitNewExhibitResponse(response){
     return _ResponseHandler(response, at.SUBMIT_NEW_EXHIBIT_RESPONSE);
 }
 
+export function ClearCreateExhibit(){
+    return {type: at.CLEAR_CREATE_EXHIBIT};
+}
+
+//ERROR INFORMER----------------------------------------------------------------------
 export function HideErrorWindow(){
     return { type: at.HIDE_ERROR_WINDOW }
 }

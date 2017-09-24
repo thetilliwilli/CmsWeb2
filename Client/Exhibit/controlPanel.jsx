@@ -6,12 +6,12 @@ import CircularProgress from 'material-ui/CircularProgress';
 export default function ControlPanel(props){
     const buttonBar = props.isEditMode
         ? <div>
-            <RaisedButton label="СОХРАНИТЬ ИЗМЕНЕНИЯ" style={{margin:"10px"}} onClick={props.OnClick}></RaisedButton>
+            <RaisedButton label="СОХРАНИТЬ ИЗМЕНЕНИЯ" style={{margin:"10px"}} onClick={props.handlers.OnSubmit}></RaisedButton>
         </div>
         : <div>
-            <RaisedButton label="ЗАГРУЗИТЬ В БАЗУ" style={{margin:"10px"}} onClick={props.OnClick}></RaisedButton>
+            <RaisedButton label="ЗАГРУЗИТЬ В БАЗУ" style={{margin:"10px"}} onClick={props.handlers.OnSubmit}></RaisedButton>
             <RaisedButton label="СОХРАНИТЬ КАК ШАБЛОН" style={{margin:"10px"}}/>
-            <RaisedButton label="ОЧИСТИТЬ" style={{margin:"10px"}}/>
+            <RaisedButton label="ОЧИСТИТЬ" style={{margin:"10px"}} onClick={props.handlers.OnClear}/>
         </div>;
     return (
         <div className="ControlPanel" style={{position:"relative"}}>{/* Здесь relative для того что бы нормально работал blockerUi*/}

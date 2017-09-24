@@ -19,8 +19,8 @@ class InputController
         });
     }
 
-    F1(){ store.dispatch(ac.ChangeExhibitLanguage("ru")); this.currentEvent.preventDefault(); }
-    F2(){ store.dispatch(ac.ChangeExhibitLanguage("en")); this.currentEvent.preventDefault(); }
+    F1(){ store.dispatch(ac.ChangeLanguage("ru")); this.currentEvent.preventDefault(); }
+    F2(){ store.dispatch(ac.ChangeLanguage("en")); this.currentEvent.preventDefault(); }
 }
 
 export default new InputController(store);
