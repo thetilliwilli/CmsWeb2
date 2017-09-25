@@ -1,3 +1,4 @@
+[Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8
 ROBOCOPY Server ../CmsWebBuild/Server *.* /E /IS
 ROBOCOPY Static ../CmsWebBuild/Static *.* /E /IS
 ROBOCOPY WebRoot ../CmsWebBuild/WebRoot *.* /E /IS
