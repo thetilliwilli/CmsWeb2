@@ -131,7 +131,7 @@ export default class Exhibit extends React.Component
                             <Avatar RegCom={this.RegisterAvatarRef} />
                         </Card>
                         <Card className="GalleryField" style={{width:"40%", float:"left"}}>
-                            <ImageGallery RegCom={this.RegisterImageGalleryRef} images={exhibitData.imageGallery}/>
+                            <ImageGallery RegCom={this.RegisterImageGalleryRef} images={exhibitData.imageGallery} language={this.props.language}/>
                         </Card>
                     </div>
                 </div>

@@ -21,8 +21,8 @@ class ImageThumb extends React.Component
         return (
             <div className="ImageThumb">
                 <img src={this.props.src}/>
-                    <div style={{margin:"10px", position:"relative", top:"-10px", display:(this.props.lang==="ru"?"initial":"none")}}><TextField hintText="Описание на русском" defaultValue={this.props.description.ru} underlineShow={false}/></div>
-                    <div style={{position:"relative", top:"-10px", display:(this.props.lang==="en"?"initial":"none")}}><TextField hintText="Описание на английском" defaultValue={this.props.description.en} underlineShow={false}/></div>
+                    <div style={{margin:"10px", position:"relative", top:"-10px", display:(this.props.language==="ru"?"initial":"none")}}><TextField hintText="Описание на русском" defaultValue={this.props.description.ru} underlineShow={false}/></div>
+                    <div style={{position:"relative", top:"-10px", display:(this.props.language==="en"?"initial":"none")}}><TextField hintText="Описание на английском" defaultValue={this.props.description.en} underlineShow={false}/></div>
                 <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.id)}}/></IconButton>
                 <Divider />
             </div>
@@ -126,7 +126,7 @@ export default class ImageGallery extends React.Component
         const dropZoneStyle = {border:"1px solid lightgrey", height:"100%", minHeight:"400px", overflow:"auto"};
         // var images = util.DeepCopy(this.state.images);
         var imageThumbs = this.state.images.map(
-            i=><ImageThumb key={i.id} src={i.src} lang={this.props.lang} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
+            i=><ImageThumb key={i.id} src={i.src} language={this.props.language} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
         );
         return (
             <div className="ImageGallery">
