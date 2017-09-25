@@ -1,8 +1,10 @@
+#------COMMENT THIS FOR PRODUCTION BUILD AND UNCOMMENT AFTER---------------
+#WebRoot/bundle.js
+#WebRootAuth/bundle.js
+#---------------END---------------
 node_modules
 .vscode/chrome
-WebRoot/bundle.js
 WebRoot/bundle.js.map
-WebRootAuth/bundle.js
 WebRootAuth/bundle.js.map
 Private
 npm-debug.log
