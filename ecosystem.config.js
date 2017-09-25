@@ -18,7 +18,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'https://github.com/thetilliwilli/CmsWeb2.git',
       path: '/opt/CmsWeb2',
-      "post-deploy": "webpack && pm2 startOrRestart ecosystem.config.js --env production"
+      "post-deploy": "npm install && webpack && pm2 startOrRestart ecosystem.config.js --env production"
     }
   }
 };
