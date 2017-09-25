@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'CmsApi',
+      name: 'CmsWeb2',
       script: 'server.js',
       env: {},
       env_production: {
