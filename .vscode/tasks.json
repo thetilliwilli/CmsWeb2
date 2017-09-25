@@ -34,6 +34,18 @@
             "type": "npm",
             "script": "startWebpackDevServer",
             "problemMatcher": []
+        },
+        {
+            "label": "npmPublishProduction",
+            "type": "npm",
+            "script": "publishProduction",
+            "problemMatcher": []
+        },
+        {
+            "label": "npmRePublishProduction",
+            "type": "npm",
+            "script": "rePublishProduction",
+            "problemMatcher": []
         }
     ]
 }

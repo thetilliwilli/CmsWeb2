@@ -31,7 +31,9 @@
     "buildAuth": "webpack -w --config webpack.config2.js",
     "start": "node server.js",
     "startNodemon": "nodemon server.js",
-    "startWebpackDevServer": "webpack-dev-server --hot --host 0.0.0.0"
+    "startWebpackDevServer": "webpack-dev-server --hot --host 0.0.0.0",
+    "publishProduction": "powershell -ExecutionPolicy ByPass -File Dev/publishProduction.ps1",
+    "rePublishProduction": "powershell -ExecutionPolicy ByPass -File Dev/rePublishProduction.ps1"
   },
   "repository": {
     "type": "git",
