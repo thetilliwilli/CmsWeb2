@@ -48,7 +48,8 @@ export default class ImageGallery extends React.Component
         this.DropZone = null;
         this.fileUploadInput = null;
 
-        var images = util.DeepCopy(this.props.images).map((img)=>{
+        var images = util.DeepCopy(this.props.images);
+        images.forEach((img)=>{
             if(!img.id)
                 img.id = uuid();
         });
@@ -124,13 +125,11 @@ export default class ImageGallery extends React.Component
             opacity: 0,
           };
         const dropZoneStyle = {border:"1px solid lightgrey", height:"100%", minHeight:"400px", overflow:"auto"};
-        // var images = util.DeepCopy(this.state.images);
         var imageThumbs = this.state.images.map(
             i=><ImageThumb key={i.id} src={i.src} language={this.props.language} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
         );
         return (
             <div className="ImageGallery">
-                {/* <div style={{position:"fixed", width:"100%", height:"100%", top:"50%", margin:"auto", fontSize:"100px", zIndex:"0", color:"rgba(0,0,0,0.2)"}}>ЗАГРУЗИТЬ<br/>ФОТО</div> */}
                 <CardHeader  subtitle="ФОТОГАЛЛЕРЕЯ" />
                 
                 <FlatButton style={{color:"grey"}} icon={<ContentAdd/>} label="ЗАГРУЗИТЬ ЕЩЕ" fullWidth containerElement="label">

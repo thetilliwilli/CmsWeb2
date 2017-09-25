@@ -90,20 +90,10 @@ export default class Exhibit extends React.Component
             staticProps.description = {...dto.description, label:"Подробное описание", type:"string"};
             staticProps.history = {...dto.history, label:"История создания", type:"string"};
             staticProps.date = {ru: dto.date, en: dto.date, label:"Дата создания", type:"date", notMultiLang:true};
-            // staticProps.name = dto.name;
-            // staticProps.title = dto.title;
-            // staticProps.subtitle = dto.subtitle;
-            // staticProps.location = dto.location;
-            // staticProps.description = dto.description;
-            // staticProps.history = dto.history;
-            // staticProps.date = dto.date;
-            // staticProps.date = typeof dto.date === "string"
-            //     ? {ru: dto.date, en: dto.date, type: "date", notMultiLang: true, label: "Дата создания"}
-            //     : dto.date;
 
         var variableProps = dto.fields;
 
-        var imageGallery = dto.imageGallery;
+        var imageGallery = dto.imageGallery.map(i => ({src: i.image, id: i.guid, description: i.description}));
 
         return {staticProps, variableProps, imageGallery};
     }
