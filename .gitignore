@@ -1,6 +1,6 @@
 #------COMMENT THIS FOR PRODUCTION BUILD AND UNCOMMENT AFTER---------------
-#WebRoot/bundle.js
-#WebRootAuth/bundle.js
+WebRoot/bundle.js
+WebRootAuth/bundle.js
 #---------------END---------------
 node_modules
 .vscode/chrome
