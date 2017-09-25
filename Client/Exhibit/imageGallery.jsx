@@ -21,7 +21,7 @@ class ImageThumb extends React.Component
         return (
             <div className="ImageThumb">
                 <img src={this.props.src}/>
-                    <div style={{margin:"10px", position:"relative", top:"-10px", display:(this.props.lang==="ru"?"initial":"none")}}><TextField hintText="Описание по рууски" defaultValue={this.props.description.ru} underlineShow={false}/></div>
+                    <div style={{margin:"10px", position:"relative", top:"-10px", display:(this.props.lang==="ru"?"initial":"none")}}><TextField hintText="Описание на русском" defaultValue={this.props.description.ru} underlineShow={false}/></div>
                     <div style={{position:"relative", top:"-10px", display:(this.props.lang==="en"?"initial":"none")}}><TextField hintText="Описание на английском" defaultValue={this.props.description.en} underlineShow={false}/></div>
                 <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.id)}}/></IconButton>
                 <Divider />
@@ -43,9 +43,7 @@ export default class ImageGallery extends React.Component
         this.OnFileSelected = this.OnFileSelected.bind(this);
 
         this.HandleFiles = this.HandleFiles.bind(this);
-        this.AddImage = this.AddImage.bind(this);
         this.DeleteImage = this.DeleteImage.bind(this);
-        this.ChangeDescription = this.ChangeDescription.bind(this);
         
         this.DropZone = null;
         this.fileUploadInput = null;
@@ -109,17 +107,9 @@ export default class ImageGallery extends React.Component
         this.setState({images});
     }
 
-    AddImage(){
-        alert(`OnAddImage`);
-    }
-
     DeleteImage(id){
         var x = this.state.images.filter(i=>i.id!==id);
         this.setState({images:x});
-    }
-
-    ChangeDescription(){
-        alert(`OnChangeDescription`);
     }
 
     render(){
