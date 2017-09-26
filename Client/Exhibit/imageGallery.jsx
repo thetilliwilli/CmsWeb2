@@ -15,6 +15,12 @@ class ImageThumb extends React.Component
 {
     constructor(props){
         super(props);
+
+        this.OnChange = this.OnChange.bind(this);
+    }
+
+    OnChange(event, newValue){
+        this.props.OnDescriptionChange(this.props.id, event.target.name, newValue);
     }
 
     render(){
@@ -22,10 +28,10 @@ class ImageThumb extends React.Component
             <div className="ImageThumb">
                 <img src={this.props.src}/>
                     <div style={{margin:"10px", position:"relative", top:"-10px", display:(this.props.language==="ru"?"initial":"none")}}>
-                        <TextField hintText="Описание на русском" defaultValue={this.props.description.ru} underlineShow={false}/>
+                        <TextField name="ru" onChange={this.OnChange} hintText="Описание на русском" value={this.props.description.ru} underlineShow={false}/>
                     </div>
                     <div style={{position:"relative", top:"-10px", display:(this.props.language==="en"?"initial":"none")}}>
-                        <TextField hintText="Описание на английском" defaultValue={this.props.description.en} underlineShow={false}/>
+                        <TextField name="en" onChange={this.OnChange} hintText="Описание на английском" value={this.props.description.en} underlineShow={false}/>
                     </div>
                 <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.id)}}/></IconButton>
                 <Divider />
@@ -95,7 +101,9 @@ export default class ImageGallery extends React.Component
     Data(){ return this.state.images; }
 
     OnDescriptionChange(id, lang, data){
-        
+        var newState = util.DeepCopy(this.state);
+        newState.images.find(i => i.id===id).description[lang] = data;
+        this.setState(newState);
     }
     
     //METHODS-------------------------------------
