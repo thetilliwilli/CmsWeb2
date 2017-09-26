@@ -52968,7 +52968,7 @@ var AppFooter = function (_React$Component) {
                     _react2.default.createElement(_BottomNavigation.BottomNavigationItem, { label: '\u041E\u0431\u0437\u043E\u0440 \u044D\u043A\u0441\u043F\u043E\u043D\u0430\u0442\u043E\u0432', icon: favoritesIcon, onClick: function onClick() {
                             return _this2.Select(1);
                         } }),
-                    _react2.default.createElement(_BottomNavigation.BottomNavigationItem, { label: '\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u044D\u043A\u0441\u043F\u043E\u043D\u0430\u0442', icon: mockupNew, onClick: function onClick() {
+                    _react2.default.createElement(_BottomNavigation.BottomNavigationItem, { label: '\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C\xA0\u044D\u043A\u0441\u043F\u043E\u043D\u0430\u0442', icon: mockupNew, onClick: function onClick() {
                             return _this2.Select(2);
                         } })
                 )
