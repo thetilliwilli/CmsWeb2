@@ -21,8 +21,12 @@ class ImageThumb extends React.Component
         return (
             <div className="ImageThumb">
                 <img src={this.props.src}/>
-                    <div style={{margin:"10px", position:"relative", top:"-10px", display:(this.props.language==="ru"?"initial":"none")}}><TextField hintText="Описание на русском" defaultValue={this.props.description.ru} underlineShow={false}/></div>
-                    <div style={{position:"relative", top:"-10px", display:(this.props.language==="en"?"initial":"none")}}><TextField hintText="Описание на английском" defaultValue={this.props.description.en} underlineShow={false}/></div>
+                    <div style={{margin:"10px", position:"relative", top:"-10px", display:(this.props.language==="ru"?"initial":"none")}}>
+                        <TextField hintText="Описание на русском" defaultValue={this.props.description.ru} underlineShow={false}/>
+                    </div>
+                    <div style={{position:"relative", top:"-10px", display:(this.props.language==="en"?"initial":"none")}}>
+                        <TextField hintText="Описание на английском" defaultValue={this.props.description.en} underlineShow={false}/>
+                    </div>
                 <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.id)}}/></IconButton>
                 <Divider />
             </div>
@@ -44,11 +48,13 @@ export default class ImageGallery extends React.Component
 
         this.HandleFiles = this.HandleFiles.bind(this);
         this.DeleteImage = this.DeleteImage.bind(this);
-        
+
+        this.OnDescriptionChange = this.OnDescriptionChange.bind(this);
+
         this.DropZone = null;
         this.fileUploadInput = null;
 
-        var images = util.DeepCopy(this.props.images);
+        var images = util.DeepCopy(props.images);
         images.forEach((img)=>{
             if(!img.id)
                 img.id = uuid();
@@ -87,6 +93,10 @@ export default class ImageGallery extends React.Component
     OnFileSelected(event) { this.HandleFiles(event.target.files); }
 
     Data(){ return this.state.images; }
+
+    OnDescriptionChange(id, lang, data){
+        
+    }
     
     //METHODS-------------------------------------
     HandleFiles(files){
@@ -126,7 +136,7 @@ export default class ImageGallery extends React.Component
           };
         const dropZoneStyle = {border:"1px solid lightgrey", height:"100%", minHeight:"400px", overflow:"auto"};
         var imageThumbs = this.state.images.map(
-            i=><ImageThumb key={i.id} src={i.src} language={this.props.language} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
+            i=><ImageThumb OnDescriptionChange={this.OnDescriptionChange} key={i.id} src={i.src} language={this.props.language} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
         );
         return (
             <div className="ImageGallery">

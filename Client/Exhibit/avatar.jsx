@@ -9,7 +9,7 @@ export default class Avatar extends React.Component {
         props.RegCom(this);
         
         this.ChangeImage = this.ChangeImage.bind(this);
-        this.state = {imageSrc: this.props.imageHref};
+        this.state = {imageSrc: props.imageHref};
     }
 
     ChangeImage(newSrc){
@@ -28,9 +28,9 @@ export default class Avatar extends React.Component {
     }
 }
 
-Avatar.defaultProps = {
-    imageHref: "/static/img/defaultExhibitAvatar.jpg"
-};
+// Avatar.defaultProps = {
+//     imageHref: "/static/img/defaultExhibitAvatar.jpg"
+// };
 
 class UploadImage extends React.Component {
     constructor(props) {

@@ -95,7 +95,9 @@ export default class Exhibit extends React.Component
 
         var imageGallery = dto.imageGallery.map(i => ({src: i.image, id: i.guid, description: i.description}));
 
-        return {staticProps, variableProps, imageGallery};
+        // var imageHref = dto.coverImage;
+
+        return {staticProps, variableProps, imageGallery, coverImage: dto.coverImage};
     }
 
     render(){
@@ -118,7 +120,7 @@ export default class Exhibit extends React.Component
                             <VariableProps RegCom={this.RegisterVariablePropsRef} items={exhibitData.variableProps} language={this.props.language} />
                         </Card>
                         <Card className="AvatarField" style={{width:"40%", float:"left"}}>
-                            <Avatar RegCom={this.RegisterAvatarRef} />
+                            <Avatar RegCom={this.RegisterAvatarRef} imageHref={exhibitData.coverImage}/>
                         </Card>
                         <Card className="GalleryField" style={{width:"40%", float:"left"}}>
                             <ImageGallery RegCom={this.RegisterImageGalleryRef} images={exhibitData.imageGallery} language={this.props.language}/>

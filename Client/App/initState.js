@@ -27,6 +27,7 @@ export default
             location: {ru: "", en: "", label:"Место производство", type:"string"},
             history: {ru: "", en: "", label:"История создания", type:"string"},
             description: {ru: "", en: "", label:"Подробное описание", type:"string"},
+            coverImage: "/Static/img/defaultExhibitAvatar.jpg"
         },
     },
     overview: [],
@@ -45,6 +46,7 @@ export default
             location: {ru: "", en: "", label:"Место производство", type:"string"},
             history: {ru: "", en: "", label:"История создания", type:"string"},
             description: {ru: "", en: "", label:"Подробное описание", type:"string"},
+            coverImage: "/Static/img/defaultExhibitAvatar.jpg"
         },
     }
 };

@@ -41,6 +41,7 @@ export default function AppReducer(state = initState, action){
                 location: {ru: "", en: "", label:"Место производство", type:"string"},
                 history: {ru: "", en: "", label:"История создания", type:"string"},
                 description: {ru: "", en: "", label:"Подробное описание", type:"string"},
+                coverImage: "/Static/img/defaultExhibitAvatar.jpg"
             };
             newState.exhibitCreate.uuid = uuid();//Форсим апдейт вьюхи
         });

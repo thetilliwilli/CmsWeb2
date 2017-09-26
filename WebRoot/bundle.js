@@ -20758,7 +20758,9 @@ var Exhibit = function (_React$Component) {
                 return { src: i.image, id: i.guid, description: i.description };
             });
 
-            return { staticProps: staticProps, variableProps: variableProps, imageGallery: imageGallery };
+            // var imageHref = dto.coverImage;
+
+            return { staticProps: staticProps, variableProps: variableProps, imageGallery: imageGallery, coverImage: dto.coverImage };
         }
     }, {
         key: "render",
@@ -20795,7 +20797,7 @@ var Exhibit = function (_React$Component) {
                         _react2.default.createElement(
                             _Card.Card,
                             { className: "AvatarField", style: { width: "40%", float: "left" } },
-                            _react2.default.createElement(_avatar2.default, { RegCom: this.RegisterAvatarRef })
+                            _react2.default.createElement(_avatar2.default, { RegCom: this.RegisterAvatarRef, imageHref: exhibitData.coverImage })
                         ),
                         _react2.default.createElement(
                             _Card.Card,
@@ -44213,7 +44215,8 @@ function AppReducer() {
                     date: "2017-01-01T00:00:00.000Z",
                     location: { ru: "", en: "", label: "Место производство", type: "string" },
                     history: { ru: "", en: "", label: "История создания", type: "string" },
-                    description: { ru: "", en: "", label: "Подробное описание", type: "string" }
+                    description: { ru: "", en: "", label: "Подробное описание", type: "string" },
+                    coverImage: "/Static/img/defaultExhibitAvatar.jpg"
                 };
                 newState.exhibitCreate.uuid = (0, _v2.default)(); //Форсим апдейт вьюхи
             });
@@ -44309,7 +44312,8 @@ exports.default = {
             date: DEFAULT_DATE,
             location: { ru: "", en: "", label: "Место производство", type: "string" },
             history: { ru: "", en: "", label: "История создания", type: "string" },
-            description: { ru: "", en: "", label: "Подробное описание", type: "string" }
+            description: { ru: "", en: "", label: "Подробное описание", type: "string" },
+            coverImage: "/Static/img/defaultExhibitAvatar.jpg"
         }
     },
     overview: [],
@@ -44327,7 +44331,8 @@ exports.default = {
             date: DEFAULT_DATE,
             location: { ru: "", en: "", label: "Место производство", type: "string" },
             history: { ru: "", en: "", label: "История создания", type: "string" },
-            description: { ru: "", en: "", label: "Подробное описание", type: "string" }
+            description: { ru: "", en: "", label: "Подробное описание", type: "string" },
+            coverImage: "/Static/img/defaultExhibitAvatar.jpg"
         }
     }
 };
@@ -55222,7 +55227,7 @@ var Avatar = function (_React$Component) {
         props.RegCom(_this);
 
         _this.ChangeImage = _this.ChangeImage.bind(_this);
-        _this.state = { imageSrc: _this.props.imageHref };
+        _this.state = { imageSrc: props.imageHref };
         return _this;
     }
 
@@ -55251,12 +55256,11 @@ var Avatar = function (_React$Component) {
     return Avatar;
 }(_react2.default.Component);
 
+// Avatar.defaultProps = {
+//     imageHref: "/static/img/defaultExhibitAvatar.jpg"
+// };
+
 exports.default = Avatar;
-
-
-Avatar.defaultProps = {
-    imageHref: "/static/img/defaultExhibitAvatar.jpg"
-};
 
 var UploadImage = function (_React$Component2) {
     _inherits(UploadImage, _React$Component2);
@@ -60290,10 +60294,12 @@ var ImageGallery = function (_React$Component2) {
         _this3.HandleFiles = _this3.HandleFiles.bind(_this3);
         _this3.DeleteImage = _this3.DeleteImage.bind(_this3);
 
+        _this3.OnDescriptionChange = _this3.OnDescriptionChange.bind(_this3);
+
         _this3.DropZone = null;
         _this3.fileUploadInput = null;
 
-        var images = _util2.default.DeepCopy(_this3.props.images);
+        var images = _util2.default.DeepCopy(props.images);
         images.forEach(function (img) {
             if (!img.id) img.id = (0, _uuid2.default)();
         });
@@ -60351,6 +60357,9 @@ var ImageGallery = function (_React$Component2) {
         value: function Data() {
             return this.state.images;
         }
+    }, {
+        key: 'OnDescriptionChange',
+        value: function OnDescriptionChange(id, lang, data) {}
 
         //METHODS-------------------------------------
 
@@ -60401,7 +60410,7 @@ var ImageGallery = function (_React$Component2) {
             };
             var dropZoneStyle = { border: "1px solid lightgrey", height: "100%", minHeight: "400px", overflow: "auto" };
             var imageThumbs = this.state.images.map(function (i) {
-                return _react2.default.createElement(ImageThumb, { key: i.id, src: i.src, language: _this4.props.language, description: i.description, id: i.id, OnDelete: _this4.DeleteImage });
+                return _react2.default.createElement(ImageThumb, { OnDescriptionChange: _this4.OnDescriptionChange, key: i.id, src: i.src, language: _this4.props.language, description: i.description, id: i.id, OnDelete: _this4.DeleteImage });
             });
             return _react2.default.createElement(
                 'div',
