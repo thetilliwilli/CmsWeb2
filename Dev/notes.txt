@@ -2,3 +2,5 @@
 ВЕСЬ СМЫСЛ MATERIAL UI в том что я запихиваю в div'СМЫСЛ
 элементы а потом могу любой лэйаут задавать
 -2-
+appStore.subscribe(()=>{if(appStore.getState().language==="en")throw new Error("FUCK YA")})
+-3-

@@ -2,6 +2,7 @@ import React from "react";
 import {Card, CardTitle} from "material-ui/Card";
 
 import ErrorInformer from "./errorInformer.jsx";
+import GlobalErrorHandler from "./globalErrorHandler.jsx";
 
 export default class MainLayout extends React.Component
 {
@@ -30,6 +31,7 @@ export default class MainLayout extends React.Component
                 {/* <div className="SideBar"> <this.props.sideBarResident /> </div> */}
 
                 <ErrorInformer />
+                <GlobalErrorHandler />
             </div>
         );
     }
