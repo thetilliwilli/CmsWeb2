@@ -6,11 +6,12 @@ import CircularProgress from 'material-ui/CircularProgress';
 export default function ControlPanel(props){
     const buttonBar = props.isEditMode
         ? <div>
-            <RaisedButton label="СОХРАНИТЬ ИЗМЕНЕНИЯ" style={{margin:"10px"}} onClick={props.handlers.OnSubmit}></RaisedButton>
+            <RaisedButton label="СОХРАНИТЬ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitExhibitUpdate}></RaisedButton>
+            <RaisedButton label="СОХРАНИТЬ НОВЫЙ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitNewExhibit}></RaisedButton>
         </div>
         : <div>
-            <RaisedButton label="ЗАГРУЗИТЬ В БАЗУ" style={{margin:"10px"}} onClick={props.handlers.OnSubmit}></RaisedButton>
-            <RaisedButton label="СОХРАНИТЬ КАК ШАБЛОН" style={{margin:"10px"}}/>
+            <RaisedButton label="ЗАГРУЗИТЬ В БАЗУ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitNewExhibit}></RaisedButton>
+            {/* <RaisedButton label="СОХРАНИТЬ КАК ШАБЛОН" style={{margin:"10px"}}/> */}
             <RaisedButton label="ОЧИСТИТЬ" style={{margin:"10px"}} onClick={props.handlers.OnClear}/>
         </div>;
     return (

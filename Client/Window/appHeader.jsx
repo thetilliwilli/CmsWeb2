@@ -29,7 +29,7 @@ class AppHeader extends React.Component
     render(){
         return (
                 <AppBar
-                    title={"Page# " + siteMap.GetPageById(this.props.pageIndex).label}
+                    title={siteMap.GetPageById(this.props.pageIndex).label}
                     iconElementRight={this.props.logged ? <FlatButton label="Logout" onClick={ClearCookieAndRefresh}/> : null}
                 />
         );

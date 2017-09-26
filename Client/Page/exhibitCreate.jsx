@@ -10,7 +10,7 @@ const S2P = state => ({
     uuid: state.exhibitCreate.uuid
 });
 const D2P = dsp => ({
-    Submit: exhibitData=>dsp(SubmitNewExhibit(exhibitData)),
+    SubmitNewExhibit: exhibitData=>dsp(SubmitNewExhibit(exhibitData)),
     ShowErrorWindow: error=>dsp(ShowErrorWindow(error)),
     Clear: ()=>dsp(ClearCreateExhibit()),
 });

@@ -27,7 +27,8 @@ export default class Exhibit extends React.Component
         this.RegisterVariablePropsRef = this.RegisterVariablePropsRef.bind(this);
         this.RegisterAvatarRef = this.RegisterAvatarRef.bind(this);
         this.RegisterImageGalleryRef = this.RegisterImageGalleryRef.bind(this);
-        this.Submit = this.Submit.bind(this);
+        this.SubmitNewExhibit = this.SubmitNewExhibit.bind(this);
+        this.SubmitExhibitUpdate = this.SubmitExhibitUpdate.bind(this);
     }
 
     shouldComponentUpdate(){
@@ -50,18 +51,22 @@ export default class Exhibit extends React.Component
         return result;
     }
 
-    Submit(){
+    SubmitNewExhibit(){
         var exhibitData = this.Data();
         var error = this.HasError(exhibitData);
         if(error)
             this.props.ShowErrorWindow(error);
-        else
-        {
-            if(this.props.isEditMode)
-                this.props.Submit(exhibitData, this.props.data._id);
-            else
-                this.props.Submit(exhibitData);
-        }
+
+        this.props.SubmitNewExhibit(exhibitData);
+    }
+
+    SubmitExhibitUpdate(){
+        var exhibitData = this.Data();
+        var error = this.HasError(exhibitData);
+        if(error)
+            this.props.ShowErrorWindow(error);
+
+        this.props.SubmitExhibitUpdate(exhibitData, this.props.data._id);
     }
 
     HasError(data){
@@ -105,7 +110,7 @@ export default class Exhibit extends React.Component
         return (
             <div key={this.props.uuid} className="Exhibit" style={{height:"100%"}}>
                 <ControlPanel
-                    handlers={{OnClear: this.props.Clear, OnSubmit: this.Submit}}
+                    handlers={{OnClear: this.props.Clear, OnSubmitNewExhibit: this.SubmitNewExhibit, OnSubmitExhibitUpdate: this.SubmitExhibitUpdate}}
                     blockControl={this.props.data.blockControl} isEditMode={this.props.isEditMode}
                 />
                 <div className="ExhibitForm" style={{height:"100%"}}>

@@ -36,7 +36,7 @@ class AppFooter extends React.Component
                     <BottomNavigationItem label="Создать экспонат" icon={recentsIcon} onClick={() => this.Select(0)} />
                     <BottomNavigationItem label="Обзор экспонатов" icon={favoritesIcon} onClick={() => this.Select(1)} />
                     <BottomNavigationItem label="Редактировать экспонат" icon={mockupNew} onClick={() => this.Select(2)} />
-                    <BottomNavigationItem label="Выбрать шаблон" icon={mockupOverview} onClick={() => this.Select(3)} />
+                    {/* <BottomNavigationItem label="Выбрать шаблон" icon={mockupOverview} onClick={() => this.Select(3)} /> */}
                 </BottomNavigation>
             </Paper>
         );
