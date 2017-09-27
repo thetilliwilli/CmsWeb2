@@ -60,7 +60,7 @@ export default class LoginPage extends React.Component {
           <form action="/" onSubmit={this.OnSubmit}>
             <TextField autoFocus name="login" value={this.state.login} onChange={this.OnChange} hintText="Login" floatingLabelText="Type Login" /><br />
             <TextField name="password" value={this.state.password} onChange={this.OnChange} type="password" hintText="Password" floatingLabelText="Type Password" /><br />
-            <RaisedButton type="submit" label="Create New Account" primary />
+            <RaisedButton type="submit" label="Login" primary />
             {/* <CardText>Doesn't have an account? <Link to={'/signup'}>Signup</Link></CardText> */}
           </form>
       </Card>
