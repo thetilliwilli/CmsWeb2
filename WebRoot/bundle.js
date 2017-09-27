@@ -57399,18 +57399,20 @@ var SProp = function (_React$Component) {
             var ruDate = this.state.data.ru && new Date(this.state.data.ru) || null;
             var enDate = this.state.data.en && new Date(this.state.data.en) || null;
 
+            var propName = this.props.propName;
+            var hideLocationAndDateOfCreation = propName === "location" || propName === "date" ? "none" : "initial";
             return _react2.default.createElement(
                 "li",
-                { className: "SProp" },
+                { className: "SProp", style: { display: hideLocationAndDateOfCreation } },
                 _react2.default.createElement(
                     "div",
                     { className: "SProp_Ru", style: { display: displayRu } },
-                    this.props.propData.type === "string" ? _react2.default.createElement(_TextField2.default, { onChange: this.OnChange, name: "ru." + this.props.propName, floatingLabelText: this.props.propData.label, value: this.state.data.ru, fullWidth: true }) : _react2.default.createElement(_DatePicker2.default, { onChange: this.OnChange, name: "ru." + this.props.propName, floatingLabelText: this.props.propData.label, value: ruDate, openToYearSelection: true })
+                    this.props.propData.type === "string" ? _react2.default.createElement(_TextField2.default, { onChange: this.OnChange, name: "ru." + propName, floatingLabelText: this.props.propData.label, value: this.state.data.ru, fullWidth: true }) : _react2.default.createElement(_DatePicker2.default, { onChange: this.OnChange, name: "ru." + propName, floatingLabelText: this.props.propData.label, value: ruDate, openToYearSelection: true })
                 ),
                 _react2.default.createElement(
                     "div",
                     { className: "SProp_En", style: { display: displayEn } },
-                    this.props.propData.type === "string" ? _react2.default.createElement(_TextField2.default, { onChange: this.OnChange, name: "en." + this.props.propName, floatingLabelText: this.props.propData.label, value: this.state.data.en, fullWidth: true }) : _react2.default.createElement(_DatePicker2.default, { onChange: this.OnChange, name: "en." + this.props.propName, floatingLabelText: this.props.propData.label, value: enDate, openToYearSelection: true })
+                    this.props.propData.type === "string" ? _react2.default.createElement(_TextField2.default, { onChange: this.OnChange, name: "en." + propName, floatingLabelText: this.props.propData.label, value: this.state.data.en, fullWidth: true }) : _react2.default.createElement(_DatePicker2.default, { onChange: this.OnChange, name: "en." + propName, floatingLabelText: this.props.propData.label, value: enDate, openToYearSelection: true })
                 )
             );
         }
