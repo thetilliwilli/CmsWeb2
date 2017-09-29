@@ -90,8 +90,7 @@ export default class VariableProps extends React.Component
     }
 
     ChangeProp(newName, newValue, id, lang){
-        console.log(newName, newValue, id, lang);
-        var item = this.state.items[id];
+        var item = this.state.items.find(i => i.id===id);
         item.name[lang] = newName === null ? item.name[lang] : newName;
         item.value[lang] = newValue === null ? item.value[lang] : newValue;
         this.forceUpdate();

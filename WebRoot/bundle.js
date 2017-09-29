@@ -48552,6 +48552,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var customContentStyle = {
+    width: '94%',
+    maxWidth: 'none'
+};
+
 var ErrorInformer = function (_React$Component) {
     _inherits(ErrorInformer, _React$Component);
 
@@ -48570,7 +48575,8 @@ var ErrorInformer = function (_React$Component) {
                 { title: "\u041E\u0448\u0438\u0431\u043A\u0438 \u0432 \u0444\u043E\u0440\u043C\u0435",
                     modal: false, open: this.props.error !== null,
                     onRequestClose: this.props.UnblockUi,
-                    titleStyle: { color: "crimson" }
+                    titleStyle: { color: "crimson" },
+                    contentStyle: customContentStyle
                 },
                 _react2.default.createElement(
                     "pre",
@@ -57306,7 +57312,18 @@ var StaticProps = function (_React$Component) {
             var itemList = [];
             for (var propName in propList) {
                 itemList.push(_react2.default.createElement(_sProp2.default, { key: propName, propName: propName, propData: propList[propName], lang: this.props.language }));
-            }return _react2.default.createElement(
+            } //Меняем местами поля: Историческая Справка <-> Подробное описание
+            var iDescription = itemList.findIndex(function (i) {
+                return i.key === "description";
+            });
+            var iHistory = itemList.findIndex(function (i) {
+                return i.key === "history";
+            });
+            var swap = itemList[iHistory];
+            itemList[iHistory] = itemList[iDescription];
+            itemList[iDescription] = swap;
+
+            return _react2.default.createElement(
                 "form",
                 { ref: function ref(el) {
                         return _this2.form = el;
@@ -60469,8 +60486,9 @@ var VariableProps = function (_React$Component4) {
     }, {
         key: "ChangeProp",
         value: function ChangeProp(newName, newValue, id, lang) {
-            console.log(newName, newValue, id, lang);
-            var item = this.state.items[id];
+            var item = this.state.items.find(function (i) {
+                return i.id === id;
+            });
             item.name[lang] = newName === null ? item.name[lang] : newName;
             item.value[lang] = newValue === null ? item.value[lang] : newValue;
             this.forceUpdate();

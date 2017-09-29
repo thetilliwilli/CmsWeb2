@@ -2,6 +2,12 @@
 import React from "react";
 import Dialog from 'material-ui/Dialog';
 
+
+const customContentStyle = {
+    width: '94%',
+    maxWidth: 'none',
+  };
+  
 class ErrorInformer extends React.Component
 {
     constructor(props){
@@ -15,6 +21,7 @@ class ErrorInformer extends React.Component
             modal={false} open={this.props.error !== null}
             onRequestClose={this.props.UnblockUi}
             titleStyle={{color:"crimson"}}
+            contentStyle={customContentStyle}
             >
                 <pre>{ErrorToMessage(this.props.error)}</pre>
             </Dialog>
