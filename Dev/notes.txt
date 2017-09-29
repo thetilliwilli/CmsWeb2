@@ -4,3 +4,9 @@
 -2-
 appStore.subscribe(()=>{if(appStore.getState().language==="en")throw new Error("FUCK YA")})
 -3-
+ссылку на DomElement текущего ReactComponent можно задать вот так
+componentDidMount: function() {
+    var $this = $(ReactDOM.findDOMNode(this));
+    // set el height and width etc.
+  },
+-4-

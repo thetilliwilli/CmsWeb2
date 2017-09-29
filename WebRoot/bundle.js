@@ -60378,7 +60378,7 @@ var VariablePropsList = function (_React$Component2) {
             var _this3 = this;
 
             var itemList = this.props.items.map(function (i) {
-                return _react2.default.createElement(VarProp, { key: i.id, data: i, language: _this3.props.language, OnDelete: _this3.props.OnDelete, OnPropChange: _this3.props.OnPropChange });
+                return _react2.default.createElement(VarProp, { HandleEnterKeyInput: _this3.props.HandleEnterKeyInput, key: i.id, data: i, language: _this3.props.language, OnDelete: _this3.props.OnDelete, OnPropChange: _this3.props.OnPropChange });
             });
             return _react2.default.createElement(
                 "ul",
@@ -60408,7 +60408,9 @@ var VarProp = function (_React$Component3) {
             var lang = this.props.language;
             return _react2.default.createElement(
                 "li",
-                { className: "VarProp" },
+                { className: "VarProp", onKeyPress: function onKeyPress(e) {
+                        return _this5.props.HandleEnterKeyInput(e, _this5.props.data.id);
+                    } },
                 _react2.default.createElement(
                     "div",
                     { className: "VarProp_Ru", style: { display: lang === "ru" ? "initial" : "none" } },
@@ -60456,6 +60458,7 @@ var VariableProps = function (_React$Component4) {
         _this6.AddProp = _this6.AddProp.bind(_this6);
         _this6.DeleteProp = _this6.DeleteProp.bind(_this6);
         _this6.ChangeProp = _this6.ChangeProp.bind(_this6);
+        _this6.HandleEnterKeyInput = _this6.HandleEnterKeyInput.bind(_this6);
 
         var items = _util2.default.DeepCopy(_this6.props.items);
         if (items || items.length === 0) //Если пустой массив то добавляем один итем по дефолту
@@ -60464,7 +60467,9 @@ var VariableProps = function (_React$Component4) {
             return _extends({}, it, { id: ix });
         }); //Проставляем всем айдишники
         _this6.state = { items: items };
+
         _this6.counter = items.length;
+        // this.focusIndex = this.state.items.length === 0 ? null : 0;
         return _this6;
     }
 
@@ -60494,6 +60499,24 @@ var VariableProps = function (_React$Component4) {
             this.forceUpdate();
         }
     }, {
+        key: "HandleEnterKeyInput",
+        value: function HandleEnterKeyInput(event, id) {
+            if (event.key !== "Enter") return;
+
+            var varProps = document.querySelector(".VariablePropsField");
+            var itemIndex = this.state.items.findIndex(function (i) {
+                return i.id === id;
+            });
+            if (itemIndex === this.state.items.length - 1) //Если последний то создать новый VarProp элемент
+                {
+                    this.AddProp();
+                } else {
+                var queryToInput = ".VarProp_" + (this.props.language === "ru" ? "Ru" : "En") + " .VarProp_Name input";
+                varProps.querySelectorAll(".VarProp")[itemIndex + 1].querySelector(queryToInput).focus();
+            }
+            // this.focusIndex = itemIndex+1;
+        }
+    }, {
         key: "Data",
         value: function Data() {
             return this.state.items.filter(function (i) {
@@ -60501,6 +60524,16 @@ var VariableProps = function (_React$Component4) {
             } //Убрать те, в которых все четыре поля незаполнены
             );
         }
+
+        // componentDidUpdate(){
+        //     if(this.focusIndex !== null)
+        //     {
+        //         var varProps = document.querySelector(".VariablePropsField");//.querySelectorAll(".VarProp");
+        //         var queryToInput = `.VarProp_${this.props.language==="ru"?"Ru":"En"} .VarProp_Name input`;
+        //         varProps.querySelectorAll(".VarProp")[this.focusIndex].querySelector(queryToInput).focus();
+        //     }
+        // }
+
     }, {
         key: "render",
         value: function render() {
@@ -60512,7 +60545,9 @@ var VariableProps = function (_React$Component4) {
                     items: this.state.items,
                     language: this.props.language,
                     OnDelete: this.DeleteProp,
-                    OnPropChange: this.ChangeProp }),
+                    OnPropChange: this.ChangeProp,
+                    HandleEnterKeyInput: this.HandleEnterKeyInput
+                }),
                 _react2.default.createElement(ControlPanel, { OnClick: this.AddProp })
             );
         }

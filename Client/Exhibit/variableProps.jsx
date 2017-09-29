@@ -26,7 +26,7 @@ class VariablePropsList extends React.Component
 {
     render(){
         var itemList = this.props.items.map(
-            i=><VarProp key={i.id} data={i} language={this.props.language} OnDelete={this.props.OnDelete} OnPropChange={this.props.OnPropChange}/>
+            i=><VarProp HandleEnterKeyInput={this.props.HandleEnterKeyInput} key={i.id} data={i} language={this.props.language} OnDelete={this.props.OnDelete} OnPropChange={this.props.OnPropChange}/>
         );
         return (
             <ul className="VariablePropsList" style={{listStyle:"none", margin:"20px 20px", padding:"0"}}>
@@ -45,7 +45,7 @@ class VarProp extends React.Component
     render(){
         const lang = this.props.language;
         return (
-            <li className="VarProp">
+            <li className="VarProp" onKeyPress={ e => this.props.HandleEnterKeyInput(e, this.props.data.id) }>
                 <div className="VarProp_Ru" style={{display:( lang === "ru" ? "initial":"none")}}>
                     <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" style={{width:"40%"}} value={this.props.data.name.ru} floatingLabelText="Свойство"/>
                     <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "ru")}} className="VarProp_Value" style={{width:"40%"}} value={this.props.data.value.ru} floatingLabelText="Значение"/>
@@ -69,13 +69,16 @@ export default class VariableProps extends React.Component
         this.AddProp = this.AddProp.bind(this);
         this.DeleteProp = this.DeleteProp.bind(this);
         this.ChangeProp = this.ChangeProp.bind(this);
+        this.HandleEnterKeyInput = this.HandleEnterKeyInput.bind(this);
 
         var items = util.DeepCopy(this.props.items);
         if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
             items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}});
         items = items.map((it, ix)=>({...it, id:ix}));//Проставляем всем айдишники
         this.state = {items};
+
         this.counter = items.length;
+        // this.focusIndex = this.state.items.length === 0 ? null : 0;
     }
 
     AddProp(){
@@ -96,11 +99,38 @@ export default class VariableProps extends React.Component
         this.forceUpdate();
     }
 
+    HandleEnterKeyInput(event, id){
+        if(event.key !== "Enter")
+            return;
+
+        var varProps = document.querySelector(".VariablePropsField");
+        var itemIndex = this.state.items.findIndex( i => i.id === id);
+        if( itemIndex === this.state.items.length - 1 )//Если последний то создать новый VarProp элемент
+        {
+            this.AddProp();
+        }
+        else
+        {
+            var queryToInput = `.VarProp_${this.props.language==="ru"?"Ru":"En"} .VarProp_Name input`;
+            varProps.querySelectorAll(".VarProp")[itemIndex+1].querySelector(queryToInput).focus();
+        }
+        // this.focusIndex = itemIndex+1;
+    }
+
     Data() {
         return this.state.items.filter(
             i => !(i.name.ru.trim()==="" && i.name.en.trim()==="" && i.value.ru.trim()==="" && i.value.en.trim()==="")//Убрать те, в которых все четыре поля незаполнены
         );
     }
+
+    // componentDidUpdate(){
+    //     if(this.focusIndex !== null)
+    //     {
+    //         var varProps = document.querySelector(".VariablePropsField");//.querySelectorAll(".VarProp");
+    //         var queryToInput = `.VarProp_${this.props.language==="ru"?"Ru":"En"} .VarProp_Name input`;
+    //         varProps.querySelectorAll(".VarProp")[this.focusIndex].querySelector(queryToInput).focus();
+    //     }
+    // }
 
     render(){
         return (
@@ -110,7 +140,9 @@ export default class VariableProps extends React.Component
                     items={this.state.items}
                     language={this.props.language}
                     OnDelete={this.DeleteProp}
-                    OnPropChange={this.ChangeProp} />
+                    OnPropChange={this.ChangeProp} 
+                    HandleEnterKeyInput={this.HandleEnterKeyInput}
+                />
                 <ControlPanel OnClick={this.AddProp} />
             </div>
         );
