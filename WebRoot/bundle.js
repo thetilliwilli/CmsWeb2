@@ -61077,6 +61077,17 @@ var ImageThumb = function (_React$Component) {
     return ImageThumb;
 }(_react2.default.Component);
 
+var DndZoneReplacer = function DndZoneReplacer(p) {
+    return _react2.default.createElement(
+        'div',
+        { style: {
+                fontSize: "3em",
+                color: "lightgrey"
+            } },
+        '\u0424\u041E\u0422\u041E\u0413\u0420\u0410\u0424\u0418\u0418 \u041C\u041E\u0416\u041D\u041E \u041F\u0415\u0420\u0415\u041D\u0415\u0421\u0422\u0418 \u0421\u042E\u0414\u0410'
+    );
+};
+
 var ImageGallery = function (_React$Component2) {
     _inherits(ImageGallery, _React$Component2);
 
@@ -61235,7 +61246,7 @@ var ImageGallery = function (_React$Component2) {
                     { className: 'DropZone', ref: function ref(el) {
                             return _this4.DropZone = el;
                         }, style: dropZoneStyle },
-                    imageThumbs
+                    this.state.images.length === 0 ? _react2.default.createElement(DndZoneReplacer, null) : imageThumbs
                 )
             );
         }

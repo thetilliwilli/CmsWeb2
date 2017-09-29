@@ -40,6 +40,11 @@ class ImageThumb extends React.Component
     }
 }
 
+const DndZoneReplacer = p => <div style={{
+        fontSize:"3em",
+        color:"lightgrey",
+    }}>ФОТОГРАФИИ МОЖНО ПЕРЕНЕСТИ СЮДА</div>;
+
 export default class ImageGallery extends React.Component
 {
 
@@ -155,7 +160,7 @@ export default class ImageGallery extends React.Component
                 </FlatButton>
 
                 <div className="DropZone" ref={el=>this.DropZone=el} style={dropZoneStyle}>
-                    {imageThumbs}
+                    {this.state.images.length === 0 ? <DndZoneReplacer/> : imageThumbs}
                 </div>
             </div>
         );
