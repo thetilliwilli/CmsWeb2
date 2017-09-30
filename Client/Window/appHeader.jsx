@@ -29,6 +29,7 @@ class AppHeader extends React.Component
     render(){
         return (
                 <AppBar
+                    onLeftIconButtonTouchTap={this.props.NavbarOpen}
                     title={siteMap.GetPageById(this.props.pageIndex).label}
                     iconElementRight={this.props.logged ? <FlatButton label="Logout" onClick={ClearCookieAndRefresh}/> : null}
                 />
@@ -42,9 +43,13 @@ AppHeader.defaultProps = {
 
 //CONTAINER-------------------------------------------------------------------------------------------------
 import {connect} from "react-redux";
-function MapStateToProps(state){
+import * as ac from "../App/ac.js";
+function S2P(state){
     return {
         pageIndex: state.page
     };
 };
-export default connect(MapStateToProps)(AppHeader);
+const D2P = dsp => ({
+    NavbarOpen: () => dsp(ac.NavbarOpen()),
+});
+export default connect(S2P,D2P)(AppHeader);

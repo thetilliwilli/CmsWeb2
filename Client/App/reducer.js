@@ -82,6 +82,14 @@ export default function AppReducer(state = initState, action){
             newState.exhibitEdit.uuid = uuid();
         });
 
+        //NAVBAR
+        case at.NAVBAR_OPEN: return CloneState(state, newState => {
+            newState.isNavbarOpen = true;
+        });
+        case at.NAVBAR_CLOSE: return CloneState(state, newState => {
+            newState.isNavbarOpen = false;
+        });
+
         //DEFAULT    
         default: return state;
     }

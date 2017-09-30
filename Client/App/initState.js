@@ -7,6 +7,7 @@ export default
 {
     page: 0,
     language: "ru",
+    isNavbarOpen: false,
     
     errorInformer: {
         error: null

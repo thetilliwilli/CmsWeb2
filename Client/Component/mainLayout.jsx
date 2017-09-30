@@ -28,7 +28,7 @@ export default class MainLayout extends React.Component
                     <this.props.bottomBarResident />
                 </div>
 
-                {/* <div className="SideBar"> <this.props.sideBarResident /> </div> */}
+                <div className="SideBar"> <this.props.sideBarResident /> </div>
 
                 <ErrorInformer />
                 <GlobalErrorHandler />
