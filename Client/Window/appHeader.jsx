@@ -46,7 +46,7 @@ import {connect} from "react-redux";
 import * as ac from "../App/ac.js";
 function S2P(state){
     return {
-        pageIndex: state.page
+        pageIndex: state.tagDomain.page
     };
 };
 const D2P = dsp => ({

@@ -35,7 +35,7 @@ class AppNavbar extends React.Component {
 import {connect} from "react-redux";
 import * as ac from "../App/ac.js";
 const S2P = state => ({
-    isNavbarOpen: state.isNavbarOpen
+    isNavbarOpen: state.tagDomain.isNavbarOpen
 });
 const D2P = dsp => ({
     NavbarOpen: () => dsp(ac.NavbarOpen()),

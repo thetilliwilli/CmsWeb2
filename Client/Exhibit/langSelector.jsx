@@ -28,7 +28,7 @@ LangSelector.defaultProps = {
 import {connect} from "react-redux";
 import {ChangeLanguage} from "../App/ac.js";
 const S2P = state => ({
-    lang: state.language
+    lang: state.tagDomain.language
 });
 const D2P = dsp=>({
     ChangeLang: (value)=>{dsp(ChangeLanguage(value))}

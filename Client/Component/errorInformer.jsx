@@ -39,14 +39,10 @@ function ErrorToMessage(error){
 
 import {connect} from "react-redux";
 import {HideErrorWindow} from "../App/ac.js";
-const MapStateToProps = (state)=>{
-    return {
-        error: state.errorInformer.error
-    };
-};
-const MapDispatchToProps = (dispatch)=>{
-    return {
-        UnblockUi: ()=>{dispatch(HideErrorWindow())}
-    };
-};
-export default connect(MapStateToProps, MapDispatchToProps)(ErrorInformer);
+const S2P = state => ({
+    error: state.tagDomain.errorInformer.error
+});
+const D2P = dsp => ({
+    UnblockUi: ()=>{dsp(HideErrorWindow())}
+});
+export default connect(S2P, D2P)(ErrorInformer);

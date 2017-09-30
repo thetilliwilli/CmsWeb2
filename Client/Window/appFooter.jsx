@@ -45,12 +45,10 @@ class AppFooter extends React.Component
 //CONTAINER-------------------------------------------------------------------------------------------------
 import {connect} from "react-redux";
 import {ChangePage} from "../App/ac.js";
-const MapStateToProps = (state)=>{ return {selectedIndex: state.page}; };
-const MapDispatchToProps = (dispatch)=>{
-    return {
-        InvokeChangePage: (index)=>{
-            dispatch(ChangePage(index))
-        }
-    };
-}
-export default connect(MapStateToProps, MapDispatchToProps)(withRouter(AppFooter));
+const S2P = state => ({
+    selectedIndex: state.tagDomain.page
+});
+const D2P = dsp => ({
+    InvokeChangePage: index => dsp(ChangePage(index))
+});
+export default connect(S2P, D2P)(withRouter(AppFooter));

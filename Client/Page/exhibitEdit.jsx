@@ -5,9 +5,9 @@ import {connect} from "react-redux";
 import {SubmitExhibitUpdate, ShowErrorWindow, SubmitNewExhibit} from "../App/ac.js";
 
 const S2P = state => ({
-    data: state.exhibitEdit.data,
-    language: state.language,
-    uuid: state.exhibitEdit.uuid,
+    data: state.tagDomain.exhibitEdit.data,
+    language: state.tagDomain.language,
+    uuid: state.tagDomain.exhibitEdit.uuid,
     isEditMode: true,
 });
 const D2P = dsp => ({

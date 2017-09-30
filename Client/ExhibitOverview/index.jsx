@@ -38,7 +38,7 @@ class ExhibitOverview extends React.Component
 import {connect} from "react-redux";
 import * as ac from "../App/ac.js";
 const S2P = state => ({
-    model: state.overview
+    model: state.tagDomain.overview
 });
 const D2P = dsp => ({
     DeleteExhibit: exhibitId => dsp(ac.DeleteExhibit(exhibitId)),
