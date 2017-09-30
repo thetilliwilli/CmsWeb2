@@ -7,6 +7,11 @@ export default {
     //TAG DOMAIN
     tagDomain: {
         page: 0,
+        pages: [
+            {title: "NEW", subtitle:"Создать экспонат"},
+            {title: "OVERVIEW", subtitle:"Обзор экспонатов"},
+            {title: "EDIT", subtitle:"Редактировать\u00A0экспонат"},
+        ],
         language: "ru",
         isNavbarOpen: false,
 
@@ -51,7 +56,10 @@ export default {
 
     //WIKI DOMAIN
     wikiDomain: {
-
+        page: 0,
+        pages: [
+            {title: "ONE", subtitle:"Здесь только одна страница"},
+        ],
     }
 
 };

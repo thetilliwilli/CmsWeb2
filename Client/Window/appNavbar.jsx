@@ -24,8 +24,8 @@ class AppNavbar extends React.Component {
                 open={this.props.isNavbarOpen}
                 onRequestChange={ open => open ? this.props.NavbarOpen() : this.props.NavbarClose()}
             >
-                <MenuItem onClick={this.props.NavbarClose}><DivLink to="/TAG">Электронные этикетки</DivLink></MenuItem>
-                <MenuItem onClick={this.props.NavbarClose}><DivLink to="/WIKI">Энциклопедия оружия</DivLink></MenuItem>
+                <MenuItem onClick={this.props.NavbarClose}><DivLink to="/tag">Электронные этикетки</DivLink></MenuItem>
+                <MenuItem onClick={this.props.NavbarClose}><DivLink to="/wiki">Энциклопедия оружия</DivLink></MenuItem>
             </Drawer>
         );
     }
