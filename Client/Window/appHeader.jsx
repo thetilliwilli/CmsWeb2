@@ -32,7 +32,7 @@ class AppHeader extends React.Component
     
 
     render(){
-        const title = APP_TITLES[window.location.pathname.split("/")[1].trim().toLowerCase()];
+        const title = APP_TITLES[window.location.pathname.split("/")[1].trim().toLowerCase()];//Получаем название текущей админки из текущего Урла страницы
         return (
                 <AppBar
                     onLeftIconButtonTouchTap={this.props.NavbarOpen}

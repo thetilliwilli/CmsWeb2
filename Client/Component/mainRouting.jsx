@@ -26,6 +26,7 @@ function MainRouting(props){
         <Switch>
             <Route path="/TAG" component={ () =>  <TagContent curIndex={curIndex}/>} />
             <Route path="/WIKI" component={ () =>  <WikiContent curIndex={curIndex}/>} />
+            <Redirect to="/TAG" />{/* Если не попали ни на одну страницу то перейти на страницу с Электронными этикетками */}
         </Switch>
     );
 };
