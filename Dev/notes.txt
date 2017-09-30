@@ -10,3 +10,5 @@ componentDidMount: function() {
     // set el height and width etc.
   },
 -4-
+Чтобы работали connect(S2P,D2P)(Component) необходимо заменить на
+  -> withRouter(connect(S2P,D2P)(Component))

@@ -1,6 +1,6 @@
 "use strict";
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
@@ -18,6 +18,11 @@ function ClearCookieAndRefresh(){
     window.location.reload();
 }
 
+const APP_TITLES = {
+    tag: "Электронные этикетки",
+    wiki: "Энциклопедия оружия",
+};
+
 class AppHeader extends React.Component
 {
     constructor(props){
@@ -27,10 +32,11 @@ class AppHeader extends React.Component
     
 
     render(){
+        const title = APP_TITLES[window.location.pathname.split("/")[1].trim().toLowerCase()];
         return (
                 <AppBar
                     onLeftIconButtonTouchTap={this.props.NavbarOpen}
-                    title={siteMap.GetPageById(this.props.pageIndex).label}
+                    title={title}
                     iconElementRight={this.props.logged ? <FlatButton label="Logout" onClick={ClearCookieAndRefresh}/> : null}
                 />
         );
@@ -52,4 +58,4 @@ function S2P(state){
 const D2P = dsp => ({
     NavbarOpen: () => dsp(ac.NavbarOpen()),
 });
-export default connect(S2P,D2P)(AppHeader);
+export default withRouter(connect(S2P,D2P)(AppHeader));
