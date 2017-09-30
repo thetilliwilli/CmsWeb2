@@ -11,10 +11,10 @@ const mockupNew = <FontIcon className="material-icons">EDIT</FontIcon>;
 const mockupOverview = <FontIcon className="material-icons">MOCKUP</FontIcon>;
 
 const contents = [
-    "/ExhibitCreatorPage",
-    "/ExhibitOverview",
-    "/ExhibitEdit",
-    "/ExhibitMockupOverviewPage"
+    "/TAG/ExhibitCreatorPage",
+    "/TAG/ExhibitOverview",
+    "/TAG/ExhibitEdit",
+    "/TAG/ExhibitMockupOverviewPage"
 ];
 
 class AppFooter extends React.Component
