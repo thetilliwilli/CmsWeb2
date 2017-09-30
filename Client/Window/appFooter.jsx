@@ -32,8 +32,10 @@ class AppFooter extends React.Component
 
     render(){
         const currentDomain = window.location.pathname.split("/")[1].trim().toLowerCase();
-        const selectedIndex = this.props.appState[`${currentDomain}Domain`].page;
-        const pageItems = this.props.appState[`${currentDomain}Domain`].pages.map( (i, index) => 
+        //HACK - иногда проскакивает root Url = "http://domainAddress/" в таком случае заполняем фейковыми данными (данные о странице)
+        const selectedIndex = currentDomain==="" ? 0 : this.props.appState[`${currentDomain}Domain`].page;
+        var pages = currentDomain==="" ? [] : this.props.appState[`${currentDomain}Domain`].pages;
+        const pageItems = pages.map( (i, index) => 
             <BottomNavigationItem
                 key={i.subtitle}
                 label={i.subtitle}
