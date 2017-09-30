@@ -20,8 +20,7 @@ function MainRouting(props){
 };
 
 import {connect} from "react-redux";
-export default connect((state)=>{
-    return {
-        pageIndex: state.page
-    };
-})(MainRouting);
+const S2P = state => ({
+    pageIndex: state.tagDomain.page
+});
+export default connect(S2P)(MainRouting);
