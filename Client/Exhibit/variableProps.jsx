@@ -143,7 +143,7 @@ export default class VariableProps extends React.Component
                     OnPropChange={this.ChangeProp} 
                     HandleEnterKeyInput={this.HandleEnterKeyInput}
                 />
-                <ControlPanel OnClick={this.AddProp} />
+                {/* <ControlPanel OnClick={this.AddProp} /> */}
             </div>
         );
     }
