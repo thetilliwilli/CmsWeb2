@@ -26,16 +26,27 @@ class ImageThumb extends React.Component
 
     render(){
         return (
-            <div className="ImageThumb">
-                <img src={this.props.src}/>
-                    <div style={{margin:"10px", position:"relative", top:"-10px", display:(this.props.language==="ru"?"initial":"none")}}>
-                        <TextField name="ru" onChange={this.OnChange} hintText="Описание на русском" value={this.props.description.ru} underlineShow={false}/>
-                    </div>
-                    <div style={{position:"relative", top:"-10px", display:(this.props.language==="en"?"initial":"none")}}>
-                        <TextField name="en" onChange={this.OnChange} hintText="Описание на английском" value={this.props.description.en} underlineShow={false}/>
-                    </div>
-                <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.id)}}/></IconButton>
-                <Divider />
+            <div className="ImageThumb" style={{width:"100%", height:"13%", minHeight:"13%", display:"flex", flexWrap:"wrap", borderBottom:"1px solid lightgrey"}} >
+
+                <div style={{width:"13%", height:"100%", display:"flex", padding:"4px"}} >
+                    <img src={this.props.src} style={{width:"100%", height:"100%"}}/>
+                </div>
+
+                <div style={{width:"65%", height:"100%"}}>
+                    <TextField
+                        style={{display:(this.props.language==="ru"?"initial":"none")}}
+                        name="ru" onChange={this.OnChange} hintText="Описание на русском" value={this.props.description.ru} underlineShow={false}
+                    />
+                    <TextField
+                        style={{display:(this.props.language==="en"?"initial":"none")}}
+                        name="en" onChange={this.OnChange} hintText="Описание на английском" value={this.props.description.en} underlineShow={false}
+                    />
+                </div>
+
+                <div style={{width:"10%", height:"100%", display:"flex"}}>
+                    <IconButton iconStyle={{color:"grey"}} style={{margin:"auto"}} ><ActionDelete onClick={()=>{this.props.OnDelete(this.props.id)}}/></IconButton>
+                </div>
+
             </div>
         );
     }
@@ -160,9 +171,7 @@ export default class ImageGallery extends React.Component
                 </div>
 
                 <div style={{width:"100%", height:"90%", display:"flex"}}>
-                    <div className="DropZone" ref={el=>this.DropZone=el}
-                        style={{width:"100%", height:"100%", overflow:"auto", display:"flex"}}
-                    >
+                    <div className="DropZone" style={{width:"100%", height:"100%", overflow:"auto", display:"flex", flexDirection:"column"}} ref={el=>this.DropZone=el}>
                         {this.state.images.length === 0 ? <DndZoneReplacer/> : imageThumbs}
                     </div>
                 </div>

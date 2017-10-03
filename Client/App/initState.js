@@ -58,7 +58,7 @@ export default {
     wikiDomain: {
         page: 0,
         pages: [
-            {title: "ONE", subtitle:"Здесь только одна страница"},
+            {title: "ONE", subtitle:"Первая\u00A0страница"},
         ],
     }
 

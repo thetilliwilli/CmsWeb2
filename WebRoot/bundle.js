@@ -3390,7 +3390,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _shallowEqual = __webpack_require__(66);
+var _shallowEqual = __webpack_require__(67);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
@@ -4479,7 +4479,7 @@ for (var alias in aliases) {
 
 exports.__esModule = true;
 
-var _shallowEqual = __webpack_require__(66);
+var _shallowEqual = __webpack_require__(67);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
@@ -5513,7 +5513,7 @@ module.exports = DOMLazyTree;
 
 
 var dP = __webpack_require__(39);
-var createDesc = __webpack_require__(69);
+var createDesc = __webpack_require__(70);
 module.exports = __webpack_require__(45) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
@@ -5528,7 +5528,7 @@ module.exports = __webpack_require__(45) ? function (object, key, value) {
 "use strict";
 
 
-var isObject = __webpack_require__(68);
+var isObject = __webpack_require__(69);
 module.exports = function (it) {
   if (!isObject(it)) throw TypeError(it + ' is not an object!');
   return it;
@@ -5635,6 +5635,28 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
+var _RaisedButton = __webpack_require__(539);
+
+var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+exports.default = _RaisedButton2.default;
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
 var _TextField = __webpack_require__(559);
 
 var _TextField2 = _interopRequireDefault(_TextField);
@@ -5646,7 +5668,7 @@ function _interopRequireDefault(obj) {
 exports.default = _TextField2.default;
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5697,7 +5719,7 @@ var ReactInstanceMap = {
 module.exports = ReactInstanceMap;
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5772,7 +5794,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5785,7 +5807,7 @@ module.exports = function (it) {
 };
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5798,7 +5820,7 @@ module.exports = function (it) {
 };
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5814,7 +5836,7 @@ module.exports = function (bitmap, value) {
 };
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5823,7 +5845,7 @@ module.exports = function (bitmap, value) {
 module.exports = {};
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5838,7 +5860,7 @@ module.exports = Object.keys || function keys(O) {
 };
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5918,81 +5940,13 @@ exports.matchPath = _matchPath3.default;
 exports.withRouter = _withRouter3.default;
 
 /***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-var addLeadingSlash = exports.addLeadingSlash = function addLeadingSlash(path) {
-  return path.charAt(0) === '/' ? path : '/' + path;
-};
-
-var stripLeadingSlash = exports.stripLeadingSlash = function stripLeadingSlash(path) {
-  return path.charAt(0) === '/' ? path.substr(1) : path;
-};
-
-var hasBasename = exports.hasBasename = function hasBasename(path, prefix) {
-  return new RegExp('^' + prefix + '(\\/|\\?|#|$)', 'i').test(path);
-};
-
-var stripBasename = exports.stripBasename = function stripBasename(path, prefix) {
-  return hasBasename(path, prefix) ? path.substr(prefix.length) : path;
-};
-
-var stripTrailingSlash = exports.stripTrailingSlash = function stripTrailingSlash(path) {
-  return path.charAt(path.length - 1) === '/' ? path.slice(0, -1) : path;
-};
-
-var parsePath = exports.parsePath = function parsePath(path) {
-  var pathname = path || '/';
-  var search = '';
-  var hash = '';
-
-  var hashIndex = pathname.indexOf('#');
-  if (hashIndex !== -1) {
-    hash = pathname.substr(hashIndex);
-    pathname = pathname.substr(0, hashIndex);
-  }
-
-  var searchIndex = pathname.indexOf('?');
-  if (searchIndex !== -1) {
-    search = pathname.substr(searchIndex);
-    pathname = pathname.substr(0, searchIndex);
-  }
-
-  return {
-    pathname: pathname,
-    search: search === '?' ? '' : search,
-    hash: hash === '#' ? '' : hash
-  };
-};
-
-var createPath = exports.createPath = function createPath(location) {
-  var pathname = location.pathname,
-      search = location.search,
-      hash = location.hash;
-
-  var path = pathname || '/';
-
-  if (search && search !== '?') path += search.charAt(0) === '?' ? search : '?' + search;
-
-  if (hash && hash !== '#') path += hash.charAt(0) === '#' ? hash : '#' + hash;
-
-  return path;
-};
-
-/***/ }),
 /* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
 var addLeadingSlash = exports.addLeadingSlash = function addLeadingSlash(path) {
   return path.charAt(0) === '/' ? path : '/' + path;
 };
@@ -6061,17 +6015,63 @@ var createPath = exports.createPath = function createPath(location) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = undefined;
+var addLeadingSlash = exports.addLeadingSlash = function addLeadingSlash(path) {
+  return path.charAt(0) === '/' ? path : '/' + path;
+};
 
-var _RaisedButton = __webpack_require__(539);
+var stripLeadingSlash = exports.stripLeadingSlash = function stripLeadingSlash(path) {
+  return path.charAt(0) === '/' ? path.substr(1) : path;
+};
 
-var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+var hasBasename = exports.hasBasename = function hasBasename(path, prefix) {
+  return new RegExp('^' + prefix + '(\\/|\\?|#|$)', 'i').test(path);
+};
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
+var stripBasename = exports.stripBasename = function stripBasename(path, prefix) {
+  return hasBasename(path, prefix) ? path.substr(prefix.length) : path;
+};
 
-exports.default = _RaisedButton2.default;
+var stripTrailingSlash = exports.stripTrailingSlash = function stripTrailingSlash(path) {
+  return path.charAt(path.length - 1) === '/' ? path.slice(0, -1) : path;
+};
+
+var parsePath = exports.parsePath = function parsePath(path) {
+  var pathname = path || '/';
+  var search = '';
+  var hash = '';
+
+  var hashIndex = pathname.indexOf('#');
+  if (hashIndex !== -1) {
+    hash = pathname.substr(hashIndex);
+    pathname = pathname.substr(0, hashIndex);
+  }
+
+  var searchIndex = pathname.indexOf('?');
+  if (searchIndex !== -1) {
+    search = pathname.substr(searchIndex);
+    pathname = pathname.substr(0, searchIndex);
+  }
+
+  return {
+    pathname: pathname,
+    search: search === '?' ? '' : search,
+    hash: hash === '#' ? '' : hash
+  };
+};
+
+var createPath = exports.createPath = function createPath(location) {
+  var pathname = location.pathname,
+      search = location.search,
+      hash = location.hash;
+
+  var path = pathname || '/';
+
+  if (search && search !== '?') path += search.charAt(0) === '?' ? search : '?' + search;
+
+  if (hash && hash !== '#') path += hash.charAt(0) === '#' ? hash : '#' + hash;
+
+  return path;
+};
 
 /***/ }),
 /* 76 */
@@ -7747,7 +7747,7 @@ var _valueEqual = __webpack_require__(200);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-var _PathUtils = __webpack_require__(74);
+var _PathUtils = __webpack_require__(75);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9161,7 +9161,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var _prodInvariant = __webpack_require__(14);
 
 var ReactCurrentOwner = __webpack_require__(30);
-var ReactInstanceMap = __webpack_require__(65);
+var ReactInstanceMap = __webpack_require__(66);
 var ReactInstrumentation = __webpack_require__(25);
 var ReactUpdates = __webpack_require__(31);
 
@@ -9892,7 +9892,7 @@ module.exports = function (fn, that, length) {
 
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(68);
+var isObject = __webpack_require__(69);
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function (it, S) {
@@ -10482,7 +10482,7 @@ var _valueEqual = __webpack_require__(200);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-var _PathUtils = __webpack_require__(73);
+var _PathUtils = __webpack_require__(74);
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
@@ -15253,7 +15253,7 @@ var ReactDOMComponentTree = __webpack_require__(17);
 var ReactDOMContainerInfo = __webpack_require__(328);
 var ReactDOMFeatureFlags = __webpack_require__(329);
 var ReactFeatureFlags = __webpack_require__(161);
-var ReactInstanceMap = __webpack_require__(65);
+var ReactInstanceMap = __webpack_require__(66);
 var ReactInstrumentation = __webpack_require__(25);
 var ReactMarkupChecksum = __webpack_require__(330);
 var ReactReconciler = __webpack_require__(54);
@@ -15813,7 +15813,7 @@ module.exports = getHostComponentFromComposite;
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has = __webpack_require__(44);
-var toObject = __webpack_require__(67);
+var toObject = __webpack_require__(68);
 var IE_PROTO = __webpack_require__(111)('IE_PROTO');
 var ObjectProto = Object.prototype;
 
@@ -15865,7 +15865,7 @@ module.exports = !__webpack_require__(45) && !__webpack_require__(59)(function (
 "use strict";
 
 
-var isObject = __webpack_require__(68);
+var isObject = __webpack_require__(69);
 var document = __webpack_require__(37).document;
 // typeof document.createElement is 'object' in old IE
 var is = isObject(document) && isObject(document.createElement);
@@ -15918,7 +15918,7 @@ var $export = __webpack_require__(38);
 var redefine = __webpack_require__(187);
 var hide = __webpack_require__(57);
 var has = __webpack_require__(44);
-var Iterators = __webpack_require__(70);
+var Iterators = __webpack_require__(71);
 var $iterCreate = __webpack_require__(354);
 var setToStringTag = __webpack_require__(121);
 var getPrototypeOf = __webpack_require__(180);
@@ -16082,7 +16082,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 
 
 var pIE = __webpack_require__(87);
-var createDesc = __webpack_require__(69);
+var createDesc = __webpack_require__(70);
 var toIObject = __webpack_require__(60);
 var toPrimitive = __webpack_require__(114);
 var has = __webpack_require__(44);
@@ -17761,7 +17761,7 @@ exports.default = {
     //WIKI DOMAIN
     wikiDomain: {
         page: 0,
-        pages: [{ title: "ONE", subtitle: "Здесь только одна страница" }]
+        pages: [{ title: "ONE", subtitle: "\u041F\u0435\u0440\u0432\u0430\u044F\xA0\u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0430" }]
     }
 
 };
@@ -20849,7 +20849,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _RaisedButton = __webpack_require__(75);
+var _RaisedButton = __webpack_require__(64);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -21019,40 +21019,40 @@ var Exhibit = function (_React$Component) {
             var exhibitData = this.ToExhibitData(this.props.data);
             return _react2.default.createElement(
                 "div",
-                { key: this.props.uuid, className: "Exhibit", style: { height: "100%" } },
-                _react2.default.createElement(_controlPanel2.default, {
-                    handlers: { OnClear: this.props.Clear, OnSubmitNewExhibit: this.SubmitNewExhibit, OnSubmitExhibitUpdate: this.SubmitExhibitUpdate },
-                    blockControl: this.props.data.blockControl, isEditMode: this.props.isEditMode
-                }),
+                { key: this.props.uuid, className: "Exhibit", style: { width: "100%", height: "100%", display: "flex", flexWrap: "wrap" } },
                 _react2.default.createElement(
                     "div",
-                    { className: "ExhibitForm", style: { height: "100%" } },
+                    { style: { width: "100%", height: "6%" } },
+                    _react2.default.createElement(_controlPanel2.default, {
+                        handlers: { OnClear: this.props.Clear, OnSubmitNewExhibit: this.SubmitNewExhibit, OnSubmitExhibitUpdate: this.SubmitExhibitUpdate },
+                        blockControl: this.props.data.blockControl, isEditMode: this.props.isEditMode
+                    })
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "ExhibitForm", style: { width: "100%", height: "94%", display: "flex", flexWrap: "wrap" } },
                     _react2.default.createElement(
                         "div",
-                        null,
+                        { style: { width: "100%", height: "6%" } },
                         _react2.default.createElement(_langSelector2.default, null)
                     ),
                     _react2.default.createElement(
                         "div",
-                        { className: "ExhibitParts", style: { position: "relative", height: "100%" } },
+                        { className: "ExhibitParts", style: { width: "100%", height: "94%", display: "flex", flexWrap: "wrap" } },
                         _react2.default.createElement(
-                            _Card.Card,
-                            { className: "StaticPropsField", style: { width: "30%", height: "100%", float: "left" } },
+                            "div",
+                            { className: "StaticPropsField", style: { width: "33.33%", height: "100%", border: "1px solid lightgrey" } },
+                            _react2.default.createElement(_avatar2.default, { RegCom: this.RegisterAvatarRef, imageHref: exhibitData.coverImage }),
                             _react2.default.createElement(_staticProps2.default, { RegCom: this.RegisterStaticPropsRef, propList: exhibitData.staticProps, language: this.props.language })
                         ),
                         _react2.default.createElement(
-                            _Card.Card,
-                            { className: "VariablePropsField", style: { width: "30%", height: "100%", float: "left" } },
+                            "div",
+                            { className: "VariablePropsField", style: { width: "33.33%", height: "100%", border: "1px solid lightgrey", overflow: "auto" } },
                             _react2.default.createElement(_variableProps2.default, { RegCom: this.RegisterVariablePropsRef, items: exhibitData.variableProps, language: this.props.language })
                         ),
                         _react2.default.createElement(
-                            _Card.Card,
-                            { className: "AvatarField", style: { width: "40%", float: "left" } },
-                            _react2.default.createElement(_avatar2.default, { RegCom: this.RegisterAvatarRef, imageHref: exhibitData.coverImage })
-                        ),
-                        _react2.default.createElement(
-                            _Card.Card,
-                            { className: "GalleryField", style: { width: "40%", float: "left" } },
+                            "div",
+                            { className: "GalleryField", style: { width: "33.33%", height: "100%", border: "1px solid lightgrey" } },
                             _react2.default.createElement(_imageGallery2.default, { RegCom: this.RegisterImageGalleryRef, images: exhibitData.imageGallery, language: this.props.language })
                         )
                     )
@@ -25872,7 +25872,7 @@ var emptyFunction = __webpack_require__(24);
 var escapeTextContentForBrowser = __webpack_require__(84);
 var invariant = __webpack_require__(11);
 var isEventSupported = __webpack_require__(97);
-var shallowEqual = __webpack_require__(66);
+var shallowEqual = __webpack_require__(67);
 var inputValueTracking = __webpack_require__(162);
 var validateDOMNesting = __webpack_require__(108);
 var warning = __webpack_require__(12);
@@ -28158,7 +28158,7 @@ module.exports = ReactDOMTextarea;
 var _prodInvariant = __webpack_require__(14);
 
 var ReactComponentEnvironment = __webpack_require__(104);
-var ReactInstanceMap = __webpack_require__(65);
+var ReactInstanceMap = __webpack_require__(66);
 var ReactInstrumentation = __webpack_require__(25);
 
 var ReactCurrentOwner = __webpack_require__(30);
@@ -28775,7 +28775,7 @@ var React = __webpack_require__(50);
 var ReactComponentEnvironment = __webpack_require__(104);
 var ReactCurrentOwner = __webpack_require__(30);
 var ReactErrorUtils = __webpack_require__(95);
-var ReactInstanceMap = __webpack_require__(65);
+var ReactInstanceMap = __webpack_require__(66);
 var ReactInstrumentation = __webpack_require__(25);
 var ReactNodeTypes = __webpack_require__(171);
 var ReactReconciler = __webpack_require__(54);
@@ -28786,7 +28786,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 var emptyObject = __webpack_require__(78);
 var invariant = __webpack_require__(11);
-var shallowEqual = __webpack_require__(66);
+var shallowEqual = __webpack_require__(67);
 var shouldUpdateReactComponent = __webpack_require__(105);
 var warning = __webpack_require__(12);
 
@@ -31815,7 +31815,7 @@ var SyntheticEvent = __webpack_require__(34);
 
 var getActiveElement = __webpack_require__(177);
 var isTextInputElement = __webpack_require__(163);
-var shallowEqual = __webpack_require__(66);
+var shallowEqual = __webpack_require__(67);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -32947,7 +32947,7 @@ var _prodInvariant = __webpack_require__(14);
 
 var ReactCurrentOwner = __webpack_require__(30);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactInstanceMap = __webpack_require__(65);
+var ReactInstanceMap = __webpack_require__(66);
 
 var getHostComponentFromComposite = __webpack_require__(179);
 var invariant = __webpack_require__(11);
@@ -33303,7 +33303,7 @@ var _MuiThemeProvider = __webpack_require__(345);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-var _reactRouterDom = __webpack_require__(72);
+var _reactRouterDom = __webpack_require__(73);
 
 var _reactRedux = __webpack_require__(28);
 
@@ -33814,7 +33814,7 @@ module.exports = __webpack_require__(26).Object.getPrototypeOf;
 
 
 // 19.1.2.9 Object.getPrototypeOf(O)
-var toObject = __webpack_require__(67);
+var toObject = __webpack_require__(68);
 var $getPrototypeOf = __webpack_require__(180);
 
 __webpack_require__(181)('getPrototypeOf', function () {
@@ -33910,7 +33910,7 @@ module.exports = function (TO_STRING) {
 
 
 var create = __webpack_require__(118);
-var descriptor = __webpack_require__(69);
+var descriptor = __webpack_require__(70);
 var setToStringTag = __webpack_require__(121);
 var IteratorPrototype = {};
 
@@ -33933,7 +33933,7 @@ module.exports = function (Constructor, NAME, next) {
 
 var dP = __webpack_require__(39);
 var anObject = __webpack_require__(58);
-var getKeys = __webpack_require__(71);
+var getKeys = __webpack_require__(72);
 
 module.exports = __webpack_require__(45) ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
@@ -34014,7 +34014,7 @@ module.exports = document && document.documentElement;
 __webpack_require__(360);
 var global = __webpack_require__(37);
 var hide = __webpack_require__(57);
-var Iterators = __webpack_require__(70);
+var Iterators = __webpack_require__(71);
 var TO_STRING_TAG = __webpack_require__(32)('toStringTag');
 
 var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' + 'DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,' + 'MediaList,MimeTypeArray,NamedNodeMap,NodeList,PaintRequestList,Plugin,PluginArray,SVGLengthList,SVGNumberList,' + 'SVGPathSegList,SVGPointList,SVGStringList,SVGTransformList,SourceBufferList,StyleSheetList,TextTrackCueList,' + 'TextTrackList,TouchList').split(',');
@@ -34036,7 +34036,7 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 var addToUnscopables = __webpack_require__(361);
 var step = __webpack_require__(362);
-var Iterators = __webpack_require__(70);
+var Iterators = __webpack_require__(71);
 var toIObject = __webpack_require__(60);
 
 // 22.1.3.4 Array.prototype.entries()
@@ -34138,12 +34138,12 @@ var isArray = __webpack_require__(368);
 var anObject = __webpack_require__(58);
 var toIObject = __webpack_require__(60);
 var toPrimitive = __webpack_require__(114);
-var createDesc = __webpack_require__(69);
+var createDesc = __webpack_require__(70);
 var _create = __webpack_require__(118);
 var gOPNExt = __webpack_require__(369);
 var $GOPD = __webpack_require__(192);
 var $DP = __webpack_require__(39);
-var $keys = __webpack_require__(71);
+var $keys = __webpack_require__(72);
 var gOPD = $GOPD.f;
 var dP = $DP.f;
 var gOPN = gOPNExt.f;
@@ -34370,7 +34370,7 @@ setToStringTag(global.JSON, 'JSON', true);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var META = __webpack_require__(86)('meta');
-var isObject = __webpack_require__(68);
+var isObject = __webpack_require__(69);
 var has = __webpack_require__(44);
 var setDesc = __webpack_require__(39).f;
 var id = 0;
@@ -34431,7 +34431,7 @@ var meta = module.exports = {
 
 
 // all enumerable object keys, includes symbols
-var getKeys = __webpack_require__(71);
+var getKeys = __webpack_require__(72);
 var gOPS = __webpack_require__(124);
 var pIE = __webpack_require__(87);
 module.exports = function (it) {
@@ -34553,7 +34553,7 @@ $export($export.S, 'Object', { setPrototypeOf: __webpack_require__(376).set });
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
-var isObject = __webpack_require__(68);
+var isObject = __webpack_require__(69);
 var anObject = __webpack_require__(58);
 var check = function check(O, proto) {
   anObject(O);
@@ -35080,7 +35080,7 @@ module.exports = __webpack_require__(26).Array.from;
 
 var ctx = __webpack_require__(113);
 var $export = __webpack_require__(38);
-var toObject = __webpack_require__(67);
+var toObject = __webpack_require__(68);
 var call = __webpack_require__(384);
 var isArrayIter = __webpack_require__(385);
 var toLength = __webpack_require__(190);
@@ -35145,7 +35145,7 @@ module.exports = function (iterator, fn, value, entries) {
 
 
 // check on default Array iterator
-var Iterators = __webpack_require__(70);
+var Iterators = __webpack_require__(71);
 var ITERATOR = __webpack_require__(32)('iterator');
 var ArrayProto = Array.prototype;
 
@@ -35161,7 +35161,7 @@ module.exports = function (it) {
 
 
 var $defineProperty = __webpack_require__(39);
-var createDesc = __webpack_require__(69);
+var createDesc = __webpack_require__(70);
 
 module.exports = function (object, index, value) {
   if (index in object) $defineProperty.f(object, index, createDesc(0, value));else object[index] = value;
@@ -35176,7 +35176,7 @@ module.exports = function (object, index, value) {
 
 var classof = __webpack_require__(388);
 var ITERATOR = __webpack_require__(32)('iterator');
-var Iterators = __webpack_require__(70);
+var Iterators = __webpack_require__(71);
 module.exports = __webpack_require__(26).getIteratorMethod = function (it) {
   if (it != undefined) return it[ITERATOR] || it['@@iterator'] || Iterators[classof(it)];
 };
@@ -39550,8 +39550,8 @@ module.exports = __webpack_require__(26).Object.keys;
 
 
 // 19.1.2.14 Object.keys(O)
-var toObject = __webpack_require__(67);
-var $keys = __webpack_require__(71);
+var toObject = __webpack_require__(68);
+var $keys = __webpack_require__(72);
 
 __webpack_require__(181)('keys', function () {
   return function keys(it) {
@@ -39763,7 +39763,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(130);
 
-var _PathUtils = __webpack_require__(73);
+var _PathUtils = __webpack_require__(74);
 
 var _createTransitionManager = __webpack_require__(131);
 
@@ -40173,7 +40173,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(130);
 
-var _PathUtils = __webpack_require__(73);
+var _PathUtils = __webpack_require__(74);
 
 var _createTransitionManager = __webpack_require__(131);
 
@@ -40626,7 +40626,7 @@ var _warning = __webpack_require__(15);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _PathUtils = __webpack_require__(73);
+var _PathUtils = __webpack_require__(74);
 
 var _LocationUtils = __webpack_require__(130);
 
@@ -41654,7 +41654,7 @@ Object.defineProperty(exports, 'locationsAreEqual', {
   }
 });
 
-var _PathUtils = __webpack_require__(74);
+var _PathUtils = __webpack_require__(75);
 
 Object.defineProperty(exports, 'parsePath', {
   enumerable: true,
@@ -41710,7 +41710,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(88);
 
-var _PathUtils = __webpack_require__(74);
+var _PathUtils = __webpack_require__(75);
 
 var _createTransitionManager = __webpack_require__(135);
 
@@ -42034,7 +42034,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(88);
 
-var _PathUtils = __webpack_require__(74);
+var _PathUtils = __webpack_require__(75);
 
 var _createTransitionManager = __webpack_require__(135);
 
@@ -42369,7 +42369,7 @@ var _warning = __webpack_require__(15);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _PathUtils = __webpack_require__(74);
+var _PathUtils = __webpack_require__(75);
 
 var _LocationUtils = __webpack_require__(88);
 
@@ -42591,7 +42591,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _PathUtils = __webpack_require__(73);
+var _PathUtils = __webpack_require__(74);
 
 var _Router = __webpack_require__(133);
 
@@ -45404,7 +45404,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(72);
+var _reactRouterDom = __webpack_require__(73);
 
 var _AppBar = __webpack_require__(485);
 
@@ -45940,10 +45940,10 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(489) });
 
 // 19.1.2.1 Object.assign(target, source, ...)
 
-var getKeys = __webpack_require__(71);
+var getKeys = __webpack_require__(72);
 var gOPS = __webpack_require__(124);
 var pIE = __webpack_require__(87);
-var toObject = __webpack_require__(67);
+var toObject = __webpack_require__(68);
 var IObject = __webpack_require__(189);
 var $assign = Object.assign;
 
@@ -50768,7 +50768,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(72);
+var _reactRouterDom = __webpack_require__(73);
 
 var _Drawer = __webpack_require__(529);
 
@@ -51534,7 +51534,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(72);
+var _reactRouterDom = __webpack_require__(73);
 
 var _FontIcon = __webpack_require__(91);
 
@@ -51941,7 +51941,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(72);
+var _reactRouterDom = __webpack_require__(73);
 
 var _exhibitCreate = __webpack_require__(538);
 
@@ -51967,7 +51967,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var TagContent = function TagContent(p) {
     return _react2.default.createElement(
         "div",
-        { className: "PageSwitcher" },
+        { className: "PageSwitcher", style: { height: "100%" } },
         _react2.default.createElement(
             "div",
             { style: { display: p.curIndex === 0 ? "initial" : "none" } },
@@ -55180,11 +55180,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _RaisedButton = __webpack_require__(75);
+var _RaisedButton = __webpack_require__(64);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-var _TextField = __webpack_require__(64);
+var _TextField = __webpack_require__(65);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
@@ -55283,11 +55283,13 @@ var UploadImage = function (_React$Component2) {
 
             return _react2.default.createElement(
                 'div',
-                null,
-                _react2.default.createElement('img', { className: 'ExhibitCard_image', onClick: this.OnImageClick, src: this.props.imageSrc, style: { position: "relative", top: "0", left: "0", width: "100px", height: "100px", backgroundSize: "contain" } }),
+                { style: { minHeight: "140px" } },
+                _react2.default.createElement('img', { className: 'ExhibitCard_image', onClick: this.OnImageClick, src: this.props.imageSrc,
+                    style: { marginLeft: "16px", boxShadow: "0px 0px 2px 0px grey", maxWidth: "100px", maxHeight: "100px", backgroundSize: "contain", cursor: 'pointer' } }),
                 _react2.default.createElement('input', { ref: function ref(input) {
                         _this3.fileUploadInput = input;
-                    }, type: 'file', style: { cursor: 'pointer', position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, width: '100%', opacity: 0 }, onChange: this.OnFileSelected, accept: '.png,.jpg,.jpeg' })
+                    }, type: 'file',
+                    style: { display: "none" }, onChange: this.OnFileSelected, accept: '.png,.jpg,.jpeg' })
             );
         }
     }]);
@@ -56598,7 +56600,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _TextField = __webpack_require__(64);
+var _TextField = __webpack_require__(65);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
@@ -56757,7 +56759,7 @@ var _DatePickerDialog = __webpack_require__(568);
 
 var _DatePickerDialog2 = _interopRequireDefault(_DatePickerDialog);
 
-var _TextField = __webpack_require__(64);
+var _TextField = __webpack_require__(65);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
@@ -60112,7 +60114,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _Card = __webpack_require__(49);
 
-var _TextField = __webpack_require__(64);
+var _TextField = __webpack_require__(65);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
@@ -60361,8 +60363,7 @@ var VariableProps = function (_React$Component4) {
                     OnDelete: this.DeleteProp,
                     OnPropChange: this.ChangeProp,
                     HandleEnterKeyInput: this.HandleEnterKeyInput
-                }),
-                _react2.default.createElement(ControlPanel, { OnClick: this.AddProp })
+                })
             );
         }
     }]);
@@ -60804,6 +60805,10 @@ var _FlatButton = __webpack_require__(92);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
+var _RaisedButton = __webpack_require__(64);
+
+var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
 var _IconButton = __webpack_require__(40);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
@@ -60812,7 +60817,7 @@ var _delete = __webpack_require__(148);
 
 var _delete2 = _interopRequireDefault(_delete);
 
-var _TextField = __webpack_require__(64);
+var _TextField = __webpack_require__(65);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
@@ -60864,26 +60869,35 @@ var ImageThumb = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'ImageThumb' },
-                _react2.default.createElement('img', { src: this.props.src }),
+                { className: 'ImageThumb', style: { width: "100%", height: "13%", minHeight: "13%", display: "flex", flexWrap: "wrap", borderBottom: "1px solid lightgrey" } },
                 _react2.default.createElement(
                     'div',
-                    { style: { margin: "10px", position: "relative", top: "-10px", display: this.props.language === "ru" ? "initial" : "none" } },
-                    _react2.default.createElement(_TextField2.default, { name: 'ru', onChange: this.OnChange, hintText: '\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u043D\u0430 \u0440\u0443\u0441\u0441\u043A\u043E\u043C', value: this.props.description.ru, underlineShow: false })
+                    { style: { width: "13%", height: "100%", display: "flex", padding: "4px" } },
+                    _react2.default.createElement('img', { src: this.props.src, style: { width: "100%", height: "100%" } })
                 ),
                 _react2.default.createElement(
                     'div',
-                    { style: { position: "relative", top: "-10px", display: this.props.language === "en" ? "initial" : "none" } },
-                    _react2.default.createElement(_TextField2.default, { name: 'en', onChange: this.OnChange, hintText: '\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u043D\u0430 \u0430\u043D\u0433\u043B\u0438\u0439\u0441\u043A\u043E\u043C', value: this.props.description.en, underlineShow: false })
+                    { style: { width: "65%", height: "100%" } },
+                    _react2.default.createElement(_TextField2.default, {
+                        style: { display: this.props.language === "ru" ? "initial" : "none" },
+                        name: 'ru', onChange: this.OnChange, hintText: '\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u043D\u0430 \u0440\u0443\u0441\u0441\u043A\u043E\u043C', value: this.props.description.ru, underlineShow: false
+                    }),
+                    _react2.default.createElement(_TextField2.default, {
+                        style: { display: this.props.language === "en" ? "initial" : "none" },
+                        name: 'en', onChange: this.OnChange, hintText: '\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u043D\u0430 \u0430\u043D\u0433\u043B\u0438\u0439\u0441\u043A\u043E\u043C', value: this.props.description.en, underlineShow: false
+                    })
                 ),
                 _react2.default.createElement(
-                    _IconButton2.default,
-                    { iconStyle: { color: "grey" } },
-                    _react2.default.createElement(_delete2.default, { onClick: function onClick() {
-                            _this2.props.OnDelete(_this2.props.id);
-                        } })
-                ),
-                _react2.default.createElement(_Divider2.default, null)
+                    'div',
+                    { style: { width: "10%", height: "100%", display: "flex" } },
+                    _react2.default.createElement(
+                        _IconButton2.default,
+                        { iconStyle: { color: "grey" }, style: { margin: "auto" } },
+                        _react2.default.createElement(_delete2.default, { onClick: function onClick() {
+                                _this2.props.OnDelete(_this2.props.id);
+                            } })
+                    )
+                )
             );
         }
     }]);
@@ -60894,11 +60908,8 @@ var ImageThumb = function (_React$Component) {
 var DndZoneReplacer = function DndZoneReplacer(p) {
     return _react2.default.createElement(
         'div',
-        { style: {
-                fontSize: "3em",
-                color: "lightgrey"
-            } },
-        '\u0424\u041E\u0422\u041E\u0413\u0420\u0410\u0424\u0418\u0418 \u041C\u041E\u0416\u041D\u041E \u041F\u0415\u0420\u0415\u041D\u0415\u0421\u0422\u0418 \u0421\u042E\u0414\u0410'
+        { style: { fontSize: "2.5em", color: "lightgrey", margin: "auto", border: "2px dashed lightgrey", borderRadius: "10px", padding: "10px" } },
+        '\u041F\u0415\u0420\u0415\u041D\u0415\u0421\u0418\u0422\u0415 \u0424\u041E\u0422\u041E\u0413\u0420\u0410\u0424\u0418\u0418'
     );
 };
 
@@ -61030,37 +61041,44 @@ var ImageGallery = function (_React$Component2) {
         value: function render() {
             var _this4 = this;
 
-            var inputStyle = {
-                cursor: 'pointer',
-                position: 'absolute',
-                top: 0,
-                bottom: 0,
-                right: 0,
-                left: 0,
-                width: '100%',
-                opacity: 0
-            };
-            var dropZoneStyle = { border: "1px solid lightgrey", height: "100%", minHeight: "400px", overflow: "auto" };
             var imageThumbs = this.state.images.map(function (i) {
                 return _react2.default.createElement(ImageThumb, { OnDescriptionChange: _this4.OnDescriptionChange, key: i.id, src: i.src, language: _this4.props.language, description: i.description, id: i.id, OnDelete: _this4.DeleteImage });
             });
             return _react2.default.createElement(
                 'div',
-                { className: 'ImageGallery' },
-                _react2.default.createElement(_Card.CardHeader, { subtitle: '\u0424\u041E\u0422\u041E\u0413\u0410\u041B\u041B\u0415\u0420\u0415\u042F' }),
+                { className: 'ImageGallery', style: { display: "flex", height: "100%", flexWrap: "wrap" } },
                 _react2.default.createElement(
-                    _FlatButton2.default,
-                    { style: { color: "grey" }, icon: _react2.default.createElement(_add2.default, null), label: '\u0417\u0410\u0413\u0420\u0423\u0417\u0418\u0422\u042C \u0415\u0429\u0415', fullWidth: true, containerElement: 'label' },
-                    _react2.default.createElement('input', { ref: function ref(el) {
-                            return _this4.fileUploadInput = el;
-                        }, type: 'file', style: inputStyle, multiple: true, accept: '.png,.jpg,.jpeg', onChange: this.OnFileSelected })
+                    'div',
+                    { style: { width: "100%", height: "10%", display: "flex", flexWrap: "wrap", borderBottom: "1px solid lightgrey" } },
+                    _react2.default.createElement(
+                        'div',
+                        { style: { width: "40%" } },
+                        _react2.default.createElement(_Card.CardHeader, { subtitle: '\u0424\u041E\u0422\u041E\u0413\u0410\u041B\u041B\u0415\u0420\u0415\u042F' })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { style: { width: "60%", display: "flex" } },
+                        _react2.default.createElement(
+                            _FlatButton2.default,
+                            {
+                                style: { width: "70%", borderRadius: "15px", color: "grey", pointer: "cursor", margin: "auto", boxShadow: "0px 1px 3px 1px lightgrey" },
+                                icon: _react2.default.createElement(_add2.default, null), label: '\u0417\u0410\u0413\u0420\u0423\u0417\u0418\u0422\u042C \u0415\u0429\u0415', containerElement: 'label' },
+                            _react2.default.createElement('input', { ref: function ref(el) {
+                                    return _this4.fileUploadInput = el;
+                                }, type: 'file', style: { display: "none" }, multiple: true, accept: '.png,.jpg,.jpeg', onChange: this.OnFileSelected })
+                        )
+                    )
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'DropZone', ref: function ref(el) {
-                            return _this4.DropZone = el;
-                        }, style: dropZoneStyle },
-                    this.state.images.length === 0 ? _react2.default.createElement(DndZoneReplacer, null) : imageThumbs
+                    { style: { width: "100%", height: "90%", display: "flex" } },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'DropZone', style: { width: "100%", height: "100%", overflow: "auto", display: "flex", flexDirection: "column" }, ref: function ref(el) {
+                                return _this4.DropZone = el;
+                            } },
+                        this.state.images.length === 0 ? _react2.default.createElement(DndZoneReplacer, null) : imageThumbs
+                    )
                 )
             );
         }
@@ -61209,7 +61227,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _RaisedButton = __webpack_require__(75);
+var _RaisedButton = __webpack_require__(64);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -61218,6 +61236,15 @@ var _CircularProgress = __webpack_require__(145);
 var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var blockerUi = function blockerUi(p) {
+    return _react2.default.createElement(
+        "div",
+        { className: "blockerUi", style: { position: "absolute", lef: "0", top: "0", width: "100%", height: "100%", backgroundColor: "rgba(255,255,255,0.95)", zIndex: "2", color: "grey", fontSize: "1.75em" } },
+        "\u0412\u044B\u043F\u043E\u043B\u043D\u044F\u0435\u0442\u0441\u044F \u043E\u043F\u0435\u0440\u0430\u0446\u0438\u044F ",
+        _react2.default.createElement(_CircularProgress2.default, { size: 30, thickness: 3 })
+    );
+};
 
 function ControlPanel(props) {
     var buttonBar = props.isEditMode ? _react2.default.createElement(
@@ -61233,18 +61260,8 @@ function ControlPanel(props) {
     );
     return _react2.default.createElement(
         "div",
-        { className: "ControlPanel", style: { position: "relative" } },
-        buttonBar,
-        props.blockControl &&
-        /* убираем доступность кнопок при любом запросе на сервер */
-        _react2.default.createElement(
-            "div",
-            { className: "blockerUi",
-                style: { position: "absolute", lef: "0", top: "0", width: "100%", height: "100%", backgroundColor: "rgba(255,255,255,0.95)", zIndex: "2", color: "grey", fontSize: "1.75em" }
-            },
-            "\u0412\u044B\u043F\u043E\u043B\u043D\u044F\u0435\u0442\u0441\u044F \u043E\u043F\u0435\u0440\u0430\u0446\u0438\u044F ",
-            _react2.default.createElement(_CircularProgress2.default, { size: 30, thickness: 3 })
-        )
+        { className: "ControlPanel" },
+        props.blockControl ? blockerUi : buttonBar
     );
 }
 
@@ -61295,7 +61312,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _RaisedButton = __webpack_require__(75);
+var _RaisedButton = __webpack_require__(64);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -61406,11 +61423,11 @@ var _Paper = __webpack_require__(23);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
-var _TextField = __webpack_require__(64);
+var _TextField = __webpack_require__(65);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
-var _RaisedButton = __webpack_require__(75);
+var _RaisedButton = __webpack_require__(64);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
