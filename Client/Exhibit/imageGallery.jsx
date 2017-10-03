@@ -41,10 +41,11 @@ class ImageThumb extends React.Component
     }
 }
 
-const DndZoneReplacer = p => <div style={{
-        fontSize:"3em",
-        color:"lightgrey",
-    }}>ФОТОГРАФИИ МОЖНО ПЕРЕНЕСТИ СЮДА</div>;
+const DndZoneReplacer = p => (
+    <div style={{ fontSize:"2.5em", color:"lightgrey", margin:"auto", border:"2px dashed lightgrey", borderRadius:"10px", padding:"10px"}}>
+        ПЕРЕНЕСИТЕ ФОТОГРАФИИ
+    </div>
+);
 
 export default class ImageGallery extends React.Component
 {
@@ -138,14 +139,13 @@ export default class ImageGallery extends React.Component
     }
 
     render(){
-        const dropZoneStyle = {border:"1px solid lightgrey", height:"100%", minHeight:"400px", overflow:"auto"};
         var imageThumbs = this.state.images.map(
             i=><ImageThumb OnDescriptionChange={this.OnDescriptionChange} key={i.id} src={i.src} language={this.props.language} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
         );
         return (
             <div className="ImageGallery" style={{display:"flex", height:"100%", flexWrap:"wrap"}} >
 
-                <div style={{width:"100%", height:"10%", display:"flex", flexWrap:"wrap"}}>
+                <div style={{width:"100%", height:"10%", display:"flex", flexWrap:"wrap", borderBottom:"1px solid lightgrey"}}>
                     <div style={{width:"40%"}} >
                         <CardHeader  subtitle="ФОТОГАЛЛЕРЕЯ" />
                     </div>
@@ -159,8 +159,10 @@ export default class ImageGallery extends React.Component
                     </div>
                 </div>
 
-                <div style={{width:"100%", height:"90%"}}>
-                    <div className="DropZone" ref={el=>this.DropZone=el} style={dropZoneStyle}>
+                <div style={{width:"100%", height:"90%", display:"flex"}}>
+                    <div className="DropZone" ref={el=>this.DropZone=el}
+                        style={{width:"100%", height:"100%", overflow:"auto", display:"flex"}}
+                    >
                         {this.state.images.length === 0 ? <DndZoneReplacer/> : imageThumbs}
                     </div>
                 </div>
