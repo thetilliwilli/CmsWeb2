@@ -143,19 +143,23 @@ export default class ImageGallery extends React.Component
             i=><ImageThumb OnDescriptionChange={this.OnDescriptionChange} key={i.id} src={i.src} language={this.props.language} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
         );
         return (
-            <div className="ImageGallery" style={{display:"flex", flexWrap:"wrap"}} >
+            <div className="ImageGallery" style={{display:"flex", height:"100%", flexWrap:"wrap"}} >
 
-                <div style={{width:"100%"}} >
-                    <CardHeader  subtitle="ФОТОГАЛЛЕРЕЯ" />
+                <div style={{width:"100%", height:"10%", display:"flex", flexWrap:"wrap"}}>
+                    <div style={{width:"40%"}} >
+                        <CardHeader  subtitle="ФОТОГАЛЛЕРЕЯ" />
+                    </div>
+
+                    <div style={{width:"60%", display:"flex"}}>
+                            <FlatButton
+                                style={{width:"70%", borderRadius: "15px", color:"grey", pointer:"cursor",  margin:"auto", boxShadow:"0px 1px 3px 1px lightgrey"}}
+                                icon={<ContentAdd/>} label="ЗАГРУЗИТЬ ЕЩЕ" containerElement="label">
+                                <input ref={el=>this.fileUploadInput=el} type="file" style={{display:"none"}} multiple accept=".png,.jpg,.jpeg" onChange={this.OnFileSelected}/>
+                            </FlatButton>
+                    </div>
                 </div>
 
-                <div style={{width:"100%"}}>
-                    <RaisedButton style={{color:"grey", pointer:"cursor"}} icon={<ContentAdd/>} label="ЗАГРУЗИТЬ ЕЩЕ" fullWidth containerElement="label">
-                        <input ref={el=>this.fileUploadInput=el} type="file" style={{display:"none"}} multiple accept=".png,.jpg,.jpeg" onChange={this.OnFileSelected}/>
-                    </RaisedButton>
-                </div>
-
-                <div style={{width:"100%"}}>
+                <div style={{width:"100%", height:"90%"}}>
                     <div className="DropZone" ref={el=>this.DropZone=el} style={dropZoneStyle}>
                         {this.state.images.length === 0 ? <DndZoneReplacer/> : imageThumbs}
                     </div>
