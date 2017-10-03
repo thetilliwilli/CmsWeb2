@@ -8,7 +8,7 @@ import ExhibitEditPage from "../Page/exhibitEdit.jsx";
 import MockupOverviewPage from "../Page/mockupOverview.jsx";
 
 const TagContent = p => (
-    <div className="PageSwitcher">
+    <div className="PageSwitcher" style={{height:"100%"}}>
         <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><ExhibitCreatorPage /></div>
         <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><ExhibitOverviewPage /></div>
         <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><ExhibitEditPage /></div>
