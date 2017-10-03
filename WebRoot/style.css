@@ -15,6 +15,11 @@ html, body, #app
     font-family: "Roboto";
 }
 
+#app
+{
+    display: flex;
+}
+
 
 a {
     color: #00bcd4;

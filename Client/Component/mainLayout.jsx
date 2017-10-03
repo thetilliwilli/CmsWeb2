@@ -12,19 +12,18 @@ export default class MainLayout extends React.Component
 
     render(){
         return (
-            <div className="MainLayout" style={{height:"100%"}}>
-                
-                <div className="TopBar">
+            <div className="MainLayout" style={{display:"flex", height:"100%", width:"100%", flexWrap:"wrap"}}>
+                    
+                <div className="TopBar" style={{width:"100%", height:"7%"}}>
                     <this.props.topBarResident />
                 </div>
 
-                <div className="MiddleBar" style={{height:"80%"}}>
-                    <div className="PageContent" style={{height:"100%", overflow:"auto"}}>
-                        <this.props.pageContentResident />
-                    </div>
+
+                <div className="MiddleBar" style={{width:"100%", height:"86%", overflow:"auto"}}>
+                    <this.props.pageContentResident />
                 </div>
 
-                <div name="BottomBar" style={{height:"5%"}}>
+                <div name="BottomBar" style={{width:"100%", height:"7%", display:"flex"}}>
                     <this.props.bottomBarResident />
                 </div>
 

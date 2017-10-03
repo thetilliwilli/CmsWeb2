@@ -10,13 +10,6 @@ const favoritesIcon = <FontIcon className="material-icons">OVERVIEW</FontIcon>;
 const mockupNew = <FontIcon className="material-icons">EDIT</FontIcon>;
 const mockupOverview = <FontIcon className="material-icons">MOCKUP</FontIcon>;
 
-// const contents = [
-//     "/tag/ExhibitCreatorPage",
-//     "/tag/ExhibitOverview",
-//     "/tag/ExhibitEdit",
-//     "/tag/ExhibitMockupOverviewPage"
-// ];
-
 class AppFooter extends React.Component
 {
     constructor(props){
@@ -44,14 +37,9 @@ class AppFooter extends React.Component
             />
         );
         return (
-            <Paper zDepth={1}>
-                <BottomNavigation selectedIndex={selectedIndex}>
+                <BottomNavigation selectedIndex={selectedIndex} style={{width:"100%", height:"100%", boxShadow:"0px 0px 7px 0px grey"}}>
                     {pageItems}
-                    {/* <BottomNavigationItem label="Обзор экспонатов" icon={favoritesIcon} onClick={() => this.Select(1)} />
-                    <BottomNavigationItem label="Редактировать&nbsp;экспонат" icon={mockupNew} onClick={() => this.Select(2)} /> */}
-                    {/* <BottomNavigationItem label="Выбрать шаблон" icon={mockupOverview} onClick={() => this.Select(3)} /> */}
                 </BottomNavigation>
-            </Paper>
         );
     }
 }

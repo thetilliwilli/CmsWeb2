@@ -51583,13 +51583,6 @@ var mockupOverview = _react2.default.createElement(
     'MOCKUP'
 );
 
-// const contents = [
-//     "/tag/ExhibitCreatorPage",
-//     "/tag/ExhibitOverview",
-//     "/tag/ExhibitEdit",
-//     "/tag/ExhibitMockupOverviewPage"
-// ];
-
 var AppFooter = function (_React$Component) {
     _inherits(AppFooter, _React$Component);
 
@@ -51633,13 +51626,9 @@ var AppFooter = function (_React$Component) {
                 });
             });
             return _react2.default.createElement(
-                _Paper2.default,
-                { zDepth: 1 },
-                _react2.default.createElement(
-                    _BottomNavigation.BottomNavigation,
-                    { selectedIndex: selectedIndex },
-                    pageItems
-                )
+                _BottomNavigation.BottomNavigation,
+                { selectedIndex: selectedIndex, style: { width: "100%", height: "100%", boxShadow: "0px 0px 7px 0px grey" } },
+                pageItems
             );
         }
     }]);
@@ -61921,24 +61910,20 @@ var MainLayout = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 "div",
-                { className: "MainLayout", style: { height: "100%" } },
+                { className: "MainLayout", style: { display: "flex", height: "100%", width: "100%", flexWrap: "wrap" } },
                 _react2.default.createElement(
                     "div",
-                    { className: "TopBar" },
+                    { className: "TopBar", style: { width: "100%", height: "7%" } },
                     _react2.default.createElement(this.props.topBarResident, null)
                 ),
                 _react2.default.createElement(
                     "div",
-                    { className: "MiddleBar", style: { height: "80%" } },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "PageContent", style: { height: "100%", overflow: "auto" } },
-                        _react2.default.createElement(this.props.pageContentResident, null)
-                    )
+                    { className: "MiddleBar", style: { width: "100%", height: "86%", overflow: "auto" } },
+                    _react2.default.createElement(this.props.pageContentResident, null)
                 ),
                 _react2.default.createElement(
                     "div",
-                    { name: "BottomBar", style: { height: "5%" } },
+                    { name: "BottomBar", style: { width: "100%", height: "7%", display: "flex" } },
                     _react2.default.createElement(this.props.bottomBarResident, null)
                 ),
                 _react2.default.createElement(
