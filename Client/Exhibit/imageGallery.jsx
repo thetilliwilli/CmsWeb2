@@ -1,6 +1,7 @@
 import React from "react";
 import {Card, CardHeader} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import ActionDelete from "material-ui/svg-icons/action/delete"
 import TextField from 'material-ui/TextField';
@@ -137,31 +138,30 @@ export default class ImageGallery extends React.Component
     }
 
     render(){
-        const inputStyle = {
-            cursor: 'pointer',
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            right: 0,
-            left: 0,
-            width: '100%',
-            opacity: 0,
-          };
         const dropZoneStyle = {border:"1px solid lightgrey", height:"100%", minHeight:"400px", overflow:"auto"};
         var imageThumbs = this.state.images.map(
             i=><ImageThumb OnDescriptionChange={this.OnDescriptionChange} key={i.id} src={i.src} language={this.props.language} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
         );
         return (
-            <div className="ImageGallery">
-                <CardHeader  subtitle="ФОТОГАЛЛЕРЕЯ" />
-                
-                <FlatButton style={{color:"grey"}} icon={<ContentAdd/>} label="ЗАГРУЗИТЬ ЕЩЕ" fullWidth containerElement="label">
-                    <input ref={el=>this.fileUploadInput=el} type="file" style={inputStyle} multiple accept=".png,.jpg,.jpeg" onChange={this.OnFileSelected}/>
-                </FlatButton>
+            <div className="ImageGallery" style={{display:"flex", flexWrap:"wrap"}} >
 
-                <div className="DropZone" ref={el=>this.DropZone=el} style={dropZoneStyle}>
-                    {this.state.images.length === 0 ? <DndZoneReplacer/> : imageThumbs}
+                <div style={{width:"100%"}} >
+                    <CardHeader  subtitle="ФОТОГАЛЛЕРЕЯ" />
                 </div>
+
+                <div style={{width:"100%"}}>
+                    <RaisedButton style={{color:"grey", pointer:"cursor"}} icon={<ContentAdd/>} label="ЗАГРУЗИТЬ ЕЩЕ" fullWidth containerElement="label">
+                        <input ref={el=>this.fileUploadInput=el} type="file" style={{display:"none"}} multiple accept=".png,.jpg,.jpeg" onChange={this.OnFileSelected}/>
+                    </RaisedButton>
+                </div>
+
+                <div style={{width:"100%"}}>
+                    <div className="DropZone" ref={el=>this.DropZone=el} style={dropZoneStyle}>
+                        {this.state.images.length === 0 ? <DndZoneReplacer/> : imageThumbs}
+                    </div>
+                </div>
+
+                
             </div>
         );
     }
