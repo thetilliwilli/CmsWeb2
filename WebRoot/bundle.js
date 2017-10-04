@@ -52004,12 +52004,16 @@ function MainRouting(props) {
     return _react2.default.createElement(
         _reactRouterDom.Switch,
         null,
-        _react2.default.createElement(_reactRouterDom.Route, { path: "/tag", component: function component() {
-                return _react2.default.createElement(TagContent, { curIndex: curIndex });
-            } }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: "/wiki", component: function component() {
-                return _react2.default.createElement(WikiContent, { curIndex: curIndex });
-            } }),
+        _react2.default.createElement(
+            _reactRouterDom.Route,
+            { path: "/tag" },
+            _react2.default.createElement(TagContent, { curIndex: curIndex })
+        ),
+        _react2.default.createElement(
+            _reactRouterDom.Route,
+            { path: "/wiki" },
+            _react2.default.createElement(WikiContent, { curIndex: curIndex })
+        ),
         _react2.default.createElement(_reactRouterDom.Redirect, { to: "/tag" })
     );
 };
@@ -60958,6 +60962,12 @@ var ImageGallery = function (_React$Component2) {
             this.DropZone.removeEventListener("dragenter", this.OnDragEnter);
             this.DropZone.removeEventListener("dragover", this.OnDragOver);
             this.DropZone.removeEventListener("drop", this.OnDrop);
+            //Освобождаем ресурсы занятой base64 изображениями
+            for (var i in this.images) {
+                for (var j in this.images[i].a.d) {
+                    this.images[i][j] = null;
+                }
+            }console.log("componentWillUnmount", "ImageGallery");
         }
 
         //HANDLERS-------------------------------------
