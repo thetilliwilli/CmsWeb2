@@ -20914,6 +20914,7 @@ var Exhibit = function (_React$Component) {
         _this.RegisterImageGalleryRef = _this.RegisterImageGalleryRef.bind(_this);
         _this.SubmitNewExhibit = _this.SubmitNewExhibit.bind(_this);
         _this.SubmitExhibitUpdate = _this.SubmitExhibitUpdate.bind(_this);
+        _this.SubscribeToWindowResize = _this.SubscribeToWindowResize.bind(_this);
         return _this;
     }
 
@@ -20921,6 +20922,25 @@ var Exhibit = function (_React$Component) {
         key: "shouldComponentUpdate",
         value: function shouldComponentUpdate() {
             return true;
+        }
+    }, {
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            window.addEventListener("resize", this.SubscribeToWindowResize);
+        }
+    }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+            window.removeEventListener("resize", this.SubscribeToWindowResize);
+        }
+    }, {
+        key: "SubscribeToWindowResize",
+        value: function SubscribeToWindowResize() {
+            var isLandscape = window.innerWidth / window.innerHeight > 1.0;
+            var columnWidth = isLandscape ? "33.33%" : "100%";
+            window.document.querySelectorAll(".AdaptiveLayoutColumn").forEach(function (el) {
+                return el.style.width = columnWidth;
+            });
         }
     }, {
         key: "Data",
@@ -21017,6 +21037,7 @@ var Exhibit = function (_React$Component) {
         key: "render",
         value: function render() {
             var exhibitData = this.ToExhibitData(this.props.data);
+            var columnWidth = window.innerWidth / window.innerHeight > 1.0 ? "33.33%" : "100%";
             return _react2.default.createElement(
                 "div",
                 { key: this.props.uuid, className: "Exhibit", style: { width: "100%", height: "100%", display: "flex", flexWrap: "wrap" } },
@@ -21041,18 +21062,18 @@ var Exhibit = function (_React$Component) {
                         { className: "ExhibitParts", style: { width: "100%", height: "94%", display: "flex", flexWrap: "wrap" } },
                         _react2.default.createElement(
                             "div",
-                            { className: "StaticPropsField", style: { width: "33.33%", height: "100%", border: "1px solid lightgrey" } },
+                            { className: "StaticPropsField AdaptiveLayoutColumn", style: { width: columnWidth, height: "100%", border: "1px solid lightgrey" } },
                             _react2.default.createElement(_avatar2.default, { RegCom: this.RegisterAvatarRef, imageHref: exhibitData.coverImage }),
                             _react2.default.createElement(_staticProps2.default, { RegCom: this.RegisterStaticPropsRef, propList: exhibitData.staticProps, language: this.props.language })
                         ),
                         _react2.default.createElement(
                             "div",
-                            { className: "VariablePropsField", style: { width: "33.33%", height: "100%", border: "1px solid lightgrey", overflow: "auto" } },
+                            { className: "VariablePropsField AdaptiveLayoutColumn", style: { width: columnWidth, height: "100%", border: "1px solid lightgrey", overflow: "auto" } },
                             _react2.default.createElement(_variableProps2.default, { RegCom: this.RegisterVariablePropsRef, items: exhibitData.variableProps, language: this.props.language })
                         ),
                         _react2.default.createElement(
                             "div",
-                            { className: "GalleryField", style: { width: "33.33%", height: "100%", border: "1px solid lightgrey" } },
+                            { className: "GalleryField AdaptiveLayoutColumn", style: { width: columnWidth, height: "100%", border: "1px solid lightgrey" } },
                             _react2.default.createElement(_imageGallery2.default, { RegCom: this.RegisterImageGalleryRef, images: exhibitData.imageGallery, language: this.props.language })
                         )
                     )

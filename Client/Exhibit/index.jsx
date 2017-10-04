@@ -29,10 +29,25 @@ export default class Exhibit extends React.Component
         this.RegisterImageGalleryRef = this.RegisterImageGalleryRef.bind(this);
         this.SubmitNewExhibit = this.SubmitNewExhibit.bind(this);
         this.SubmitExhibitUpdate = this.SubmitExhibitUpdate.bind(this);
+        this.SubscribeToWindowResize = this.SubscribeToWindowResize.bind(this);
     }
 
     shouldComponentUpdate(){
         return true;
+    }
+
+    componentDidMount(){
+        window.addEventListener("resize", this.SubscribeToWindowResize);
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener("resize", this.SubscribeToWindowResize);
+    }
+
+    SubscribeToWindowResize(){
+        const isLandscape = (window.innerWidth / window.innerHeight) > 1.0;
+        const columnWidth = isLandscape ? "33.33%" : "100%";
+        window.document.querySelectorAll(".AdaptiveLayoutColumn").forEach(el => el.style.width = columnWidth);
     }
 
     Data(){
@@ -107,6 +122,9 @@ export default class Exhibit extends React.Component
 
     render(){
         const exhibitData = this.ToExhibitData(this.props.data);
+        const columnWidth = (window.innerWidth / window.innerHeight) > 1.0
+            ? "33.33%"
+            : "100%";
         return (
             <div key={this.props.uuid} className="Exhibit" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}}>
 
@@ -124,14 +142,14 @@ export default class Exhibit extends React.Component
                     </div>
 
                     <div className="ExhibitParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
-                        <div className="StaticPropsField" style={{width:"33.33%", height:"100%", border:"1px solid lightgrey"}} >
+                        <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={exhibitData.coverImage}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={exhibitData.staticProps} language={this.props.language}/>
                         </div>
-                        <div className="VariablePropsField" style={{width:"33.33%", height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                        <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
                             <VariableProps RegCom={this.RegisterVariablePropsRef} items={exhibitData.variableProps} language={this.props.language} />
                         </div>
-                        <div className="GalleryField" style={{width:"33.33%", height:"100%", border:"1px solid lightgrey"}} >
+                        <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
                             <ImageGallery RegCom={this.RegisterImageGalleryRef} images={exhibitData.imageGallery} language={this.props.language}/>
                         </div>
                     </div>
