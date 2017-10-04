@@ -97,6 +97,11 @@ export default class ImageGallery extends React.Component
         this.DropZone.removeEventListener("dragenter", this.OnDragEnter);
         this.DropZone.removeEventListener("dragover", this.OnDragOver);
         this.DropZone.removeEventListener("drop", this.OnDrop);
+        //Освобождаем ресурсы занятой base64 изображениями
+        for(var i in this.images)
+            for(var j in this.images[i].a.d)
+                this.images[i][j] = null;
+        console.log("componentWillUnmount", "ImageGallery");
     }
 
     //HANDLERS-------------------------------------
