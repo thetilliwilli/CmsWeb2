@@ -45,7 +45,7 @@ class VarProp extends React.Component
     render(){
         const lang = this.props.language;
         return (
-            <li className="VarProp" onKeyPress={ e => this.props.HandleEnterKeyInput(e, this.props.data.id) }>
+            <li className="VarProp" onKeyDown={ e => this.props.HandleEnterKeyInput(e, this.props.data.id) }>
                 <div className="VarProp_Ru" style={{display:( lang === "ru" ? "initial":"none")}}>
                     <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" style={{width:"40%"}} value={this.props.data.name.ru} floatingLabelText="Свойство"/>
                     <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "ru")}} className="VarProp_Value" style={{width:"40%"}} value={this.props.data.value.ru} floatingLabelText="Значение"/>
@@ -100,21 +100,50 @@ export default class VariableProps extends React.Component
     }
 
     HandleEnterKeyInput(event, id){
-        if(event.key !== "Enter")
+        if(event.key === "ArrowUp")
+        {
+            var curIndex = this.state.items.findIndex(i=>i.id===id);
+            var nextIndex = curIndex - 1 ;
+            if( curIndex === 0)
+                return;
+            
+            var items = util.DeepCopy(this.state.items);
+            var swp = items[curIndex];
+            items[curIndex] = items[nextIndex];
+            items[nextIndex] = swp;
+            this.setState({items});
             return;
-
-        var varProps = document.querySelector(".VariablePropsField");
-        var itemIndex = this.state.items.findIndex( i => i.id === id);
-        if( itemIndex === this.state.items.length - 1 )//Если последний то создать новый VarProp элемент
-        {
-            this.AddProp();
         }
-        else
+        if(event.key === "ArrowDown")
         {
-            var queryToInput = `.VarProp_${this.props.language==="ru"?"Ru":"En"} .VarProp_Name input`;
-            varProps.querySelectorAll(".VarProp")[itemIndex+1].querySelector(queryToInput).focus();
+            var curIndex = this.state.items.findIndex(i=>i.id===id);
+            var nextIndex = curIndex + 1 ;
+            if( curIndex === this.state.items.length - 1)
+                return;
+            
+            var items = util.DeepCopy(this.state.items);
+            var swp = items[curIndex];
+            items[curIndex] = items[nextIndex];
+            items[nextIndex] = swp;
+            this.setState({items});
+            return;
         }
-        // this.focusIndex = itemIndex+1;
+        if(event.key === "Enter")
+        {
+            var varProps = document.querySelector(".VariablePropsField");
+            var itemIndex = this.state.items.findIndex( i => i.id === id);
+            if( itemIndex === this.state.items.length - 1 )//Если последний то создать новый VarProp элемент
+            {
+                this.AddProp();
+            }
+            else
+            {
+                var queryToInput = `.VarProp_${this.props.language==="ru"?"Ru":"En"} .VarProp_Name input`;
+                varProps.querySelectorAll(".VarProp")[itemIndex+1].querySelector(queryToInput).focus();
+            }
+            // this.focusIndex = itemIndex+1;
+            return
+        }
     }
 
     Data() {
