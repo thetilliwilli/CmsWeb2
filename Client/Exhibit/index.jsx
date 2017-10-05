@@ -142,7 +142,7 @@ export default class Exhibit extends React.Component
                     </div>
 
                     <div className="ExhibitParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
-                        <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
+                        <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={exhibitData.coverImage}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={exhibitData.staticProps} language={this.props.language}/>
                         </div>
