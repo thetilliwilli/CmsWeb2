@@ -12,12 +12,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var auth = require("./Server/auth.js");
 var path = require("path");
+const compression = require('compression')
 
 //CONGIFS---------------------------------------------------------------------------------------------------------------------------------------------------------
 //LOGIC---------------------------------------------------------------------------------------------------------------------------------------------------------
 var app = express();
 
 app.use(logger('dev'));
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
