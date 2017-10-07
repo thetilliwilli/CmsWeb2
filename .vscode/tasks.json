@@ -18,6 +18,13 @@
             "problemMatcher": []
         },
         {
+            "label": "npmBuildProductionOnce",
+            "type": "npm",
+            "script": "buildProductionOnce",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
             "label": "npmStart",
             "type": "npm",
             "script": "start",

@@ -56,15 +56,25 @@ export default class LoginPage extends React.Component {
 
   render() {
     return (
-      <Paper className="LoginPage" zDepth={3} style={{width:"50%", height:"50%", margin:"auto", display:"flex"}} >
-          <form action="/" onSubmit={this.OnSubmit} style={{width:"75%", margin:"auto"}} >
-            <CardTitle title="Login" style={{width:"100%", margin:"auto"}} />
-            <TextField style={{width:"100%",}} autoFocus name="login" value={this.state.login} onChange={this.OnChange} hintText="Login" floatingLabelText="Type Login" /><br />
-            <TextField style={{width:"100%",}} name="password" value={this.state.password} onChange={this.OnChange} type="password" hintText="Password" floatingLabelText="Type Password" /><br />
-            <RaisedButton style={{width:"100%",}} type="submit" label="Login" primary />
-            {/* <CardText>Doesn't have an account? <Link to={'/signup'}>Signup</Link></CardText> */}
-          </form>
-      </Paper>
+      <div style={{width:"50%", height:"100%", margin:"auto", display:"flex", flexDirection:"column", justifyContent:"center"}} >
+        
+        <div style={{width:"40%", margin:"0px auto 5% auto"}} >
+          <img style={{width:"100%", height:"auto"}} src="/Static/icon/visualsIcon.png" />
+        </div>
+
+        <div className="LoginPage" zDepth={3} style={{width:"100%", margin:"0px auto 0px auto", display:"flex", padding:"10%", boxShadow:"0px 0px 80px 0px lightgrey", borderRadius:"15px"}} >
+            <form action="/" onSubmit={this.OnSubmit} style={{width:"70%", margin:"auto"}} >
+              <CardTitle title="Вход" style={{width:"100%", margin:"auto", textAlign:"center"}} titleColor="grey" />
+              <TextField style={{width:"100%",}} autoFocus name="login" value={this.state.login} onChange={this.OnChange} hintText="Введите логин" floatingLabelText="Логин" /><br />
+              <TextField style={{width:"100%",}} name="password" value={this.state.password} onChange={this.OnChange} type="password" hintText="Введите пароль" floatingLabelText="Пароль" /><br />
+              <div style={{width:"60%", margin:"auto"}} >
+                <RaisedButton type="submit" label="Войти" primary fullWidth />
+              </div>
+              {/* <CardText>Doesn't have an account? <Link to={'/signup'}>Signup</Link></CardText> */}
+            </form>
+        </div>
+        
+      </div>
     );
   }
 }
