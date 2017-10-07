@@ -61,7 +61,7 @@ export default class LoginPage extends React.Component {
             <CardTitle title="Login" style={{width:"100%", margin:"auto"}} />
             <TextField style={{width:"100%",}} autoFocus name="login" value={this.state.login} onChange={this.OnChange} hintText="Login" floatingLabelText="Type Login" /><br />
             <TextField style={{width:"100%",}} name="password" value={this.state.password} onChange={this.OnChange} type="password" hintText="Password" floatingLabelText="Type Password" /><br />
-            <RaisedButton style={{width:"100%",}} type="submit" label="Create New Account" primary />
+            <RaisedButton style={{width:"100%",}} type="submit" label="Login" primary />
             {/* <CardText>Doesn't have an account? <Link to={'/signup'}>Signup</Link></CardText> */}
           </form>
       </Paper>

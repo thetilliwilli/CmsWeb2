@@ -16,11 +16,11 @@ let pages = {
         label: "Редактирование экспоната",
         id: 2
     },
-    mockupOverviewPage:{
-        index: "/MockupOverview",
-        label: "Обзор шаблонов",
-        id: 3
-    }
+    // mockupOverviewPage:{
+    //     index: "/MockupOverview",
+    //     label: "Обзор шаблонов",
+    //     id: 3
+    // }
 };
 
 function GetPageById(id){

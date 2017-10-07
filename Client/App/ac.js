@@ -157,3 +157,11 @@ export function SubmitExhibitUpdateRequest(){
 export function SubmitExhibitUpdateResponse(response){
     return _ResponseHandler(response, at.SUBMIT_EXHIBIT_UPDATE_RESPONSE);
 }
+
+//NAVBAR
+export function NavbarOpen(){
+    return {type: at.NAVBAR_OPEN};
+}
+export function NavbarClose(){
+    return {type: at.NAVBAR_CLOSE};
+}

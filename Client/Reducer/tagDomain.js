@@ -1,5 +1,5 @@
-import * as at from "./at";
-import initState from "./initState.js";
+import * as at from "../App/at.js";
+import initState from "../App/initState.js";
 import util from "../Modules/util.js";
 import uuid from "uuid/v4";
 
@@ -9,7 +9,8 @@ function CloneState(oldState, callback){
     return newState;
 }
 
-export default function AppReducer(state = initState, action){
+/** state = AppState.tagDomain */
+export default function TagReducer(state = initState.tagDomain, action){
     switch(action.type)
     {
         case at.CHANGE_PAGE: return CloneState(state, newState => {  
@@ -80,6 +81,14 @@ export default function AppReducer(state = initState, action){
             // newState.exhibitEdit.data.date = {ru: dt, en: dt, type: "date", notMultiLang: true, label: "Дата создания"};
             newState.exhibitEdit.blockControl = false;
             newState.exhibitEdit.uuid = uuid();
+        });
+
+        //NAVBAR
+        case at.NAVBAR_OPEN: return CloneState(state, newState => {
+            newState.isNavbarOpen = true;
+        });
+        case at.NAVBAR_CLOSE: return CloneState(state, newState => {
+            newState.isNavbarOpen = false;
         });
 
         //DEFAULT    

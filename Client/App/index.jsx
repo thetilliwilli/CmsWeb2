@@ -1,9 +1,9 @@
 import React from "react";
-import MainLayout from "../Component/mainLayout.jsx";
 import AppHeader from "../Window/AppHeader.jsx";
 import AppNavbar from "../Window/AppNavbar.jsx";
 import AppFooter from "../Window/AppFooter.jsx";
-import PageSelectorRouting from "../Component/mainRouting.jsx";
+import MainRouting from "../Component/mainRouting.jsx";
+import MainLayout from "../Component/mainLayout.jsx";
 
 export default class App extends React.Component
 {
@@ -29,7 +29,7 @@ export default class App extends React.Component
                 topBarResident={AppHeader}
                 sideBarResident={AppNavbar}
                 bottomBarResident={AppFooter}
-                pageContentResident={PageSelectorRouting}
+                pageContentResident={MainRouting}
             />
         );
     }

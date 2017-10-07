@@ -2,16 +2,17 @@
 import React from "react";
 import Exhibit from "../Exhibit/index.jsx";
 import {connect} from "react-redux";
-import {SubmitExhibitUpdate, ShowErrorWindow} from "../App/ac.js";
+import {SubmitExhibitUpdate, ShowErrorWindow, SubmitNewExhibit} from "../App/ac.js";
 
 const S2P = state => ({
-    data: state.exhibitEdit.data,
-    language: state.language,
-    uuid: state.exhibitEdit.uuid,
+    data: state.tagDomain.exhibitEdit.data,
+    language: state.tagDomain.language,
+    uuid: state.tagDomain.exhibitEdit.uuid,
     isEditMode: true,
 });
 const D2P = dsp => ({
-    Submit: (exhibitData, id) => dsp(SubmitExhibitUpdate(exhibitData, id)),
+    SubmitNewExhibit: exhibitData=>dsp(SubmitNewExhibit(exhibitData)),
+    SubmitExhibitUpdate: (exhibitData, id) => dsp(SubmitExhibitUpdate(exhibitData, id)),
     ShowErrorWindow: error=>dsp(ShowErrorWindow(error))
 });
 

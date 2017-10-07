@@ -1,6 +1,6 @@
 "use strict";
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
@@ -18,6 +18,11 @@ function ClearCookieAndRefresh(){
     window.location.reload();
 }
 
+const APP_TITLES = {
+    tag: "Электронные этикетки",
+    wiki: "Энциклопедия оружия",
+};
+
 class AppHeader extends React.Component
 {
     constructor(props){
@@ -27,9 +32,11 @@ class AppHeader extends React.Component
     
 
     render(){
+        const title = APP_TITLES[window.location.pathname.split("/")[1].trim().toLowerCase()];//Получаем название текущей админки из текущего Урла страницы
         return (
                 <AppBar
-                    title={"Page# " + siteMap.GetPageById(this.props.pageIndex).label}
+                    onLeftIconButtonTouchTap={this.props.NavbarOpen}
+                    title={title}
                     iconElementRight={this.props.logged ? <FlatButton label="Logout" onClick={ClearCookieAndRefresh}/> : null}
                 />
         );
@@ -42,9 +49,13 @@ AppHeader.defaultProps = {
 
 //CONTAINER-------------------------------------------------------------------------------------------------
 import {connect} from "react-redux";
-function MapStateToProps(state){
+import * as ac from "../App/ac.js";
+function S2P(state){
     return {
-        pageIndex: state.page
+        pageIndex: state.tagDomain.page
     };
 };
-export default connect(MapStateToProps)(AppHeader);
+const D2P = dsp => ({
+    NavbarOpen: () => dsp(ac.NavbarOpen()),
+});
+export default withRouter(connect(S2P,D2P)(AppHeader));

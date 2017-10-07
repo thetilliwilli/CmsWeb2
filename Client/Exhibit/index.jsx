@@ -27,11 +27,27 @@ export default class Exhibit extends React.Component
         this.RegisterVariablePropsRef = this.RegisterVariablePropsRef.bind(this);
         this.RegisterAvatarRef = this.RegisterAvatarRef.bind(this);
         this.RegisterImageGalleryRef = this.RegisterImageGalleryRef.bind(this);
-        this.Submit = this.Submit.bind(this);
+        this.SubmitNewExhibit = this.SubmitNewExhibit.bind(this);
+        this.SubmitExhibitUpdate = this.SubmitExhibitUpdate.bind(this);
+        this.SubscribeToWindowResize = this.SubscribeToWindowResize.bind(this);
     }
 
     shouldComponentUpdate(){
         return true;
+    }
+
+    componentDidMount(){
+        window.addEventListener("resize", this.SubscribeToWindowResize);
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener("resize", this.SubscribeToWindowResize);
+    }
+
+    SubscribeToWindowResize(){
+        const isLandscape = (window.innerWidth / window.innerHeight) > 1.0;
+        const columnWidth = isLandscape ? "33.33%" : "100%";
+        window.document.querySelectorAll(".AdaptiveLayoutColumn").forEach(el => el.style.width = columnWidth);
     }
 
     Data(){
@@ -50,18 +66,22 @@ export default class Exhibit extends React.Component
         return result;
     }
 
-    Submit(){
+    SubmitNewExhibit(){
         var exhibitData = this.Data();
         var error = this.HasError(exhibitData);
         if(error)
             this.props.ShowErrorWindow(error);
-        else
-        {
-            if(this.props.isEditMode)
-                this.props.Submit(exhibitData, this.props.data._id);
-            else
-                this.props.Submit(exhibitData);
-        }
+
+        this.props.SubmitNewExhibit(exhibitData);
+    }
+
+    SubmitExhibitUpdate(){
+        var exhibitData = this.Data();
+        var error = this.HasError(exhibitData);
+        if(error)
+            this.props.ShowErrorWindow(error);
+
+        this.props.SubmitExhibitUpdate(exhibitData, this.props.data._id);
     }
 
     HasError(data){
@@ -102,29 +122,36 @@ export default class Exhibit extends React.Component
 
     render(){
         const exhibitData = this.ToExhibitData(this.props.data);
+        const columnWidth = (window.innerWidth / window.innerHeight) > 1.0
+            ? "33.33%"
+            : "100%";
         return (
-            <div key={this.props.uuid} className="Exhibit" style={{height:"100%"}}>
-                <ControlPanel
-                    handlers={{OnClear: this.props.Clear, OnSubmit: this.Submit}}
-                    blockControl={this.props.data.blockControl} isEditMode={this.props.isEditMode}
-                />
-                <div className="ExhibitForm" style={{height:"100%"}}>
-                    <div>
-                        <LangSelector/>
+            <div key={this.props.uuid} className="Exhibit" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}}>
+
+                <div style={{width:"100%", height:"6%"}}>
+                    <ControlPanel 
+                        handlers={{OnClear: this.props.Clear, OnSubmitNewExhibit: this.SubmitNewExhibit, OnSubmitExhibitUpdate: this.SubmitExhibitUpdate}}
+                        blockControl={this.props.data.blockControl} isEditMode={this.props.isEditMode}
+                    />
+                </div>
+
+                <div className="ExhibitForm" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
+                    
+                    <div style={{width:"100%", height:"6%"}}>
+                        <LangSelector />
                     </div>
-                    <div className="ExhibitParts" style={{position:"relative", height:"100%"}}>
-                        <Card className="StaticPropsField" style={{width:"30%", height:"100%", float:"left"}}>
-                            <StaticProps RegCom={this.RegisterStaticPropsRef} propList={exhibitData.staticProps} language={this.props.language}/>
-                        </Card>
-                        <Card className="VariablePropsField" style={{width:"30%", height:"100%", float:"left"}}>
-                            <VariableProps RegCom={this.RegisterVariablePropsRef} items={exhibitData.variableProps} language={this.props.language} />
-                        </Card>
-                        <Card className="AvatarField" style={{width:"40%", float:"left"}}>
+
+                    <div className="ExhibitParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
+                        <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={exhibitData.coverImage}/>
-                        </Card>
-                        <Card className="GalleryField" style={{width:"40%", float:"left"}}>
+                            <StaticProps RegCom={this.RegisterStaticPropsRef} propList={exhibitData.staticProps} language={this.props.language}/>
+                        </div>
+                        <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                            <VariableProps RegCom={this.RegisterVariablePropsRef} items={exhibitData.variableProps} language={this.props.language} />
+                        </div>
+                        <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
                             <ImageGallery RegCom={this.RegisterImageGalleryRef} images={exhibitData.imageGallery} language={this.props.language}/>
-                        </Card>
+                        </div>
                     </div>
                 </div>
             </div>

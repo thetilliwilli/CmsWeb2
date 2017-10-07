@@ -2,6 +2,12 @@
 import React from "react";
 import Dialog from 'material-ui/Dialog';
 
+
+const customContentStyle = {
+    width: '94%',
+    maxWidth: 'none',
+  };
+  
 class ErrorInformer extends React.Component
 {
     constructor(props){
@@ -15,6 +21,7 @@ class ErrorInformer extends React.Component
             modal={false} open={this.props.error !== null}
             onRequestClose={this.props.UnblockUi}
             titleStyle={{color:"crimson"}}
+            contentStyle={customContentStyle}
             >
                 <pre>{ErrorToMessage(this.props.error)}</pre>
             </Dialog>
@@ -32,14 +39,10 @@ function ErrorToMessage(error){
 
 import {connect} from "react-redux";
 import {HideErrorWindow} from "../App/ac.js";
-const MapStateToProps = (state)=>{
-    return {
-        error: state.errorInformer.error
-    };
-};
-const MapDispatchToProps = (dispatch)=>{
-    return {
-        UnblockUi: ()=>{dispatch(HideErrorWindow())}
-    };
-};
-export default connect(MapStateToProps, MapDispatchToProps)(ErrorInformer);
+const S2P = state => ({
+    error: state.tagDomain.errorInformer.error
+});
+const D2P = dsp => ({
+    UnblockUi: ()=>{dsp(HideErrorWindow())}
+});
+export default connect(S2P, D2P)(ErrorInformer);

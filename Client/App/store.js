@@ -1,4 +1,4 @@
-import appReducer from "./reducer.js";
+import appReducer from "../Reducer/index.js";
 import {createStore, applyMiddleware, compose} from "redux";
 import {createLogger} from "redux-logger";
 import thunkMiddleware from "redux-thunk";

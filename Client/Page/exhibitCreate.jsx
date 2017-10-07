@@ -5,12 +5,12 @@ import {connect} from "react-redux";
 import {SubmitNewExhibit, ShowErrorWindow, ClearCreateExhibit} from "../App/ac.js";
 
 const S2P = state => ({
-    data: state.exhibitCreate.data,
-    language: state.language,
-    uuid: state.exhibitCreate.uuid
+    data: state.tagDomain.exhibitCreate.data,
+    language: state.tagDomain.language,
+    uuid: state.tagDomain.exhibitCreate.uuid
 });
 const D2P = dsp => ({
-    Submit: exhibitData=>dsp(SubmitNewExhibit(exhibitData)),
+    SubmitNewExhibit: exhibitData=>dsp(SubmitNewExhibit(exhibitData)),
     ShowErrorWindow: error=>dsp(ShowErrorWindow(error)),
     Clear: ()=>dsp(ClearCreateExhibit()),
 });

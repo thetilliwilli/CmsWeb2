@@ -59,9 +59,11 @@ class UploadImage extends React.Component {
 
     render() {
         return (
-            <div>
-                <img className="ExhibitCard_image" onClick={this.OnImageClick} src={this.props.imageSrc} style={{position:"relative", top:"0", left:"0", width:"100px", height:"100px", backgroundSize: "contain"}}/>
-                <input ref={(input)=>{this.fileUploadInput = input;}} type="file" style={{ cursor: 'pointer', position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, width: '100%', opacity: 0, }} onChange={this.OnFileSelected} accept=".png,.jpg,.jpeg" />
+            <div style={{minHeight:"140px"}}>
+                <img className="ExhibitCard_image" onClick={this.OnImageClick} src={this.props.imageSrc}
+                    style={{marginLeft:"16px", boxShadow:"0px 0px 2px 0px grey" , maxWidth:"100px", maxHeight:"100px", backgroundSize: "contain", cursor: 'pointer'}}/>
+                <input ref={(input)=>{this.fileUploadInput = input;}} type="file"
+                    style={{display:"none"}} onChange={this.OnFileSelected} accept=".png,.jpg,.jpeg" />
             </div>
         );
     }

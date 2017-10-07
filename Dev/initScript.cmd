@@ -9,6 +9,7 @@ npm i --save body-parser
 npm i --save validator
 npm i --save morgan
 npm i --save cookie
+npm i --save compression
 
 npm install --save bcryptjs jsonwebtoken mongoose passport passport-local
 npm i --save cookie-parser
