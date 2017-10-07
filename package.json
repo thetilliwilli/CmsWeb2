@@ -33,7 +33,8 @@
     "buildProductionOnce": "webpack -p && webpack -p --config webpack.config2.js",
     "start": "node server.js",
     "startNodemon": "nodemon server.js",
-    "startWebpackDevServer": "webpack-dev-server --hot --host 0.0.0.0"
+    "startWebpackDevServer": "webpack-dev-server --hot --host 0.0.0.0",
+    "startCmsApi": "nodemon ../CmsApi/server.js"
   },
   "repository": {
     "type": "git",

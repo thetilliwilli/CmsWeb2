@@ -41,6 +41,12 @@
             "type": "npm",
             "script": "startWebpackDevServer",
             "problemMatcher": []
+        },
+        {
+            "label": "npmStartCmsApi",
+            "type": "npm",
+            "script": "startCmsApi",
+            "problemMatcher": []
         }
     ]
 }
