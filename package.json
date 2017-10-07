@@ -29,6 +29,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildClient": "webpack -w",
     "buildAuth": "webpack -w --config webpack.config2.js",
+    "buildProductionOnce": "webpack -p",
     "start": "node server.js",
     "startNodemon": "nodemon server.js",
     "startWebpackDevServer": "webpack-dev-server --hot --host 0.0.0.0"

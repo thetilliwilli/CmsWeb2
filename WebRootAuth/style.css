@@ -25,12 +25,17 @@ transition: color 0.2s;
     color: #1976d2;
   }
 
+/* body
+{
+  display: "flex";
+} */
+
 .App
 {
   display: flex;
   height: 100%;
 }
-
+/* 
 .LoginPage
 {
   margin: auto;
@@ -41,4 +46,4 @@ transition: color 0.2s;
   .LoginPage>*
   {
     margin: auto;
-  }
+  } */

@@ -1,0 +1,9 @@
+-1-
+npm i --save compresion
+app.use(compresion())
+-2-
+NODE_ENV=production node app.js
+-3-
+webpack -p
+это shortcut for
+webpack --optimize-minimize --define process.env.NODE_ENV="production"
