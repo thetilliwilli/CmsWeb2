@@ -26,7 +26,7 @@ export default class GlobalErrorHandler extends React.Component
     }
     
     ErrorHandler(error){
-        this.setState({errorMessage: error.message});
+        this.setState({message: error.message});
         this.setState({open: true});
     }
 

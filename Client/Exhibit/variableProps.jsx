@@ -130,7 +130,7 @@ export default class VariableProps extends React.Component
         }
         if(event.key === "Enter")
         {
-            var varProps = document.querySelector(".VariablePropsField");
+            var varProps = event.target.closest(".VariablePropsField");
             var itemIndex = this.state.items.findIndex( i => i.id === id);
             if( itemIndex === this.state.items.length - 1 )//Если последний то создать новый VarProp элемент
             {
