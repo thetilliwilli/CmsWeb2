@@ -1,30 +1,30 @@
 "use strict";
 import React from "react";
 import {Route, Switch, Redirect, withRouter} from "react-router-dom";
+
 //Exhibits import---------------------------------------------
-import ExhibitCreatorPage from "../Page/exhibitCreate.jsx";
-import ExhibitOverviewPage from "../Page/exhibitOverview.jsx";
-import ExhibitEditPage from "../Page/exhibitEdit.jsx";
-import MockupOverviewPage from "../Page/mockupOverview.jsx";
+import ExhibitCreateDataProvider from "../ExhibitDataProvider/create.jsx";
+import ExhibitOverviewDataProvider from "../ExhibitDataProvider/overview.jsx";
+import ExhibitEditDataProvider from "../ExhibitDataProvider/edit.jsx";
 
 //Tuples import-------------------------------------------------------
-import CreateTupleDataProvider from "../TupleDataProvider/CreateTupleDataProvider.jsx";
+// import TupleCreateDataProvider from "../TupleDataProvider/create.jsx";
+// import TupleOverviewDataProvider from "../TupleDataProvider/overview.jsx";
+// import TupleEditDataProvider from "../TupleDataProvider/edit.jsx";
 
 const TagContent = p => (
     <div className="PageSwitcher" style={{height:"100%"}}>
-        <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><ExhibitCreatorPage /></div>
-        <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><ExhibitOverviewPage /></div>
-        <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><ExhibitEditPage /></div>
-        <div style={{display:( p.curIndex === 3 ? "initial":"none")}}><MockupOverviewPage /></div>
+        <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><ExhibitCreateDataProvider /></div>
+        <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><ExhibitOverviewDataProvider /></div>
+        <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><ExhibitEditDataProvider /></div>
     </div>
 );
 
 const TupleContent = p => (
     <div className="PageSwitcher" style={{height:"100%"}}>
-        <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><CreateTupleDataProvider /></div>
-        {/* <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><ExhibitOverviewPage /></div>
-        <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><ExhibitEditPage /></div>
-        <div style={{display:( p.curIndex === 3 ? "initial":"none")}}><MockupOverviewPage /></div> */}
+        {/* <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><TupleCreateDataProvider /></div>
+        <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><TupleOverviewDataProvider /></div>
+        <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><TupleEditDataProvider /></div> */}
     </div>
 );
 
