@@ -34,11 +34,11 @@ export default class StaticProps extends React.Component
             itemList.push(<SProp key={propName} propName={propName} propData={propList[propName]} lang={this.props.language} />);
         
         //Меняем местами поля: Историческая Справка <-> Подробное описание
-        var iDescription = itemList.findIndex( i => i.key==="description");
-        var iHistory = itemList.findIndex( i => i.key==="history");
-        var swap = itemList[iHistory];
-        itemList[iHistory] = itemList[iDescription];
-        itemList[iDescription] = swap;
+        // var iDescription = itemList.findIndex( i => i.key==="description");
+        // var iHistory = itemList.findIndex( i => i.key==="history");
+        // var swap = itemList[iHistory];
+        // itemList[iHistory] = itemList[iDescription];
+        // itemList[iDescription] = swap;
 
         return (
             <form ref={el=>this.form=el} className="StaticProps" style={{listStyleType: "none"}}>

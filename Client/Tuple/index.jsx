@@ -104,9 +104,9 @@ export default class Tuple extends React.Component
 
     ToTupleData(dto){
         var staticProps = {};
-            staticProps.name = {...dto.name, label:"Название Экспоната", type:"string"};
+            staticProps.name = {...dto.name, label:"Название", type:"string"};
             staticProps.catSub = {...dto.catSub, label:"Категория", type:"enum"};
-            staticProps.countries = {...dto.countries, label:"Название Экспоната", type:"set"};
+            staticProps.countries = {...dto.countries, label:"Страна", type:"set"};
             staticProps.description = {...dto.description, label:"Подробное описание", type:"string"};
 
         //VARIABLE PROPS ETL
