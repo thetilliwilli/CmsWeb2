@@ -54,11 +54,11 @@ export default {
         }
     },
 
-    //WIKI DOMAIN
-    wikiDomain: {
+    //TUPLE DOMAIN
+    tupleDomain: {
         page: 0,
         pages: [
-            {title: "ONE", subtitle:"Первая\u00A0страница"},
+            {title: "New", subtitle:"Создать\u00A0экспонат"},
         ],
     }
 

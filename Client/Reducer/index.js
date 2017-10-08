@@ -1,9 +1,9 @@
 import {combineReducers} from "redux";
 
 import TagDomain from "./tagDomain.js";
-import WikiDomain from "./wikiDomain.js";
+import TupleDomain from "./tupleDomain.js";
 
 export default combineReducers({
     tagDomain: TagDomain,
-    wikiDomain: WikiDomain,
+    tupleDomain: TupleDomain,
 });

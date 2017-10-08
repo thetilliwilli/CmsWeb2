@@ -1,11 +1,14 @@
 "use strict";
 import React from "react";
 import {Route, Switch, Redirect, withRouter} from "react-router-dom";
-//Pages import---------------------------------------------
+//Exhibits import---------------------------------------------
 import ExhibitCreatorPage from "../Page/exhibitCreate.jsx";
 import ExhibitOverviewPage from "../Page/exhibitOverview.jsx";
 import ExhibitEditPage from "../Page/exhibitEdit.jsx";
 import MockupOverviewPage from "../Page/mockupOverview.jsx";
+
+//Tuples import-------------------------------------------------------
+import CreateTupleDataProvider from "../TupleDataProvider/CreateTupleDataProvider.jsx";
 
 const TagContent = p => (
     <div className="PageSwitcher" style={{height:"100%"}}>
@@ -16,8 +19,13 @@ const TagContent = p => (
     </div>
 );
 
-const WikiContent = p => (
-    <div>WIKI</div>
+const TupleContent = p => (
+    <div className="PageSwitcher" style={{height:"100%"}}>
+        <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><CreateTupleDataProvider /></div>
+        {/* <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><ExhibitOverviewPage /></div>
+        <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><ExhibitEditPage /></div>
+        <div style={{display:( p.curIndex === 3 ? "initial":"none")}}><MockupOverviewPage /></div> */}
+    </div>
 );
 
 function MainRouting(props){
@@ -27,8 +35,8 @@ function MainRouting(props){
             <Route path="/tag">
                 <TagContent curIndex={curIndex}/>
             </Route>
-            <Route path="/wiki">
-                <WikiContent curIndex={curIndex}/>
+            <Route path="/tuple">
+                <TupleContent curIndex={curIndex}/>
             </Route>
             <Redirect to="/tag" />{/* Если не попали ни на одну страницу то перейти на страницу с Электронными этикетками */}
         </Switch>

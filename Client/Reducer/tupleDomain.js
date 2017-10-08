@@ -8,7 +8,7 @@ function CloneState(oldState, callback){
 }
 
 /** state = AppState.tagDomain */
-export default function WikiDomainReducer(state = initState.wikiDomain, action){
+export default function TupleDomainReducer(state = initState.tupleDomain, action){
     switch(action.type)
     {
         
