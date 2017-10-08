@@ -8,9 +8,9 @@ import ExhibitOverviewDataProvider from "../ExhibitDataProvider/overview.jsx";
 import ExhibitEditDataProvider from "../ExhibitDataProvider/edit.jsx";
 
 //Tuples import-------------------------------------------------------
-// import TupleCreateDataProvider from "../TupleDataProvider/create.jsx";
-// import TupleOverviewDataProvider from "../TupleDataProvider/overview.jsx";
-// import TupleEditDataProvider from "../TupleDataProvider/edit.jsx";
+import TupleCreateDataProvider from "../TupleDataProvider/create.jsx";
+import TupleOverviewDataProvider from "../TupleDataProvider/overview.jsx";
+import TupleEditDataProvider from "../TupleDataProvider/edit.jsx";
 
 const TagContent = p => (
     <div className="PageSwitcher" style={{height:"100%"}}>
@@ -22,9 +22,9 @@ const TagContent = p => (
 
 const TupleContent = p => (
     <div className="PageSwitcher" style={{height:"100%"}}>
-        {/* <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><TupleCreateDataProvider /></div>
+        <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><TupleCreateDataProvider /></div>
         <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><TupleOverviewDataProvider /></div>
-        <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><TupleEditDataProvider /></div> */}
+        <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><TupleEditDataProvider /></div>
     </div>
 );
 

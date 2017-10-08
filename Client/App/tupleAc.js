@@ -1,4 +1,4 @@
-import * as at from "./at.js";
+import * as at from "./tupleAt.js";
 import postman from "../Modules/postmanService.js";
 
 
@@ -33,43 +33,43 @@ function _ResponseHandler(postmanResponse, returnedActionType){
 }
 
 //Action creators------------------------------------------------------------------
-export function ExhibitChangePage(index){
+export function TupleChangePage(index){
     return {
-        type: at.EXHIBIT_CHANGE_PAGE,
+        type: at.TUPLE_CHANGE_PAGE,
         payload: index
     };
 }
 
 export function ChangeLanguage(language){
     return {
-        type: at.CHANGE_EXHIBIT_LANGUAGE,
+        type: at.CHANGE_TUPLE_LANGUAGE,
         payload: language
     }
 }
 
 
-//EXHIBIT CREATE PAGE----------------------------------------------------------------------
-export function SubmitNewExhibit(exhibitData){
+//TUPLE CREATE PAGE----------------------------------------------------------------------
+export function SubmitNewTuple(tupleData){
 
     return function(dispatch){
-        dispatch(SubmitNewExhibitRequest());//Меняем состояние чтобы оповестить что пора показывать крутилки
+        dispatch(SubmitNewTupleRequest());//Меняем состояние чтобы оповестить что пора показывать крутилки
 
-        postman.Post("exhibit", SubmitNewExhibitResponse, exhibitData);
+        postman.Post("tuple", SubmitNewTupleResponse, tupleData);
     };
 }
 
-export function SubmitNewExhibitRequest(){
+export function SubmitNewTupleRequest(){
     return {
-        type: at.SUBMIT_NEW_EXHIBIT_REQUEST
+        type: at.SUBMIT_NEW_TUPLE_REQUEST
     }
 }
 
-export function SubmitNewExhibitResponse(response){
-    return _ResponseHandler(response, at.SUBMIT_NEW_EXHIBIT_RESPONSE);
+export function SubmitNewTupleResponse(response){
+    return _ResponseHandler(response, at.SUBMIT_NEW_TUPLE_RESPONSE);
 }
 
-export function ClearCreateExhibit(){
-    return {type: at.CLEAR_CREATE_EXHIBIT};
+export function ClearCreateTuple(){
+    return {type: at.CLEAR_CREATE_TUPLE};
 }
 
 //ERROR INFORMER----------------------------------------------------------------------
@@ -86,7 +86,7 @@ export function FetchOverview(){
     return function(dispatch){
         dispatch(FetchOverviewRequest());
 
-        postman.GetAll("exhibit", FetchOverviewResponse);
+        postman.GetAll("tuple", FetchOverviewResponse);
     }
 }
 
@@ -100,62 +100,62 @@ export function FetchOverviewResponse(response){
     return _ResponseHandler(response, at.OVERVIEW_FETCH_LIST_RESPOSE);
 }
 
-export function DeleteExhibit(id){
+export function DeleteTuple(id){
     return (dispatch) => {
-        postman.Delete("exhibit", null, id);//Отправляем запрос на удаление из базы
-        dispatch(DeleteExhibitFromList(id));
+        postman.Delete("tuple", null, id);//Отправляем запрос на удаление из базы
+        dispatch(DeleteTupleFromList(id));
     };
 }
 
-export function DeleteExhibitFromList(id){
+export function DeleteTupleFromList(id){
     return {
-        type: at.DELETE_EXHIBIT_FROM_LIST,
+        type: at.DELETE_TUPLE_FROM_LIST,
         payload: id
     };
 }
 
-export function DeleteExhibitResponse(response){
-    return _ResponseHandler(response, at.DELETE_EXHIBIT_RESPONSE);
+export function DeleteTupleResponse(response){
+    return _ResponseHandler(response, at.DELETE_TUPLE_RESPONSE);
 }
 
 /** Пользователь хочет открыть страницу с формой для редактирования и загрузить экспонат с указаным id */
-export function EditExhibit(exhibitId){
+export function EditTuple(tupleId){
     return (dispatch) => {
-        dispatch(ExhibitChangePage(2));
-        dispatch(GetExhibitRequest(exhibitId));
+        dispatch(TupleChangePage(2));
+        dispatch(GetTupleRequest(tupleId));
     };
 }
 
 /** Запрос на сервер чтобы получить полную информацию по выбранному экспонату */
-export function GetExhibitRequest(exhibitId){
+export function GetTupleRequest(tupleId){
     return (dispatch) => {
-        postman.GetById("exhibit", GetExhibitResponse, exhibitId);
+        postman.GetById("tuple", GetTupleResponse, tupleId);
     };
 }
 
 /** Ответ от сервера содержащий полную информацию по выбранному экспонату */
-export function GetExhibitResponse(response){
-    return _ResponseHandler(response, at.GET_EXHIBIT_RESPONSE);
+export function GetTupleResponse(response){
+    return _ResponseHandler(response, at.GET_TUPLE_RESPONSE);
 }
 
 /** Пользователь внес изменения и хочет обновить экспонат на сервере */
-export function SubmitExhibitUpdate(exhibitData, id){
+export function SubmitTupleUpdate(tupleData, id){
 
     return function(dispatch){
-        dispatch(SubmitExhibitUpdateRequest());//Меняем состояние чтобы оповестить что пора показывать крутилки
+        dispatch(SubmitTupleUpdateRequest());//Меняем состояние чтобы оповестить что пора показывать крутилки
 
-        postman.Put("exhibit", id, exhibitData, SubmitExhibitUpdateResponse);
+        postman.Put("tuple", id, tupleData, SubmitTupleUpdateResponse);
     };
 }
 
-export function SubmitExhibitUpdateRequest(){
+export function SubmitTupleUpdateRequest(){
     return {
-        type: at.SUBMIT_EXHIBIT_UPDATE_REQUEST
+        type: at.SUBMIT_TUPLE_UPDATE_REQUEST
     }
 }
 
-export function SubmitExhibitUpdateResponse(response){
-    return _ResponseHandler(response, at.SUBMIT_EXHIBIT_UPDATE_RESPONSE);
+export function SubmitTupleUpdateResponse(response){
+    return _ResponseHandler(response, at.SUBMIT_TUPLE_UPDATE_RESPONSE);
 }
 
 //NAVBAR

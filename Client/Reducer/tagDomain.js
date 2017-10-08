@@ -13,7 +13,7 @@ function CloneState(oldState, callback){
 export default function TagReducer(state = initState.tagDomain, action){
     switch(action.type)
     {
-        case at.CHANGE_PAGE: return CloneState(state, newState => {  
+        case at.EXHIBIT_CHANGE_PAGE: return CloneState(state, newState => {  
             newState.page = action.payload;
         });
         case at.CHANGE_EXHIBIT_LANGUAGE: return CloneState(state, newState => {

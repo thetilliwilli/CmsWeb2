@@ -1,6 +1,6 @@
 //Actions types--------------------------------------------------------------------
 export const
-    CHANGE_PAGE = "CHANGE_PAGE",
+    EXHIBIT_CHANGE_PAGE = "EXHIBIT_CHANGE_PAGE",
     CHANGE_EXHIBIT_LANGUAGE = "CHANGE_EXHIBIT_LANGUAGE",
 
     //EXHIBIT CREATE PAGE
@@ -31,5 +31,7 @@ export const
     
     //NAVBAR
     NAVBAR_OPEN = "NAVBAR_OPEN",
-    NAVBAR_CLOSE = "NAVBAR_CLOSE"
+    NAVBAR_CLOSE = "NAVBAR_CLOSE",
+
+    NONE = "NONE"
     ;
