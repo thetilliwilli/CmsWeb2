@@ -26,7 +26,7 @@
             "port": 9222,
             "webRoot": "${workspaceRoot}/WebRoot/",
             // "sourceMaps": true,
-            "url": "http://localhost/",
+            "url": "http://localhost/*",
             "sourceMapPathOverrides": {
                 "webpack:///*": "${workspaceRoot}/*"
             }

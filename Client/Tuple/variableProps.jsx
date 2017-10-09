@@ -66,10 +66,10 @@ export default class VariableProps extends React.Component
         super(props);
         props.RegCom(this);
 
-        this.AddProp = this.AddProp.bind(this);
-        this.DeleteProp = this.DeleteProp.bind(this);
+        // this.AddProp = this.AddProp.bind(this);
+        // this.DeleteProp = this.DeleteProp.bind(this);
         this.ChangeProp = this.ChangeProp.bind(this);
-        this.HandleEnterKeyInput = this.HandleEnterKeyInput.bind(this);
+        // this.HandleEnterKeyInput = this.HandleEnterKeyInput.bind(this);
 
         var items = util.DeepCopy(this.props.items);
         if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
@@ -78,19 +78,19 @@ export default class VariableProps extends React.Component
         this.state = {items};
 
         this.counter = items.length;
-        // this.focusIndex = this.state.items.length === 0 ? null : 0;
+        this.focusIndex = this.state.items.length === 0 ? null : 0;
     }
 
-    AddProp(){
-        var items = util.DeepCopy(this.state.items);
-        items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}, id:this.counter++});
-        this.setState({items});
-    }
+    // AddProp(){
+    //     var items = util.DeepCopy(this.state.items);
+    //     items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}, id:this.counter++});
+    //     this.setState({items});
+    // }
 
-    DeleteProp(id){
-        var items = this.state.items.filter(i=>i.id!==id);
-        this.setState({items: util.DeepCopy(items)});
-    }
+    // DeleteProp(id){
+    //     var items = this.state.items.filter(i=>i.id!==id);
+    //     this.setState({items: util.DeepCopy(items)});
+    // }
 
     ChangeProp(newName, newValue, id, lang){
         var item = this.state.items.find(i => i.id===id);
@@ -152,15 +152,30 @@ export default class VariableProps extends React.Component
         );
     }
 
+    Rerender(newItems){
+        //HACK-START: FROM CONSTRUCTOR
+        var items = util.DeepCopy(newItems);
+        if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
+            items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}});
+        items = items.map((it, ix)=>({...it, id:ix}));//Проставляем всем айдишники
+        this.state = {items};
+
+        this.counter = items.length;
+        //HACK-END
+
+        this.forceUpdate();
+    }
+
     render(){
+        
+
         return (
             <div className="VariableProps">
                 <CardHeader  subtitle="ХАРАКТЕРИСТИКИ" />
                 <VariablePropsList
                     items={this.state.items}
                     language={this.props.language}
-                    OnDelete={this.DeleteProp}
-                    OnPropChange={this.ChangeProp} 
+                    OnPropChange={this.ChangeProp}
                     HandleEnterKeyInput={this.HandleEnterKeyInput}
                 />
                 {/* <ControlPanel OnClick={this.AddProp} /> */}

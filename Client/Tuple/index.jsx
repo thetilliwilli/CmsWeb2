@@ -12,7 +12,7 @@ import StaticProps from "./staticProps.jsx";
 import VariableProps from "./variableProps.jsx";
 import ImageGallery from "./imageGallery.jsx";
 import ControlPanel from "./controlPanel.jsx";
-import catsub from "./catsub.js";
+import catsub from "../Service/catsub.js";
 
 export default class Tuple extends React.Component
 {
@@ -31,6 +31,9 @@ export default class Tuple extends React.Component
         this.SubmitNewTuple = this.SubmitNewTuple.bind(this);
         this.SubmitTupleUpdate = this.SubmitTupleUpdate.bind(this);
         this.SubscribeToWindowResize = this.SubscribeToWindowResize.bind(this);
+        this.OnCatsubChange = this.OnCatsubChange.bind(this);
+
+        this.state = {selectedCatsub: this.props.data.catsub.ru.trim() || "NONE"};
     }
 
     shouldComponentUpdate(){
@@ -106,12 +109,13 @@ export default class Tuple extends React.Component
         var staticProps = {};
             staticProps.name = {...dto.name, label:"Название", type:"string"};
             staticProps.catSub = {...dto.catSub, label:"Категория", type:"enum"};
+                staticProps.catSub.ru = this.state.selectedCatsub;
             staticProps.countries = {...dto.countries, label:"Страна", type:"set"};
             staticProps.description = {...dto.description, label:"Подробное описание", type:"string"};
 
         //VARIABLE PROPS ETL
-        var catsubName = dto.catsub.ru.trim() || "NONE";
-        var emptyCatsub = catsub.Get(catsubName);
+        // var catsubName = dto.catsub.ru.trim() || "NONE";
+        var emptyCatsub = catsub.Get(this.state.selectedCatsub);
         if(this.props.isEditMode)
             emptyCatsub.forEach( cs => cs.value.en = cs.value.ru = dto.fields.find(i => i.name === cs.name.ru).value.ru );
         var variableProps = emptyCatsub;
@@ -121,6 +125,17 @@ export default class Tuple extends React.Component
         // var imageHref = dto.coverImage;
 
         return {staticProps, variableProps, imageGallery, coverImage: dto.coverImage};
+    }
+
+    OnCatsubChange(newValue){
+        if(this.state.selectedCatsub !== newValue)
+        {
+            //HACK-START: нарушен закон имютебл дата
+            this.state.selectedCatsub = newValue;
+            //HACK_END
+            this.setState({selectedCatsub: newValue});
+            this.VariablePropsRef.Rerender(this.ToTupleData(this.props.data).variableProps);
+        }
     }
 
     render(){
@@ -147,10 +162,10 @@ export default class Tuple extends React.Component
                     <div className="TupleParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
                         <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={tupleData.coverImage}/>
-                            <StaticProps RegCom={this.RegisterStaticPropsRef} propList={tupleData.staticProps} language={this.props.language}/>
+                            <StaticProps OnCatsubChange={this.OnCatsubChange} RegCom={this.RegisterStaticPropsRef} propList={tupleData.staticProps} language={this.props.language}/>
                         </div>
                         <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
-                            <VariableProps RegCom={this.RegisterVariablePropsRef} items={tupleData.variableProps} language={this.props.language} />
+                            <VariableProps fakeDependency={this.state.selectedCatsub} RegCom={this.RegisterVariablePropsRef} items={tupleData.variableProps} language={this.props.language} />
                         </div>
                         <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
                             <ImageGallery RegCom={this.RegisterImageGalleryRef} images={tupleData.imageGallery} language={this.props.language}/>

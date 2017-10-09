@@ -24,7 +24,7 @@ export default {
                 imageGallery: [],
                 fields: [],
                 name: { ru: "", en: "", label: "Название", type: "string" },
-                catsub: {ru: "INFANTRY.ASSAULT_RIFLE", en: "", label: "Категория", type: "enum"},
+                catsub: {ru: "", en: "", label: "Категория", type: "enum"},
                 countries: {ru: "", en: "", label: "Страна", type: "set"},
                 description: { ru: "", en: "", label: "Подробное описание", type: "string" },
                 coverImage: "/Static/img/defaultTupleAvatar.jpg"

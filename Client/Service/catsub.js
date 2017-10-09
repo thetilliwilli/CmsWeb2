@@ -265,8 +265,12 @@ const CATSUB = [
 ];
 
 
-class CatsubFabric
+class CatsubService
 {
+
+    GetNameList(){
+        return CATSUB.map(i=>i.name);
+    }
 
     Get(name){
         if(CATSUB.find(i => i.name === name) === undefined)
@@ -282,6 +286,6 @@ class CatsubFabric
     }
 }
 
-const singleton = new CatsubFabric();
+const singleton = new CatsubService();
 
 export default singleton;
