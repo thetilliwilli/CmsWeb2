@@ -11,7 +11,7 @@ export default class CatsubSelector extends React.Component
     constructor(props){
         super(props);
 
-        this.state = {selected: catsub.GetNameList()[0]};
+        this.state = {selected: catsub.default.name};
 
         this.OnChange = this.OnChange.bind(this);
     }

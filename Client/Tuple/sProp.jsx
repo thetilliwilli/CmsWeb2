@@ -5,6 +5,7 @@ import DatePicker from 'material-ui/DatePicker';
 import Divider from "material-ui/Divider";
 import langService from "../Service/language.js";
 import CatsubSelector from "./catsubSelector.jsx";
+import CountrySelector from "./countrySelector.jsx";
 
 import util from "../Modules/util.js";
 
@@ -76,7 +77,7 @@ export default class SProp extends React.Component
                     inputElement = <CatsubSelector OnChange={this.props.OnCatsubChange} label={this.props.propData.label} />;
                     break;
                 case "set":
-                    inputElement = <CatsubSelector label={this.props.propData.label} />;
+                    inputElement = <CountrySelector label={this.props.propData.label} />;
                     break;
             }
 

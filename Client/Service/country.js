@@ -1,6 +1,6 @@
 "use strict";
 
-const COUNTRIES = [
+const COUNTRY = [
     {name:"AUSTRIA"},
     {name:"BRITAIN"},
     {name:"ENGLAND"},
@@ -34,23 +34,23 @@ const COUNTRIES = [
     {name:"KAZAKHSTAN"}
 ];
 
-class CountriesService
+class CountryService
 {
 
     get count(){
-        return COUNTRIES.length;
+        return COUNTRY.length;
     }
 
     get default(){
-        return COUNTRIES.find(i=>i.name==="RUSSIA");
+        return COUNTRY.find(i=>i.name==="RUSSIA");
     }
 
     GetAll(){
-        return COUNTRIES;
+        return COUNTRY;
     }
 
     GetNameList(){
-        return COUNTRIES.map(i=>i.tag);
+        return COUNTRY.map(i=>i.name);
     }
 
     // GetLabelList(){
@@ -58,12 +58,12 @@ class CountriesService
     // }
 
     GetByName(name){
-        const index = COUNTRIES.findIndex( i => i.tag===name);
+        const index = COUNTRY.findIndex( i => i.name===name);
         if(index === undefined)
-            throw new Error(`Countries doesnt registered: -${name}-`);
-        return COUNTRIES[index];
+            throw new Error(`Country doesnt registered: -${name}-`);
+        return COUNTRY[index];
     }
 }
 
-const singleton = new CountriesService();
+const singleton = new CountryService();
 export default singleton;

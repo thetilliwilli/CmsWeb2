@@ -267,6 +267,14 @@ const CATSUB = [
 
 class CatsubService
 {
+    get count(){
+        return CATSUB.length;
+    }
+
+    get default(){
+        return CATSUB.find(i=>i.name==="NONE");
+    }
+
 
     GetNameList(){
         return CATSUB.map(i=>i.name);
