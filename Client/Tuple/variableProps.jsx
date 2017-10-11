@@ -147,9 +147,11 @@ export default class VariableProps extends React.Component
     }
 
     Data() {
-        return this.state.items.filter(
-            i => !(i.name.ru.trim()==="" && i.name.en.trim()==="" && i.value.ru.trim()==="" && i.value.en.trim()==="")//Убрать те, в которых все четыре поля незаполнены
-        );
+        return this.state.items
+            .filter(
+                i => !(i.name.ru.trim()==="" && i.name.en.trim()==="" && i.value.ru.trim()==="" && i.value.en.trim()==="")//Убрать те, в которых все четыре поля незаполнены
+            )
+            .map( i => ({name: i.name.ru, value: i.value.ru}));
     }
 
     Rerender(newItems){

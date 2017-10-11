@@ -18,10 +18,9 @@ export default class StaticProps extends React.Component
         var result = {};
         for(var propName in this.props.propList)
         {
-            result[propName] = {
-                ru: (this.props.propList[propName].type === Date ? new Date(this.form.elements["ru." + propName].value) : this.form.elements["ru." + propName].value),
-                en: (this.props.propList[propName].type === Date ? new Date(this.form.elements["en." + propName].value) : this.form.elements["en." + propName].value),
-            };
+            if(propName === "countries" || propName === "catsub")//Пропустить так как эти значения заполняються в Tuple.index.jsx в функции Data
+                continue;
+            result[propName] = this.form.elements["ru." + propName].value;
         }
         return result;
     }
@@ -31,15 +30,8 @@ export default class StaticProps extends React.Component
         var propList = this.props.propList;
         var itemList = [];
         for(var propName in propList)
-            itemList.push(<SProp OnCatsubChange={this.props.OnCatsubChange} key={propName} propName={propName} propData={propList[propName]} lang={this.props.language} />);
+            itemList.push(<SProp OnCountriesChange={this.props.OnCountriesChange} OnCatsubChange={this.props.OnCatsubChange} key={propName} propName={propName} propData={propList[propName]} lang={this.props.language} />);
         
-        //Меняем местами поля: Историческая Справка <-> Подробное описание
-        // var iDescription = itemList.findIndex( i => i.key==="description");
-        // var iHistory = itemList.findIndex( i => i.key==="history");
-        // var swap = itemList[iHistory];
-        // itemList[iHistory] = itemList[iDescription];
-        // itemList[iDescription] = swap;
-
         return (
             <form ref={el=>this.form=el} className="StaticProps" style={{listStyleType: "none"}}>
                 <CardHeader  subtitle={`ОБЩИЕ - ${this.props.language==="ru"?"Русский":"Английский"}`} />

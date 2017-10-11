@@ -11,7 +11,7 @@ export default class CountrySelector extends React.Component
     constructor(props){
         super(props);
 
-        this.state = {selected: countryService.default.name};
+        this.state = {selected: null};
 
         this.OnChange = this.OnChange.bind(this);
         this.Reset = this.Reset.bind(this);
@@ -20,13 +20,13 @@ export default class CountrySelector extends React.Component
     OnChange(event, index, newValue){
         this.setState({selected: newValue});
 
-        // this.props.OnChange && this.props.OnChange(newValue);
+        this.props.OnChange && this.props.OnChange(newValue);
     }
 
     Reset(event){
         if(event.button === 2)
         {
-            this.setState({selected: countryService.default.name});
+            this.setState({selected: null});
             event.preventDefault();
         }
     }

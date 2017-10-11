@@ -77,7 +77,7 @@ export default class SProp extends React.Component
                     inputElement = <CatsubSelector OnChange={this.props.OnCatsubChange} label={this.props.propData.label} />;
                     break;
                 case "set":
-                    inputElement = <CountrySelector label={this.props.propData.label} />;
+                    inputElement = <CountrySelector OnChange={this.props.OnCountriesChange} label={this.props.propData.label} />;
                     break;
             }
 

@@ -32,8 +32,12 @@ export default class Tuple extends React.Component
         this.SubmitTupleUpdate = this.SubmitTupleUpdate.bind(this);
         this.SubscribeToWindowResize = this.SubscribeToWindowResize.bind(this);
         this.OnCatsubChange = this.OnCatsubChange.bind(this);
+        this.OnCountriesChange = this.OnCountriesChange.bind(this);
 
-        this.state = {selectedCatsub: this.props.data.catsub.ru.trim() || "NONE"};
+        this.state = {
+            selectedCatsub: this.props.data.catsub.ru.trim() || "NONE",
+            selectedCountries: this.props.data.countries.ru || [],
+        };
     }
 
     shouldComponentUpdate(){
@@ -56,7 +60,8 @@ export default class Tuple extends React.Component
 
     Data(){
         var staticProps = this.StaticPropsRef.Data();
-        staticProps.date = staticProps.date.ru;//Берем только одно значение
+            staticProps.countries = this.state.selectedCountries;
+            staticProps.catsub = this.state.selectedCatsub;
 
         var variableProps = this.VariablePropsRef.Data();
 
@@ -75,8 +80,8 @@ export default class Tuple extends React.Component
         var error = this.HasError(tupleData);
         if(error)
             this.props.ShowErrorWindow(error);
-
-        this.props.SubmitNewTuple(tupleData);
+        else
+            this.props.SubmitNewTuple(tupleData);
     }
 
     SubmitTupleUpdate(){
@@ -84,20 +89,16 @@ export default class Tuple extends React.Component
         var error = this.HasError(tupleData);
         if(error)
             this.props.ShowErrorWindow(error);
-
-        this.props.SubmitTupleUpdate(tupleData, this.props.data._id);
+        else
+            this.props.SubmitTupleUpdate(tupleData, this.props.data._id);
     }
 
     HasError(data){
-        return null;
-        var errors = data.fields.reduce((result, field, index)=>{
-            var ruError = field.ru.name.trim() == "" || field.ru.value.trim() == "";
-            var enError = field.en.name.trim() == "" || field.en.value.trim() == "";
-            if(ruError || enError)
-                result.push(`${index}) [${field.ru.name}] [${field.ru.value}] [${field.en.name}] [${field.en.value}]`);
-            return result;
-        }, []);
-        return errors.length === 0 ? null : {message: `[Характеристики]: Остались незаполненные поля.\n${errors.join("\n")}`};
+        if(data.countries.length === 0)
+            return {message:`Выберите страны`};
+        if(data.catsub.trim() === "" || data.catsub.trim() === "NONE")
+            return {message:`Выберите категорию`};
+        return null;//Ошибок нет - все ОК
     }
 
     RegisterStaticPropsRef(component){ this.StaticPropsRef = component;}
@@ -108,8 +109,8 @@ export default class Tuple extends React.Component
     ToTupleData(dto){
         var staticProps = {};
             staticProps.name = {...dto.name, label:"Название", type:"string"};
-            staticProps.catSub = {...dto.catSub, label:"Категория", type:"enum"};
-                staticProps.catSub.ru = this.state.selectedCatsub;
+            staticProps.catsub = {...dto.catsub, label:"Категория", type:"enum"};
+                staticProps.catsub.ru = this.state.selectedCatsub;
             staticProps.countries = {...dto.countries, label:"Страна", type:"set"};
             staticProps.description = {...dto.description, label:"Подробное описание", type:"string"};
 
@@ -138,6 +139,12 @@ export default class Tuple extends React.Component
         }
     }
 
+    OnCountriesChange(newValue){
+        //HACK-START: danger code - violate immutable principle of state
+        this.state.selectedCountries = newValue;
+        //HACK-END
+    }
+
     render(){
         const tupleData = this.ToTupleData(this.props.data);
         const columnWidth = (window.innerWidth / window.innerHeight) > 1.0
@@ -162,7 +169,7 @@ export default class Tuple extends React.Component
                     <div className="TupleParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
                         <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={tupleData.coverImage}/>
-                            <StaticProps OnCatsubChange={this.OnCatsubChange} RegCom={this.RegisterStaticPropsRef} propList={tupleData.staticProps} language={this.props.language}/>
+                            <StaticProps OnCountriesChange={this.OnCountriesChange} OnCatsubChange={this.OnCatsubChange} RegCom={this.RegisterStaticPropsRef} propList={tupleData.staticProps} language={this.props.language}/>
                         </div>
                         <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
                             <VariableProps fakeDependency={this.state.selectedCatsub} RegCom={this.RegisterVariablePropsRef} items={tupleData.variableProps} language={this.props.language} />
