@@ -56,9 +56,10 @@ export default class LoginPage extends React.Component {
 
   render() {
     return (
-      <div style={{width:"50%", height:"100%", margin:"auto", display:"flex", flexDirection:"column", justifyContent:"center"}} >
+      <div style={{width:"50%", height:"100%", margin:"auto", display:"flex", flexDirection:"column", justifyContent:"flex-start"}} >
         
-        <div style={{width:"40%", margin:"0px auto 5% auto"}} >
+        <div style={{width:"20%", margin:"5% auto 5% auto"}} >
+          <img style={{width:"100%", height:"auto"}} src="/Static/icon/visualsMuseumIcon.png" />
           <img style={{width:"100%", height:"auto"}} src="/Static/icon/visualsIcon.png" />
         </div>
 
