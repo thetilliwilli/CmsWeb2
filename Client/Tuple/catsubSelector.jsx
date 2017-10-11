@@ -11,7 +11,7 @@ export default class CatsubSelector extends React.Component
     constructor(props){
         super(props);
 
-        this.state = {selected: null};
+        this.state = {selected: props.value};
 
         this.OnChange = this.OnChange.bind(this);
     }

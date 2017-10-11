@@ -31,5 +31,11 @@ export const
     
     //NAVBAR
     NAVBAR_OPEN = "NAVBAR_OPEN",
-    NAVBAR_CLOSE = "NAVBAR_CLOSE"
+    NAVBAR_CLOSE = "NAVBAR_CLOSE",
+    
+    //CATSUB
+    TUPLE_CATSUB_CHANGE = "TUPLE_CATSUB_CHANGE",
+
+
+    NONE = "NONE"
     ;

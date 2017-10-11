@@ -165,3 +165,8 @@ export function NavbarOpen(){
 export function NavbarClose(){
     return {type: at.NAVBAR_CLOSE};
 }
+
+//CATSUB
+export function TupleCatsubChange(catsub){
+    return {type: at.TUPLE_CATSUB_CHANGE, payload: catsub};
+}

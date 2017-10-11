@@ -35,13 +35,10 @@ export default function TupleReducer(state = initState.tupleDomain, action){
             newState.tupleCreate.data = {
                 imageGallery: [],
                 fields: [],
-                name: {ru: "", en: "", label:"Название Экспоната", type:"string"},
-                title: {ru: "", en: "", label:"Заголовок Экспоната", type:"string"},
-                subtitle: {ru: "", en: "", label:"Подзаголовок Экспоната", type:"string"},
-                date: "2017-01-01T00:00:00.000Z",
-                location: {ru: "", en: "", label:"Место производство", type:"string"},
-                history: {ru: "", en: "", label:"История создания", type:"string"},
-                description: {ru: "", en: "", label:"Подробное описание", type:"string"},
+                name: "",
+                catsub: "",
+                countries: [],
+                description: "",
                 coverImage: "/Static/img/defaultTupleAvatar.jpg"
             };
             newState.tupleCreate.uuid = uuid();//Форсим апдейт вьюхи
@@ -89,6 +86,11 @@ export default function TupleReducer(state = initState.tupleDomain, action){
         });
         case at.NAVBAR_CLOSE: return CloneState(state, newState => {
             newState.isNavbarOpen = false;
+        });
+
+        //CATSUB
+        case at.TUPLE_CATSUB_CHANGE: return CloneState(state, newState => {
+            newState.tupleCreate.data.catsub = action.payload;
         });
 
         //DEFAULT    
