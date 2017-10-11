@@ -4,6 +4,7 @@ import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
+import util from "../Module/util.js";
 
 const recentsIcon = <FontIcon className="material-icons">NEW</FontIcon>;
 const favoritesIcon = <FontIcon className="material-icons">OVERVIEW</FontIcon>;
@@ -18,14 +19,14 @@ class AppFooter extends React.Component
     }
 
     Select(index){
-        const currentDomain = window.location.pathname.split("/")[1].trim().toLowerCase();
+        const currentDomain = util.CurrentDomain();
         this.props.history.push(currentDomain);//Меняем страницу
         const functionName = `${currentDomain==="tag"?"Exhibit":"Tuple"}ChangePage`;
         this.props[functionName](index);
     }
 
     render(){
-        const currentDomain = window.location.pathname.split("/")[1].trim().toLowerCase();
+        const currentDomain = util.CurrentDomain();
         //HACK - иногда проскакивает root Url = "http://domainAddress/" в таком случае заполняем фейковыми данными (данные о странице)
         const selectedIndex = currentDomain==="" ? 0 : this.props.appState[`${currentDomain}Domain`].page;
         var pages = currentDomain==="" ? [] : this.props.appState[`${currentDomain}Domain`].pages;

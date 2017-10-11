@@ -7,7 +7,7 @@ import langService from "../Service/language.js";
 import CatsubSelector from "./catsubSelector.jsx";
 import CountrySelector from "./countrySelector.jsx";
 
-import util from "../Modules/util.js";
+import util from "../Module/util.js";
 
 export default class SProp extends React.Component
 {

@@ -9,8 +9,9 @@ import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import util from "../Module/util.js";
 
-import siteMap from "../Modules/siteMap.js";
+import siteMap from "../Module/siteMap.js";
 
 function ClearCookieAndRefresh(){
     document.cookie = "login=; Max-Age=0";
@@ -32,7 +33,7 @@ class AppHeader extends React.Component
     
 
     render(){
-        const title = APP_TITLES[window.location.pathname.split("/")[1].trim().toLowerCase()];//Получаем название текущей админки из текущего Урла страницы
+        const title = APP_TITLES[util.CurrentDomain()];//Получаем название текущей админки из текущего Урла страницы
         return (
                 <AppBar
                     onLeftIconButtonTouchTap={this.props.NavbarOpen}

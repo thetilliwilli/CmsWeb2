@@ -1,5 +1,5 @@
 import * as at from "./tupleAt.js";
-import postman from "../Modules/postmanService.js";
+import postman from "../Module/postmanService.js";
 
 
 //Helpers--------------------------------------------------------------------------
@@ -92,12 +92,12 @@ export function FetchOverview(){
 
 export function FetchOverviewRequest(){
     return {
-        type: at.OVERVIEW_FETCH_LIST_REQUEST
+        type: at.TUPLE_OVERVIEW_FETCH_LIST_REQUEST
     };
 }
 
 export function FetchOverviewResponse(response){
-    return _ResponseHandler(response, at.OVERVIEW_FETCH_LIST_RESPOSE);
+    return _ResponseHandler(response, at.TUPLE_OVERVIEW_FETCH_LIST_RESPOSE);
 }
 
 export function DeleteTuple(id){

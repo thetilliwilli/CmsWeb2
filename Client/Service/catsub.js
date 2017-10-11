@@ -1,5 +1,5 @@
 "use strict";
-import util from "../Modules/util.js";
+import util from "../Module/util.js";
 import uuid from "uuid/v4";
 
 const CATSUB = [

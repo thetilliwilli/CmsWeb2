@@ -1,6 +1,6 @@
 import * as at from "../App/tupleAt.js";
 import initState from "../App/initState.js";
-import util from "../Modules/util.js";
+import util from "../Module/util.js";
 import uuid from "uuid/v4";
 
 function CloneState(oldState, callback){
@@ -56,10 +56,10 @@ export default function TupleReducer(state = initState.tupleDomain, action){
         });
 
         //OVERVIEW PAGE
-        case at.OVERVIEW_FETCH_LIST_REQUEST: return CloneState(state, newState => {
+        case at.TUPLE_OVERVIEW_FETCH_LIST_REQUEST: return CloneState(state, newState => {
             newState.errorInformer.error = null;
         });
-        case at.OVERVIEW_FETCH_LIST_RESPOSE: return CloneState(state, newState => {
+        case at.TUPLE_OVERVIEW_FETCH_LIST_RESPOSE: return CloneState(state, newState => {
             if(action.payload)
             {
                 newState.overview = [];

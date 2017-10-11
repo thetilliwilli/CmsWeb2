@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import Divider from "material-ui/Divider";
 
-import util from "../Modules/util.js";
+import util from "../Module/util.js";
 
 export default class SProp extends React.Component
 {

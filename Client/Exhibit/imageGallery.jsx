@@ -8,7 +8,7 @@ import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
-import util from "../Modules/util.js";
+import util from "../Module/util.js";
 
 import uuid from "uuid";
 
