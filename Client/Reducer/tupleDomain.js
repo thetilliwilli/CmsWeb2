@@ -65,7 +65,7 @@ export default function TupleReducer(state = initState.tupleDomain, action){
                 newState.overview = [];
                 action.payload.forEach(tuple => newState.overview.push({
                     id: tuple._id,
-                    name: tuple.name.ru,
+                    name: tuple.name,
                     coverImage: tuple.coverImage
                 }));
             }
