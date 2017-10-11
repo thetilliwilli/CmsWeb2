@@ -71,8 +71,8 @@ export default class Exhibit extends React.Component
         var error = this.HasError(exhibitData);
         if(error)
             this.props.ShowErrorWindow(error);
-
-        this.props.SubmitNewExhibit(exhibitData);
+        else
+            this.props.SubmitNewExhibit(exhibitData);
     }
 
     SubmitExhibitUpdate(){
@@ -80,20 +80,20 @@ export default class Exhibit extends React.Component
         var error = this.HasError(exhibitData);
         if(error)
             this.props.ShowErrorWindow(error);
-
-        this.props.SubmitExhibitUpdate(exhibitData, this.props.data._id);
+        else
+            this.props.SubmitExhibitUpdate(exhibitData, this.props.data._id);
     }
 
     HasError(data){
         return null;
-        var errors = data.fields.reduce((result, field, index)=>{
-            var ruError = field.ru.name.trim() == "" || field.ru.value.trim() == "";
-            var enError = field.en.name.trim() == "" || field.en.value.trim() == "";
-            if(ruError || enError)
-                result.push(`${index}) [${field.ru.name}] [${field.ru.value}] [${field.en.name}] [${field.en.value}]`);
-            return result;
-        }, []);
-        return errors.length === 0 ? null : {message: `[Характеристики]: Остались незаполненные поля.\n${errors.join("\n")}`};
+        // var errors = data.fields.reduce((result, field, index)=>{
+        //     var ruError = field.ru.name.trim() == "" || field.ru.value.trim() == "";
+        //     var enError = field.en.name.trim() == "" || field.en.value.trim() == "";
+        //     if(ruError || enError)
+        //         result.push(`${index}) [${field.ru.name}] [${field.ru.value}] [${field.en.name}] [${field.en.value}]`);
+        //     return result;
+        // }, []);
+        // return errors.length === 0 ? null : {message: `[Характеристики]: Остались незаполненные поля.\n${errors.join("\n")}`};
     }
 
     RegisterStaticPropsRef(component){ this.StaticPropsRef = component;}
