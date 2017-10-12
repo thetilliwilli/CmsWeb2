@@ -66,10 +66,7 @@ export default class VariableProps extends React.Component
         super(props);
         props.RegCom(this);
 
-        // this.AddProp = this.AddProp.bind(this);
-        // this.DeleteProp = this.DeleteProp.bind(this);
         this.ChangeProp = this.ChangeProp.bind(this);
-        // this.HandleEnterKeyInput = this.HandleEnterKeyInput.bind(this);
 
         var items = util.DeepCopy(this.props.items);
         if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
@@ -81,69 +78,11 @@ export default class VariableProps extends React.Component
         this.focusIndex = this.state.items.length === 0 ? null : 0;
     }
 
-    // AddProp(){
-    //     var items = util.DeepCopy(this.state.items);
-    //     items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}, id:this.counter++});
-    //     this.setState({items});
-    // }
-
-    // DeleteProp(id){
-    //     var items = this.state.items.filter(i=>i.id!==id);
-    //     this.setState({items: util.DeepCopy(items)});
-    // }
-
     ChangeProp(newName, newValue, id, lang){
         var item = this.state.items.find(i => i.id===id);
         item.name[lang] = newName === null ? item.name[lang] : newName;
         item.value[lang] = newValue === null ? item.value[lang] : newValue;
         this.forceUpdate();
-    }
-
-    HandleEnterKeyInput(event, id){
-        // if(event.key === "ArrowUp")
-        // {
-        //     var curIndex = this.state.items.findIndex(i=>i.id===id);
-        //     var nextIndex = curIndex - 1 ;
-        //     if( curIndex === 0)
-        //         return;
-            
-        //     var items = util.DeepCopy(this.state.items);
-        //     var swp = items[curIndex];
-        //     items[curIndex] = items[nextIndex];
-        //     items[nextIndex] = swp;
-        //     this.setState({items});
-        //     return;
-        // }
-        // if(event.key === "ArrowDown")
-        // {
-        //     var curIndex = this.state.items.findIndex(i=>i.id===id);
-        //     var nextIndex = curIndex + 1 ;
-        //     if( curIndex === this.state.items.length - 1)
-        //         return;
-            
-        //     var items = util.DeepCopy(this.state.items);
-        //     var swp = items[curIndex];
-        //     items[curIndex] = items[nextIndex];
-        //     items[nextIndex] = swp;
-        //     this.setState({items});
-        //     return;
-        // }
-        // if(event.key === "Enter")
-        // {
-        //     var varProps = event.target.closest(".VariablePropsField");
-        //     var itemIndex = this.state.items.findIndex( i => i.id === id);
-        //     if( itemIndex === this.state.items.length - 1 )//Если последний то создать новый VarProp элемент
-        //     {
-        //         this.AddProp();
-        //     }
-        //     else
-        //     {
-        //         var queryToInput = `.VarProp_${this.props.language==="ru"?"Ru":"En"} .VarProp_Name input`;
-        //         varProps.querySelectorAll(".VarProp")[itemIndex+1].querySelector(queryToInput).focus();
-        //     }
-        //     // this.focusIndex = itemIndex+1;
-        //     return
-        // }
     }
 
     Data() {
@@ -178,7 +117,6 @@ export default class VariableProps extends React.Component
                     items={this.state.items}
                     language={this.props.language}
                     OnPropChange={this.ChangeProp}
-                    HandleEnterKeyInput={this.HandleEnterKeyInput}
                 />
                 {/* <ControlPanel OnClick={this.AddProp} /> */}
             </div>
