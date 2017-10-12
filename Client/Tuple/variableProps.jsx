@@ -26,7 +26,7 @@ class VariablePropsList extends React.Component
 {
     render(){
         var itemList = this.props.items.map(
-            i=><VarProp HandleEnterKeyInput={this.props.HandleEnterKeyInput} key={i.id} data={i} language={this.props.language} OnDelete={this.props.OnDelete} OnPropChange={this.props.OnPropChange}/>
+            i=><VarProp key={i.id} data={i} language={this.props.language} OnDelete={this.props.OnDelete} OnPropChange={this.props.OnPropChange}/>
         );
         return (
             <ul className="VariablePropsList" style={{listStyle:"none", margin:"20px 20px", padding:"0"}}>
@@ -45,7 +45,7 @@ class VarProp extends React.Component
     render(){
         const lang = this.props.language;
         return (
-            <li className="VarProp" onKeyDown={ e => this.props.HandleEnterKeyInput(e, this.props.data.id) }>
+            <li className="VarProp">
                 <div className="VarProp_Ru" style={{display:( lang === "ru" ? "initial":"none")}}>
                     <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" style={{width:"40%"}} value={this.props.data.name.ru} floatingLabelText="Свойство"/>
                     <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "ru")}} className="VarProp_Value" style={{width:"40%"}} value={this.props.data.value.ru} floatingLabelText="Значение"/>
@@ -108,8 +108,6 @@ export default class VariableProps extends React.Component
     }
 
     render(){
-        
-
         return (
             <div className="VariableProps">
                 <CardHeader  subtitle="ХАРАКТЕРИСТИКИ" />
@@ -118,7 +116,6 @@ export default class VariableProps extends React.Component
                     language={this.props.language}
                     OnPropChange={this.ChangeProp}
                 />
-                {/* <ControlPanel OnClick={this.AddProp} /> */}
             </div>
         );
     }

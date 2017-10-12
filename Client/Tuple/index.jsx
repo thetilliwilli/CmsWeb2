@@ -33,10 +33,11 @@ export default class Tuple extends React.Component
         this.SubscribeToWindowResize = this.SubscribeToWindowResize.bind(this);
         this.OnCatsubChange = this.OnCatsubChange.bind(this);
         this.OnCountriesChange = this.OnCountriesChange.bind(this);
+        this.Clear = this.Clear.bind(this);
 
         this.state = {
-            selectedCatsub: this.props.data.catsub.ru.trim() || "NONE",
-            selectedCountries: this.props.data.countries.ru || [],
+            selectedCatsub: this.props.data.catsub.trim() || "NONE",
+            selectedCountries: this.props.data.countries || [],
         };
     }
 
@@ -108,22 +109,19 @@ export default class Tuple extends React.Component
 
     ToTupleData(dto){
         var staticProps = {};
-            staticProps.name = {...dto.name, label:"Название", type:"string"};
-            staticProps.catsub = {...dto.catsub, label:"Категория", type:"enum"};
+            staticProps.name = {ru: dto.name, en: dto.name, label:"Название", type:"string"};
+            staticProps.catsub = {ru: dto.catsub, en: dto.catsub, label:"Категория", type:"enum"};
                 staticProps.catsub.ru = this.state.selectedCatsub;
-            staticProps.countries = {...dto.countries, label:"Страна", type:"set"};
-            staticProps.description = {...dto.description, label:"Подробное описание", type:"string"};
+            staticProps.countries = {ru: dto.countries, en:dto.countries, label:"Страна", type:"set"};
+            staticProps.description = {ru: dto.description, en: dto.description, label:"Подробное описание", type:"string"};
 
         //VARIABLE PROPS ETL
-        // var catsubName = dto.catsub.ru.trim() || "NONE";
         var emptyCatsub = catsub.Get(this.state.selectedCatsub);
         if(this.props.isEditMode)
             emptyCatsub.forEach( cs => cs.value.en = cs.value.ru = dto.fields.find(i => i.name === cs.name.ru).value.ru );
         var variableProps = emptyCatsub;
 
         var imageGallery = dto.imageGallery.map(i => ({src: i.image, id: i.guid, description: i.description}));
-
-        // var imageHref = dto.coverImage;
 
         return {staticProps, variableProps, imageGallery, coverImage: dto.coverImage};
     }
@@ -145,6 +143,11 @@ export default class Tuple extends React.Component
         //HACK-END
     }
 
+    Clear(){
+        this.state.selectedCatsub = "NONE";//HACK: violate immutable state
+        this.props.Clear && this.props.Clear();
+    }
+
     render(){
         const tupleData = this.ToTupleData(this.props.data);
         const columnWidth = (window.innerWidth / window.innerHeight) > 1.0
@@ -155,7 +158,7 @@ export default class Tuple extends React.Component
 
                 <div style={{width:"100%", height:"6%"}}>
                     <ControlPanel 
-                        handlers={{OnClear: this.props.Clear, OnSubmitNewTuple: this.SubmitNewTuple, OnSubmitTupleUpdate: this.SubmitTupleUpdate}}
+                        handlers={{OnClear: this.Clear, OnSubmitNewTuple: this.SubmitNewTuple, OnSubmitTupleUpdate: this.SubmitTupleUpdate}}
                         blockControl={this.props.data.blockControl} isEditMode={this.props.isEditMode}
                     />
                 </div>
@@ -172,7 +175,7 @@ export default class Tuple extends React.Component
                             <StaticProps OnCountriesChange={this.OnCountriesChange} OnCatsubChange={this.OnCatsubChange} RegCom={this.RegisterStaticPropsRef} propList={tupleData.staticProps} language={this.props.language}/>
                         </div>
                         <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
-                            <VariableProps fakeDependency={this.state.selectedCatsub} RegCom={this.RegisterVariablePropsRef} items={tupleData.variableProps} language={this.props.language} />
+                            <VariableProps RegCom={this.RegisterVariablePropsRef} items={tupleData.variableProps} language={this.props.language} />
                         </div>
                         <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
                             <ImageGallery RegCom={this.RegisterImageGalleryRef} images={tupleData.imageGallery} language={this.props.language}/>
