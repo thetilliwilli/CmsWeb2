@@ -118,7 +118,7 @@ export default class Tuple extends React.Component
         //VARIABLE PROPS ETL
         var emptyCatsub = catsub.Get(this.state.selectedCatsub);
         if(this.props.isEditMode)
-            emptyCatsub.forEach( cs => cs.value.en = cs.value.ru = dto.fields.find(i => i.name === cs.name.ru).value.ru );
+            emptyCatsub.forEach( cs => cs.value.en = cs.value.ru = dto.fields.find(i => i.name === cs.name.ru).value );
         var variableProps = emptyCatsub;
 
         var imageGallery = dto.imageGallery.map(i => ({src: i.image, id: i.guid, description: i.description}));
@@ -136,7 +136,7 @@ export default class Tuple extends React.Component
             this.VariablePropsRef.Rerender(this.ToTupleData(this.props.data).variableProps);
         }
     }
-
+    
     OnCountriesChange(newValue){
         //HACK-START: danger code - violate immutable principle of state
         this.state.selectedCountries = newValue;

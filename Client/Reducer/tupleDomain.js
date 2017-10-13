@@ -90,11 +90,11 @@ export default function TupleReducer(state = initState.tupleDomain, action){
 
         //CATSUB
         case at.TUPLE_CATSUB_CHANGE: return CloneState(state, newState => {
-            newState.tupleCreate.data.catsub = action.payload;
+            newState[`tuple${action.payload.mode}`].data.catsub = action.payload.catsub;
         });
         //CATSUB
         case at.TUPLE_CHANGE_COUNTRIES: return CloneState(state, newState => {
-            newState.tupleCreate.data.countries = action.payload;
+            newState[`tuple${action.payload.mode}`].data.countries = action.payload.countries;
         });
 
         //DEFAULT    

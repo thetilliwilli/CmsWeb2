@@ -167,10 +167,10 @@ export function NavbarClose(){
 }
 
 //CATSUB
-export function TupleCatsubChange(catsub){
-    return {type: at.TUPLE_CATSUB_CHANGE, payload: catsub};
+export function TupleCatsubChange(mode, catsub){
+    return {type: at.TUPLE_CATSUB_CHANGE, payload:{mode, catsub}};
 }
 //COUNTRY
-export function TupleChangeCountries(countries){
-    return {type: at.TUPLE_CHANGE_COUNTRIES, payload: countries};
+export function TupleChangeCountries(mode, countries){
+    return {type: at.TUPLE_CHANGE_COUNTRIES, payload: {mode, countries}};
 }

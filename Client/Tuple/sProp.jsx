@@ -32,16 +32,6 @@ export default class SProp extends React.Component
     }
 
     render(){
-        // const displayRu = this.props.propData.notMultiLang === true
-        //     ? "initial"
-        //     : (this.props.lang === "ru" ? "initial":"none");
-        // const displayEn = this.props.propData.notMultiLang === true
-        //     ? "none"
-        //     : (this.props.lang === "en" ? "initial":"none");
-
-        // const ruDate = this.state.data.ru && new Date(this.state.data.ru) || null;
-        // const enDate = this.state.data.en && new Date(this.state.data.en) || null;
-
         const propName = this.props.propName;
         // const hideLocationAndDateOfCreation = propName==="location"||propName==="date" ? "none" : "initial";
         const isMultiline = propName==="history" || propName==="description";
@@ -54,9 +44,6 @@ export default class SProp extends React.Component
         const multilangInput = langTags.map( (tag, index) => {
             const notMultiLang = this.props.propData.notMultiLang;
             const langTagFirstUpperCase = tag[0].toUpperCase()+tag.slice(1);
-
-            // const isContextLanguage = this.props.lang === tag;
-            // const isDefaultLanguage = tag === langService.default.tag;
 
             const isVisible = notMultiLang === true
                 ? tag === langService.default.tag
@@ -74,10 +61,10 @@ export default class SProp extends React.Component
                     inputElement = <DatePicker onChange={this.OnChange} name={tag + "."+propName} floatingLabelText={this.props.propData.label} value={theDate} openToYearSelection/>;
                     break;
                 case "enum":
-                    inputElement = <CatsubSelector OnChange={this.props.OnCatsubChange} label={this.props.propData.label} />;
+                    inputElement = <CatsubSelector isEditMode={this.props.isEditMode} OnChange={this.props.OnCatsubChange} label={this.props.propData.label} />;
                     break;
                 case "set":
-                    inputElement = <CountrySelector OnChange={this.props.OnCountriesChange} label={this.props.propData.label} />;
+                    inputElement = <CountrySelector isEditMode={this.props.isEditMode} OnChange={this.props.OnCountriesChange} label={this.props.propData.label} />;
                     break;
             }
 

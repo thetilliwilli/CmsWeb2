@@ -16,7 +16,8 @@ class CountrySelector extends React.Component
     }
 
     OnChange(event, index, newValue){
-        this.props.ChangeCountries(newValue);
+        const theMode = this.props.isEditMode ? "Edit" : "Create";
+        this.props.ChangeCountries(theMode, newValue);
 
         this.props.OnChange && this.props.OnChange(newValue);
     }
@@ -24,8 +25,9 @@ class CountrySelector extends React.Component
     Reset(event){
         if(event.button === 2)
         {
-            this.props.ChangeCountries([]);//обнуляем список стран
-            event.nativeEvent.preventDefault();
+            const theMode = this.props.isEditMode ? "Edit" : "Create";
+            this.props.ChangeCountries(theMode, []);//обнуляем список стран
+            event.preventDefault();
         }
     }
 
@@ -49,6 +51,6 @@ const S2P = state => ({
     countriesListEdit: state.tupleDomain.tupleEdit.data.countries,
 });
 const D2P = dsp => ({
-    ChangeCountries: countries => dsp(TupleChangeCountries(countries)),
+    ChangeCountries: (mode, countries) => dsp(TupleChangeCountries(mode, countries)),
 });
 export default connect(S2P,D2P)(CountrySelector);
