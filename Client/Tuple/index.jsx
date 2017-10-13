@@ -118,7 +118,11 @@ export default class Tuple extends React.Component
         //VARIABLE PROPS ETL
         var emptyCatsub = catsub.Get(this.state.selectedCatsub);
         if(this.props.isEditMode)
-            emptyCatsub.forEach( cs => cs.value.en = cs.value.ru = dto.fields.find(i => i.name === cs.name.ru).value );
+            emptyCatsub.forEach( cs => {
+                var y = dto.fields.find(i => i.name === cs.name.ru);
+                var x = y ? y.value : "";
+                cs.value.en = cs.value.ru = x;
+            });
         var variableProps = emptyCatsub;
 
         var imageGallery = dto.imageGallery.map(i => ({src: i.image, id: i.guid, description: i.description}));
