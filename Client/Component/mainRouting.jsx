@@ -25,7 +25,7 @@ const TupleContent = p => (
     <div className="PageSwitcher" style={{height:"100%"}}>
         <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><TupleCreateDataProvider /></div>
         <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><TupleOverviewDataProvider /></div>
-        {/* <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><TupleEditDataProvider /></div> */}
+        <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><TupleEditDataProvider /></div>
     </div>
 );
 

@@ -172,7 +172,7 @@ export default class Tuple extends React.Component
                     <div className="TupleParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
                         <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={tupleData.coverImage}/>
-                            <StaticProps OnCountriesChange={this.OnCountriesChange} OnCatsubChange={this.OnCatsubChange} RegCom={this.RegisterStaticPropsRef} propList={tupleData.staticProps} language={this.props.language}/>
+                            <StaticProps isEditMode={this.props.isEditMode} OnCountriesChange={this.OnCountriesChange} OnCatsubChange={this.OnCatsubChange} RegCom={this.RegisterStaticPropsRef} propList={tupleData.staticProps} language={this.props.language}/>
                         </div>
                         <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
                             <VariableProps RegCom={this.RegisterVariablePropsRef} items={tupleData.variableProps} language={this.props.language} />

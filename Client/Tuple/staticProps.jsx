@@ -30,7 +30,7 @@ export default class StaticProps extends React.Component
         var propList = this.props.propList;
         var itemList = [];
         for(var propName in propList)
-            itemList.push(<SProp OnCountriesChange={this.props.OnCountriesChange} OnCatsubChange={this.props.OnCatsubChange} key={propName} propName={propName} propData={propList[propName]} lang={this.props.language} />);
+            itemList.push(<SProp isEditMode={this.props.isEditMode} OnCountriesChange={this.props.OnCountriesChange} OnCatsubChange={this.props.OnCatsubChange} key={propName} propName={propName} propData={propList[propName]} lang={this.props.language} />);
         
         return (
             <form ref={el=>this.form=el} className="StaticProps" style={{listStyleType: "none"}}>

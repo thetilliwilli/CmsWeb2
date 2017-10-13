@@ -33,8 +33,9 @@ class CountrySelector extends React.Component
         const csList = countryService.GetNameList().map(
             name => <MenuItem key={name} value={name} primaryText={name} />
         );
+        const theValue = this.props.isEditMode ? this.props.countriesListEdit: this.props.countriesListCreate;
         return (
-            <SelectField onMouseDown={this.Reset} multiple value={this.props.countriesList} onChange={this.OnChange} floatingLabelFixed floatingLabelText={this.props.label} fullWidth >
+            <SelectField onMouseDown={this.Reset} multiple value={theValue} onChange={this.OnChange} floatingLabelFixed floatingLabelText={this.props.label} fullWidth >
                 {csList}
             </SelectField>
         );
@@ -44,7 +45,8 @@ class CountrySelector extends React.Component
 import {connect} from "react-redux";
 import {TupleChangeCountries} from "../App/tupleAc.js";
 const S2P = state => ({
-    countriesList: state.tupleDomain.tupleCreate.data.countries,
+    countriesListCreate: state.tupleDomain.tupleCreate.data.countries,
+    countriesListEdit: state.tupleDomain.tupleEdit.data.countries,
 });
 const D2P = dsp => ({
     ChangeCountries: countries => dsp(TupleChangeCountries(countries)),
