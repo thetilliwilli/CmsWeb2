@@ -12,7 +12,6 @@ import StaticProps from "./staticProps.jsx";
 import VariableProps from "./variableProps.jsx";
 import ImageGallery from "./imageGallery.jsx";
 import ControlPanel from "./controlPanel.jsx";
-import catsub from "../Service/catsub.js";
 
 export default class Tuple extends React.Component
 {
@@ -114,20 +113,10 @@ export default class Tuple extends React.Component
                 staticProps.catsub.ru = this.state.selectedCatsub;
             staticProps.countries = {ru: dto.countries, en:dto.countries, label:"Страна", type:"set"};
             staticProps.description = {ru: dto.description, en: dto.description, label:"Подробное описание", type:"string"};
-
-        //VARIABLE PROPS ETL
-        var emptyCatsub = catsub.Get(this.state.selectedCatsub);
-        if(this.props.isEditMode)
-            emptyCatsub.forEach( cs => {
-                var y = dto.fields.find(i => i.name === cs.name.ru);
-                var x = y ? y.value : "";
-                cs.value.en = cs.value.ru = x;
-            });
-        var variableProps = emptyCatsub;
-
+        
         var imageGallery = dto.imageGallery.map(i => ({src: i.image, id: i.guid, description: i.description}));
 
-        return {staticProps, variableProps, imageGallery, coverImage: dto.coverImage};
+        return {staticProps, imageGallery, coverImage: dto.coverImage};
     }
 
     OnCatsubChange(newValue){
@@ -136,8 +125,8 @@ export default class Tuple extends React.Component
             //HACK-START: нарушен закон имютебл дата
             this.state.selectedCatsub = newValue;
             //HACK_END
-            this.setState({selectedCatsub: newValue});
-            this.VariablePropsRef.Rerender(this.ToTupleData(this.props.data).variableProps);
+            // this.setState({selectedCatsub: newValue});
+            // this.VariablePropsRef.Rerender(this.ToTupleData(this.props.data).variableProps);
         }
     }
     
@@ -179,7 +168,7 @@ export default class Tuple extends React.Component
                             <StaticProps isEditMode={this.props.isEditMode} OnCountriesChange={this.OnCountriesChange} OnCatsubChange={this.OnCatsubChange} RegCom={this.RegisterStaticPropsRef} propList={tupleData.staticProps} language={this.props.language}/>
                         </div>
                         <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
-                            <VariableProps RegCom={this.RegisterVariablePropsRef} items={tupleData.variableProps} language={this.props.language} />
+                            <VariableProps isEditMode={this.props.isEditMode} RegCom={this.RegisterVariablePropsRef} language={this.props.language} />
                         </div>
                         <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
                             <ImageGallery RegCom={this.RegisterImageGalleryRef} images={tupleData.imageGallery} language={this.props.language}/>

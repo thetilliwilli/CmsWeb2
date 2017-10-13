@@ -9,6 +9,7 @@ import IconButton from 'material-ui/IconButton';
 import ActionDelete from "material-ui/svg-icons/action/delete"
 
 import util from "../Module/util.js";
+import catsubService from "../Service/catsub.js";
 
 
 class ControlPanel extends React.Component
@@ -60,7 +61,7 @@ class VarProp extends React.Component
     }
 }
 
-export default class VariableProps extends React.Component
+class VariableProps extends React.Component
 {
     constructor(props){
         super(props);
@@ -68,7 +69,7 @@ export default class VariableProps extends React.Component
 
         this.ChangeProp = this.ChangeProp.bind(this);
 
-        var items = util.DeepCopy(this.props.items);
+        var items = util.DeepCopy(this.props.isEditMode ? this.props.propListEdit : this.props.propListCreate);
         if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
             items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}});
         items = items.map((it, ix)=>({...it, id:ix}));//Проставляем всем айдишники
@@ -95,24 +96,35 @@ export default class VariableProps extends React.Component
 
     Rerender(newItems){
         //HACK-START: FROM CONSTRUCTOR
-        var items = util.DeepCopy(newItems);
-        if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
-            items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}});
-        items = items.map((it, ix)=>({...it, id:ix}));//Проставляем всем айдишники
-        this.state = {items};
+        // var items = util.DeepCopy(newItems);
+        // if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
+        //     items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}});
+        // items = items.map((it, ix)=>({...it, id:ix}));//Проставляем всем айдишники
+        // this.state = {items};
 
-        this.counter = items.length;
-        //HACK-END
+        // this.counter = items.length;
+        // //HACK-END
 
-        this.forceUpdate();
+        // this.forceUpdate();
     }
 
     render(){
+        const fields = this.props.isEditMode ? this.props.propListEdit : this.props.propListCreate;
+        const theCatsub = (this.props.isEditMode ? this.props.catsubEdit : this.props.catsubCreate) || "NONE";
+        var emptyCatsub = catsubService.Get(theCatsub);
+        if(this.props.isEditMode)
+            emptyCatsub.forEach( cs => {
+                var y = fields.find(i => i.name === cs.name.ru);
+                var x = y ? y.value : "";
+                cs.value.en = cs.value.ru = x;
+            });
+        var variableProps = emptyCatsub;
+
         return (
             <div className="VariableProps">
                 <CardHeader  subtitle="ХАРАКТЕРИСТИКИ" />
                 <VariablePropsList
-                    items={this.state.items}
+                    items={variableProps}
                     language={this.props.language}
                     OnPropChange={this.ChangeProp}
                 />
@@ -120,3 +132,14 @@ export default class VariableProps extends React.Component
         );
     }
 }
+
+import {connect} from "react-redux";
+
+const S2P = state => ({
+    propListCreate: state.tupleDomain.tupleCreate.data.fields,
+    propListEdit: state.tupleDomain.tupleEdit.data.fields,
+    catsubCreate: state.tupleDomain.tupleCreate.data.catsub,
+    catsubEdit: state.tupleDomain.tupleEdit.data.catsub,
+});
+const D2P = state => ({});
+export default connect(S2P, D2P)(VariableProps);
