@@ -39,7 +39,7 @@ function MainRouting(props){
             <Route path="/tuple">
                 <TupleContent curIndex={curIndex}/>
             </Route>
-            <Redirect to="/tuple" />{/* Если не попали ни на одну страницу то перейти на страницу с Электронными этикетками */}
+            <Redirect to="/tag" />{/* Если не попали ни на одну страницу то перейти на страницу с Электронными этикетками */}
         </Switch>
     );
 };
