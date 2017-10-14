@@ -3,7 +3,7 @@ import React from "react";
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-import catsub from "../Service/catsub.js";
+import catsubService from "../Service/catsub.js";
 
 class CatsubSelector extends React.Component
 {
@@ -24,7 +24,7 @@ class CatsubSelector extends React.Component
 
     render(){
         const theCatsub = this.props.isEditMode ? this.props.catsubEdit : this.props.catsubCreate;
-        const csList = catsub.GetNameList().map(
+        const csList = catsubService.GetNameList().map(
             name => <MenuItem key={name} value={name} primaryText={name} />
         );
         return (

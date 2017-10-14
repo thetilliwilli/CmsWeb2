@@ -23,7 +23,7 @@ class CountrySelector extends React.Component
     }
 
     Reset(event){
-        if(event.button === 2)
+        if(event.button === 1)
         {
             const theMode = this.props.isEditMode ? "Edit" : "Create";
             this.props.ChangeCountries(theMode, []);//обнуляем список стран
