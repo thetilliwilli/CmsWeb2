@@ -50,7 +50,7 @@ class CountryService
     }
 
     GetNameList(){
-        return COUNTRY.map(i=>i.name);
+        return COUNTRY.map(i=>i.name).sort( (a,b) => a.localeCompare(b) );
     }
 
     // GetLabelList(){

@@ -4,7 +4,7 @@ import uuid from "uuid/v4";
 
 const CATSUB = [
     //NONE---------------------------------------
-    {name: "NONE", entries: []},
+    // {name: "_ОТСУТСТВУЕТ", entries: []},
 
     //INFANTRY---------------------------------------
     {name: "ОружиеПехоты.Пистолеты", entries: [
@@ -274,16 +274,19 @@ class CatsubService
         return CATSUB.length;
     }
 
-    get default(){
-        return CATSUB.find(i=>i.name==="NONE");
-    }
+    // get default(){
+    //     return CATSUB.find(i=>i.name==="_ОТСУТСТВУЕТ");
+    // }
 
 
     GetNameList(){
-        return CATSUB.map(i=>i.name);
+        return CATSUB.map(i=>i.name).sort( (a,b) => a.localeCompare(b) );
     }
 
     Get(name){
+        if(name.trim() === "")
+            return [];
+
         if(CATSUB.find(i => i.name === name) === undefined)
             throw new Error(`[Catsub]: Такая категория отсутсвует - ${name}`);
         

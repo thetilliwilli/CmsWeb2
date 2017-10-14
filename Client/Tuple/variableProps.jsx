@@ -107,7 +107,7 @@ class VariableProps extends React.Component
         if(this.applyExternalUpdate)
         {
             const fields = this.props.isEditMode ? this.props.propListEdit : this.props.propListCreate;
-            const theCatsub = (this.props.isEditMode ? this.props.catsubEdit : this.props.catsubCreate) || "NONE";
+            const theCatsub = (this.props.isEditMode ? this.props.catsubEdit : this.props.catsubCreate);
             var emptyCatsub = catsubService.Get(theCatsub);
             if(this.props.isEditMode)
                 emptyCatsub.forEach( cs => {
