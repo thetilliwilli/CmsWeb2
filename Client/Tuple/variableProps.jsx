@@ -77,12 +77,21 @@ class VariableProps extends React.Component
 
         this.counter = items.length;
         this.focusIndex = this.state.items.length === 0 ? null : 0;
+        this.applyExternalUpdate = true;
+    }
+
+    componentWillReceiveProps(nextProps){
+        const newCatsub = (nextProps.isEditMode ? nextProps.catsubEdit : nextProps.catsubCreate) || "NONE";
+        const oldCatsub = (this.props.isEditMode ? this.props.catsubEdit : this.props.catsubCreate) || "NONE";
+        if(newCatsub !== oldCatsub)
+            this.applyExternalUpdate = true;
     }
 
     ChangeProp(newName, newValue, id, lang){
         var item = this.state.items.find(i => i.id===id);
         item.name[lang] = newName === null ? item.name[lang] : newName;
         item.value[lang] = newValue === null ? item.value[lang] : newValue;
+        this.applyExternalUpdate = false;
         this.forceUpdate();
     }
 
@@ -94,37 +103,31 @@ class VariableProps extends React.Component
             .map( i => ({name: i.name.ru, value: i.value.ru}));
     }
 
-    Rerender(newItems){
-        //HACK-START: FROM CONSTRUCTOR
-        // var items = util.DeepCopy(newItems);
-        // if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
-        //     items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}});
-        // items = items.map((it, ix)=>({...it, id:ix}));//Проставляем всем айдишники
-        // this.state = {items};
-
-        // this.counter = items.length;
-        // //HACK-END
-
-        // this.forceUpdate();
-    }
-
     render(){
-        const fields = this.props.isEditMode ? this.props.propListEdit : this.props.propListCreate;
-        const theCatsub = (this.props.isEditMode ? this.props.catsubEdit : this.props.catsubCreate) || "NONE";
-        var emptyCatsub = catsubService.Get(theCatsub);
-        if(this.props.isEditMode)
-            emptyCatsub.forEach( cs => {
-                var y = fields.find(i => i.name === cs.name.ru);
-                var x = y ? y.value : "";
-                cs.value.en = cs.value.ru = x;
-            });
-        var variableProps = emptyCatsub;
+        if(this.applyExternalUpdate)
+        {
+            const fields = this.props.isEditMode ? this.props.propListEdit : this.props.propListCreate;
+            const theCatsub = (this.props.isEditMode ? this.props.catsubEdit : this.props.catsubCreate) || "NONE";
+            var emptyCatsub = catsubService.Get(theCatsub);
+            if(this.props.isEditMode)
+                emptyCatsub.forEach( cs => {
+                    var y = fields.find(i => i.name === cs.name.ru);
+                    var x = y ? y.value : "";
+                    cs.value.en = cs.value.ru = x;
+                });
+
+            if(emptyCatsub || emptyCatsub.length===0)//Если пустой массив то добавляем один итем по дефолту
+                emptyCatsub.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}});
+            emptyCatsub = emptyCatsub.map((it, ix)=>({...it, id:ix}));//Проставляем всем айдишники
+                
+            this.state.items = emptyCatsub;
+        }
 
         return (
             <div className="VariableProps">
                 <CardHeader  subtitle="ХАРАКТЕРИСТИКИ" />
                 <VariablePropsList
-                    items={variableProps}
+                    items={this.state.items}
                     language={this.props.language}
                     OnPropChange={this.ChangeProp}
                 />
@@ -141,5 +144,5 @@ const S2P = state => ({
     catsubCreate: state.tupleDomain.tupleCreate.data.catsub,
     catsubEdit: state.tupleDomain.tupleEdit.data.catsub,
 });
-const D2P = state => ({});
+const D2P = dsp => ({});
 export default connect(S2P, D2P)(VariableProps);

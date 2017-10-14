@@ -60,8 +60,8 @@ export default class Tuple extends React.Component
 
     Data(){
         var staticProps = this.StaticPropsRef.Data();
-            staticProps.countries = this.state.selectedCountries;
-            staticProps.catsub = this.state.selectedCatsub;
+            staticProps.countries = this.props.data.countries;
+            staticProps.catsub = this.props.data.catsub;
 
         var variableProps = this.VariablePropsRef.Data();
 
@@ -125,8 +125,6 @@ export default class Tuple extends React.Component
             //HACK-START: нарушен закон имютебл дата
             this.state.selectedCatsub = newValue;
             //HACK_END
-            // this.setState({selectedCatsub: newValue});
-            // this.VariablePropsRef.Rerender(this.ToTupleData(this.props.data).variableProps);
         }
     }
     
