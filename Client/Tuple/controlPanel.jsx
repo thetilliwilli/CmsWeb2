@@ -23,7 +23,7 @@ export default function ControlPanel(props){
     return (
         <div className="ControlPanel">
             {/* Удалил до тех пор пока не будет работтоспособной заполнялки - чтобы случайно не поломали на продакшен базе данных ничего */}
-            {/* {props.blockControl ? blockerUi : buttonBar} */}
+            {props.blockControl ? blockerUi : buttonBar}
         </div>
     );
 }
