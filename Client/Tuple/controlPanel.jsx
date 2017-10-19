@@ -22,8 +22,8 @@ export default function ControlPanel(props){
         </div>;
     return (
         <div className="ControlPanel">
-            {/* Удалил до тех пор пока не будет работтоспособной заполнялки - чтобы случайно не поломали на продакшен базе данных ничего */}
-            {props.blockControl ? blockerUi : buttonBar}
+            {/* Удалил до тех пор пока не будет работоспособной заполнялки - чтобы случайно не поломали на продакшен базе данных ничего */}
+            {new URL(window.location.href).searchParams.has("cp") ? (props.blockControl ? blockerUi : buttonBar) : null}
         </div>
     );
 }
