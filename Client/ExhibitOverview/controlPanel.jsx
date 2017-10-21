@@ -13,12 +13,15 @@ export default class ControlPanel extends React.Component
     render(){
         return (
             <div className="ExhibitOverview_ControlPanel">
-                <TextField 
-                    value={this.props.filterValue} onChange={this.props.OnChange}
-                    floatingLabelText="Поиск по имени экспоната" floatingLabelFixed={true}
-                />
+                <div style={{width:"80%", margin:"0 auto 0 auto"}} >
+                    <TextField 
+                        value={this.props.filterValue} onChange={this.props.OnChange}
+                        floatingLabelText="Поиск по имени экспоната" floatingLabelFixed={true}
+                        fullWidth
+                    />
+                </div>
                 <br/>
-                <RaisedButton label="Обновить список" onClick={this.props.OnRefresh}/>
+                <RaisedButton style={{marginLeft:"20px"}} label="Обновить список" onClick={this.props.OnRefresh}/>
             </div>
         );
     }
