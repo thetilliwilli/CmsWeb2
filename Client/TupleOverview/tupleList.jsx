@@ -14,7 +14,11 @@ class TupleList extends React.Component
     }
 
     render(){
-        var tableRows = this.props.tupleList.filter(i=>i.name.toLowerCase().indexOf(this.props.filterValue.toLowerCase())!==-1);
+        const filterValue = this.props.filterValue.toLowerCase();
+        var tableRows = this.props.tupleList.filter( i => filterValue[0]==="#" || filterValue[0]==="№"//Если первый знак Решетка то ищем по айдишнику
+            ? i.id==filterValue.slice(1)
+            : i.name.toLowerCase().indexOf(filterValue.toLowerCase())!==-1
+        );
         tableRows = tableRows.map(
             (ex)=>(
                 <ListItem
