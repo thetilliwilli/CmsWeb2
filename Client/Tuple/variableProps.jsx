@@ -46,14 +46,14 @@ class VarProp extends React.Component
     render(){
         const lang = this.props.language;
         return (
-            <li className="VarProp">
+            <li className="VarProp" >
                 <div className="VarProp_Ru" style={{display:( lang === "ru" ? "initial":"none")}}>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" style={{width:"40%"}} value={this.props.data.name.ru} floatingLabelText="Свойство"/>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "ru")}} className="VarProp_Value" style={{width:"40%"}} value={this.props.data.value.ru} floatingLabelText="Значение"/>
+                    <TextField  style={{width:"60%"}} disabled underlineStyle={{opacity:0,cursor:"pointer"}} inputStyle={{color:"black",cursor:"pointer"}} hintStyle={{color:"black",cursor:"pointer"}} onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" value={this.props.data.name.ru} hintText="Свойство" />
+                    <TextField  style={{width:"40%"}} onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "ru")}} className="VarProp_Value" value={this.props.data.value.ru} floatingLabelText="Значение"/>
                 </div>
                 <div className="VarProp_En" style={{display:( lang === "en" ? "initial":"none")}}>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "en")}} className="VarProp_Name" style={{width:"40%"}} value={this.props.data.name.en} floatingLabelText="Свойство"/>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "en")}} className="VarProp_Value" style={{width:"40%"}} value={this.props.data.value.en} floatingLabelText="Значение"/>
+                    <TextField  style={{width:"60%"}} disabled inputStyle={{color:"black"}} hintStyle={{color:"black"}} onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "en")}} className="VarProp_Name" value={this.props.data.name.en} hintText="Свойство"/>
+                    <TextField  style={{width:"40%"}} onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "en")}} className="VarProp_Value" value={this.props.data.value.en} floatingLabelText="Значение"/>
                 </div>
                 {/* <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.data.id)}}/></IconButton> */}
             </li>
@@ -70,8 +70,8 @@ class VariableProps extends React.Component
         this.ChangeProp = this.ChangeProp.bind(this);
 
         var items = util.DeepCopy(this.props.isEditMode ? this.props.propListEdit : this.props.propListCreate);
-        if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
-            items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}});
+        // if(items || items.length===0)//Если пустой массив то добавляем один итем по дефолту
+        //     items.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}});
         items = items.map((it, ix)=>({...it, id:ix}));//Проставляем всем айдишники
         this.state = {items};
 
@@ -116,8 +116,8 @@ class VariableProps extends React.Component
                     cs.value.en = cs.value.ru = x;
                 });
 
-            if(emptyCatsub || emptyCatsub.length===0)//Если пустой массив то добавляем один итем по дефолту
-                emptyCatsub.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}});
+            // if(emptyCatsub || emptyCatsub.length===0)//Если пустой массив то добавляем один итем по дефолту
+            //     emptyCatsub.push({name: {ru: "", en: ""}, value: {ru: "", en: ""}});
             emptyCatsub = emptyCatsub.map((it, ix)=>({...it, id:ix}));//Проставляем всем айдишники
                 
             this.state.items = emptyCatsub;
