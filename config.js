@@ -1,6 +1,6 @@
 "use strict";
 module.exports = {
-    port: 80,
+    port: 8000,
     webRootPath: `${__dirname}/WebRoot`,
     webRootAuthPath: `${__dirname}/WebRootAuth`,
     staticPath: `${__dirname}/Static`,
