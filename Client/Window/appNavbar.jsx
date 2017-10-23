@@ -20,13 +20,24 @@ class AppNavbar extends React.Component {
         return (
             <Drawer
                 docked={false}
-                width={350}
+                width={260}
                 open={this.props.isNavbarOpen}
                 onRequestChange={ open => open ? this.props.NavbarOpen() : this.props.NavbarClose()}
             >
-                <MenuItem onClick={this.props.NavbarClose}><DivLink to="/tag">Электронные этикетки</DivLink></MenuItem>
-                <MenuItem onClick={this.props.NavbarClose}><DivLink to="/tuple">Энциклопедия оружия</DivLink></MenuItem>
-                <MenuItem onClick={this.props.NavbarClose}><DivLink to="/golo">Голографические этикетки</DivLink></MenuItem>
+            <div style={{display:"flex", flexWrap:"wrap"}}>
+                    <div style={{width:"100%", display:"flex"}} >
+                        <img style={{width:"70%", height:"auto", margin:"auto"}} src="/Static/icon/visualsMuseumIcon.png" />
+                    </div>
+                    <div style={{width:"100%"}}>
+                        <MenuItem style={{margin:"auto"}} onClick={this.props.NavbarClose}><DivLink to="/tag">Электронные этикетки</DivLink></MenuItem>
+                    </div>
+                    <div style={{width:"100%"}}>
+                        <MenuItem style={{width:"100%"}} onClick={this.props.NavbarClose}><DivLink to="/tuple">Энциклопедия оружия</DivLink></MenuItem>
+                    </div>
+                    <div style={{width:"100%"}}>
+                        <MenuItem style={{width:"100%"}} onClick={this.props.NavbarClose}><DivLink to="/golo">Голографические этикетки</DivLink></MenuItem>
+                    </div>
+            </div>
             </Drawer>
         );
     }
