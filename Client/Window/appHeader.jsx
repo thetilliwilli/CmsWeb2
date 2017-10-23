@@ -22,6 +22,7 @@ function ClearCookieAndRefresh(){
 const APP_TITLES = {
     tag: "Электронные этикетки",
     tuple: "Энциклопедия оружия",
+    golo: "Голографические этикетки",
 };
 
 class AppHeader extends React.Component

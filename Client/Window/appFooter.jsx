@@ -21,7 +21,8 @@ class AppFooter extends React.Component
     Select(index){
         const currentDomain = util.CurrentDomain();
         this.props.history.push(currentDomain);//Меняем страницу
-        const functionName = `${currentDomain==="tag"?"Exhibit":"Tuple"}ChangePage`;
+        const functionName = `${currentDomain==="tag"?"Exhibit":
+            currentDomain==="tuple"?"Tuple":"Golo"}ChangePage`;
         this.props[functionName](index);
     }
 
@@ -49,12 +50,13 @@ class AppFooter extends React.Component
 import {connect} from "react-redux";
 import {ExhibitChangePage} from "../App/ac.js";
 import {TupleChangePage} from "../App/tupleAc.js";
+import {GoloChangePage} from "../App/goloAc.js";
 const S2P = state => ({
     appState: state,
 });
 const D2P = dsp => ({
-    // InvokeChangePage: index => dsp(ChangePage(index))
     ExhibitChangePage: index => dsp(ExhibitChangePage(index)),
     TupleChangePage: index => dsp(TupleChangePage(index)),
+    GoloChangePage: index => dsp(GoloChangePage(index)),
 });
 export default connect(S2P, D2P)(withRouter(AppFooter));

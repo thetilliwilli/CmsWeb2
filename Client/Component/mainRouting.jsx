@@ -13,6 +13,11 @@ import TupleCreateDataProvider from "../TupleDataProvider/create.jsx";
 import TupleOverviewDataProvider from "../TupleDataProvider/overview.jsx";
 import TupleEditDataProvider from "../TupleDataProvider/edit.jsx";
 
+//Golos import-------------------------------------------------------
+import GoloCreateDataProvider from "../GoloDataProvider/create.jsx";
+import GoloOverviewDataProvider from "../GoloDataProvider/overview.jsx";
+import GoloEditDataProvider from "../GoloDataProvider/edit.jsx";
+
 const TagContent = p => (
     <div className="PageSwitcher" style={{height:"100%"}}>
         <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><ExhibitCreateDataProvider /></div>
@@ -29,6 +34,14 @@ const TupleContent = p => (
     </div>
 );
 
+const GoloContent = p => (
+    <div className="PageSwitcher" style={{height:"100%"}}>
+        <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><GoloCreateDataProvider /></div>
+        <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><GoloOverviewDataProvider /></div>
+        <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><GoloEditDataProvider /></div>
+    </div>
+);
+
 function MainRouting(props){
     let curIndex = props[`${util.CurrentDomain()}PageIndex`];
     return (
@@ -39,6 +52,9 @@ function MainRouting(props){
             <Route path="/tuple">
                 <TupleContent curIndex={curIndex}/>
             </Route>
+            <Route path="/golo">
+                <GoloContent curIndex={curIndex}/>
+            </Route>
             <Redirect to="/tag" />{/* Если не попали ни на одну страницу то перейти на страницу с Электронными этикетками */}
         </Switch>
     );
@@ -47,7 +63,7 @@ function MainRouting(props){
 import {connect} from "react-redux";
 const S2P = state => ({
     tagPageIndex: state.tagDomain.page,
-    tuplePageIndex: state.tupleDomain.page
-    // pageIndex: state.tagDomain.page
+    tuplePageIndex: state.tupleDomain.page,
+    goloPageIndex: state.goloDomain.page,
 });
 export default withRouter(connect(S2P)(MainRouting));

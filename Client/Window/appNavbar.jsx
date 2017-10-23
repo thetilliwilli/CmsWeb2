@@ -20,12 +20,13 @@ class AppNavbar extends React.Component {
         return (
             <Drawer
                 docked={false}
-                width={200}
+                width={350}
                 open={this.props.isNavbarOpen}
                 onRequestChange={ open => open ? this.props.NavbarOpen() : this.props.NavbarClose()}
             >
                 <MenuItem onClick={this.props.NavbarClose}><DivLink to="/tag">Электронные этикетки</DivLink></MenuItem>
                 <MenuItem onClick={this.props.NavbarClose}><DivLink to="/tuple">Энциклопедия оружия</DivLink></MenuItem>
+                <MenuItem onClick={this.props.NavbarClose}><DivLink to="/golo">Голографические этикетки</DivLink></MenuItem>
             </Drawer>
         );
     }
