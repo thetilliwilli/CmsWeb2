@@ -18,7 +18,7 @@ class InputController
         this.theFunctionName = null;
         window.addEventListener("keydown", (event)=>{
             this.theFunctionName = util.CurrentDomain();
-            if(this.theFunctionName==="tuple")
+            if(this.theFunctionName==="tuple" && (event.key==="F1" || event.key==="F2"))
             {
                 event.preventDefault();
                 return;
