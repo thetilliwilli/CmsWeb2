@@ -48,11 +48,11 @@ class VarProp extends React.Component
         return (
             <li className="VarProp" >
                 <div className="VarProp_Ru" style={{display:( lang === "ru" ? "initial":"none")}}>
-                    <TextField  style={{width:"60%"}} disabled underlineStyle={{opacity:0,cursor:"pointer"}} inputStyle={{color:"black",cursor:"pointer"}} hintStyle={{color:"black",cursor:"pointer"}} onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" value={this.props.data.name.ru} hintText="Свойство" />
+                    <TextField  style={{width:"50%", marginRight:"5%"}} disabled underlineStyle={{opacity:0,cursor:"pointer"}} inputStyle={{color:"black",cursor:"pointer"}} hintStyle={{color:"black",cursor:"pointer"}} onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "ru")}} className="VarProp_Name" value={this.props.data.name.ru} hintText="Свойство" />
                     <TextField  style={{width:"40%"}} onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "ru")}} className="VarProp_Value" value={this.props.data.value.ru} floatingLabelText="Значение"/>
                 </div>
                 <div className="VarProp_En" style={{display:( lang === "en" ? "initial":"none")}}>
-                    <TextField  style={{width:"60%"}} disabled inputStyle={{color:"black"}} hintStyle={{color:"black"}} onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "en")}} className="VarProp_Name" value={this.props.data.name.en} hintText="Свойство"/>
+                    <TextField  style={{width:"50%", marginRight:"5%"}} disabled inputStyle={{color:"black"}} hintStyle={{color:"black"}} onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "en")}} className="VarProp_Name" value={this.props.data.name.en} hintText="Свойство"/>
                     <TextField  style={{width:"40%"}} onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "en")}} className="VarProp_Value" value={this.props.data.value.en} floatingLabelText="Значение"/>
                 </div>
                 {/* <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.data.id)}}/></IconButton> */}
