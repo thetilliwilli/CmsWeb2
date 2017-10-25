@@ -49,14 +49,14 @@ export default class SProp extends React.Component
                 <div className="SProp_Ru" style={{display:displayRu}}>
                     {
                         this.props.propData.type === "string"
-                            ? <TextField onChange={this.OnChange} name={"ru."+propName} floatingLabelText={this.props.propData.label} value={this.state.data.ru} fullWidth {...multilineStyleAddition} style={{...ruFullfiledStyleAddition}} />
+                            ? <TextField key={this.props.uuid} onChange={this.OnChange} name={"ru."+propName} floatingLabelText={this.props.propData.label} value={this.state.data.ru} fullWidth {...multilineStyleAddition} style={{...ruFullfiledStyleAddition}} />
                             : <DatePicker onChange={this.OnChange} name={"ru."+propName} floatingLabelText={this.props.propData.label} value={ruDate} openToYearSelection/>
                     }
                 </div>
                 <div className="SProp_En" style={{display:displayEn}}>
                     {
                         this.props.propData.type === "string"
-                            ? <TextField onChange={this.OnChange} name={"en."+propName} floatingLabelText={this.props.propData.label} value={this.state.data.en} fullWidth {...multilineStyleAddition} style={{...enFullfiledStyleAddition}} />
+                            ? <TextField key={this.props.uuid} onChange={this.OnChange} name={"en."+propName} floatingLabelText={this.props.propData.label} value={this.state.data.en} fullWidth {...multilineStyleAddition} style={{...enFullfiledStyleAddition}} />
                             : <DatePicker onChange={this.OnChange} name={"en."+propName} floatingLabelText={this.props.propData.label} value={enDate} openToYearSelection/>
                     }
                 </div>

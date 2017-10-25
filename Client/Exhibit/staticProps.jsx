@@ -4,6 +4,7 @@ import {Card, CardHeader} from 'material-ui/Card';
 
 
 import SProp from "./sProp.jsx";
+import uuid from "uuid/v4";
 
 export default class StaticProps extends React.Component
 {
@@ -31,7 +32,7 @@ export default class StaticProps extends React.Component
         var propList = this.props.propList;
         var itemList = [];
         for(var propName in propList)
-            itemList.push(<SProp key={propName} propName={propName} propData={propList[propName]} lang={this.props.language} />);
+            itemList.push(<SProp key={propName} uuid={uuid()} propName={propName} propData={propList[propName]} lang={this.props.language} />);
         
         //Меняем местами поля: Историческая Справка <-> Подробное описание
         var iDescription = itemList.findIndex( i => i.key==="description");
