@@ -9,7 +9,7 @@ export default class Avatar extends React.Component {
         props.RegCom(this);
         
         this.ChangeImage = this.ChangeImage.bind(this);
-        this.state = {imageSrc: props.imageHref};
+        this.state = {imageSrc: ""};
     }
 
     ChangeImage(newSrc){
@@ -21,7 +21,7 @@ export default class Avatar extends React.Component {
     render() {
         return (
             <div className="GoloCard">
-                <CardHeader  subtitle="КАРТОЧКА" />
+                <CardHeader  subtitle="ВИДЕО" />
                 <UploadImage onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrc}/>
             </div>
         );
@@ -40,6 +40,7 @@ class UploadImage extends React.Component {
         this.OnImageClick = this.OnImageClick.bind(this);
 
         this.fileUploadInput = null;
+        this.videoElement = null;
     }
 
     OnFileSelected(event) {
@@ -48,6 +49,7 @@ class UploadImage extends React.Component {
         let self = this;
         reader.onload = function (event) {
             self.props.onFileChanged(event.target.result);
+            self.videoElement.load();
         };
 
         reader.readAsDataURL(selectedFile);
@@ -60,10 +62,13 @@ class UploadImage extends React.Component {
     render() {
         return (
             <div style={{minHeight:"140px"}}>
-                <img className="GoloCard_image" onClick={this.OnImageClick} src={this.props.imageSrc}
-                    style={{marginLeft:"16px", boxShadow:"0px 0px 2px 0px grey" , maxWidth:"100px", maxHeight:"100px", backgroundSize: "contain", cursor: 'pointer'}}/>
+                <RaisedButton onClick={this.OnImageClick} label="Upload" />
+                <video style={{height:"240px", width:"240px"}} ref={el => this.videoElement=el} controls>
+                    <source src={this.props.imageSrc} type="video/mp4"/>
+                    Your browser does not support the video tag.
+                </video>
                 <input ref={(input)=>{this.fileUploadInput = input;}} type="file"
-                    style={{display:"none"}} onChange={this.OnFileSelected} accept=".png,.jpg,.jpeg" />
+                    style={{display:"none"}} onChange={this.OnFileSelected} accept=".mp4" />
             </div>
         );
     }
