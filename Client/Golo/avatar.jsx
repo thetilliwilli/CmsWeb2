@@ -9,7 +9,7 @@ export default class Avatar extends React.Component {
         props.RegCom(this);
         
         this.ChangeImage = this.ChangeImage.bind(this);
-        this.state = {imageSrc: ""};
+        this.state = {imageSrc: props.imageHref};
     }
 
     ChangeImage(newSrc){
@@ -28,10 +28,6 @@ export default class Avatar extends React.Component {
     }
 }
 
-// Avatar.defaultProps = {
-//     imageHref: "/static/img/defaultGoloAvatar.jpg"
-// };
-
 class UploadImage extends React.Component {
     constructor(props) {
         super(props);
@@ -40,7 +36,6 @@ class UploadImage extends React.Component {
         this.OnImageClick = this.OnImageClick.bind(this);
 
         this.fileUploadInput = null;
-        this.videoElement = null;
     }
 
     OnFileSelected(event) {
@@ -49,7 +44,6 @@ class UploadImage extends React.Component {
         let self = this;
         reader.onload = function (event) {
             self.props.onFileChanged(event.target.result);
-            self.videoElement.load();
         };
 
         reader.readAsDataURL(selectedFile);
@@ -63,7 +57,7 @@ class UploadImage extends React.Component {
         return (
             <div style={{minHeight:"140px"}}>
                 <RaisedButton onClick={this.OnImageClick} label="Upload" />
-                <video style={{height:"240px", width:"240px"}} ref={el => this.videoElement=el} controls>
+                <video style={{height:"240px", width:"240px"}} ref={el => el && el.load()} controls>
                     <source src={this.props.imageSrc} type="video/mp4"/>
                     Your browser does not support the video tag.
                 </video>

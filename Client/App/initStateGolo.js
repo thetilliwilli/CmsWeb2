@@ -30,7 +30,7 @@ export default {
                 location: { ru: "", en: "", label: "Место производство", type: "string" },
                 history: { ru: "", en: "", label: "История создания", type: "string" },
                 description: { ru: "", en: "", label: "Подробное описание", type: "string" },
-                coverImage: "/Static/img/defaultGoloAvatar.jpg"
+                video: "/Static/vid/defaultGoloVid.mp4"
             },
         },
         overview: [],
@@ -47,7 +47,7 @@ export default {
                 location: { ru: "", en: "", label: "Место производство", type: "string" },
                 history: { ru: "", en: "", label: "История создания", type: "string" },
                 description: { ru: "", en: "", label: "Подробное описание", type: "string" },
-                coverImage: "/Static/img/defaultGoloAvatar.jpg"
+                video: "/Static/vid/defaultGoloVid.mp4"
             },
         }
     };

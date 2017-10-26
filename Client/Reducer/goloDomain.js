@@ -42,7 +42,7 @@ export default function GoloReducer(state = initState.goloDomain, action){
                 location: {ru: "", en: "", label:"Место производство", type:"string"},
                 history: {ru: "", en: "", label:"История создания", type:"string"},
                 description: {ru: "", en: "", label:"Подробное описание", type:"string"},
-                coverImage: "/Static/img/defaultGoloAvatar.jpg"
+                video: "/Static/vid/defaultGoloVid.mp4"
             };
             newState.goloCreate.uuid = uuid();//Форсим апдейт вьюхи
         });
@@ -66,7 +66,7 @@ export default function GoloReducer(state = initState.goloDomain, action){
                 action.payload.forEach(golo => newState.overview.push({
                     id: golo._id,
                     name: golo.name.ru,
-                    coverImage: golo.coverImage
+                    // coverImage: golo.coverImage
                 }));
             }
         });

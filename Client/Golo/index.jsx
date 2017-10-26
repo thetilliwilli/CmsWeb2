@@ -57,12 +57,12 @@ export default class Golo extends React.Component
         var variableProps = this.VariablePropsRef.Data();
 
         var avatar = this.AvatarRef.Data();
-        var coverImageOrUndefined = avatar.src === "/static/img/defaultGoloAvatar.jpg" ? undefined : avatar.src;
+        var coverVideoOrUndefined = avatar.src === "/Static/vid/defaultGoloVid.mp4" ? undefined : avatar.src;
 
         var gallery = this.ImageGalleryRef.Data();
         gallery = gallery.map(img=>({image:img.src, description:img.description}));
 
-        var result = {...staticProps, fields: variableProps, coverImage: coverImageOrUndefined, imageGallery: gallery};
+        var result = {...staticProps, fields: variableProps, video: coverVideoOrUndefined, imageGallery: gallery};
         return result;
     }
 
@@ -115,9 +115,7 @@ export default class Golo extends React.Component
 
         var imageGallery = dto.imageGallery.map(i => ({src: i.image, id: i.guid, description: i.description}));
 
-        // var imageHref = dto.coverImage;
-
-        return {staticProps, variableProps, imageGallery, coverImage: dto.coverImage};
+        return {staticProps, variableProps, imageGallery, video: dto.video};
     }
 
     render(){
@@ -143,7 +141,7 @@ export default class Golo extends React.Component
 
                     <div className="GoloParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
                         <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
-                            <Avatar RegCom={this.RegisterAvatarRef} imageHref={goloData.coverImage}/>
+                            <Avatar RegCom={this.RegisterAvatarRef} imageHref={goloData.video}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={goloData.staticProps} language={this.props.language}/>
                         </div>
                         <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
