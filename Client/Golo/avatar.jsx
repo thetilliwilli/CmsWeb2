@@ -9,6 +9,7 @@ export default class Avatar extends React.Component {
         props.RegCom(this);
         
         this.ChangeImage = this.ChangeImage.bind(this);
+        this.ResetVideo = this.ResetVideo.bind(this);
         this.state = {imageSrc: props.imageHref};
     }
 
@@ -18,11 +19,13 @@ export default class Avatar extends React.Component {
 
     Data(){ return {src: this.state.imageSrc} }
 
+    ResetVideo(){ this.setState({imageSrc: ""}); }
+
     render() {
         return (
             <div className="GoloCard">
                 <CardHeader  subtitle="ВИДЕО" />
-                <UploadImage onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrc}/>
+                <UploadImage onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrc} ResetVideo={this.ResetVideo} />
             </div>
         );
     }
@@ -55,14 +58,19 @@ class UploadImage extends React.Component {
 
     render() {
         return (
-            <div style={{minHeight:"140px"}}>
-                <RaisedButton onClick={this.OnImageClick} label="Upload" />
-                <video style={{height:"240px", width:"240px"}} ref={el => el && el.load()} controls>
-                    <source src={this.props.imageSrc} type="video/mp4"/>
-                    Your browser does not support the video tag.
-                </video>
-                <input ref={(input)=>{this.fileUploadInput = input;}} type="file"
-                    style={{display:"none"}} onChange={this.OnFileSelected} accept=".mp4" />
+            <div style={{height:"240px", display:"flex", flexWrap:"wrap", marginLeft:"10px"}}>
+                <div style={{width:"100%"}} >
+                    <RaisedButton onClick={this.OnImageClick} label="ВЫБРАТЬ" />
+                    <RaisedButton onClick={this.props.ResetVideo} label="УДАЛИТЬ" />
+                </div>
+                <div style={{width:"100%"}}>
+                    <video style={{maxHeight:"200px"}} ref={el => el && el.load()} controls>
+                        <source src={this.props.imageSrc} type="video/mp4"/>
+                        Ваш браузер не поддерживает видео
+                    </video>
+                    <input ref={(input)=>{this.fileUploadInput = input;}} type="file"
+                        style={{display:"none"}} onChange={this.OnFileSelected} accept=".mp4" />
+                </div>
             </div>
         );
     }
