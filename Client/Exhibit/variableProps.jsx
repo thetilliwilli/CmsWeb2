@@ -52,7 +52,7 @@ class VarProp extends React.Component
                 </div>
                 <div className="VarProp_En" style={{display:( lang === "en" ? "initial":"none")}}>
                     <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "en")}} className="VarProp_Name" style={{width:"40%"}} value={this.props.data.name.en} floatingLabelText="Свойство"/>
-                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "en")}} className="VarProp_Value" style={{width:"40%"}} value={this.props.data.value.ru} floatingLabelText="Значение"/>
+                    <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "en")}} className="VarProp_Value" style={{width:"40%"}} value={this.props.data.value.en} floatingLabelText="Значение"/>
                 </div>
                 <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.data.id)}}/></IconButton>
             </li>
@@ -95,9 +95,16 @@ export default class VariableProps extends React.Component
     ChangeProp(newName, newValue, id, lang){
         var item = this.state.items.find(i => i.id===id);
         item.name[lang] = newName === null ? item.name[lang] : newName;
-        item.value["ru"] = item.value["en"] = (
-            newValue === null ? item.value["ru"] : newValue
-        );
+        const probe = (newValue+"").trim();
+        const hasForeignSigns = /[^0-9.,]/.test(probe);
+        if(hasForeignSigns || isNaN(parseInt(probe, 10)))
+        {
+            item.value[lang] = newValue === null ? item.value[lang] : newValue;
+        }
+        else
+        {
+            item.value["ru"] = item.value["en"] = ( newValue === null ? item.value["ru"] : newValue );
+        }
         this.forceUpdate();
     }
 
@@ -153,15 +160,6 @@ export default class VariableProps extends React.Component
             i => !(i.name.ru.trim()==="" && i.name.en.trim()==="" && i.value.ru.trim()==="" && i.value.en.trim()==="")//Убрать те, в которых все четыре поля незаполнены
         );
     }
-
-    // componentDidUpdate(){
-    //     if(this.focusIndex !== null)
-    //     {
-    //         var varProps = document.querySelector(".VariablePropsField");//.querySelectorAll(".VarProp");
-    //         var queryToInput = `.VarProp_${this.props.language==="ru"?"Ru":"En"} .VarProp_Name input`;
-    //         varProps.querySelectorAll(".VarProp")[this.focusIndex].querySelector(queryToInput).focus();
-    //     }
-    // }
 
     render(){
         return (
