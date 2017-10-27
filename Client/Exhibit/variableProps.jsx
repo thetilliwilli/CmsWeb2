@@ -98,13 +98,9 @@ export default class VariableProps extends React.Component
         const probe = (newValue+"").trim();
         const hasForeignSigns = /[^0-9.,]/.test(probe);
         if(hasForeignSigns || isNaN(parseInt(probe, 10)))
-        {
             item.value[lang] = newValue === null ? item.value[lang] : newValue;
-        }
         else
-        {
             item.value["ru"] = item.value["en"] = ( newValue === null ? item.value["ru"] : newValue );
-        }
         this.forceUpdate();
     }
 
