@@ -44,7 +44,7 @@ export default class StaticProps extends React.Component
         return (
             <form ref={el=>this.form=el} className="StaticProps" style={{listStyleType: "none"}}>
                 <CardHeader  subtitle={`ОБЩИЕ - ${this.props.language==="ru"?"Русский":"Английский"}`} />
-                <ul className="StaticPropsList" style={{listStyle:"none", margin:"20px 20px", padding:"0"}}>
+                <ul className="StaticPropsList" style={{listStyle:"none", margin:"0 20px 0 20px", padding:"0"}}>
                     {itemList}
                 </ul>
             </form>

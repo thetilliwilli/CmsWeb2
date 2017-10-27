@@ -30,7 +30,9 @@ export default {
                 location: { ru: "", en: "", label: "Место производство", type: "string" },
                 history: { ru: "", en: "", label: "История создания", type: "string" },
                 description: { ru: "", en: "", label: "Подробное описание", type: "string" },
-                coverImage: "/Static/img/defaultExhibitAvatar.jpg"
+                coverImage: "/Static/img/defaultExhibitAvatar.jpg",
+                complex: "",
+                ordinal: 0,
             },
         },
         overview: [],
@@ -47,7 +49,9 @@ export default {
                 location: { ru: "", en: "", label: "Место производство", type: "string" },
                 history: { ru: "", en: "", label: "История создания", type: "string" },
                 description: { ru: "", en: "", label: "Подробное описание", type: "string" },
-                coverImage: "/Static/img/defaultExhibitAvatar.jpg"
+                coverImage: "/Static/img/defaultExhibitAvatar.jpg",
+                complex: "",
+                ordinal: 0,
             },
         }
     };

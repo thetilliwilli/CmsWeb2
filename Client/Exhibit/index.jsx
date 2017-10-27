@@ -53,6 +53,8 @@ export default class Exhibit extends React.Component
     Data(){
         var staticProps = this.StaticPropsRef.Data();
         staticProps.date = staticProps.date.ru;//Берем только одно значение
+        staticProps.complex = staticProps.complex.ru;//Берем только одно значение
+        staticProps.ordinal = staticProps.ordinal.ru;//Берем только одно значение
 
         var variableProps = this.VariablePropsRef.Data();
 
@@ -86,14 +88,6 @@ export default class Exhibit extends React.Component
 
     HasError(data){
         return null;
-        // var errors = data.fields.reduce((result, field, index)=>{
-        //     var ruError = field.ru.name.trim() == "" || field.ru.value.trim() == "";
-        //     var enError = field.en.name.trim() == "" || field.en.value.trim() == "";
-        //     if(ruError || enError)
-        //         result.push(`${index}) [${field.ru.name}] [${field.ru.value}] [${field.en.name}] [${field.en.value}]`);
-        //     return result;
-        // }, []);
-        // return errors.length === 0 ? null : {message: `[Характеристики]: Остались незаполненные поля.\n${errors.join("\n")}`};
     }
 
     RegisterStaticPropsRef(component){ this.StaticPropsRef = component;}
@@ -110,6 +104,8 @@ export default class Exhibit extends React.Component
             staticProps.description = {...dto.description, label:"Подробное описание", type:"string"};
             staticProps.history = {...dto.history, label:"История создания", type:"string"};
             staticProps.date = {ru: dto.date, en: dto.date, label:"Дата создания", type:"date", notMultiLang:true};
+            staticProps.complex = {ru: dto.complex, en: dto.complex, label:"Витрина", type:"string", notMultiLang:true};
+            staticProps.ordinal = {ru: dto.ordinal, en: dto.ordinal, label:"Порядковый номер", type:"string", notMultiLang:true};
 
         var variableProps = dto.fields;
 

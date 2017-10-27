@@ -21,16 +21,12 @@ export default class Avatar extends React.Component {
     render() {
         return (
             <div className="ExhibitCard">
-                <CardHeader  subtitle="КАРТОЧКА" />
+                <CardHeader  subtitle="КАРТОЧКА" style={{padding:"6px 16px 6px 16px"}} />
                 <UploadImage onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrc}/>
             </div>
         );
     }
 }
-
-// Avatar.defaultProps = {
-//     imageHref: "/static/img/defaultExhibitAvatar.jpg"
-// };
 
 class UploadImage extends React.Component {
     constructor(props) {
@@ -59,7 +55,7 @@ class UploadImage extends React.Component {
 
     render() {
         return (
-            <div style={{minHeight:"140px"}}>
+            <div>
                 <img className="ExhibitCard_image" onClick={this.OnImageClick} src={this.props.imageSrc}
                     style={{marginLeft:"16px", boxShadow:"0px 0px 2px 0px grey" , maxWidth:"100px", maxHeight:"100px", backgroundSize: "contain", cursor: 'pointer'}}/>
                 <input ref={(input)=>{this.fileUploadInput = input;}} type="file"
