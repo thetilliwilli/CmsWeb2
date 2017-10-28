@@ -22,7 +22,7 @@ export default class InstEditor extends React.Component
                     <CP />
                 </div>
                 <div style={{width:"100%"}}>
-                    <InstView model={this.props.fields} />
+                    <InstView data={this.props.data} />
                 </div>
             </div>
         );
