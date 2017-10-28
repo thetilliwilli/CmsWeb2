@@ -6,6 +6,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 
 import ControlPanel from "./controlPanel.jsx";
 import ExhibitList from "./exhibitList.jsx";
+import Inst from "../Inst/index.jsx";
 
 class ExhibitOverview extends React.Component
 {
@@ -27,9 +28,14 @@ class ExhibitOverview extends React.Component
 
     render(){
         return (
-            <div className="ExhibitOverview">
-                <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter} OnRefresh={this.props.FetchOverview}/>
-                <ExhibitList OnDelete={this.props.DeleteExhibit} exhibitList={this.props.model} filter={this.state.filter} filterValue={this.state.filter}/>
+            <div className="ExhibitOverview" style={{width:"100%", display:"flex", flexWrap:"wrap"}}>
+                <div style={{width:"34%", height:"100%"}} >
+                    <Inst />
+                </div>
+                <div style={{width:"66%", height:"100%"}} >
+                    <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter} OnRefresh={this.props.FetchOverview}/>
+                    <ExhibitList OnDelete={this.props.DeleteExhibit} exhibitList={this.props.model} filter={this.state.filter} filterValue={this.state.filter}/>
+                </div>
             </div>
         );
     }

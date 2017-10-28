@@ -68,7 +68,7 @@ export default function TagReducer(state = initState.tagDomain, action){
                 action.payload.forEach(exhibit => newState.overview.push({
                     id: exhibit._id,
                     name: exhibit.name.ru,
-                    coverImage: exhibit.coverImage
+                    complex: exhibit.complex
                 }));
             }
         });
