@@ -41,6 +41,7 @@ export default class Inst extends React.Component
                             OnSelect={this.OnSelect}
                             items={this.props.instList}
                             filterValue={this.state.filterValue}
+                            domain={this.props.domain}
                         />
                     </div>
                     <div style={{width:"60%", height:"100%", padding:"0px 0px 0px 6px"}} >
