@@ -16,7 +16,7 @@ export default {
         errorInformer: {
             error: null
         },
-
+        overview: [],
         exhibitCreate: {
             blockControl: false,
             uuid: uuid(),
@@ -35,7 +35,6 @@ export default {
                 ordinal: 0,
             },
         },
-        overview: [],
         exhibitEdit: {
             blockControl: false,
             uuid: uuid(),

@@ -13,4 +13,5 @@ export default {
     //GOLO DOMAIN
     goloDomain,
 
+    instList: [],
 };

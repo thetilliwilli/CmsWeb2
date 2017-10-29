@@ -165,3 +165,22 @@ export function NavbarOpen(){
 export function NavbarClose(){
     return {type: at.NAVBAR_CLOSE};
 }
+
+//INST
+export function FetchInst(){
+    return function(dispatch){
+        dispatch(FetchInstRequest());
+
+        postman.GetAll("inst", FetchInstResponse);
+    }
+}
+
+export function FetchInstRequest(){
+    return {
+        type: at.FETCH_INST_REQUEST
+    };
+}
+
+export function FetchInstResponse(response){
+    return _ResponseHandler(response, at.FETCH_INST_RESPONSE);
+}

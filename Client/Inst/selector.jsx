@@ -10,7 +10,8 @@ export default class InstSelector extends React.Component
         const il = this.props.items.map((i,inx) => 
             <ListItem
                 key={i.id}
-                primaryText={i.hardname}
+                primaryText={i.hardname || `Dev-${i.id}`}
+                secondaryText={i.description || `Без описания`}
                 onClick={() => this.props.OnSelect(inx)}
             />
         );
