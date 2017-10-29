@@ -8,7 +8,7 @@ const CP = (props) => {
     return (
         <div style={{width:"100%"}} >
             <RaisedButton label="Сохранить" onClick={props.OnSave} fullWidth/>
-            <RaisedButton label="Удалить" onClick={props.OnDelete} fullWidth/>
+            {/* <RaisedButton label="Удалить" onClick={props.OnDelete} fullWidth/> */}
         </div>
     );
 };
