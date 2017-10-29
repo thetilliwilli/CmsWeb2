@@ -20,18 +20,29 @@ class Provider extends React.Component
     }
 
     render(){
-        return <Inst instList={this.props.instList} overview={this.overview} />;
+        return <Inst
+            instList={this.props.instList}
+            overview={this.overview}
+            InstChange={this.props.InstChange}
+            SubmitUpdate={this.props.SubmitUpdate}
+            SubmitDelete={this.props.SubmitDelete}
+            InstRefresh={this.props.FetchData}
+        />
     }
+            
 }
 
 import { connect } from "react-redux";
-import {FetchInst} from "../App/ac.js";
+import {FetchInst, InstChange, InstSubmitUpdate, InstSubmitDelete} from "../App/ac.js";
 const S2P = state => ({
     appState: state,
     instList: state.instList
 });
 const D2P = dsp => ({
-    FetchData: () => dsp(FetchInst())
+    FetchData: () => dsp(FetchInst()),
+    InstChange: (data) => dsp(InstChange(data)),
+    SubmitUpdate: (data) => dsp(InstSubmitUpdate(data)),
+    SubmitDelete: (id) => dsp(InstSubmitDelete(id))
 });
 export default connect(S2P, D2P)(Provider);
 

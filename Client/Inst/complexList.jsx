@@ -11,7 +11,10 @@ class ComplexList extends React.Component
 
     render(){
         const il = this.props.appState[`${util.CurrentDomain()}Domain`].overview
-            .filter(ex => ex.complex === this.props.complex )
+            .filter(ex => ex.complex
+                ? ex.complex === this.props.complex
+                : false
+            )
             .map(ex =>
                 <ListItem
                     key={ex.id}
@@ -25,7 +28,7 @@ class ComplexList extends React.Component
             );
         return (
             <List style={{height:"100%", width:"100%"}} >
-                {il.length ? il : "К этикетке не привязано ни одного экспоната"}
+                {il.length ? il : <span style={{color:"Chocolate "}}>К этикетке не привязано ни одного экспоната</span>}
             </List>
         );
     }

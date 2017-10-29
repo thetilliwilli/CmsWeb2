@@ -181,6 +181,34 @@ export function FetchInstRequest(){
     };
 }
 
-export function FetchInstResponse(response){
-    return _ResponseHandler(response, at.FETCH_INST_RESPONSE);
+    export function FetchInstResponse(response){
+        return _ResponseHandler(response, at.FETCH_INST_RESPONSE);
+    }
+
+    export function InstChange(data){
+        return {
+            type: at.INST_CHANGE,
+            payload: data
+        };
+    }
+
+export function InstSubmitUpdate(data){
+    return function(dispatch){
+        postman.Put("inst", data.id, data, InstSubmitUpdateResponse);
+    }
 }
+
+    export function InstSubmitUpdateResponse(response){
+        return _ResponseHandler(response, at.INST_SUBMIT_UPDATE_RESPONSE);
+    }
+
+
+export function InstSubmitDelete(id){
+    return function(dispatch){
+        postman.Delete("inst", InstSubmitDeleteResponse, id);
+    }
+}
+
+    export function InstSubmitDeleteResponse(response){
+        return _ResponseHandler(response, at.INST_SUBMIT_DELETE_RESPONSE);
+    }

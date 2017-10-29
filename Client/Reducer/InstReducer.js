@@ -9,13 +9,20 @@ function CloneState(oldState, callback){
     return newState;
 }
 
+/**
+ * Reducer for Applications array state
+ * @param {Array} state 
+ * @param {*} action 
+ */
 export default function InstReducer(state = [], action){
 
     switch(action.type){
         case at.FETCH_INST_RESPONSE: return CloneState(state, newState => {
             Object.assign(newState, action.payload);
         });
-
+        case at.INST_CHANGE: return CloneState(state, newState => {
+            Object.assign(newState.find(i => i.id === action.payload.id), action.payload);
+        });
 
         default: return state;
     }

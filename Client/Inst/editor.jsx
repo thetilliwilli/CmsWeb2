@@ -6,23 +6,38 @@ import InstView from "./view.jsx";
 
 const CP = (props) => {
     return (
-        <div>
-            <RaisedButton label="Сохранить" onClick={()=>{alert("Сохранено")}} />
-            <RaisedButton label="Удалить" onClick={()=>{alert("Удалено")}} />
+        <div style={{width:"100%"}} >
+            <RaisedButton label="Сохранить" onClick={props.OnSave} fullWidth/>
+            <RaisedButton label="Удалить" onClick={props.OnDelete} fullWidth/>
         </div>
     );
 };
 
 export default class InstEditor extends React.Component
 {
+    constructor(props){
+        super(props);
+
+        this.OnSave = this.OnSave.bind(this);
+        this.OnDelete = this.OnDelete.bind(this);
+    }
+
+    OnSave(){
+        this.props.SubmitUpdate(this.props.data);
+    }
+    
+    OnDelete(){
+        this.props.SubmitDelete(this.props.data.id);
+    }
+
     render(){
         return (
-            <div style={{height:"100%", width:"100%", display:"flex", flexWrap:"wrap"}} >
+            <div style={{width:"100%", display:"flex", flexWrap:"wrap", boxShadow:"0px 0px 8px 1px rgba(128,128,128,0.2)"}} >
                 <div style={{height:"10%", width:"100%"}} >
-                    <CP />
+                    <CP OnSave={this.OnSave} OnDelete={this.OnDelete}/>
                 </div>
                 <div style={{width:"100%"}}>
-                    <InstView data={this.props.data} />
+                    <InstView InstChange={this.props.InstChange} data={this.props.data} />
                 </div>
             </div>
         );
