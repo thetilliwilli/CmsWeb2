@@ -4,7 +4,7 @@ import GoloOverview from "../GoloOverview/index.jsx";
 
 export default function GoloOverviewPage(p){
     return (
-        <div className="GoloOverviewPage">
+        <div className="GoloOverviewPage" style={{height:"100%"}}>
             <GoloOverview />
         </div>
     );

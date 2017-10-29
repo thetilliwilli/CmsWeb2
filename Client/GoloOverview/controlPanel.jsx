@@ -3,6 +3,7 @@ import React from "react";
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import RefreshIcon from 'material-ui/svg-icons/navigation/refresh';
 
 export default class ControlPanel extends React.Component
 {
@@ -12,16 +13,17 @@ export default class ControlPanel extends React.Component
 
     render(){
         return (
-            <div className="GoloOverview_ControlPanel">
-                <div style={{width:"80%", margin:"0 auto 0 auto"}} >
+            <div className="GoloOverview_ControlPanel" style={{display:"flex", flexWrap:"wrap"}} >
+                <div style={{width:"10%", display:"flex", flexWrap:"wrap"}} >
+                    <RaisedButton style={{ margin:"auto auto 10px auto"}} icon={<RefreshIcon />} onClick={this.props.OnRefresh}/>
+                </div>
+                <div style={{width:"90%"}} >
                     <TextField 
                         value={this.props.filterValue} onChange={this.props.OnChange}
-                        floatingLabelText="Поиск по имени экспоната" floatingLabelFixed={true}
+                        floatingLabelText="Поиск экспоната" floatingLabelFixed={true}
                         fullWidth
                     />
                 </div>
-                <br/>
-                <RaisedButton style={{marginLeft:"20px"}} label="Обновить список" onClick={this.props.OnRefresh}/>
             </div>
         );
     }

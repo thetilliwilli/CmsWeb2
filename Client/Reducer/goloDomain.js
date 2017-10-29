@@ -68,7 +68,7 @@ export default function GoloReducer(state = initState.goloDomain, action){
                 action.payload.forEach(golo => newState.overview.push({
                     id: golo._id,
                     name: golo.name.ru,
-                    // coverImage: golo.coverImage
+                    complex: golo.complex
                 }));
             }
         });
