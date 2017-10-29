@@ -15,12 +15,12 @@ export default class InstSelector extends React.Component
                     ? i.description ? i.description.indexOf(this.props.filterValue) !== -1 : false
                     : true
             )
-            .map((i,inx) => 
+            .map(i => 
                 <ListItem
                     key={i.id}
                     primaryText={i.hardname || `#${i.id}`}
                     secondaryText={i.description || `Без описания`}
-                    onClick={() => this.props.OnSelect(inx)}
+                    onClick={() => this.props.OnSelect(i.id)}
                 />
             );
         return (

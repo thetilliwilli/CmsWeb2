@@ -11,7 +11,7 @@ export default class Inst extends React.Component
         super(props);
 
         this.state = {
-            selected: 0,
+            selectedInstId: 0,
             filterValue: "",
         };
         
@@ -19,8 +19,8 @@ export default class Inst extends React.Component
         this.OnFilterChange = this.OnFilterChange.bind(this);
     }
 
-    OnSelect(index){
-        this.setState({selected:index});
+    OnSelect(instId){
+        this.setState({selectedInstId:instId});
     }
 
     OnFilterChange(event, newValue){
@@ -46,7 +46,7 @@ export default class Inst extends React.Component
                     </div>
                     <div style={{width:"60%", height:"100%", padding:"0px 0px 0px 6px"}} >
                         <InstEditor
-                            data={this.props.instList[this.state.selected]}
+                            data={this.props.instList.find(i => i.id === this.state.selectedInstId) || {}}
                             InstChange={this.props.InstChange}
                             SubmitUpdate={this.props.SubmitUpdate}
                             SubmitDelete={this.props.SubmitDelete}

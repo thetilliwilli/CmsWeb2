@@ -29,10 +29,10 @@ export default class InstView extends React.Component
         return (
             <div style={{width:"100%", display:"flex", flexWrap:"wrap"}} >
                 <form ref={el=>this.form=el} style={{width:"100%"}} >
-                    <TextField name="id" onChange={this.OnChange} value={this.props.data.id || ""} hintText="id"  fullWidth disabled />
-                    <TextField name="hardname" onChange={this.OnChange} value={this.props.data.hardname || ""} hintText="hardname"  fullWidth disabled />
-                    <TextField name="description" onChange={this.OnChange} value={this.props.data.description || ""} hintText="description"  fullWidth multiLine rowsMax={2} />
-                    <TextField name="complex" onChange={this.OnChange} value={this.props.data.complex || ""} hintText="complex"  fullWidth />
+                    <TextField name="id" onChange={this.OnChange} value={this.props.data.id || ""} floatingLabelText="id"  fullWidth disabled />
+                    <TextField name="hardname" onChange={this.OnChange} value={this.props.data.hardname || ""} floatingLabelText="hardname"  fullWidth disabled />
+                    <TextField name="description" onChange={this.OnChange} value={this.props.data.description || ""} floatingLabelText="description"  fullWidth multiLine rowsMax={2} />
+                    <TextField name="complex" onChange={this.OnChange} value={this.props.data.complex || ""} floatingLabelText="complex"  fullWidth />
                 </form>
                 <div style={{width:"100%"}} >
                     <ComplexList complex={this.props.data.complex} />
