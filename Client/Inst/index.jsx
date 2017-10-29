@@ -31,19 +31,19 @@ export default class Inst extends React.Component
         if(this.props.instList.length === 0)
             return <span style={{color:"Chocolate "}}>В системе не зарегистрировано ни одного Устройства</span>;
         return (
-            <div style={{width:"100%", display:"flex", flexWrap:"wrap"}} >
-                <div className="Inst.ControlPanel.layout" style={{width:"100%"}}>
+            <div style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}} >
+                <div className="Inst.ControlPanel.layout" style={{width:"100%", height:"10%"}}>
                     <ControlPanel filterValue={this.state.filterValue} OnChange={this.OnFilterChange} OnRefresh={this.props.InstRefresh} />
                 </div>
-                <div className="Inst.EditorSelector.layout" style={{width:"100%", display:"flex", flexWrap:"wrap"}}>
-                    <div style={{width:"40%", height:"100%", wordBreak:"break-all"}} >
+                <div className="Inst.EditorSelector.layout" style={{width:"100%", height:"90%", display:"flex", flexWrap:"wrap"}}>
+                    <div style={{width:"40%", height:"100%", wordBreak:"break-all", overflow:"auto"}} >
                         <InstSelector
                             OnSelect={this.OnSelect}
                             items={this.props.instList}
                             filterValue={this.state.filterValue}
                         />
                     </div>
-                    <div style={{width:"60%", height:"100%"}} >
+                    <div style={{width:"60%", height:"100%", padding:"0px 0px 0px 6px"}} >
                         <InstEditor
                             data={this.props.instList[this.state.selected]}
                             InstChange={this.props.InstChange}

@@ -20,7 +20,7 @@ export default class InstSelector extends React.Component
                 />
             );
         return (
-            <div style={{display:"flex", flexWrap:"wrap"}}>
+            <div style={{display:"flex", flexWrap:"wrap", overflow:"auto"}}>
                 <List style={{height:"100%", width:"100%"}} >
                     {il}
                 </List>
