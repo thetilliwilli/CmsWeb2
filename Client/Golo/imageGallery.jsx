@@ -44,7 +44,7 @@ class ImageThumb extends React.Component
                 </div>
 
                 <div style={{width:"10%", height:"100%", display:"flex"}}>
-                    <IconButton iconStyle={{color:"grey"}} style={{margin:"auto"}} ><ActionDelete onClick={()=>{this.props.OnDelete(this.props.id)}}/></IconButton>
+                    <IconButton iconStyle={{color:"grey"}} style={{margin:"auto"}} onClick={()=>{this.props.OnDelete(this.props.id)}}><ActionDelete /></IconButton>
                 </div>
 
             </div>

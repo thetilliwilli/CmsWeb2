@@ -54,7 +54,7 @@ class VarProp extends React.Component
                     <TextField onChange={(e,v)=>{this.props.OnPropChange(v, null, this.props.data.id, "en")}} className="VarProp_Name" style={{width:"40%"}} value={this.props.data.name.en} floatingLabelText="Свойство"/>
                     <TextField onChange={(e,v)=>{this.props.OnPropChange(null, v, this.props.data.id, "en")}} className="VarProp_Value" style={{width:"40%"}} value={this.props.data.value.en} floatingLabelText="Значение"/>
                 </div>
-                <IconButton iconStyle={{color:"grey"}}><ActionDelete onClick={()=>{this.props.OnDelete(this.props.data.id)}}/></IconButton>
+                <IconButton iconStyle={{color:"grey"}} onClick={()=>{this.props.OnDelete(this.props.data.id)}}><ActionDelete /></IconButton>
             </li>
         );
     }
