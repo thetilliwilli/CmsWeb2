@@ -49,6 +49,14 @@ export default function TagReducer(state = initState.tagDomain, action){
             newState.exhibitCreate.uuid = uuid();//Форсим апдейт вьюхи
         });
 
+        //EXHIBIT EDIT PAGE
+        case at.SUBMIT_EXHIBIT_UPDATE_REQUEST: return CloneState(state, newState => {
+            newState.exhibitEdit.blockControl = true;
+        });
+        case at.SUBMIT_EXHIBIT_UPDATE_RESPONSE: return CloneState(state, newState => {
+            newState.exhibitEdit.blockControl = false;
+        });
+
         //USER FRIENDLY ERROR WINDOW
         case at.HIDE_ERROR_WINDOW: return CloneState(state, newState => {
             newState.errorInformer.error = null;

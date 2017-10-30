@@ -9,6 +9,7 @@ const S2P = state => ({
     language: state.tagDomain.language,
     uuid: state.tagDomain.exhibitEdit.uuid,
     isEditMode: true,
+    blockControl: state.tagDomain.exhibitEdit.blockControl,
 });
 const D2P = dsp => ({
     SubmitNewExhibit: exhibitData=>dsp(SubmitNewExhibit(exhibitData)),
