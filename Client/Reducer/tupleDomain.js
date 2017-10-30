@@ -44,6 +44,14 @@ export default function TupleReducer(state = initState.tupleDomain, action){
             newState.tupleCreate.uuid = uuid();//Форсим апдейт вьюхи
         });
 
+        //TUPLE EDIT PAGE
+        case at.SUBMIT_TUPLE_UPDATE_REQUEST: return CloneState(state, newState => {
+            newState.tupleEdit.blockControl = true;
+        });
+        case at.SUBMIT_TUPLE_UPDATE_RESPONSE: return CloneState(state, newState => {
+            newState.tupleEdit.blockControl = false;
+        });
+
         //USER FRIENDLY ERROR WINDOW
         case at.HIDE_ERROR_WINDOW: return CloneState(state, newState => {
             newState.errorInformer.error = null;

@@ -150,7 +150,7 @@ export default class Tuple extends React.Component
                 <div style={{width:"100%", height:"6%"}}>
                     <ControlPanel 
                         handlers={{OnClear: this.Clear, OnSubmitNewTuple: this.SubmitNewTuple, OnSubmitTupleUpdate: this.SubmitTupleUpdate}}
-                        blockControl={this.props.data.blockControl} isEditMode={this.props.isEditMode}
+                        blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
                     />
                 </div>
 

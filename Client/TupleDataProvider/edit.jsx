@@ -9,6 +9,7 @@ const S2P = state => ({
     language: state.tupleDomain.language,
     uuid: state.tupleDomain.tupleEdit.uuid,
     isEditMode: true,
+    blockControl: state.tupleDomain.tupleEdit.blockControl,
 });
 const D2P = dsp => ({
     SubmitNewTuple: tupleData=>dsp(SubmitNewTuple(tupleData)),

@@ -7,7 +7,8 @@ import {SubmitNewTuple, ShowErrorWindow, ClearCreateTuple, TupleCatsubChange} fr
 const S2P = state => ({
     data: state.tupleDomain.tupleCreate.data,
     language: state.tupleDomain.language,
-    uuid: state.tupleDomain.tupleCreate.uuid
+    uuid: state.tupleDomain.tupleCreate.uuid,
+    blockControl: state.tupleDomain.tupleCreate.blockControl,
 });
 const D2P = dsp => ({
     SubmitNewTuple: tupleData=>dsp(SubmitNewTuple(tupleData)),
