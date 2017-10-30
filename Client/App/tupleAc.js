@@ -1,6 +1,6 @@
 import * as at from "./tupleAt.js";
 import postman from "../Module/postmanService.js";
-
+import {ShowSuccessInformer} from "./ac.js";
 
 //Helpers--------------------------------------------------------------------------
 
@@ -23,6 +23,7 @@ function _ResponseHandler(postmanResponse, returnedActionType){
         else
         {
             console.log(postmanResponse);
+            dispatch(ShowSuccessInformer(postmanResponse));
             dispatch({
                 type: returnedActionType,
                 payload: postmanResponse,

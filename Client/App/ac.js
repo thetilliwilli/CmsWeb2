@@ -23,6 +23,7 @@ function _ResponseHandler(postmanResponse, returnedActionType){
         else
         {
             console.log(postmanResponse);
+            dispatch(ShowSuccessInformer(postmanResponse));
             dispatch({
                 type: returnedActionType,
                 payload: postmanResponse,
@@ -211,4 +212,18 @@ export function InstSubmitDelete(id){
 
     export function InstSubmitDeleteResponse(response){
         return _ResponseHandler(response, at.INST_SUBMIT_DELETE_RESPONSE);
+    }
+
+//SuccessInformer
+export function ShowSuccessInformer(message){
+    return {
+        type: at.SHOW_SUCCESS_INFORMER,
+        payload: message,
+    };
+}
+
+    export function HideSuccessInformer(){
+        return {
+            type: at.HIDE_SUCCESS_INFORMER,
+        };
     }
