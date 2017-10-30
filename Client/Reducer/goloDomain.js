@@ -49,6 +49,14 @@ export default function GoloReducer(state = initState.goloDomain, action){
             newState.goloCreate.uuid = uuid();//Форсим апдейт вьюхи
         });
 
+        //GOLO EDIT PAGE
+        case at.SUBMIT_GOLO_UPDATE_REQUEST: return CloneState(state, newState => {
+            newState.goloEdit.blockControl = true;
+        });
+        case at.SUBMIT_GOLO_UPDATE_RESPONSE: return CloneState(state, newState => {
+            newState.goloEdit.blockControl = false;
+        });
+
         //USER FRIENDLY ERROR WINDOW
         case at.HIDE_ERROR_WINDOW: return CloneState(state, newState => {
             newState.errorInformer.error = null;

@@ -9,6 +9,7 @@ const S2P = state => ({
     language: state.goloDomain.language,
     uuid: state.goloDomain.goloEdit.uuid,
     isEditMode: true,
+    blockControl: state.goloDomain.goloEdit.blockControl,
 });
 const D2P = dsp => ({
     SubmitNewGolo: goloData=>dsp(SubmitNewGolo(goloData)),

@@ -7,7 +7,8 @@ import {SubmitNewGolo, ShowErrorWindow, ClearCreateGolo} from "../App/goloAc.js"
 const S2P = state => ({
     data: state.goloDomain.goloCreate.data,
     language: state.goloDomain.language,
-    uuid: state.goloDomain.goloCreate.uuid
+    uuid: state.goloDomain.goloCreate.uuid,
+    blockControl: state.goloDomain.goloCreate.blockControl,
 });
 const D2P = dsp => ({
     SubmitNewGolo: goloData=>dsp(SubmitNewGolo(goloData)),

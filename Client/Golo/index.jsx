@@ -125,7 +125,7 @@ export default class Golo extends React.Component
                 <div style={{width:"100%", height:"6%"}}>
                     <ControlPanel 
                         handlers={{OnClear: this.props.Clear, OnSubmitNewGolo: this.SubmitNewGolo, OnSubmitGoloUpdate: this.SubmitGoloUpdate}}
-                        blockControl={this.props.data.blockControl} isEditMode={this.props.isEditMode}
+                        blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
                     />
                 </div>
 
