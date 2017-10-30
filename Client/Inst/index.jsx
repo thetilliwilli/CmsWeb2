@@ -28,31 +28,37 @@ export default class Inst extends React.Component
     }
 
     render(){
-        if(this.props.instList.length === 0)
-            return <span style={{color:"Chocolate "}}>В системе не зарегистрировано ни одного Устройства</span>;
+        const typeFilter = this.props.domain === "tag"
+            ? "exhibit"
+            : this.props.domain;
         return (
             <div style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}} >
                 <div className="Inst.ControlPanel.layout" style={{width:"100%", height:"10%"}}>
                     <ControlPanel filterValue={this.state.filterValue} OnChange={this.OnFilterChange} OnRefresh={this.props.InstRefresh} />
                 </div>
-                <div className="Inst.EditorSelector.layout" style={{width:"100%", height:"90%", display:"flex", flexWrap:"wrap"}}>
-                    <div style={{width:"40%", height:"100%", wordBreak:"break-all", overflow:"auto"}} >
-                        <InstSelector
-                            OnSelect={this.OnSelect}
-                            items={this.props.instList}
-                            filterValue={this.state.filterValue}
-                            domain={this.props.domain}
-                        />
-                    </div>
-                    <div style={{width:"60%", height:"100%", padding:"0px 0px 0px 6px"}} >
-                        <InstEditor
-                            data={this.props.instList.find(i => i.id === this.state.selectedInstId) || {}}
-                            InstChange={this.props.InstChange}
-                            SubmitUpdate={this.props.SubmitUpdate}
-                            SubmitDelete={this.props.SubmitDelete}
-                        />
-                    </div>
-                </div>
+                {
+                    this.props.instList.filter(ex => ex.type ? ex.type === typeFilter : false).length === 0
+                        ? <span style={{color:"Chocolate "}}>В системе не зарегистрировано ни одного Устройства</span>
+                        :
+                            <div className="Inst.EditorSelector.layout" style={{width:"100%", height:"90%", display:"flex", flexWrap:"wrap"}}>
+                                <div style={{width:"40%", height:"100%", wordBreak:"break-all", overflow:"auto"}} >
+                                    <InstSelector
+                                        OnSelect={this.OnSelect}
+                                        items={this.props.instList}
+                                        filterValue={this.state.filterValue}
+                                        domain={this.props.domain}
+                                    />
+                                </div>
+                                <div style={{width:"60%", height:"100%", padding:"0px 0px 0px 6px"}} >
+                                    <InstEditor
+                                        data={this.props.instList.find(i => i.id === this.state.selectedInstId) || {}}
+                                        InstChange={this.props.InstChange}
+                                        SubmitUpdate={this.props.SubmitUpdate}
+                                        SubmitDelete={this.props.SubmitDelete}
+                                    />
+                                </div>
+                            </div>
+                }
                 
             </div>
         );
