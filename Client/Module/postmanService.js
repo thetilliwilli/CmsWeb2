@@ -54,7 +54,7 @@ class PostmanService
         };
         
         var urlEndPoint = `${this.rootUrl}/${channel}`;
-        console.info(`[Request.Post]:(${urlEndPoint}):BodyLength ${options.body.length}, KB`);
+        console.info(`[Request.Post]:(${urlEndPoint}):BodyLength ${(options.body.length/1024/1024).toFixed(1)}, MB`);
         let jsonOrError = this._PromiseToJsonOrError(window.fetch(urlEndPoint, options));
         return this._DispatchCallbackAction(jsonOrError, actionCreator);
     }
@@ -74,7 +74,7 @@ class PostmanService
         };
 
         var urlEndPoint = `${this.rootUrl}/${channel}/${id}`;
-        console.info(`[Request.Put]:(${urlEndPoint}):BodyLength ${options.body.length}, KB`);
+        console.info(`[Request.Put]:(${urlEndPoint}):BodyLength ${(options.body.length/1024/1024).toFixed(1)}, MB`);
         let jsonOrError = this._PromiseToJsonOrError(window.fetch(urlEndPoint, options));
         return this._DispatchCallbackAction(jsonOrError, actionCreator);
     }
