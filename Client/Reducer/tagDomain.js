@@ -85,11 +85,17 @@ export default function TagReducer(state = initState.tagDomain, action){
         });
 
         case at.GET_EXHIBIT_RESPONSE: return CloneState(state, newState => {
-            if(action.payload)
-                newState.exhibitEdit.data = util.DeepCopy(action.payload);
-            // let dt = action.payload.date;
-            // newState.exhibitEdit.data.date = {ru: dt, en: dt, type: "date", notMultiLang: true, label: "Дата создания"};
             newState.exhibitEdit.blockControl = false;
+            if(action.payload)
+            {
+                newState.exhibitEdit.data = util.DeepCopy(action.payload);
+                newState.exhibitEdit.template = util.DeepCopy(action.payload);
+                newState.exhibitEdit.uuid = uuid();
+            }
+        });
+
+        case at.RESET_EDIT_DATA: return CloneState(state, newState =>{
+            newState.exhibitEdit.data = util.DeepCopy(newState.exhibitEdit.template);
             newState.exhibitEdit.uuid = uuid();
         });
 

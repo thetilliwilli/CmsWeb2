@@ -4,7 +4,7 @@ import postman from "../Module/postmanService.js";
 
 //Helpers--------------------------------------------------------------------------
 
-/** 
+/**
  * Обрабатывает ответ от postman
  * @param {Object} postmanResponse ответный Promise от postman'a
  * @param {Object} returnedActionType какой тип Action'a надо вернуть в reducer
@@ -28,7 +28,7 @@ function _ResponseHandler(postmanResponse, returnedActionType){
                 type: returnedActionType,
                 payload: postmanResponse,
             });
-        } 
+        }
 
     };
 }
@@ -122,8 +122,8 @@ export function DeleteExhibitResponse(response){
 /** Пользователь хочет открыть страницу с формой для редактирования и загрузить экспонат с указаным id */
 export function EditExhibit(exhibitId){
     return (dispatch) => {
-        dispatch(ExhibitChangePage(2));
         dispatch(GetExhibitRequest(exhibitId));
+        dispatch(ExhibitChangePage(2));
     };
 }
 
@@ -157,6 +157,10 @@ export function SubmitExhibitUpdateRequest(){
 
 export function SubmitExhibitUpdateResponse(response){
     return _ResponseHandler(response, at.SUBMIT_EXHIBIT_UPDATE_RESPONSE);
+}
+
+export function ResetEditData(){
+    return {type: at.RESET_EDIT_DATA};
 }
 
 //NAVBAR

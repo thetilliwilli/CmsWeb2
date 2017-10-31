@@ -126,7 +126,7 @@ export default class Exhibit extends React.Component
 
                 <div style={{width:"100%", height:"6%"}}>
                     <ControlPanel 
-                        handlers={{OnClear: this.props.Clear, OnSubmitNewExhibit: this.SubmitNewExhibit, OnSubmitExhibitUpdate: this.SubmitExhibitUpdate}}
+                        handlers={{OnClear: this.props.Clear, OnSubmitNewExhibit: this.SubmitNewExhibit, OnSubmitExhibitUpdate: this.SubmitExhibitUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
                     />
                 </div>
