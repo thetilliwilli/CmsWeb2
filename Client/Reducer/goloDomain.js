@@ -94,7 +94,7 @@ export default function GoloReducer(state = initState.goloDomain, action){
             }
         });
 
-        case at.RESET_EDIT_DATA: return CloneState(state, newState =>{
+        case at.GOLO_RESET_EDIT_DATA: return CloneState(state, newState =>{
             newState.goloEdit.data = util.DeepCopy(newState.goloEdit.template);
             newState.goloEdit.uuid = uuid();
         });

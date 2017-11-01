@@ -94,7 +94,7 @@ export default function TagReducer(state = initState.tagDomain, action){
             }
         });
 
-        case at.RESET_EDIT_DATA: return CloneState(state, newState =>{
+        case at.EXHIBIT_RESET_EDIT_DATA: return CloneState(state, newState =>{
             newState.exhibitEdit.data = util.DeepCopy(newState.exhibitEdit.template);
             newState.exhibitEdit.uuid = uuid();
         });

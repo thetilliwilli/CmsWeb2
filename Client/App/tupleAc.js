@@ -160,7 +160,7 @@ export function SubmitTupleUpdateResponse(response){
 }
 
 export function ResetEditData(){
-    return {type: at.RESET_EDIT_DATA};
+    return {type: at.TUPLE_RESET_EDIT_DATA};
 }
 
 //NAVBAR

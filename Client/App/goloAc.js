@@ -160,7 +160,7 @@ export function SubmitGoloUpdateResponse(response){
 }
 
 export function ResetEditData(){
-    return {type: at.RESET_EDIT_DATA};
+    return {type: at.GOLO_RESET_EDIT_DATA};
 }
 
 //NAVBAR

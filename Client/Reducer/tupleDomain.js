@@ -89,7 +89,7 @@ export default function TupleReducer(state = initState.tupleDomain, action){
             }
         });
 
-        case at.RESET_EDIT_DATA: return CloneState(state, newState =>{
+        case at.TUPLE_RESET_EDIT_DATA: return CloneState(state, newState =>{
             newState.tupleEdit.data = util.DeepCopy(newState.tupleEdit.template);
             newState.tupleEdit.uuid = uuid();
         });
