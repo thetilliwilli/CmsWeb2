@@ -128,6 +128,7 @@ export default class Exhibit extends React.Component
                     <ControlPanel 
                         handlers={{OnClear: this.props.Clear, OnSubmitNewExhibit: this.SubmitNewExhibit, OnSubmitExhibitUpdate: this.SubmitExhibitUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
+                        templateName={exhibitData.staticProps.name.ru}
                     />
                 </div>
 

@@ -151,6 +151,7 @@ export default class Tuple extends React.Component
                     <ControlPanel 
                         handlers={{OnClear: this.Clear, OnSubmitNewTuple: this.SubmitNewTuple, OnSubmitTupleUpdate: this.SubmitTupleUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
+                        templateName={tupleData.staticProps.name.ru}
                     />
                 </div>
 

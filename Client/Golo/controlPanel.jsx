@@ -13,7 +13,8 @@ export default function ControlPanel(props){
         ? <div>
             <RaisedButton label="СОХРАНИТЬ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitGoloUpdate}></RaisedButton>
             <RaisedButton label="СОЗДАТЬ НОВЫЙ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitNewGolo}></RaisedButton>
-            <RaisedButton label="ВОССТАНОВИТЬ" style={{margin:"10px"}} onClick={props.handlers.ResetEditData}></RaisedButton>
+            <RaisedButton label="ВОССТАНОВИТЬ ШАБЛОН" style={{margin:"10px"}} onClick={props.handlers.ResetEditData}></RaisedButton>
+            <span style={{color:"lightgrey"}} >{props.templateName}</span>
         </div>
         : <div>
             <RaisedButton label="ЗАГРУЗИТЬ В БАЗУ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitNewGolo}></RaisedButton>

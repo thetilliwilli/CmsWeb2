@@ -126,6 +126,7 @@ export default class Golo extends React.Component
                     <ControlPanel 
                         handlers={{OnClear: this.props.Clear, OnSubmitNewGolo: this.SubmitNewGolo, OnSubmitGoloUpdate: this.SubmitGoloUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
+                        templateName={goloData.staticProps.name.ru}
                     />
                 </div>
 
