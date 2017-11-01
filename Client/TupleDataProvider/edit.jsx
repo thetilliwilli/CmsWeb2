@@ -2,7 +2,7 @@
 import React from "react";
 import Tuple from "../Tuple/index.jsx";
 import {connect} from "react-redux";
-import {SubmitTupleUpdate, ShowErrorWindow, SubmitNewTuple} from "../App/tupleAc.js";
+import {SubmitTupleUpdate, ShowErrorWindow, SubmitNewTuple, ResetEditData} from "../App/tupleAc.js";
 
 const S2P = state => ({
     data: state.tupleDomain.tupleEdit.data,
@@ -14,7 +14,8 @@ const S2P = state => ({
 const D2P = dsp => ({
     SubmitNewTuple: tupleData=>dsp(SubmitNewTuple(tupleData)),
     SubmitTupleUpdate: (tupleData, id) => dsp(SubmitTupleUpdate(tupleData, id)),
-    ShowErrorWindow: error=>dsp(ShowErrorWindow(error))
+    ShowErrorWindow: error=>dsp(ShowErrorWindow(error)),
+    ResetEditData: () => dsp(ResetEditData()),
 });
 
 export default connect(S2P,D2P)(Tuple);
