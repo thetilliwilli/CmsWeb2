@@ -42,6 +42,6 @@ export default {
             blockControl: false,
             uuid: uuid(),
             data: util.DeepCopy(CORE),
-            template: {}
+            template: util.DeepCopy(CORE),
         }
     };
