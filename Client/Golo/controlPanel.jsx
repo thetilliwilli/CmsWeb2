@@ -10,16 +10,15 @@ const BlockerUi = (props) =>
 
 export default function ControlPanel(props){
     const buttonBar = props.isEditMode
-        ? <div>
-            <RaisedButton label="СОХРАНИТЬ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitGoloUpdate}></RaisedButton>
-            <RaisedButton label="СОЗДАТЬ НОВЫЙ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitNewGolo}></RaisedButton>
-            <RaisedButton label="ВОССТАНОВИТЬ ШАБЛОН" style={{margin:"10px"}} onClick={props.handlers.ResetEditData}></RaisedButton>
-            <span style={{color:"lightgrey"}} >{props.templateName}</span>
+        ? <div style={{padding:"4px 4px 4px 4px"}}>
+            <RaisedButton label="СОХРАНИТЬ" style={{marginLeft:"10px"}} onClick={props.handlers.OnSubmitGoloUpdate}></RaisedButton>
+            <RaisedButton label="СОЗДАТЬ НОВЫЙ" style={{marginLeft:"10px"}} onClick={props.handlers.OnSubmitNewGolo}></RaisedButton>
+            <RaisedButton label="ВОССТАНОВИТЬ ШАБЛОН" style={{marginLeft:"10px"}} onClick={props.handlers.ResetEditData}></RaisedButton>
+            <span style={{color:"lightgrey", marginLeft:"10px"}} >{props.templateName}</span>
         </div>
-        : <div>
-            <RaisedButton label="ЗАГРУЗИТЬ В БАЗУ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitNewGolo}></RaisedButton>
-            {/* <RaisedButton label="СОХРАНИТЬ КАК ШАБЛОН" style={{margin:"10px"}}/> */}
-            <RaisedButton label="ОЧИСТИТЬ" style={{margin:"10px"}} onClick={props.handlers.OnClear}/>
+        : <div style={{padding:"4px 4px 4px 4px"}}>
+            <RaisedButton label="ЗАГРУЗИТЬ В БАЗУ" style={{marginLeft:"10px"}} onClick={props.handlers.OnSubmitNewGolo}></RaisedButton>
+            <RaisedButton label="ОЧИСТИТЬ" style={{marginLeft:"10px"}} onClick={props.handlers.OnClear}/>
         </div>;
     return (
         <div className="ControlPanel">
