@@ -85,11 +85,17 @@ export default function GoloReducer(state = initState.goloDomain, action){
         });
 
         case at.GET_GOLO_RESPONSE: return CloneState(state, newState => {
-            if(action.payload)
-                newState.goloEdit.data = util.DeepCopy(action.payload);
-            // let dt = action.payload.date;
-            // newState.goloEdit.data.date = {ru: dt, en: dt, type: "date", notMultiLang: true, label: "Дата создания"};
             newState.goloEdit.blockControl = false;
+            if(action.payload)
+            {
+                newState.goloEdit.data = util.DeepCopy(action.payload);
+                newState.goloEdit.template = util.DeepCopy(action.payload);
+                newState.goloEdit.uuid = uuid();
+            }
+        });
+
+        case at.RESET_EDIT_DATA: return CloneState(state, newState =>{
+            newState.goloEdit.data = util.DeepCopy(newState.goloEdit.template);
             newState.goloEdit.uuid = uuid();
         });
 

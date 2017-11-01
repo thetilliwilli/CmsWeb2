@@ -12,7 +12,8 @@ export default function ControlPanel(props){
     const buttonBar = props.isEditMode
         ? <div>
             <RaisedButton label="СОХРАНИТЬ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitGoloUpdate}></RaisedButton>
-            <RaisedButton label="СОХРАНИТЬ НОВЫЙ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitNewGolo}></RaisedButton>
+            <RaisedButton label="СОЗДАТЬ НОВЫЙ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitNewGolo}></RaisedButton>
+            <RaisedButton label="ВОССТАНОВИТЬ" style={{margin:"10px"}} onClick={props.handlers.ResetEditData}></RaisedButton>
         </div>
         : <div>
             <RaisedButton label="ЗАГРУЗИТЬ В БАЗУ" style={{margin:"10px"}} onClick={props.handlers.OnSubmitNewGolo}></RaisedButton>
