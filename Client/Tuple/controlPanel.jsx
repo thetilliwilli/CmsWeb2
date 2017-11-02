@@ -14,7 +14,7 @@ export default function ControlPanel(props){
             <RaisedButton label="СОХРАНИТЬ" style={{marginLeft:"10px"}} onClick={props.handlers.OnSubmitTupleUpdate}></RaisedButton>
             <RaisedButton label="СОЗДАТЬ НОВЫЙ" style={{marginLeft:"10px"}} onClick={props.handlers.OnSubmitNewTuple}></RaisedButton>
             <div style={{float:"right"}} >
-                <span style={{color:"lightgrey", marginLeft:"10px"}} >{props.templateName}</span>
+                <span style={{color:"lightgrey", marginLeft:"10px"}} >{props.templateIndex} - {props.templateName}</span>
                 <RaisedButton label="ВОССТАНОВИТЬ ШАБЛОН" style={{marginLeft:"10px"}} onClick={props.handlers.ResetEditData}></RaisedButton>
             </div>
         </div>

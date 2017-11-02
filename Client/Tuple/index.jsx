@@ -116,7 +116,7 @@ export default class Tuple extends React.Component
         
         var imageGallery = dto.imageGallery.map(i => ({src: i.image, id: i.guid, description: i.description}));
 
-        return {staticProps, imageGallery, coverImage: dto.coverImage};
+        return {staticProps, imageGallery, coverImage: dto.coverImage, id: dto._id};
     }
 
     OnCatsubChange(newValue){
@@ -152,6 +152,7 @@ export default class Tuple extends React.Component
                         handlers={{OnClear: this.Clear, OnSubmitNewTuple: this.SubmitNewTuple, OnSubmitTupleUpdate: this.SubmitTupleUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
                         templateName={tupleData.staticProps.name.ru}
+                        templateIndex={tupleData.id}
                     />
                 </div>
 
