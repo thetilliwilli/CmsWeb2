@@ -11,20 +11,43 @@ class ExhibitList extends React.Component
 {
     constructor(props){
         super(props);
+        this.OnBadgeSelect = this.OnBadgeSelect.bind(this);
+    }
+
+    Filter(list, filterValue){
+        
+        switch(filterValue[0])
+        {
+            case "#"://Если первый знак Решетка то ищем по айдишнику
+            case "№":
+                return list.filter(i => i.id==filterValue.slice(1));
+            case "?"://Если первый знак ЗнакВопроса то ищем по витрине
+                return list.filter(i => i.complex==filterValue.slice(1));
+            //Ищем по названию
+            default: return list.filter(i => i.name.toLowerCase().indexOf(filterValue.toLowerCase())!==-1);
+        }
+    }
+
+    OnBadgeSelect(event, complex){
+        event.nativeEvent.preventDefault();
+        event.nativeEvent.stopPropagation()
+        event.nativeEvent.stopImmediatePropagation()
+        this.props.OnBadgeSelect(complex);
     }
 
     render(){
         const filterValue = this.props.filterValue.toLowerCase();
-        var tableRows = this.props.exhibitList.filter( i => filterValue[0]==="#" || filterValue[0]==="№"//Если первый знак Решетка то ищем по айдишнику
-            ? i.id==filterValue.slice(1)
-            : i.name.toLowerCase().indexOf(filterValue.toLowerCase())!==-1
-        );
-        tableRows = tableRows.map(
+        var items = this.Filter(this.props.exhibitList, filterValue);
+        items = items.map(
             (ex)=>(
                 <ListItem
                     style={{borderBottom:"1px solid lightgrey"}}
                     key={ex.id}
-                    primaryText={<span> <span style={{color:"lightgrey"}}>{`#${("0000" + ex.id).slice(-3)}`}</span> <span>{ex.name}</span> </span>}
+                    primaryText={<span>
+                            <span style={{color:"lightgrey"}}>{`#${("0000" + ex.id).slice(-3)}`}</span>
+                            <span>{ex.name}</span>
+                            <span className="ComplexBadge" onMouseDown={e=>this.OnBadgeSelect(e, ex.complex)}>{ex.complex || "\u00a0?\u00a0"}</span>
+                    </span>}
                     rightIconButton={<IconButton onClick={()=>{this.props.OnDelete(ex.id)}} iconStyle={{color:"crimson"}}><ActionDelete/></IconButton>}
                     onClick={()=>{this.props.EditExhibit(ex.id)}}
               />
@@ -33,7 +56,7 @@ class ExhibitList extends React.Component
         return (
             <List className="ExhibitOverview_ExhibitList">
                 <Subheader>Список экспонатов</Subheader>
-                {tableRows}
+                {items}
             </List>
         );
     }

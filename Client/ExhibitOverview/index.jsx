@@ -16,6 +16,7 @@ class ExhibitOverview extends React.Component
         this.state = {filter:""};
         
         this.OnFilterChange = this.OnFilterChange.bind(this);
+        this.OnBadgeSelect = this.OnBadgeSelect.bind(this);
     }
 
     componentWillMount(){
@@ -24,6 +25,9 @@ class ExhibitOverview extends React.Component
 
     OnFilterChange(event){
         this.setState({filter:event.target.value});
+    }
+    OnBadgeSelect(complex){
+        this.setState({filter:"?"+(complex?complex:"")});
     }
 
     render(){
@@ -37,7 +41,7 @@ class ExhibitOverview extends React.Component
                         <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter} OnRefresh={this.props.FetchOverview}/>
                     </div>
                     <div style={{width:"100%", height:"90%", overflow:"auto"}} >
-                        <ExhibitList OnDelete={this.props.DeleteExhibit} exhibitList={this.props.model} filter={this.state.filter} filterValue={this.state.filter}/>
+                        <ExhibitList OnBadgeSelect={this.OnBadgeSelect} OnDelete={this.props.DeleteExhibit} exhibitList={this.props.model} filter={this.state.filter} filterValue={this.state.filter}/>
                     </div>
                 </div>
             </div>
