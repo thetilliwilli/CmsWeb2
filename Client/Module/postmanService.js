@@ -111,12 +111,14 @@ class PostmanService
     _DispatchCallbackAction(promise, actionCreator){
         return promise.then(json => {
                 if(actionCreator)
-                    this.Dispatch(actionCreator(json))
+                    this.Dispatch(actionCreator(json));
+                return json;
             })
             .catch(error => {
                 console.error(`Попытка запроса на сервер не удалась: ${error}`);
                 if(actionCreator)
-                    this.Dispatch(actionCreator({error}))
+                    this.Dispatch(actionCreator({error}));
+                return {error};
             });
     }
 }

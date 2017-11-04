@@ -48,11 +48,9 @@ class ExhibitList extends React.Component
                         <span style={{color:"lightgrey"}}>{`#${("0000" + ex.id).slice(-3)}`}</span>
                         <span>{"\u00a0\u00a0"}{ex.name}</span>
                         <span className="ComplexBadge" onClick={e=>this.OnBadgeSelect(e, ex.complex)}>{ex.complex || "\u00a0?\u00a0"}</span>
-                        {"\u00a0"/*nbsp отделить complexBadge от complexBadgeChanger*/}
-                        {
-                            this.props.complex//если не пустая строка то
-                                ? <span className="ComplexBadgeChanger">{"\u00a0\u27a8\u00a0"}{this.props.complex}</span>
-                                : null
+                        {this.props.complex && this.props.complex !== ex.complex//если не пустая строка то
+                            ? <span className="ComplexBadgeChanger" onClick={e=>{e.stopPropagation();this.props.ChangeComplexRemote(ex.id, this.props.complex)}}>{"\u00a0\u27a7\u00a0"}{this.props.complex}</span>
+                            : null
                         }
                     </span>
                 </ListItem>
@@ -70,6 +68,7 @@ class ExhibitList extends React.Component
 import {connect} from "react-redux";
 import * as ac from "../App/ac.js";
 const D2P = dsp => ({
-    EditExhibit: (exhibitId) => dsp(ac.EditExhibit(exhibitId))
+    EditExhibit: (exhibitId) => dsp(ac.EditExhibit(exhibitId)),
+    ChangeComplexRemote: (id, complex) => dsp(ac.ExhibitChangeComplex(id, complex)),
 });
 export default connect(null, D2P)(ExhibitList);

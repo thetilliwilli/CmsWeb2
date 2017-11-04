@@ -82,6 +82,7 @@ export function ShowErrorWindow(error){
     return { type: at.SHOW_ERROR_WINDOW, payload: error }
 }
 
+//OVERVIEW PAGE
 
 export function FetchOverview(){
     return function(dispatch){
@@ -138,6 +139,32 @@ export function GetExhibitRequest(exhibitId){
 export function GetExhibitResponse(response){
     return _ResponseHandler(response, at.GET_EXHIBIT_RESPONSE);
 }
+
+export function ExhibitChangeComplex(id, complex){
+    return function(dispatch){
+        dispatch(ExhibitChangeComplexRequest());
+
+        postman.Put("exhibit", id, {complex}, ExhibitChangeComplexResponse)
+            .then(result => result.error ? null : dispatch(ExhibitApplyChangeComplex(id, complex)));
+    };
+}
+
+    export function ExhibitChangeComplexRequest(){
+        return {
+            type: at.EXHIBIT_CHANGE_COMPLEX_REQUEST,
+        };
+    }
+    export function ExhibitChangeComplexResponse(response){
+        return _ResponseHandler(response, at.EXHIBIT_CHANGE_COMPLEX_RESPONSE);
+    }
+    export function ExhibitApplyChangeComplex(id, complex){
+        return {
+            type: at.EXHIBIT_APPLY_CHANGE_COMPLEX,
+            payload: {id, complex},
+        }
+    }
+
+//EDIT PAGE
 
 /** Пользователь внес изменения и хочет обновить экспонат на сервере */
 export function SubmitExhibitUpdate(exhibitData, id){
