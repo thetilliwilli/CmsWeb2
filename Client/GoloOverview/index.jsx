@@ -34,14 +34,14 @@ class GoloOverview extends React.Component
         return (
             <div className="GoloOverview" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}}>
                 <div style={{width:"34%", height:"100%", padding: "20px 20px 20px 20px", borderRight:"1px solid lightgrey"}} >
-                    <InstProvider />
+                    <InstProvider EditEntity={this.props.EditGolo}/>
                 </div>
                 <div style={{width:"66%", height:"100%", display:"flex", flexWrap:"wrap", padding: "20px 20px 20px 20px", borderLeft:"1px solid lightgrey"}} >
                     <div style={{width:"100%", height:"10%"}} >
                         <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter} OnRefresh={this.props.FetchOverview}/>
                     </div>
                     <div style={{width:"100%", height:"90%", overflow:"auto"}} >
-                    <GoloList OnBadgeSelect={this.OnBadgeSelect} OnDelete={this.props.DeleteGolo} goloList={this.props.model} filter={this.state.filter} filterValue={this.state.filter}/>
+                        <GoloList OnBadgeSelect={this.OnBadgeSelect} OnDelete={this.props.DeleteGolo} goloList={this.props.model} filter={this.state.filter} filterValue={this.state.filter}/>
                     </div>
                 </div>
             </div>
@@ -56,6 +56,7 @@ const S2P = state => ({
 });
 const D2P = dsp => ({
     DeleteGolo: goloId => dsp(ac.DeleteGolo(goloId)),
-    FetchOverview: () => dsp(ac.FetchOverview())
+    FetchOverview: () => dsp(ac.FetchOverview()),
+    EditGolo: (exhibitId) => dsp(ac.EditGolo(exhibitId))
 });
 export default connect(S2P,D2P)(GoloOverview);

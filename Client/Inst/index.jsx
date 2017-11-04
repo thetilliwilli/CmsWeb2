@@ -61,6 +61,7 @@ export default class Inst extends React.Component
                                                     InstChange={this.props.InstChange}
                                                     SubmitUpdate={this.props.SubmitUpdate}
                                                     SubmitDelete={this.props.SubmitDelete}
+                                                    EditEntity={this.props.EditEntity}
                                                 />
                                             : <Warning message="Выберите устройства из списка"/>
                                     }

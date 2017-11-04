@@ -16,15 +16,12 @@ class ComplexList extends React.Component
                 : false
             )
             .map(ex =>
-                <ListItem
-                    key={ex.id}
-                    primaryText={
-                        <span>
-                            <span style={{color:"lightgrey"}}>{`#${("0000" + ex.id).slice(-3)}`}</span>
-                            <span>{ex.name}</span>
-                        </span>
-                    }
-                />
+                <ListItem key={ex.id} onClick={()=>this.props.EditEntity(ex.id)}>
+                    <span>
+                        <span style={{color:"lightgrey"}}>{`#${("0000" + ex.id).slice(-3)}`}</span>
+                        <span>{"\u00a0\u00a0"}{ex.name}</span>
+                    </span>
+                </ListItem>
             );
         return (
             <List style={{height:"100%", width:"100%"}} >

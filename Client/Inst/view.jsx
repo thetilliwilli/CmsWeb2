@@ -35,7 +35,7 @@ export default class InstView extends React.Component
                     <TextField name="complex" onChange={this.OnChange} value={this.props.data.complex || ""} floatingLabelText="complex"  fullWidth />
                 </form>
                 <div style={{width:"100%"}} >
-                    <ComplexList complex={this.props.data.complex} />
+                    <ComplexList EditEntity={this.props.EditEntity} complex={this.props.data.complex} />
                 </div>
             </div>
         );

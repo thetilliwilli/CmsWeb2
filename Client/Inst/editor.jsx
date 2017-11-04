@@ -37,7 +37,7 @@ export default class InstEditor extends React.Component
                     <CP OnSave={this.OnSave} OnDelete={this.OnDelete}/>
                 </div>
                 <div style={{width:"100%"}}>
-                    <InstView InstChange={this.props.InstChange} data={this.props.data} />
+                    <InstView InstChange={this.props.InstChange} EditEntity={this.props.EditEntity} data={this.props.data} />
                 </div>
             </div>
         );
