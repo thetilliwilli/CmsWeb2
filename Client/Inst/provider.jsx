@@ -28,6 +28,7 @@ class Provider extends React.Component
             SubmitDelete={this.props.SubmitDelete}
             InstRefresh={this.props.FetchData}
             EditEntity={this.props.EditEntity}
+            OnChangeComplex={this.props.OnChangeComplex}
             domain={this.domain}
         />
     }

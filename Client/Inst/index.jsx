@@ -23,6 +23,8 @@ export default class Inst extends React.Component
 
     OnSelect(instId){
         this.setState({selectedInstId:instId});
+        //Передаем значение витрины (complex) в текущем выбранном устройстве
+        this.props.OnChangeComplex(this.props.instList.find(i => i.id === instId).complex);
     }
 
     OnFilterChange(event, newValue){

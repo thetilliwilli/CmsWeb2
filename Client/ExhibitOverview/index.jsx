@@ -13,10 +13,11 @@ class ExhibitOverview extends React.Component
     constructor(props){
         super(props);
 
-        this.state = {filter:""};
+        this.state = {filter:"", complex:""};
         
         this.OnFilterChange = this.OnFilterChange.bind(this);
         this.OnBadgeSelect = this.OnBadgeSelect.bind(this);
+        this.OnChangeComplex = this.OnChangeComplex.bind(this);
     }
 
     componentWillMount(){
@@ -30,18 +31,25 @@ class ExhibitOverview extends React.Component
         this.setState({filter:"?"+(complex?complex:"")});
     }
 
+    OnChangeComplex(complexId){
+        this.setState({complex:complexId});
+    }
+
     render(){
         return (
             <div className="ExhibitOverview" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}}>
                 <div style={{width:"34%", height:"100%", padding: "20px 20px 20px 20px", borderRight:"1px solid lightgrey"}} >
-                    <InstProvider EditEntity={this.props.EditExhibit}/>
+                    <InstProvider OnChangeComplex={this.OnChangeComplex} EditEntity={this.props.EditExhibit}/>
                 </div>
                 <div style={{width:"66%", height:"100%", display:"flex", flexWrap:"wrap", padding: "20px 20px 20px 20px", borderLeft:"1px solid lightgrey"}} >
                     <div style={{width:"100%", height:"10%"}} >
                         <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter} OnRefresh={this.props.FetchOverview}/>
                     </div>
                     <div style={{width:"100%", height:"90%", overflow:"auto"}} >
-                        <ExhibitList OnBadgeSelect={this.OnBadgeSelect} OnDelete={this.props.DeleteExhibit} exhibitList={this.props.model} filter={this.state.filter} filterValue={this.state.filter}/>
+                        <ExhibitList
+                            OnBadgeSelect={this.OnBadgeSelect} OnDelete={this.props.DeleteExhibit}
+                            exhibitList={this.props.model} filter={this.state.filter} filterValue={this.state.filter} complex={this.state.complex}
+                        />
                     </div>
                 </div>
             </div>
