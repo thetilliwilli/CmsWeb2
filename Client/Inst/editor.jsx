@@ -32,7 +32,7 @@ export default class InstEditor extends React.Component
 
     render(){
         return (
-            <div style={{width:"100%", display:"flex", flexWrap:"wrap", boxShadow:"0px 0px 17px 1px rgba(128,128,192,0.4)"}} >
+            <div style={{width:"100%", maxHeight:"100%", overflow:"auto", display:"flex", flexWrap:"wrap", boxShadow:"0px 0px 17px 1px rgba(128,128,192,0.4)"}} >
                 <div style={{height:"10%", width:"100%"}} >
                     <CP OnSave={this.OnSave} OnDelete={this.OnDelete}/>
                 </div>
