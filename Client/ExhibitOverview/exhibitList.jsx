@@ -29,9 +29,7 @@ class ExhibitList extends React.Component
     }
 
     OnBadgeSelect(event, complex){
-        event.nativeEvent.preventDefault();
-        event.nativeEvent.stopPropagation()
-        event.nativeEvent.stopImmediatePropagation()
+        event.stopPropagation();
         this.props.OnBadgeSelect(complex);
     }
 
@@ -43,14 +41,15 @@ class ExhibitList extends React.Component
                 <ListItem
                     style={{borderBottom:"1px solid lightgrey"}}
                     key={ex.id}
-                    primaryText={<span>
-                            <span style={{color:"lightgrey"}}>{`#${("0000" + ex.id).slice(-3)}`}</span>
-                            <span>{ex.name}</span>
-                            <span className="ComplexBadge" onMouseDown={e=>this.OnBadgeSelect(e, ex.complex)}>{ex.complex || "\u00a0?\u00a0"}</span>
-                    </span>}
                     rightIconButton={<IconButton onClick={()=>{this.props.OnDelete(ex.id)}} iconStyle={{color:"crimson"}}><ActionDelete/></IconButton>}
                     onClick={()=>{this.props.EditExhibit(ex.id)}}
-              />
+                >
+                    <span>
+                        <span style={{color:"lightgrey"}}>{`#${("0000" + ex.id).slice(-3)}`}</span>
+                        <span>{"\u00a0\u00a0"}{ex.name}</span>
+                        <span className="ComplexBadge" onClick={e=>this.OnBadgeSelect(e, ex.complex)}>{ex.complex || "\u00a0?\u00a0"}</span>
+                    </span>
+                </ListItem>
             )
         );
         return (

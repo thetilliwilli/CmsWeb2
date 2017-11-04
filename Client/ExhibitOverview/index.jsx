@@ -23,8 +23,8 @@ class ExhibitOverview extends React.Component
         this.props.FetchOverview();
     }
 
-    OnFilterChange(event){
-        this.setState({filter:event.target.value});
+    OnFilterChange(event, newValue){
+        this.setState({filter:newValue});
     }
     OnBadgeSelect(complex){
         this.setState({filter:"?"+(complex?complex:"")});
