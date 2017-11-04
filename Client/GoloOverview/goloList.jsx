@@ -48,6 +48,10 @@ class GoloList extends React.Component
                         <span style={{color:"lightgrey"}}>{`#${("0000" + ex.id).slice(-3)}`}</span>
                         <span>{"\u00a0\u00a0"}{ex.name}</span>
                         <span className="ComplexBadge" onClick={e=>this.OnBadgeSelect(e, ex.complex)}>{ex.complex || "\u00a0?\u00a0"}</span>
+                        {this.props.complex && this.props.complex !== ex.complex//если не пустая строка то
+                            ? <span className="ComplexBadgeChanger" onClick={e=>{e.stopPropagation();this.props.ChangeComplexRemote(ex.id, this.props.complex)}}>{"\u279e\u00a0"}{this.props.complex}</span>
+                            : null
+                        }
                     </span>
                 </ListItem>
             )
@@ -64,6 +68,7 @@ class GoloList extends React.Component
 import {connect} from "react-redux";
 import * as ac from "../App/goloAc.js";
 const D2P = dsp => ({
-    EditGolo: (goloId) => dsp(ac.EditGolo(goloId))
+    EditGolo: (goloId) => dsp(ac.EditGolo(goloId)),
+    ChangeComplexRemote: (id, complex) => dsp(ac.GoloChangeComplex(id, complex)),
 });
 export default connect(null, D2P)(GoloList);

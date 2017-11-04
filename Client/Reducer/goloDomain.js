@@ -56,6 +56,9 @@ export default function GoloReducer(state = initState.goloDomain, action){
         case at.SUBMIT_GOLO_UPDATE_RESPONSE: return CloneState(state, newState => {
             newState.goloEdit.blockControl = false;
         });
+        case at.GOLO_APPLY_CHANGE_COMPLEX: return CloneState(state, newState => {
+            newState.overview.find(i => i.id===action.payload.id).complex = action.payload.complex;
+        });
 
         //USER FRIENDLY ERROR WINDOW
         case at.HIDE_ERROR_WINDOW: return CloneState(state, newState => {

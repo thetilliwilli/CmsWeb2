@@ -49,7 +49,7 @@ class ExhibitList extends React.Component
                         <span>{"\u00a0\u00a0"}{ex.name}</span>
                         <span className="ComplexBadge" onClick={e=>this.OnBadgeSelect(e, ex.complex)}>{ex.complex || "\u00a0?\u00a0"}</span>
                         {this.props.complex && this.props.complex !== ex.complex//если не пустая строка то
-                            ? <span className="ComplexBadgeChanger" onClick={e=>{e.stopPropagation();this.props.ChangeComplexRemote(ex.id, this.props.complex)}}>{"\u00a0\u27a7\u00a0"}{this.props.complex}</span>
+                            ? <span className="ComplexBadgeChanger" onClick={e=>{e.stopPropagation();this.props.ChangeComplexRemote(ex.id, this.props.complex)}}>{"\u279e\u00a0"}{this.props.complex}</span>
                             : null
                         }
                     </span>

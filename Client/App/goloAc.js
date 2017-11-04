@@ -139,6 +139,32 @@ export function GetGoloResponse(response){
     return _ResponseHandler(response, at.GET_GOLO_RESPONSE);
 }
 
+export function GoloChangeComplex(id, complex){
+    return function(dispatch){
+        dispatch(GoloChangeComplexRequest());
+
+        postman.Put("golo", id, {complex}, GoloChangeComplexResponse)
+            .then(result => result.error ? null : dispatch(GoloApplyChangeComplex(id, complex)));
+    };
+}
+
+    export function GoloChangeComplexRequest(){
+        return {
+            type: at.GOLO_CHANGE_COMPLEX_REQUEST,
+        };
+    }
+    export function GoloChangeComplexResponse(response){
+        return _ResponseHandler(response, at.GOLO_CHANGE_COMPLEX_RESPONSE);
+    }
+    export function GoloApplyChangeComplex(id, complex){
+        return {
+            type: at.GOLO_APPLY_CHANGE_COMPLEX,
+            payload: {id, complex},
+        }
+    }
+
+//EDIT PAGE
+
 /** Пользователь внес изменения и хочет обновить экспонат на сервере */
 export function SubmitGoloUpdate(goloData, id){
 
