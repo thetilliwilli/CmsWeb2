@@ -113,7 +113,7 @@ export default class Exhibit extends React.Component
 
         // var imageHref = dto.coverImage;
 
-        return {staticProps, variableProps, imageGallery, coverImage: dto.coverImage};
+        return {staticProps, variableProps, imageGallery, coverImage: dto.coverImage, id: dto._id};
     }
 
     render(){
@@ -128,6 +128,8 @@ export default class Exhibit extends React.Component
                     <ControlPanel 
                         handlers={{OnClear: this.props.Clear, OnSubmitNewExhibit: this.SubmitNewExhibit, OnSubmitExhibitUpdate: this.SubmitExhibitUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
+                        templateName={exhibitData.staticProps.name.ru}
+                        templateIndex={exhibitData.id}
                     />
                 </div>
 

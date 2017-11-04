@@ -122,8 +122,8 @@ export function DeleteGoloResponse(response){
 /** Пользователь хочет открыть страницу с формой для редактирования и загрузить экспонат с указаным id */
 export function EditGolo(goloId){
     return (dispatch) => {
-        dispatch(GoloChangePage(2));
         dispatch(GetGoloRequest(goloId));
+        dispatch(GoloChangePage(2));
     };
 }
 
@@ -157,6 +157,10 @@ export function SubmitGoloUpdateRequest(){
 
 export function SubmitGoloUpdateResponse(response){
     return _ResponseHandler(response, at.SUBMIT_GOLO_UPDATE_RESPONSE);
+}
+
+export function ResetEditData(){
+    return {type: at.GOLO_RESET_EDIT_DATA};
 }
 
 //NAVBAR

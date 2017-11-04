@@ -160,7 +160,7 @@ export function SubmitExhibitUpdateResponse(response){
 }
 
 export function ResetEditData(){
-    return {type: at.RESET_EDIT_DATA};
+    return {type: at.EXHIBIT_RESET_EDIT_DATA};
 }
 
 //NAVBAR

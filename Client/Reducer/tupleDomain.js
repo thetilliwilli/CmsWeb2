@@ -80,11 +80,17 @@ export default function TupleReducer(state = initState.tupleDomain, action){
         });
 
         case at.GET_TUPLE_RESPONSE: return CloneState(state, newState => {
-            if(action.payload)
-                newState.tupleEdit.data = util.DeepCopy(action.payload);
-            // let dt = action.payload.date;
-            // newState.tupleEdit.data.date = {ru: dt, en: dt, type: "date", notMultiLang: true, label: "Дата создания"};
             newState.tupleEdit.blockControl = false;
+            if(action.payload)
+            {
+                newState.tupleEdit.data = util.DeepCopy(action.payload);
+                newState.tupleEdit.template = util.DeepCopy(action.payload);
+                newState.tupleEdit.uuid = uuid();
+            }
+        });
+
+        case at.TUPLE_RESET_EDIT_DATA: return CloneState(state, newState =>{
+            newState.tupleEdit.data = util.DeepCopy(newState.tupleEdit.template);
             newState.tupleEdit.uuid = uuid();
         });
 

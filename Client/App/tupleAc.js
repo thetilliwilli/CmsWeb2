@@ -122,8 +122,8 @@ export function DeleteTupleResponse(response){
 /** Пользователь хочет открыть страницу с формой для редактирования и загрузить экспонат с указаным id */
 export function EditTuple(tupleId){
     return (dispatch) => {
-        dispatch(TupleChangePage(2));
         dispatch(GetTupleRequest(tupleId));
+        dispatch(TupleChangePage(2));
     };
 }
 
@@ -157,6 +157,10 @@ export function SubmitTupleUpdateRequest(){
 
 export function SubmitTupleUpdateResponse(response){
     return _ResponseHandler(response, at.SUBMIT_TUPLE_UPDATE_RESPONSE);
+}
+
+export function ResetEditData(){
+    return {type: at.TUPLE_RESET_EDIT_DATA};
 }
 
 //NAVBAR
