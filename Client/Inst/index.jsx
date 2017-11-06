@@ -52,6 +52,7 @@ export default class Inst extends React.Component
                                         items={this.props.instList}
                                         filterValue={this.state.filterValue}
                                         domain={this.props.domain}
+                                        selectedInstId={this.state.selectedInstId}
                                     />
                                 </div>
                                 <div style={{width:"60%", height:"100%", padding:"0px 0px 0px 6px"}} >

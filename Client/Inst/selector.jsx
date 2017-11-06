@@ -5,6 +5,12 @@ import {List, ListItem} from 'material-ui/List';
 
 export default class InstSelector extends React.Component
 {
+    SelectedStyle(id){
+        return this.props.selectedInstId === id
+            ? { border:"1px solid lightgrey", }
+            : { border:"1px solid rgba(0,0,0,0)" };
+    }
+
     render(){
         const typeFilter = this.props.domain === "tag"
             ? "exhibit"
@@ -21,6 +27,7 @@ export default class InstSelector extends React.Component
                     primaryText={i.hardname || `#${i.id}`}
                     secondaryText={i.description || `Без описания`}
                     onClick={() => this.props.OnSelect(i.id)}
+                    style={this.SelectedStyle(i.id)}
                 />
             );
         return (
