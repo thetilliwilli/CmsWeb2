@@ -13,6 +13,8 @@ import VariableProps from "./variableProps.jsx";
 import ImageGallery from "./imageGallery.jsx";
 import ControlPanel from "./controlPanel.jsx";
 
+import {DEFAULT_IMAGE_AVATAR} from "../Module/consts.js";
+
 export default class Tuple extends React.Component
 {
     constructor(props){
@@ -66,7 +68,7 @@ export default class Tuple extends React.Component
         var variableProps = this.VariablePropsRef.Data();
 
         var avatar = this.AvatarRef.Data();
-        var coverImageOrUndefined = avatar.src === "/static/img/defaultTupleAvatar.jpg" ? undefined : avatar.src;
+        var coverImageOrUndefined = avatar.src === DEFAULT_IMAGE_AVATAR ? undefined : avatar.src;
 
         var gallery = this.ImageGalleryRef.Data();
         gallery = gallery.map(img=>({image:img.src, description:img.description}));

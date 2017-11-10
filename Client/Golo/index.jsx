@@ -59,12 +59,11 @@ export default class Golo extends React.Component
         var variableProps = this.VariablePropsRef.Data();
 
         var avatar = this.AvatarRef.Data();
-        var coverVideoOrUndefined = avatar.src === "/Static/vid/defaultGoloVid.mp4" ? undefined : avatar.src;
 
         var gallery = this.ImageGalleryRef.Data();
         gallery = gallery.map(img=>({image:img.src, description:img.description}));
 
-        var result = {...staticProps, fields: variableProps, video: coverVideoOrUndefined, imageGallery: gallery};
+        var result = {...staticProps, fields: variableProps, video: avatar.src, imageGallery: gallery};
         return result;
     }
 

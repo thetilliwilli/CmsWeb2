@@ -3,33 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import {Card, CardHeader} from 'material-ui/Card';
 
-export default class Avatar extends React.Component {
-    constructor(props) {
-        super(props);
-        props.RegCom(this);
-        
-        this.ChangeImage = this.ChangeImage.bind(this);
-        this.ResetVideo = this.ResetVideo.bind(this);
-        this.state = {imageSrc: props.imageHref};
-    }
-
-    ChangeImage(newSrc){
-        this.setState({imageSrc: newSrc});
-    }
-
-    Data(){ return {src: this.state.imageSrc} }
-
-    ResetVideo(){ this.setState({imageSrc: ""}); }
-
-    render() {
-        return (
-            <div className="GoloCard">
-                <CardHeader  subtitle="ВИДЕО" style={{padding:"6px 16px 6px 16px"}} />
-                <UploadImage onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrc} ResetVideo={this.ResetVideo} />
-            </div>
-        );
-    }
-}
+import {DEFAULT_IMAGE_AVATAR} from "../Module/consts.js";
 
 class UploadImage extends React.Component {
     constructor(props) {
@@ -71,6 +45,34 @@ class UploadImage extends React.Component {
                     <input ref={(input)=>{this.fileUploadInput = input;}} type="file"
                         style={{display:"none"}} onChange={this.OnFileSelected} accept=".mp4" />
                 </div>
+            </div>
+        );
+    }
+}
+
+export default class Avatar extends React.Component {
+    constructor(props) {
+        super(props);
+        props.RegCom(this);
+        
+        this.ChangeImage = this.ChangeImage.bind(this);
+        this.ResetVideo = this.ResetVideo.bind(this);
+        this.state = {imageSrc: props.imageHref};
+    }
+
+    ChangeImage(newSrc){
+        this.setState({imageSrc: newSrc});
+    }
+
+    Data(){ return {src: this.state.imageSrc} }
+
+    ResetVideo(){ this.setState({imageSrc: ""}); }
+
+    render() {
+        return (
+            <div className="GoloCard">
+                <CardHeader  subtitle="ВИДЕО" style={{padding:"6px 16px 6px 16px"}} />
+                <UploadImage onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrc} ResetVideo={this.ResetVideo} />
             </div>
         );
     }
