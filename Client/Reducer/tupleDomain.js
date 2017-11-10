@@ -2,6 +2,7 @@ import * as at from "../App/tupleAt.js";
 import initState from "../App/initState.js";
 import util from "../Module/util.js";
 import uuid from "uuid/v4";
+import CORE from "../App/core.js";
 
 function CloneState(oldState, callback){
     var newState = util.DeepCopy(oldState);
@@ -28,19 +29,9 @@ export default function TupleReducer(state = initState.tupleDomain, action){
         });
         case at.SUBMIT_NEW_TUPLE_RESPONSE: return CloneState(state, newState => {
             newState.tupleCreate.blockControl = false;
-            // if(action.payload)
-            //     newState.tupleCreate.result = action.payload;
         });
         case at.CLEAR_CREATE_TUPLE: return CloneState(state, newState => {
-            newState.tupleCreate.data = {
-                imageGallery: [],
-                fields: [],
-                name: "",
-                catsub: "",
-                countries: [],
-                description: "",
-                coverImage: "/Static/img/defaultTupleAvatar.jpg"
-            };
+            newState.tupleCreate.data = util.DeepCopy(CORE.tuple);
             newState.tupleCreate.uuid = uuid();//Форсим апдейт вьюхи
         });
 

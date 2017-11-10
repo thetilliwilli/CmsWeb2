@@ -2,6 +2,7 @@ import * as at from "../App/at.js";
 import initState from "../App/initState.js";
 import util from "../Module/util.js";
 import uuid from "uuid/v4";
+import CORE from "../App/core.js";
 
 function CloneState(oldState, callback){
     var newState = util.DeepCopy(oldState);
@@ -28,24 +29,9 @@ export default function TagReducer(state = initState.tagDomain, action){
         });
         case at.SUBMIT_NEW_EXHIBIT_RESPONSE: return CloneState(state, newState => {
             newState.exhibitCreate.blockControl = false;
-            // if(action.payload)
-            //     newState.exhibitCreate.result = action.payload;
         });
         case at.CLEAR_CREATE_EXHIBIT: return CloneState(state, newState => {
-            newState.exhibitCreate.data = {
-                imageGallery: [],
-                fields: [],
-                name: {ru: "", en: "", label:"Название Экспоната", type:"string"},
-                title: {ru: "", en: "", label:"Заголовок Экспоната", type:"string"},
-                subtitle: {ru: "", en: "", label:"Подзаголовок Экспоната", type:"string"},
-                date: "2017-01-01T00:00:00.000Z",
-                location: {ru: "", en: "", label:"Место производство", type:"string"},
-                history: {ru: "", en: "", label:"История создания", type:"string"},
-                description: {ru: "", en: "", label:"Подробное описание", type:"string"},
-                coverImage: "/Static/img/defaultExhibitAvatar.jpg",
-                complex: "",
-                ordinal: 0,
-            };
+            newState.exhibitCreate.data = util.DeepCopy(CORE.tag);
             newState.exhibitCreate.uuid = uuid();//Форсим апдейт вьюхи
         });
 

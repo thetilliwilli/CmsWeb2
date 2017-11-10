@@ -2,16 +2,7 @@
 import uuid from "uuid/v4";
 import util from "../Module/util.js";
 
-const DEFAULT_DATE = "2017-01-01T00:00:00.000Z";
-const CORE = {
-    imageGallery: [],
-    fields: [],
-    name: "",
-    catsub: "",
-    countries: [],
-    description: "",
-    coverImage: "/Static/img/defaultTupleAvatar.jpg"
-};
+import CORE from "./core.js";
 
 export default {
         page: 0,
@@ -30,13 +21,13 @@ export default {
         tupleCreate: {
             blockControl: false,
             uuid: uuid(),
-            data: util.DeepCopy(CORE),
+            data: util.DeepCopy(CORE.tuple),
         },
         overview: [],
         tupleEdit: {
             blockControl: false,
             uuid: uuid(),
-            data: util.DeepCopy(CORE),
-            template: util.DeepCopy(CORE),
+            data: util.DeepCopy(CORE.tuple),
+            template: util.DeepCopy(CORE.tuple),
         }
     };

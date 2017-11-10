@@ -2,6 +2,7 @@ import * as at from "../App/goloAt.js";
 import initState from "../App/initState.js";
 import util from "../Module/util.js";
 import uuid from "uuid/v4";
+import CORE from "../App/core.js";
 
 function CloneState(oldState, callback){
     var newState = util.DeepCopy(oldState);
@@ -28,24 +29,9 @@ export default function GoloReducer(state = initState.goloDomain, action){
         });
         case at.SUBMIT_NEW_GOLO_RESPONSE: return CloneState(state, newState => {
             newState.goloCreate.blockControl = false;
-            // if(action.payload)
-            //     newState.goloCreate.result = action.payload;
         });
         case at.CLEAR_CREATE_GOLO: return CloneState(state, newState => {
-            newState.goloCreate.data = {
-                imageGallery: [],
-                fields: [],
-                name: {ru: "", en: "", label:"Название Экспоната", type:"string"},
-                title: {ru: "", en: "", label:"Заголовок Экспоната", type:"string"},
-                subtitle: {ru: "", en: "", label:"Подзаголовок Экспоната", type:"string"},
-                date: "2017-01-01T00:00:00.000Z",
-                location: {ru: "", en: "", label:"Место производство", type:"string"},
-                history: {ru: "", en: "", label:"История создания", type:"string"},
-                description: {ru: "", en: "", label:"Подробное описание", type:"string"},
-                video: "/Static/vid/defaultGoloVid.mp4",
-                complex: "",
-                ordinal: 0,
-            };
+            newState.goloCreate.data = util.DeepCopy(CORE.golo);
             newState.goloCreate.uuid = uuid();//Форсим апдейт вьюхи
         });
 
