@@ -37,7 +37,7 @@ class AppNavbar extends React.Component {
                         <MenuItem style={{width:"100%"}} onClick={this.props.NavbarClose}><DivLink to="/tuple">Энциклопедия оружия</DivLink></MenuItem>
                     </div>
                     <div style={{width:"100%"}}>
-                        <MenuItem style={{width:"100%"}} onClick={this.props.NavbarClose}><DivLink to="/golo">Голографические этикетки</DivLink></MenuItem>
+                        <MenuItem style={{width:"100%"}} onClick={this.props.NavbarClose}><DivLink to="/golo">Сенсорные этикетки</DivLink></MenuItem>
                     </div>
             </div>
             </Drawer>
