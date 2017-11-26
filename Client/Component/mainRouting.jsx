@@ -18,6 +18,10 @@ import GoloCreateDataProvider from "../GoloDataProvider/create.jsx";
 import GoloOverviewDataProvider from "../GoloDataProvider/overview.jsx";
 import GoloEditDataProvider from "../GoloDataProvider/edit.jsx";
 
+//Bureau import-------------------------------------------------------
+import BureauDataProvider from "../BureauDataProvider/crud.jsx";
+
+
 const TagContent = p => (
     <div className="PageSwitcher" style={{height:"100%"}}>
         <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><ExhibitCreateDataProvider /></div>
@@ -41,6 +45,13 @@ const GoloContent = p => (
         <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><GoloEditDataProvider /></div>
     </div>
 );
+const BureauContent = p => (
+    <div className="PageSwitcher" style={{height:"100%"}}>
+        <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><BureauDataProvider /></div>
+        {/* <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><GoloOverviewDataProvider /></div>
+        <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><GoloEditDataProvider /></div> */}
+    </div>
+);
 
 function MainRouting(props){
     let curIndex = props[`${util.CurrentDomain()}PageIndex`];
@@ -54,6 +65,9 @@ function MainRouting(props){
             </Route>
             <Route path="/golo">
                 <GoloContent curIndex={curIndex}/>
+            </Route>
+            <Route path="/bureau">
+                <BureauContent curIndex={curIndex}/>
             </Route>
             <Redirect to="/tag" />{/* Если не попали ни на одну страницу то перейти на страницу с Электронными этикетками */}
         </Switch>

@@ -23,6 +23,7 @@ const APP_TITLES = {
     tag: "Электронные этикетки",
     tuple: "Энциклопедия оружия",
     golo: "Сенсорные этикетки",
+    bureau: "Конструкторские бюро",
 };
 
 class AppHeader extends React.Component

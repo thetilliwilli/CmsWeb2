@@ -22,7 +22,7 @@ class AppFooter extends React.Component
         const currentDomain = util.CurrentDomain();
         this.props.history.push(currentDomain);//Меняем страницу
         const functionName = `${currentDomain==="tag"?"Exhibit":
-            currentDomain==="tuple"?"Tuple":"Golo"}ChangePage`;
+            currentDomain==="tuple"?"Tuple":currentDomain==="bureau"?"Bureau":"Golo"}ChangePage`;
         this.props[functionName](index);
     }
 
@@ -58,5 +58,6 @@ const D2P = dsp => ({
     ExhibitChangePage: index => dsp(ExhibitChangePage(index)),
     TupleChangePage: index => dsp(TupleChangePage(index)),
     GoloChangePage: index => dsp(GoloChangePage(index)),
+    BureauChangePage: index => {/*do nothing*/},
 });
 export default connect(S2P, D2P)(withRouter(AppFooter));
