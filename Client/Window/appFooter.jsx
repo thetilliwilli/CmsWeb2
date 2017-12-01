@@ -11,11 +11,22 @@ class AppFooter extends React.Component
         this.Select = this.Select.bind(this);
     }
 
+    _DefineFunctionName(currentDomain){
+        switch(currentDomain)
+        {
+            case "tag":
+                return "Exhibit";
+            case "tuple": case "golo": case "designer":
+                return currentDomain.characterAt(0).toUpperCase()+currentDomain.slice(1);
+            default:
+                throw new Error("Такой страницы не существует. Вы будете перенаправлены на главную страницу.");
+        }
+    }
+
     Select(index){
         const currentDomain = util.CurrentDomain();
         this.props.history.push(currentDomain);//Меняем страницу
-        const functionName = `${currentDomain==="tag"?"Exhibit":
-            currentDomain==="tuple"?"Tuple":"Golo"}ChangePage`;
+        const functionName = this._DefineFunctionName(currentDomain);
         this.props[functionName](index);
     }
 
@@ -44,6 +55,7 @@ import {connect} from "react-redux";
 import {ExhibitChangePage} from "../App/ac.js";
 import {TupleChangePage} from "../App/tupleAc.js";
 import {GoloChangePage} from "../App/goloAc.js";
+import {DesignerChangePage} from "../App/designerAc.js";
 const S2P = state => ({
     appState: state,
 });
@@ -51,5 +63,6 @@ const D2P = dsp => ({
     ExhibitChangePage: index => dsp(ExhibitChangePage(index)),
     TupleChangePage: index => dsp(TupleChangePage(index)),
     GoloChangePage: index => dsp(GoloChangePage(index)),
+    DesignerChangePage: index => dsp(DesignerChangePage(index)),
 });
 export default connect(S2P, D2P)(withRouter(AppFooter));

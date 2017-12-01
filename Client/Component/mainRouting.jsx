@@ -18,6 +18,11 @@ import GoloCreateDataProvider from "../GoloDataProvider/create.jsx";
 import GoloOverviewDataProvider from "../GoloDataProvider/overview.jsx";
 import GoloEditDataProvider from "../GoloDataProvider/edit.jsx";
 
+//Designer import
+import DesignerCreateDataProvider from "../DesignerDataProvider/create.jsx";
+import DesignerOverviewDataProvider from "../DesignerDataProvider/overview.jsx";
+import DesignerEditDataProvider from "../DesignerDataProvider/edit.jsx";
+
 const TagContent = p => (
     <div className="PageSwitcher" style={{height:"100%"}}>
         <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><ExhibitCreateDataProvider /></div>
@@ -42,6 +47,14 @@ const GoloContent = p => (
     </div>
 );
 
+const DesignerContent = p => (
+    <div className="PageSwitcher" style={{height:"100%"}}>
+        <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><DesignerCreateDataProvider /></div>
+        <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><DesignerOverviewDataProvider /></div>
+        <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><DesignerEditDataProvider /></div>
+    </div>
+);
+
 function MainRouting(props){
     let curIndex = props[`${util.CurrentDomain()}PageIndex`];
     return (
@@ -55,6 +68,9 @@ function MainRouting(props){
             <Route path="/golo">
                 <GoloContent curIndex={curIndex}/>
             </Route>
+            <Route path="/designer">
+                <DesignerContent curIndex={curIndex}/>
+            </Route>
             <Redirect to="/tag" />{/* Если не попали ни на одну страницу то перейти на страницу с Электронными этикетками */}
         </Switch>
     );
@@ -65,5 +81,6 @@ const S2P = state => ({
     tagPageIndex: state.tagDomain.page,
     tuplePageIndex: state.tupleDomain.page,
     goloPageIndex: state.goloDomain.page,
+    designerPageIndex: state.designerDomain.page,
 });
 export default withRouter(connect(S2P)(MainRouting));
