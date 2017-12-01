@@ -2,14 +2,7 @@ import React from 'react';
 import {withRouter} from "react-router-dom";
 import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
-import Paper from 'material-ui/Paper';
-import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import util from "../Module/util.js";
-
-const recentsIcon = <FontIcon className="material-icons">NEW</FontIcon>;
-const favoritesIcon = <FontIcon className="material-icons">OVERVIEW</FontIcon>;
-const mockupNew = <FontIcon className="material-icons">EDIT</FontIcon>;
-const mockupOverview = <FontIcon className="material-icons">MOCKUP</FontIcon>;
 
 class AppFooter extends React.Component
 {
