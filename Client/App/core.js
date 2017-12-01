@@ -40,4 +40,30 @@ export default {
         complex: "",
         ordinal: 0,
     },
+    designer: {
+        shortName : "",
+        fullName : "",
+        birthDate : "",
+        deathDate : "",
+        birthPlace : "",
+        position : "",
+        totalXP : "",
+        industryXP : "",
+        education : "",
+        degree : "",
+        biography : "",
+        awards : "",
+        characteristics : "",
+        portrait: "",
+            /*
+            bureau: {
+                shortName: "",
+                fullName : "",
+                description: "",
+                preview : "",
+                logotype : "",
+                designers : [String],//id конструкторов
+            }
+            */
+    },
 };

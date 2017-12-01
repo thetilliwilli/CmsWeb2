@@ -2,6 +2,7 @@
 import tagDomain from "./initStateTag.js";
 import tupleDomain from "./initStateTuple.js";
 import goloDomain from "./initStateGolo.js";
+import designerDomain from "./initStateDesigner.js";
 
 export default {
     //TAG DOMAIN
@@ -14,4 +15,7 @@ export default {
     goloDomain,
 
     instList: [],
+
+    //DESIGNER DOMAIN
+    designerDomain,
 };
