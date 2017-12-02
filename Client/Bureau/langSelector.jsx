@@ -1,6 +1,7 @@
 import React from "react";
 import {Tabs, Tab} from 'material-ui/Tabs';
 import FontIcon from 'material-ui/FontIcon';
+import langService from "../Service/language.js";
 
 class LangSelector extends React.Component
 {
@@ -19,10 +20,7 @@ class LangSelector extends React.Component
 }
 
 LangSelector.defaultProps = {
-    langList: [
-        {label: "ru"},
-        {label: "en"}
-    ]
+    langList: [langService.default]//Russian only
 };
 
 import {connect} from "react-redux";

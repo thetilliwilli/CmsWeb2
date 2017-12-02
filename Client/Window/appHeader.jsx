@@ -21,7 +21,8 @@ const APP_TITLES = {
     tag: "Электронные этикетки",
     tuple: "Энциклопедия оружия",
     golo: "Сенсорные этикетки",
-    designer: "Конструкторские бюро",
+    designer: "Конструкторы",
+    bureau: "Конструкторские бюро",
 };
 
 class AppHeader extends React.Component
@@ -29,8 +30,6 @@ class AppHeader extends React.Component
     constructor(props){
         super(props);
     }
-
-    
 
     render(){
         const title = APP_TITLES[util.CurrentDomain()];//Получаем название текущей админки из текущего Урла страницы

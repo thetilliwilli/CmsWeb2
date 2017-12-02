@@ -99,23 +99,11 @@ export default class Bureau extends React.Component
 
     ToBureauData(dto){
         var staticProps = {};
-            staticProps.name = {...dto.name, label:"Название Экспоната", type:"string"};
-            staticProps.title = {...dto.title, label:"Заголовок Экспоната", type:"string"};
-            staticProps.subtitle = {...dto.subtitle, label:"Подзаголовок Экспоната", type:"string"};
-            staticProps.location = {...dto.location, label:"Место производство", type:"string"};
-            staticProps.description = {...dto.description, label:"Подробное описание", type:"string"};
-            staticProps.history = {...dto.history, label:"История создания", type:"string"};
-            staticProps.date = {ru: dto.date, en: dto.date, label:"Дата создания", type:"date", notMultiLang:true};
-            staticProps.complex = {ru: dto.complex, en: dto.complex, label:"Витрина", type:"string", notMultiLang:true};
-            staticProps.ordinal = {ru: dto.ordinal, en: dto.ordinal, label:"Порядковый номер", type:"string", notMultiLang:true};
-
-        var variableProps = dto.fields;
-
-        var imageGallery = dto.imageGallery.map(i => ({src: i.image, id: i.guid, description: i.description}));
-
-        // var imageHref = dto.coverImage;
-
-        return {staticProps, variableProps, imageGallery, coverImage: dto.coverImage, id: dto._id};
+            staticProps.shortName = {ru: dto.shortName, en: dto.shortName, label:"shortName", type:"string"};
+            staticProps.fullName = {ru: dto.fullName, en: dto.fullName, label:"fullName", type:"string"};
+            staticProps.description = {ru: dto.description, en: dto.description, label:"description", type:"string"};
+            staticProps.designers = {ru: dto.designers, en: dto.designers, label:"designers", type:"string"};
+        return {staticProps, previewImage: dto.preview, logotypeImage: dto.logotype, id: dto._id};
     }
 
     render(){
@@ -130,7 +118,7 @@ export default class Bureau extends React.Component
                     <ControlPanel 
                         handlers={{OnClear: this.props.Clear, OnSubmitNewBureau: this.SubmitNewBureau, OnSubmitBureauUpdate: this.SubmitBureauUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
-                        templateName={bureauData.staticProps.name.ru}
+                        templateName={bureauData.staticProps.fullName.ru}
                         templateIndex={bureauData.id}
                     />
                 </div>
@@ -143,14 +131,14 @@ export default class Bureau extends React.Component
 
                     <div className="BureauParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
                         <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
-                            <Avatar RegCom={this.RegisterAvatarRef} imageHref={bureauData.coverImage}/>
+                            <Avatar RegCom={this.RegisterAvatarRef} previewHref={bureauData.preview} logotypeHref={bureauData.logotype}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={bureauData.staticProps} language={this.props.language}/>
                         </div>
                         <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
-                            <VariableProps RegCom={this.RegisterVariablePropsRef} items={bureauData.variableProps} language={this.props.language} />
+                            <VariableProps RegCom={this.RegisterVariablePropsRef} items={[]} language={this.props.language} />
                         </div>
                         <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
-                            <ImageGallery RegCom={this.RegisterImageGalleryRef} images={bureauData.imageGallery} language={this.props.language}/>
+                            <ImageGallery RegCom={this.RegisterImageGalleryRef} images={[]} language={this.props.language}/>
                         </div>
                     </div>
                 </div>

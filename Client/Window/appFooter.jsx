@@ -16,8 +16,8 @@ class AppFooter extends React.Component
         {
             case "tag":
                 return "Exhibit";
-            case "tuple": case "golo": case "designer":
-                return currentDomain.characterAt(0).toUpperCase()+currentDomain.slice(1);
+            case "tuple": case "golo": case "designer": case "bureau":
+                return currentDomain.charAt(0).toUpperCase()+currentDomain.slice(1);
             default:
                 throw new Error("Такой страницы не существует. Вы будете перенаправлены на главную страницу.");
         }
@@ -27,7 +27,7 @@ class AppFooter extends React.Component
         const currentDomain = util.CurrentDomain();
         this.props.history.push(currentDomain);//Меняем страницу
         const functionName = this._DefineFunctionName(currentDomain);
-        this.props[functionName](index);
+        this.props[`${functionName}ChangePage`](index);
     }
 
     render(){
@@ -56,6 +56,7 @@ import {ExhibitChangePage} from "../App/ac.js";
 import {TupleChangePage} from "../App/tupleAc.js";
 import {GoloChangePage} from "../App/goloAc.js";
 import {DesignerChangePage} from "../App/designerAc.js";
+import {BureauChangePage} from "../App/bureauAc.js";
 const S2P = state => ({
     appState: state,
 });
@@ -64,5 +65,6 @@ const D2P = dsp => ({
     TupleChangePage: index => dsp(TupleChangePage(index)),
     GoloChangePage: index => dsp(GoloChangePage(index)),
     DesignerChangePage: index => dsp(DesignerChangePage(index)),
+    BureauChangePage: index => dsp(BureauChangePage(index)),
 });
 export default connect(S2P, D2P)(withRouter(AppFooter));

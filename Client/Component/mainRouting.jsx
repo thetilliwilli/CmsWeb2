@@ -23,6 +23,11 @@ import DesignerCreateDataProvider from "../DesignerDataProvider/create.jsx";
 import DesignerOverviewDataProvider from "../DesignerDataProvider/overview.jsx";
 import DesignerEditDataProvider from "../DesignerDataProvider/edit.jsx";
 
+//Designer import
+import BureauCreateDataProvider from "../BureauDataProvider/create.jsx";
+import BureauOverviewDataProvider from "../BureauDataProvider/overview.jsx";
+import BureauEditDataProvider from "../BureauDataProvider/edit.jsx";
+
 const TagContent = p => (
     <div className="PageSwitcher" style={{height:"100%"}}>
         <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><ExhibitCreateDataProvider /></div>
@@ -55,6 +60,14 @@ const DesignerContent = p => (
     </div>
 );
 
+const BureauContent = p => (
+    <div className="PageSwitcher" style={{height:"100%"}}>
+        <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><BureauCreateDataProvider /></div>
+        <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><BureauOverviewDataProvider /></div>
+        <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><BureauEditDataProvider /></div>
+    </div>
+);
+
 function MainRouting(props){
     let curIndex = props[`${util.CurrentDomain()}PageIndex`];
     return (
@@ -71,6 +84,9 @@ function MainRouting(props){
             <Route path="/designer">
                 <DesignerContent curIndex={curIndex}/>
             </Route>
+            <Route path="/bureau">
+                <BureauContent curIndex={curIndex}/>
+            </Route>
             <Redirect to="/tag" />{/* Если не попали ни на одну страницу то перейти на страницу с Электронными этикетками */}
         </Switch>
     );
@@ -82,5 +98,6 @@ const S2P = state => ({
     tuplePageIndex: state.tupleDomain.page,
     goloPageIndex: state.goloDomain.page,
     designerPageIndex: state.designerDomain.page,
+    bureauPageIndex: state.bureauDomain.page,
 });
 export default withRouter(connect(S2P)(MainRouting));

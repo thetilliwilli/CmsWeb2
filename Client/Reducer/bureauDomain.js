@@ -1,5 +1,5 @@
 import * as at from "../App/bureauAt.js";
-import initState from "../App/initStateBureau.js";
+import initState from "../App/initState.js";
 import util from "../Module/util.js";
 import uuid from "uuid/v4";
 import CORE from "../App/core.js";
@@ -43,7 +43,7 @@ export default function BureauReducer(state = initState.bureauDomain, action){
             newState.bureauEdit.blockControl = false;
         });
         case at.BUREAU_APPLY_CHANGE_COMPLEX: return CloneState(state, newState => {
-            newState.overview.find(i => i.id===action.payload.id).complex = action.payload.complex;
+            // newState.overview.find(i => i.id===action.payload.id).complex = action.payload.complex;
         });
 
         //USER FRIENDLY ERROR WINDOW
@@ -64,9 +64,7 @@ export default function BureauReducer(state = initState.bureauDomain, action){
                 newState.overview = [];
                 action.payload.forEach(bureau => newState.overview.push({
                     id: bureau._id,
-                    name: bureau.name.ru,
-                    complex: bureau.complex,
-                    ordinal: bureau.ordinal,
+                    fullName: bureau.fullName,
                 }));
             }
         });
