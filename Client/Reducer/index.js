@@ -5,7 +5,7 @@ import TupleDomain from "./tupleDomain.js";
 import GoloDomain from "./goloDomain.js";
 import InstReducer from "./instReducer.js";
 import SuccessInformerReducer from "./successInformer.js";
-import DesignerReducer from "./designerReducer.js";
+import DesignerReducer from "./designerDomain.js";
 import BureauDomain from "./bureauDomain.js";
 
 export default combineReducers({

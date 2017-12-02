@@ -54,7 +54,7 @@ export default {
         biography : "",
         awards : "",
         characteristics : "",
-        portrait: "",
+        portrait: "",//image href
         bureau: "", //BureauID
     },
     bureau: {
@@ -63,6 +63,6 @@ export default {
         description: "",
         preview : "",//href to image
         logotype : "",//href to image
-        designers : [String],//id конструкторов
+        designers : "",//id конструкторов
     }
 };
