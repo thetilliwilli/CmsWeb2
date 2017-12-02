@@ -55,15 +55,14 @@ export default {
         awards : "",
         characteristics : "",
         portrait: "",
-            /*
-            bureau: {
-                shortName: "",
-                fullName : "",
-                description: "",
-                preview : "",
-                logotype : "",
-                designers : [String],//id конструкторов
-            }
-            */
+        bureau: "", //BureauID
     },
+    bureau: {
+        shortName: "",
+        fullName : "",
+        description: "",
+        preview : "",//href to image
+        logotype : "",//href to image
+        designers : [String],//id конструкторов
+    }
 };

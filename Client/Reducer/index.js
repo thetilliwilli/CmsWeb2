@@ -6,6 +6,7 @@ import GoloDomain from "./goloDomain.js";
 import InstReducer from "./instReducer.js";
 import SuccessInformerReducer from "./successInformer.js";
 import DesignerReducer from "./designerReducer.js";
+import BureauDomain from "./bureauDomain.js";
 
 export default combineReducers({
     tagDomain: TagDomain,
@@ -14,4 +15,5 @@ export default combineReducers({
     instList: InstReducer,
     successInformer: SuccessInformerReducer,
     designerDomain: DesignerReducer,
+    bureauDomain: BureauDomain,
 });

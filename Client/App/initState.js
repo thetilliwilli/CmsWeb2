@@ -3,6 +3,7 @@ import tagDomain from "./initStateTag.js";
 import tupleDomain from "./initStateTuple.js";
 import goloDomain from "./initStateGolo.js";
 import designerDomain from "./initStateDesigner.js";
+import bureauDomain from "./initStateBureau.js";
 
 export default {
     //TAG DOMAIN
@@ -18,4 +19,7 @@ export default {
 
     //DESIGNER DOMAIN
     designerDomain,
+
+    //BUREAU DOMAIN
+    bureauDomain,
 };
