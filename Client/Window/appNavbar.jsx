@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
 
 function DivLink(p) {
     return (
@@ -38,6 +39,7 @@ class AppNavbar extends React.Component {
                     </div>
                     <div style={{width:"100%"}}>
                         <MenuItem style={{width:"100%"}} onClick={this.props.NavbarClose}><DivLink to="/golo">Сенсорные этикетки</DivLink></MenuItem>
+                        <Divider />
                     </div>
                     <div style={{width:"100%"}}>
                         <MenuItem style={{width:"100%"}} onClick={this.props.NavbarClose}><DivLink to="/designer">Конструкторы</DivLink></MenuItem>

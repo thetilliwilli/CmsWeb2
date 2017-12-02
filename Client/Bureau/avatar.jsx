@@ -5,6 +5,8 @@ import {Card, CardHeader} from 'material-ui/Card';
 
 import {DEFAULT_IMAGE_AVATAR} from "../Module/consts.js";
 
+const imageTitleStyle = {fontFamily:"Roboto", color:"lightgrey", margin:"auto"};
+
 class UploadImage extends React.Component {
     constructor(props) {
         super(props);
@@ -49,20 +51,42 @@ export default class Avatar extends React.Component {
         props.RegCom(this);
         
         this.ChangeImage = this.ChangeImage.bind(this);
-        this.state = {imageSrc: props.imageHref};
+        this.state = {
+            imageSrcPreview: props.previewHref,
+            imageSrcLogotype: props.logotypeHref,
+        };
     }
 
-    ChangeImage(newSrc){
-        this.setState({imageSrc: newSrc});
+    ChangeImage(newSrc, isPreview){
+        this.setState({
+            [isPreview ? "imageSrcPreview" : "imageSrcLogotype"]: newSrc
+        });
     }
 
-    Data(){ return {src: this.state.imageSrc} }
+    Data(){ 
+        return {
+            previewSrc: this.state.imageSrcPreview,
+            logotypeSrc: this.state.imageSrcLogotype
+        };
+    }
 
     render() {
         return (
-            <div className="BureauCard">
-                <CardHeader  subtitle="КАРТОЧКА" style={{padding:"6px 16px 6px 16px"}} />
-                <UploadImage onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrc}/>
+            <div className="BureauCard" >
+                <CardHeader  subtitle="КАРТОЧКА" style={{padding:"6px 16px 6px 16px"}}/>
+                <div style={{display:"flex", flexWrap:"wrap"}} >
+
+                    <div style={{width:"40%", display:"flex", flexWrap:"wrap"}}>
+                        <div style={imageTitleStyle}>ПРЕВЬЮ</div>
+                        <UploadImage onFileChanged={e=>this.ChangeImage(e,true)} imageSrc={this.state.imageSrcPreview}/>
+                    </div>
+
+                    <div style={{width:"40%", display:"flex", flexWrap:"wrap"}}>
+                        <div style={imageTitleStyle}>ЛОГОТИП</div>
+                        <UploadImage onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrcLogotype}/>
+                    </div>
+
+                </div>
             </div>
         );
     }

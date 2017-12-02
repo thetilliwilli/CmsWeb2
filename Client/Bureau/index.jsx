@@ -54,19 +54,21 @@ export default class Bureau extends React.Component
 
     Data(){
         var staticProps = this.StaticPropsRef.Data();
-        staticProps.date = staticProps.date.ru;//Берем только одно значение
-        staticProps.complex = staticProps.complex.ru;//Берем только одно значение
-        staticProps.ordinal = staticProps.ordinal.ru;//Берем только одно значение
-
-        var variableProps = this.VariablePropsRef.Data();
+            staticProps.shortName = staticProps.shortName.ru;
+            staticProps.fullName = staticProps.fullName.ru;
+            staticProps.description = staticProps.description.ru;
+            // staticProps.designers = staticProps.designers.ru;
+        
+        // var variableProps = this.VariablePropsRef.Data();
 
         var avatar = this.AvatarRef.Data();
-        var coverImageOrUndefined = avatar.src === DEFAULT_IMAGE_AVATAR ? undefined : avatar.src;
+        var previewImageOrUndefined = avatar.previewSrc === DEFAULT_IMAGE_AVATAR ? undefined : avatar.previewSrc;
+        var logotypeImageOrUndefined = avatar.logotypeSrc === DEFAULT_IMAGE_AVATAR ? undefined : avatar.logotypeSrc;
 
-        var gallery = this.ImageGalleryRef.Data();
-        gallery = gallery.map(img=>({image:img.src, description:img.description}));
+        // var gallery = this.ImageGalleryRef.Data();
+        // gallery = gallery.map(img=>({image:img.src, description:img.description}));
 
-        var result = {...staticProps, fields: variableProps, coverImage: coverImageOrUndefined, imageGallery: gallery};
+        var result = {...staticProps, previewImage: previewImageOrUndefined, logotypeImage: logotypeImageOrUndefined,};
         return result;
     }
 
@@ -99,10 +101,10 @@ export default class Bureau extends React.Component
 
     ToBureauData(dto){
         var staticProps = {};
-            staticProps.shortName = {ru: dto.shortName, en: dto.shortName, label:"shortName", type:"string"};
-            staticProps.fullName = {ru: dto.fullName, en: dto.fullName, label:"fullName", type:"string"};
-            staticProps.description = {ru: dto.description, en: dto.description, label:"description", type:"string"};
-            staticProps.designers = {ru: dto.designers, en: dto.designers, label:"designers", type:"string"};
+            staticProps.shortName = {ru: dto.shortName, en: dto.shortName, label:"Название", type:"string"};
+            staticProps.fullName = {ru: dto.fullName, en: dto.fullName, label:"Полное наименование", type:"string"};
+            staticProps.description = {ru: dto.description, en: dto.description, label:"Описание", type:"string"};
+            // staticProps.designers = {ru: dto.designers, en: dto.designers, label:"designers", type:"string"};
         return {staticProps, previewImage: dto.preview, logotypeImage: dto.logotype, id: dto._id};
     }
 
@@ -131,7 +133,7 @@ export default class Bureau extends React.Component
 
                     <div className="BureauParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
                         <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
-                            <Avatar RegCom={this.RegisterAvatarRef} previewHref={bureauData.preview} logotypeHref={bureauData.logotype}/>
+                            <Avatar RegCom={this.RegisterAvatarRef} previewHref={bureauData.previewImage} logotypeHref={bureauData.logotypeImage}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={bureauData.staticProps} language={this.props.language}/>
                         </div>
                         <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
