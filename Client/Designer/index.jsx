@@ -101,10 +101,21 @@ export default class Designer extends React.Component
 
     ToDesignerData(dto){
         var staticProps = {};
-            staticProps.shortName = {ru: dto.shortName, en: dto.shortName, label:"Название", type:"string"};
-            staticProps.fullName = {ru: dto.fullName, en: dto.fullName, label:"Полное наименование", type:"string"};
-            staticProps.description = {ru: dto.description, en: dto.description, label:"Описание", type:"string"};
-            // staticProps.designers = {ru: dto.designers, en: dto.designers, label:"designers", type:"string"};
+            staticProps.shortName = {ru: dto.shortName, en: dto.shortName, label: "shortName", type:"string"};
+            staticProps.fullName = {ru: dto.fullName, en: dto.fullName, label: "fullName", type:"string"};
+            staticProps.birthDate = {ru: dto.birthDate, en: dto.birthDate, label: "birthDate", type:"string"};
+            staticProps.deathDate = {ru: dto.deathDate, en: dto.deathDate, label: "deathDate", type:"string"};
+            staticProps.birthPlace = {ru: dto.birthPlace, en: dto.birthPlace, label: "birthPlace", type:"string"};
+            staticProps.position = {ru: dto.position, en: dto.position, label: "position", type:"string"};
+            staticProps.totalXP = {ru: dto.totalXP, en: dto.totalXP, label: "totalXP", type:"string"};
+            staticProps.industryXP = {ru: dto.industryXP, en: dto.industryXP, label: "industryXP", type:"string"};
+            staticProps.education = {ru: dto.education, en: dto.education, label: "education", type:"string"};
+            staticProps.degree = {ru: dto.degree, en: dto.degree, label: "degree", type:"string"};
+            staticProps.biography = {ru: dto.biography, en: dto.biography, label: "biography", type:"string"};
+            staticProps.awards = {ru: dto.awards, en: dto.awards, label: "awards", type:"string"};
+            staticProps.characteristics = {ru: dto.characteristics, en: dto.characteristics, label: "characteristics", type:"string"};
+            staticProps.bureau = {ru: dto.bureau, en: dto.bureau, label: "bureau", type:"string"};
+            // staticProps.portrait = {ru: dto.portrait, en: dto.portrait, label: "portrait", type:"string"};
         return {staticProps, previewImage: dto.preview, logotypeImage: dto.logotype, id: dto._id};
     }
 
