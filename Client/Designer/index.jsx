@@ -12,6 +12,7 @@ import StaticProps from "./staticProps.jsx";
 import VariableProps from "./variableProps.jsx";
 import ImageGallery from "./imageGallery.jsx";
 import ControlPanel from "./controlPanel.jsx";
+import Placeholder from "../Component/placeholder.jsx";
 
 import {DEFAULT_IMAGE_AVATAR} from "../Module/consts.js";
 
@@ -26,6 +27,7 @@ export default class Designer extends React.Component
         this.ImageGalleryRef = null;
         
         this.RegisterStaticPropsRef = this.RegisterStaticPropsRef.bind(this);
+        this.RegisterStaticPropsRef2 = this.RegisterStaticPropsRef2.bind(this);
         this.RegisterVariablePropsRef = this.RegisterVariablePropsRef.bind(this);
         this.RegisterAvatarRef = this.RegisterAvatarRef.bind(this);
         this.RegisterImageGalleryRef = this.RegisterImageGalleryRef.bind(this);
@@ -60,19 +62,20 @@ export default class Designer extends React.Component
             staticProps.deathDate = staticProps.deathDate.ru; 
             staticProps.birthPlace = staticProps.birthPlace.ru; 
             staticProps.position = staticProps.position.ru; 
-            staticProps.totalXP = staticProps.totalXP.ru; 
-            staticProps.industryXP = staticProps.industryXP.ru; 
-            staticProps.education = staticProps.education.ru; 
-            staticProps.degree = staticProps.degree.ru; 
-            staticProps.biography = staticProps.biography.ru; 
-            staticProps.awards = staticProps.awards.ru; 
-            staticProps.characteristics = staticProps.characteristics.ru; 
-            staticProps.bureau = staticProps.bureau.ru; 
+        var staticProps2 = this.StaticPropsRef2.Data();
+            staticProps2.totalXP = staticProps.totalXP.ru; 
+            staticProps2.industryXP = staticProps.industryXP.ru; 
+            staticProps2.education = staticProps.education.ru; 
+            staticProps2.degree = staticProps.degree.ru; 
+            staticProps2.biography = staticProps.biography.ru; 
+            staticProps2.awards = staticProps.awards.ru; 
+            staticProps2.characteristics = staticProps.characteristics.ru; 
+            staticProps2.bureau = staticProps.bureau.ru; 
 
         var avatar = this.AvatarRef.Data();
         var coverImageOrUndefined = avatar.src === DEFAULT_IMAGE_AVATAR ? undefined : avatar.src;
 
-        var result = {...staticProps, portrait: coverImageOrUndefined};
+        var result = {...staticProps, ...staticProps2, portrait: coverImageOrUndefined};
         return result;
     }
 
@@ -99,6 +102,7 @@ export default class Designer extends React.Component
     }
 
     RegisterStaticPropsRef(component){ this.StaticPropsRef = component;}
+    RegisterStaticPropsRef2(component){ this.StaticPropsRef2 = component;}
     RegisterVariablePropsRef(component){ this.VariablePropsRef = component;}
     RegisterAvatarRef(component){ this.AvatarRef = component;}
     RegisterImageGalleryRef(component){ this.ImageGalleryRef = component;}
@@ -111,16 +115,17 @@ export default class Designer extends React.Component
             staticProps.deathDate = {ru: dto.deathDate, en: dto.deathDate, label: "deathDate", type:"string"};
             staticProps.birthPlace = {ru: dto.birthPlace, en: dto.birthPlace, label: "birthPlace", type:"string"};
             staticProps.position = {ru: dto.position, en: dto.position, label: "position", type:"string"};
-            staticProps.totalXP = {ru: dto.totalXP, en: dto.totalXP, label: "totalXP", type:"string"};
-            staticProps.industryXP = {ru: dto.industryXP, en: dto.industryXP, label: "industryXP", type:"string"};
-            staticProps.education = {ru: dto.education, en: dto.education, label: "education", type:"string"};
-            staticProps.degree = {ru: dto.degree, en: dto.degree, label: "degree", type:"string"};
-            staticProps.biography = {ru: dto.biography, en: dto.biography, label: "biography", type:"string"};
-            staticProps.awards = {ru: dto.awards, en: dto.awards, label: "awards", type:"string"};
-            staticProps.characteristics = {ru: dto.characteristics, en: dto.characteristics, label: "characteristics", type:"string"};
-            staticProps.bureau = {ru: dto.bureau, en: dto.bureau, label: "bureau", type:"string"};
+        var staticProps2 = {};
+            staticProps2.totalXP = {ru: dto.totalXP, en: dto.totalXP, label: "totalXP", type:"string"};
+            staticProps2.industryXP = {ru: dto.industryXP, en: dto.industryXP, label: "industryXP", type:"string"};
+            staticProps2.education = {ru: dto.education, en: dto.education, label: "education", type:"string"};
+            staticProps2.degree = {ru: dto.degree, en: dto.degree, label: "degree", type:"string"};
+            staticProps2.biography = {ru: dto.biography, en: dto.biography, label: "biography", type:"string"};
+            staticProps2.awards = {ru: dto.awards, en: dto.awards, label: "awards", type:"string"};
+            staticProps2.characteristics = {ru: dto.characteristics, en: dto.characteristics, label: "characteristics", type:"string"};
+            staticProps2.bureau = {ru: dto.bureau, en: dto.bureau, label: "bureau", type:"string"};
             // staticProps.portrait = {ru: dto.portrait, en: dto.portrait, label: "portrait", type:"string"};
-        return {staticProps, coverImage: dto.portrait, id: dto._id};
+        return {staticProps, staticProps2, coverImage: dto.portrait, id: dto._id};
     }
 
     render(){
@@ -152,10 +157,10 @@ export default class Designer extends React.Component
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={designerData.staticProps} language={this.props.language}/>
                         </div>
                         <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
-                            <VariableProps RegCom={this.RegisterVariablePropsRef} items={[]} language={this.props.language} />
+                        <StaticProps RegCom={this.RegisterStaticPropsRef2} propList={designerData.staticProps2} language={this.props.language}/>
                         </div>
                         <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
-                            <ImageGallery RegCom={this.RegisterImageGalleryRef} images={[]} language={this.props.language}/>
+                            <Placeholder></Placeholder>
                         </div>
                     </div>
                 </div>

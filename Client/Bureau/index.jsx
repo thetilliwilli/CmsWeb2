@@ -12,6 +12,7 @@ import StaticProps from "./staticProps.jsx";
 import VariableProps from "./variableProps.jsx";
 import ImageGallery from "./imageGallery.jsx";
 import ControlPanel from "./controlPanel.jsx";
+import Placeholder from "../Component/placeholder.jsx";
 
 import {DEFAULT_IMAGE_AVATAR} from "../Module/consts.js";
 
@@ -137,10 +138,10 @@ export default class Bureau extends React.Component
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={bureauData.staticProps} language={this.props.language}/>
                         </div>
                         <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
-                            <VariableProps RegCom={this.RegisterVariablePropsRef} items={[]} language={this.props.language} />
+                            <Placeholder />
                         </div>
                         <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
-                            <ImageGallery RegCom={this.RegisterImageGalleryRef} images={[]} language={this.props.language}/>
+                            <Placeholder />
                         </div>
                     </div>
                 </div>
