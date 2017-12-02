@@ -54,21 +54,25 @@ export default class Designer extends React.Component
 
     Data(){
         var staticProps = this.StaticPropsRef.Data();
-            staticProps.shortName = staticProps.shortName.ru;
-            staticProps.fullName = staticProps.fullName.ru;
-            staticProps.description = staticProps.description.ru;
-            // staticProps.designers = staticProps.designers.ru;
-        
-        // var variableProps = this.VariablePropsRef.Data();
+            staticProps.shortName = staticProps.shortName.ru; 
+            staticProps.fullName = staticProps.fullName.ru; 
+            staticProps.birthDate = staticProps.birthDate.ru; 
+            staticProps.deathDate = staticProps.deathDate.ru; 
+            staticProps.birthPlace = staticProps.birthPlace.ru; 
+            staticProps.position = staticProps.position.ru; 
+            staticProps.totalXP = staticProps.totalXP.ru; 
+            staticProps.industryXP = staticProps.industryXP.ru; 
+            staticProps.education = staticProps.education.ru; 
+            staticProps.degree = staticProps.degree.ru; 
+            staticProps.biography = staticProps.biography.ru; 
+            staticProps.awards = staticProps.awards.ru; 
+            staticProps.characteristics = staticProps.characteristics.ru; 
+            staticProps.bureau = staticProps.bureau.ru; 
 
         var avatar = this.AvatarRef.Data();
-        var previewImageOrUndefined = avatar.previewSrc === DEFAULT_IMAGE_AVATAR ? undefined : avatar.previewSrc;
-        var logotypeImageOrUndefined = avatar.logotypeSrc === DEFAULT_IMAGE_AVATAR ? undefined : avatar.logotypeSrc;
+        var coverImageOrUndefined = avatar.src === DEFAULT_IMAGE_AVATAR ? undefined : avatar.src;
 
-        // var gallery = this.ImageGalleryRef.Data();
-        // gallery = gallery.map(img=>({image:img.src, description:img.description}));
-
-        var result = {...staticProps, previewImage: previewImageOrUndefined, logotypeImage: logotypeImageOrUndefined,};
+        var result = {...staticProps, portrait: coverImageOrUndefined};
         return result;
     }
 
@@ -116,7 +120,7 @@ export default class Designer extends React.Component
             staticProps.characteristics = {ru: dto.characteristics, en: dto.characteristics, label: "characteristics", type:"string"};
             staticProps.bureau = {ru: dto.bureau, en: dto.bureau, label: "bureau", type:"string"};
             // staticProps.portrait = {ru: dto.portrait, en: dto.portrait, label: "portrait", type:"string"};
-        return {staticProps, previewImage: dto.preview, logotypeImage: dto.logotype, id: dto._id};
+        return {staticProps, coverImage: dto.portrait, id: dto._id};
     }
 
     render(){
@@ -144,7 +148,7 @@ export default class Designer extends React.Component
 
                     <div className="DesignerParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
                         <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
-                            <Avatar RegCom={this.RegisterAvatarRef} previewHref={designerData.previewImage} logotypeHref={designerData.logotypeImage}/>
+                            <Avatar RegCom={this.RegisterAvatarRef} imageHref={designerData.coverImage} />
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={designerData.staticProps} language={this.props.language}/>
                         </div>
                         <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
