@@ -65,6 +65,7 @@ export default function DesignerReducer(state = initState.designerDomain, action
                 action.payload.forEach(designer => newState.overview.push({
                     id: designer._id,
                     fullName: designer.fullName,
+                    bureau: designer.bureau,
                 }));
             }
         });

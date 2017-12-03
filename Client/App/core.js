@@ -55,7 +55,7 @@ export default {
         awards : "",
         characteristics : "",
         portrait: "",//image href
-        bureau: "", //BureauID
+        bureau: -1, //BureauID
     },
     bureau: {
         shortName: "",

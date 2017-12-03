@@ -34,7 +34,6 @@ class BureauList extends React.Component
                 <ListItem
                     style={{borderBottom:"1px solid lightgrey"}}
                     key={ex.id}
-                    rightIconButton={<IconButton onClick={()=>{this.props.OnDelete(ex.id)}} iconStyle={{color:"crimson"}}><ActionDelete/></IconButton>}
                     onClick={()=>{this.props.EditBureau(ex.id)}}
                 >
                     <span>

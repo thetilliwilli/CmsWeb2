@@ -17,13 +17,25 @@ class DesignerList extends React.Component
         
         switch(filterValue[0])
         {
-            case "#"://Если первый знак Решетка то ищем по айдишнику
-            case "№":
+            case "#":
+            case "№"://Если первый знак Решетка то ищем по айдишнику
                 return list.filter(i => i.id==filterValue.slice(1));
-            //Ищем по названию
-            default:
+            case "?"://Если первый знак ЗнакВопроса то ищем по витрине
+                return list.filter(i => i.bureau==filterValue.slice(1));
+            default://Ищем по названию
                 return list.filter(i => i.fullName.toLowerCase().indexOf(filterValue.toLowerCase())!==-1);
         }
+    }
+
+    OnBadgeSelect(event, bureau){
+        event.stopPropagation();
+        this.props.OnBadgeSelect(bureau);
+    }
+
+    BIRQM(ex){
+        return ex.bureau === 0
+            ? ex.bureau
+            : ex.bureau || "\u00a0?\u00a0";
     }
 
     render(){
@@ -40,6 +52,7 @@ class DesignerList extends React.Component
                     <span>
                         <span style={{color:"lightgrey"}}>{`#${("0000" + ex.id).slice(-3)}`}</span>
                         <span>{"\u00a0\u00a0"}{ex.fullName}</span>
+                        <span className="ComplexBadge" onClick={e=>this.OnBadgeSelect(e, ex.bureau)}>{this.BIRQM(ex)}</span>
                     </span>
                 </ListItem>
             )

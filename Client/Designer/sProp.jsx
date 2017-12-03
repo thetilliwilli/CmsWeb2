@@ -6,6 +6,7 @@ import Divider from "material-ui/Divider";
 import langService from "../Service/language.js";
 
 import util from "../Module/util.js";
+import EnumSelector from "../Component/enumSelector.jsx";
 
 export default class SProp extends React.Component
 {
@@ -15,6 +16,7 @@ export default class SProp extends React.Component
         this.state = {data: props.propData};
 
         this.OnChange = this.OnChange.bind(this);
+        this.OnEnumChange = this.OnEnumChange.bind(this);
     }
 
     OnChange(event, newValue){
@@ -28,10 +30,18 @@ export default class SProp extends React.Component
         this.setState(newState);
     }
 
+    //SUPER DIRTY HACK
+    OnEnumChange(event, newValue){
+        this.OnChange(event, newValue);
+
+        //SUPER DIRTY HACK
+        this.props.OnEnumChange && this.props.OnEnumChange(newValue);
+    }
+
     render(){
         const propName = this.props.propName;
         // const hideLocationAndDateOfCreation = propName==="location"||propName==="date" ? "none" : "initial";
-        const isMultiline = propName==="history" || propName==="description";
+        const isMultiline = propName==="biography" || propName==="awards" || propName==="characteristics";
         const multilineStyleAddition = isMultiline ? {multiLine:true, rowsMax: 12 } : {};//Если это Поле с Историей или Описанием то сделать Multiline полем
         const ruFullfiledStyleAddition = isMultiline && this.state.data.ru.split(/\r*\n/).length > 1 ? {backgroundColor:"rgba(0,188,212,0.1)"} : {};//Добавляем выделение когда несколько абзацев присутствует
         const enFullfiledStyleAddition = isMultiline && this.state.data.en.split(/\r*\n/).length > 1 ? {backgroundColor:"rgba(0,188,212,0.1)"} : {};//Добавляем выделение когда несколько абзацев присутствует
@@ -57,12 +67,9 @@ export default class SProp extends React.Component
                     let theDate = this.state.data[tag] && new Date(this.state.data[tag]) || null;
                     inputElement = <DatePicker onChange={this.OnChange} name={tag + "."+propName} floatingLabelText={this.props.propData.label} value={theDate} openToYearSelection/>;
                     break;
-                // case "enum":
-                //     inputElement = <CatsubSelector isEditMode={this.props.isEditMode} OnChange={this.props.OnCatsubChange} label={this.props.propData.label} />;
-                //     break;
-                // case "set":
-                //     inputElement = <CountrySelector isEditMode={this.props.isEditMode} OnChange={this.props.OnCountriesChange} label={this.props.propData.label} />;
-                //     break;
+                case "enum":
+                    inputElement = <EnumSelector value={this.state.data[tag]} label={this.props.propData.label} enum={this.props.bureauEnum} OnChange={this.OnEnumChange} />
+                    break;
             }
 
             if(inputElement === null)

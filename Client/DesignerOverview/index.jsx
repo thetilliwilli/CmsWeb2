@@ -13,9 +13,10 @@ class DesignerOverview extends React.Component
     constructor(props){
         super(props);
 
-        this.state = {filter:""};
+        this.state = {filter:"", bureau:""};
         
         this.OnFilterChange = this.OnFilterChange.bind(this);
+        this.OnBadgeSelect = this.OnBadgeSelect.bind(this);
     }
 
     componentWillMount(){
@@ -24,6 +25,10 @@ class DesignerOverview extends React.Component
 
     OnFilterChange(event, newValue){
         this.setState({filter:newValue});
+    }
+
+    OnBadgeSelect(complex){
+        this.setState({filter:"?"+(complex?complex:"")});
     }
 
     render(){
@@ -35,8 +40,10 @@ class DesignerOverview extends React.Component
                     </div>
                     <div style={{width:"100%", height:"90%", overflow:"auto"}} >
                         <DesignerList
+                            OnBadgeSelect={this.OnBadgeSelect}
                             OnDelete={this.props.DeleteDesigner}
                             designerList={this.props.model} filter={this.state.filter} filterValue={this.state.filter}
+                            bureau={this.state.bureau}
                         />
                     </div>
                 </div>
