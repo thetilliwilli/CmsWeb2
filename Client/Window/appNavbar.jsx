@@ -41,11 +41,15 @@ class AppNavbar extends React.Component {
                         <MenuItem style={{width:"100%"}} onClick={this.props.NavbarClose}><DivLink to="/golo">Сенсорные этикетки</DivLink></MenuItem>
                         <Divider />
                     </div>
+
+                    <div style={{width:"100%", marginTop:"8px", display:"flex", flexWrap:"wrap"}}>
+                        <span style={{width:"60%", margin:"auto", color:"lightgrey", fontFamily:"Roboto"}} >Предприятия</span>
+                    </div>
                     <div style={{width:"100%"}}>
                         <MenuItem style={{width:"100%"}} onClick={this.props.NavbarClose}><DivLink to="/designer">Конструкторы</DivLink></MenuItem>
                     </div>
                     <div style={{width:"100%"}}>
-                        <MenuItem style={{width:"100%"}} onClick={this.props.NavbarClose}><DivLink to="/bureau">Конструкторские бюро</DivLink></MenuItem>
+                        <MenuItem style={{width:"100%"}} onClick={this.props.NavbarClose}><DivLink to="/bureau">Предприятия</DivLink></MenuItem>
                     </div>
             </div>
             </Drawer>
