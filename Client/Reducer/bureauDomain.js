@@ -66,7 +66,7 @@ export default function BureauReducer(state = initState.bureauDomain, action){
                     id: bureau._id,
                     fullName: bureau.fullName,
                 }));
-                newState.overview = newState.overview.sort((a,b)=>{return a.id>b.id});
+                newState.overview = newState.overview.sort((a,b)=>a.id-b.id);
             }
         });
         case at.DELETE_BUREAU_FROM_LIST: return CloneState(state, newState => {
