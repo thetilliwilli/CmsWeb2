@@ -67,6 +67,7 @@ export default function DesignerReducer(state = initState.designerDomain, action
                     fullName: designer.fullName,
                     bureau: designer.bureau,
                 }));
+                newState.overview = newState.overview.sort((a,b)=>{return a.id>b.id});
             }
         });
         case at.DELETE_DESIGNER_FROM_LIST: return CloneState(state, newState => {
