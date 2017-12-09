@@ -5,5 +5,10 @@ module.exports = {
     webRootAuthPath: `${__dirname}/WebRootAuth`,
     staticPath: `${__dirname}/Static`,
     secretKey: "IzidaServer",
-    dbConnectionString: "mongodb://localhost/CmsWeb"
+    db: {
+        port: 27017,
+        host: "localhost",
+        dbname: "TAG",
+        get connectionString(){return `mongodb://${this.host}:${this.port}/${this.dbname}`},
+    }
 };
