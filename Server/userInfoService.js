@@ -31,6 +31,10 @@ global.setInterval(UpdateUserCollection, 5*1000);//каждые 5 сек обн�
 
 class UserInfoService
 {
+    constructor(){
+        InitializeUserCollection();
+    }
+
     GetUserInfo(login){
         return userStorage.find(u=>u.login === login);
     }
