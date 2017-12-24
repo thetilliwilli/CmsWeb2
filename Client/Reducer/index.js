@@ -7,6 +7,7 @@ import InstReducer from "./instReducer.js";
 import SuccessInformerReducer from "./successInformer.js";
 import DesignerReducer from "./designerDomain.js";
 import BureauDomain from "./bureauDomain.js";
+import Overseer from "./overseer.js";
 
 export default combineReducers({
     tagDomain: TagDomain,
@@ -16,4 +17,5 @@ export default combineReducers({
     successInformer: SuccessInformerReducer,
     designerDomain: DesignerReducer,
     bureauDomain: BureauDomain,
+    overseer: Overseer,
 });

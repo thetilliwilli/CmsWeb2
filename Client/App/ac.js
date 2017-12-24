@@ -258,3 +258,20 @@ export function ShowSuccessInformer(message){
             type: at.HIDE_SUCCESS_INFORMER,
         };
     }
+
+//OVERSEER
+export function FetchOverseer(){
+    return function(dsp){
+        dsp(FetchOverseerRequest());
+
+        postman.Status("inst", FetchOverseerResponse);
+    };
+}
+
+    export function FetchOverseerRequest(){
+        return {type: at.FETCH_OVERSEER_REQUEST};
+    }
+
+    export function FetchOverseerResponse(response){
+        return _ResponseHandler(response, at.FETCH_OVERSEER_RESPONSE);
+    };

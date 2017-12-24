@@ -23,6 +23,7 @@ const APP_TITLES = {
     golo: "Сенсорные этикетки",
     designer: "Конструкторы",
     bureau: "Конструкторские бюро",
+    overseer: "Cостояние устройств",
 };
 
 class AppHeader extends React.Component

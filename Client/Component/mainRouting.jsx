@@ -28,6 +28,9 @@ import BureauCreateDataProvider from "../BureauDataProvider/create.jsx";
 import BureauOverviewDataProvider from "../BureauDataProvider/overview.jsx";
 import BureauEditDataProvider from "../BureauDataProvider/edit.jsx";
 
+//Overseer
+import OverseerDataProvider from "../Overseer/dataProvider.jsx";
+
 const TagContent = p => (
     <div className="PageSwitcher" style={{height:"100%"}}>
         <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><ExhibitCreateDataProvider /></div>
@@ -72,6 +75,9 @@ function MainRouting(props){
     let curIndex = props[`${util.CurrentDomain()}PageIndex`];
     return (
         <Switch>
+            <Route path="/overseer">
+                <OverseerDataProvider />
+            </Route>
             <Route path="/tag">
                 <TagContent curIndex={curIndex}/>
             </Route>
@@ -87,7 +93,7 @@ function MainRouting(props){
             <Route path="/bureau">
                 <BureauContent curIndex={curIndex}/>
             </Route>
-            <Redirect to="/tag" />{/* Если не попали ни на одну страницу то перейти на страницу с Электронными этикетками */}
+            <Redirect to="/overseer" />{/* Если не попали ни на одну страницу то перейти на страницу с Электронными этикетками */}
         </Switch>
     );
 };

@@ -22,4 +22,7 @@ export default {
 
     //BUREAU DOMAIN
     bureauDomain,
+
+    //overseer
+    overseer:{}
 };

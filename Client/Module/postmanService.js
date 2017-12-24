@@ -9,6 +9,21 @@ class PostmanService
         this.Dispatch = store.dispatch;
     }
 
+    Status(channel, actionCreator){
+        if(!channel)
+            throw new Error("Invalid arguments");
+
+        const options = {
+            method: "GET",
+            mode: "cors",
+        };
+
+        var urlEndPoint = `${this.rootUrl}/${channel}/status`;
+        console.info(`[Request.GetAll]:(${urlEndPoint}):`);
+        let jsonOrError = this._PromiseToJsonOrError(window.fetch(urlEndPoint, options));
+        return this._DispatchCallbackAction(jsonOrError, actionCreator);
+    }
+
     GetAll(channel, actionCreator){
         if(!channel)
             throw new Error("Invalid arguments");
