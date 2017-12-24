@@ -13,7 +13,7 @@ export default class StaticProps extends React.Component
         props.RegCom(this);
 
         this.form = null;
-        this.enumValue = -1;//SUPER DIRTY HACK
+        this.enumValue = undefined;//SUPER DIRTY HACK
 
         this.EnumChange = this.EnumChange.bind(this);//SUPER DIRTY HACK
     }
