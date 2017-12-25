@@ -8,13 +8,16 @@ import postman from "../Module/postmanService.js";
  * Обрабатывает ответ от postman
  * @param {Object} postmanResponse ответный Promise от postman'a
  * @param {Object} returnedActionType какой тип Action'a надо вернуть в reducer
+ * @param {Boolean} useSuccessInformer показывать всплывающее окно после успешного выполнения
+ * @param {Boolean} useErrorInformer показывать всплывающее окно после провального выполнения
  * */
-function _ResponseHandler(postmanResponse, returnedActionType){
+function _ResponseHandler(postmanResponse, returnedActionType, useSuccessInformer = true, useErrorInformer = true){
     return function(dispatch){
         if(postmanResponse.error)
         {
             console.warn(postmanResponse.error);
-            dispatch(ShowErrorWindow(postmanResponse.error));
+            if(useErrorInformer)
+                dispatch(ShowErrorWindow(postmanResponse.error));
             dispatch({
                 type: returnedActionType,
                 error: postmanResponse.error,
@@ -23,7 +26,8 @@ function _ResponseHandler(postmanResponse, returnedActionType){
         else
         {
             console.log(postmanResponse);
-            dispatch(ShowSuccessInformer(postmanResponse));
+            if(useSuccessInformer)
+                dispatch(ShowSuccessInformer(postmanResponse));
             dispatch({
                 type: returnedActionType,
                 payload: postmanResponse,
@@ -273,5 +277,5 @@ export function FetchOverseer(){
     }
 
     export function FetchOverseerResponse(response){
-        return _ResponseHandler(response, at.FETCH_OVERSEER_RESPONSE);
+        return _ResponseHandler(response, at.FETCH_OVERSEER_RESPONSE, false, true);
     };

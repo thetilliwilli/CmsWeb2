@@ -41,6 +41,20 @@ class UserInfoService
     GetUserInfoById(id){
         return userStorage.find(u=>u.id === id);
     }
+
+    /**
+     * 
+     * @param {User} user 
+     */
+    CreateUser(user){
+        UserModel.create(user);
+    }
 }
-const singleton = new UserInfoService();
+const singleton = new UserInfoService(); //singleton.CreateUser({login:"1",password:"1"});
 module.exports = singleton;
+
+/**
+ * @typedef User
+ * @property {String} login
+ * @property {String} password
+ */
