@@ -27,7 +27,7 @@ class AppNavbar extends React.Component {
             >
             <div style={{display:"flex", flexWrap:"wrap"}}>
                     <Link to="/overseer" onClick={this.props.NavbarClose} style={{width:"100%", height:"15%", display:"flex", flexWrap:"wrap"}}>
-                        <div style={{width:"50%",margin:"16px auto 16px auto", boxShadow:"0px 0px 10px 2px lightgrey", borderRadius:"25px"}}>
+                        <div className="OverseerIcon">
                             <img style={{maxWidth:"100%"}} src="/Static/icon/visualsMuseumIcon.png" />
                         </div>
                     </Link>

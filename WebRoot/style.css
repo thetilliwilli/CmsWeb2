@@ -110,3 +110,15 @@ a {
     /* box-shadow: 0px 0px 2px 0px lightgrey; */
     color:LimeGreen;
 }
+
+.OverseerIcon
+{
+    width: 50%;
+    margin: 16px auto 16px auto;
+    box-shadow: 0px 0px 10px 2px lightgrey;
+    border-radius: 25px;
+}
+    .OverseerIcon:hover
+    {
+        box-shadow: 0px 0px 18px 0px rgba(0, 188, 212, 0.7);
+    }
