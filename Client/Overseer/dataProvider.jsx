@@ -17,7 +17,7 @@ class DataProvider extends React.Component
     }
 
     componentDidMount(){
-        this.fetchTimer = window.setInterval(this.props.FetchOverseer, 1000);
+        this.fetchTimer = window.setInterval(this.props.FetchOverseer, 15*1000);
     }
 
     componentWillUnmount(){

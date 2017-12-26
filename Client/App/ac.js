@@ -277,5 +277,5 @@ export function FetchOverseer(){
     }
 
     export function FetchOverseerResponse(response){
-        return _ResponseHandler(response, at.FETCH_OVERSEER_RESPONSE, false, true);
+        return _ResponseHandler(response, at.FETCH_OVERSEER_RESPONSE, false, false);
     };

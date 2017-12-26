@@ -12,3 +12,5 @@ componentDidMount: function() {
 -4-
 Чтобы работали connect(S2P,D2P)(Component) необходимо заменить на
   -> withRouter(connect(S2P,D2P)(Component))
+-5-
+  фейковый коммит чтобы исправить git push
