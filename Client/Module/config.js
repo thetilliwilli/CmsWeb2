@@ -1,7 +1,7 @@
 "use strict";
 export default {
     api:{
-        schema: "http",
+        schema: "",
         hostname: (new URL(window.location.href).hostname),
         port: 7777,
         url: "",
