@@ -1,7 +1,6 @@
 "use strict";
 import React from "react";
 import RaisedButton from 'material-ui/RaisedButton';
-// import IconButton from 'material-ui/IconButton';
 import RefreshIcon from 'material-ui/svg-icons/navigation/refresh';
 import TextField from 'material-ui/TextField';
 import {List, ListItem} from 'material-ui/List';
@@ -85,6 +84,16 @@ class OverseerList extends React.Component
         throw new Error("Не обработанный случай в PingToLabel");
     }
 
+    StatusToColor(status){
+        switch(status)
+        {
+            case "alert": return "crimson";
+            case "poor": return "DarkOrange";
+            case "ok": return "LimeGreen";
+        }
+        throw new Error("Необработанный случай в StatusToColor");
+    }
+
     render(){
         const filterValue = this.props.filterValue.toLowerCase();
         var items = this.Filter(this.props.list.statuses, filterValue)
@@ -97,7 +106,7 @@ class OverseerList extends React.Component
                 >
                     <span>
                         <span style={{color:"lightgrey"}}>{`#${ex.id}`}</span>
-                        <span className="OverseerUptimeLabel" style={{color:ex.status==="alert"?"crimson":""}} >{this.PingToLabel(ex.lastPing)} назад</span>
+                        <span className="OverseerUptimeLabel" style={{color:this.StatusToColor(ex.status),borderColor:this.StatusToColor(ex.status)}}>{this.PingToLabel(ex.lastPing)} назад</span>
                         <span>{"\u00a0\u00a0"}{ex.hardname}</span>
                     </span>
                 </ListItem>
@@ -137,10 +146,10 @@ export default class OverseerOverview extends React.Component
     render(){
         return (
             <div className="OverseerOverview" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap", padding: "20px 20px 20px 20px"}}>
-                <div style={{width:"100%", height:"10%"}} >
-                    {/* <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter} OnRefresh={this.props.FetchOverview}/> */}
-                </div>
-                <div style={{width:"100%", height:"90%", overflow:"auto"}} >
+                {/* <div style={{width:"100%", height:"10%"}} >
+                    <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter} OnRefresh={this.props.FetchOverview}/>
+                </div> */}
+                <div style={{width:"100%", height:"100%", overflow:"auto"}} >
                     <OverseerList
                         list={this.props.list}
                         filter={this.state.filter}
