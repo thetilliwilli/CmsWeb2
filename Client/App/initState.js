@@ -24,5 +24,10 @@ export default {
     bureauDomain,
 
     //overseer
-    overseer:{}
+    overseer:{},
+
+    imageViewer: {
+        imageSrc: null,
+        open: false
+    }
 };

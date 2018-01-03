@@ -4,6 +4,7 @@ import {Card, CardTitle} from "material-ui/Card";
 import ErrorInformer from "./errorInformer.jsx";
 import GlobalErrorHandler from "./globalErrorHandler.jsx";
 import SuccessInformer from "./successInformer.jsx";
+import ImageViewer from "../Component/imageViewer.jsx";
 
 export default class MainLayout extends React.Component
 {
@@ -33,6 +34,7 @@ export default class MainLayout extends React.Component
                 <ErrorInformer />
                 <GlobalErrorHandler />
                 <SuccessInformer />
+                <ImageViewer />
             </div>
         );
     }

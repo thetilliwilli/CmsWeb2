@@ -8,6 +8,7 @@ import SuccessInformerReducer from "./successInformer.js";
 import DesignerReducer from "./designerDomain.js";
 import BureauDomain from "./bureauDomain.js";
 import Overseer from "./overseer.js";
+import ImageViewer from "./imageViewer.js";
 
 export default combineReducers({
     tagDomain: TagDomain,
@@ -18,4 +19,5 @@ export default combineReducers({
     designerDomain: DesignerReducer,
     bureauDomain: BureauDomain,
     overseer: Overseer,
+    imageViewer: ImageViewer,
 });

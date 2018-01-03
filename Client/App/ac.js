@@ -279,3 +279,15 @@ export function FetchOverseer(){
     export function FetchOverseerResponse(response){
         return _ResponseHandler(response, at.FETCH_OVERSEER_RESPONSE, false, false);
     };
+
+//ImageViewer
+export function ImageViewerShow(imageSrc){
+    return {
+        type: at.IMAGE_VIEWER_SHOW,
+        payload: imageSrc
+     }
+}
+
+export function ImageViewerHide(){
+    return { type: at.IMAGE_VIEWER_HIDE }
+}
