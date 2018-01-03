@@ -6,6 +6,7 @@ import {Card, CardHeader} from 'material-ui/Card';
 import {DEFAULT_IMAGE_AVATAR} from "../Module/consts.js";
 
 const imageTitleStyle = {fontFamily:"Roboto", color:"lightgrey", margin:"auto"};
+import WithImageViewer from "../Component/withImageViewer.jsx";
 
 class UploadImage extends React.Component {
     constructor(props) {
@@ -37,6 +38,7 @@ class UploadImage extends React.Component {
         return (
             <div>
                 <img className="BureauCard_image" onClick={this.OnImageClick} src={imageSrc}
+                    onContextMenu={e=>this.props.ImageViewerShow(e,imageSrc)}
                     style={{marginLeft:"16px", boxShadow:"0px 0px 2px 0px grey" , maxWidth:"100px", maxHeight:"100px", backgroundSize: "contain", cursor: 'pointer'}}/>
                 <input ref={(input)=>{this.fileUploadInput = input;}} type="file"
                     style={{display:"none"}} onChange={this.OnFileSelected} accept=".png,.jpg,.jpeg" />
@@ -44,6 +46,7 @@ class UploadImage extends React.Component {
         );
     }
 }
+const UploadImageAdv = WithImageViewer(UploadImage);
 
 export default class Avatar extends React.Component {
     constructor(props) {
@@ -78,12 +81,12 @@ export default class Avatar extends React.Component {
 
                     <div style={{width:"40%", display:"flex", flexWrap:"wrap"}}>
                         <div style={imageTitleStyle}>ПРЕВЬЮ</div>
-                        <UploadImage onFileChanged={e=>this.ChangeImage(e,true)} imageSrc={this.state.imageSrcPreview}/>
+                        <UploadImageAdv onFileChanged={e=>this.ChangeImage(e,true)} imageSrc={this.state.imageSrcPreview}/>
                     </div>
 
                     <div style={{width:"40%", display:"flex", flexWrap:"wrap"}}>
                         <div style={imageTitleStyle}>ЛОГОТИП</div>
-                        <UploadImage onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrcLogotype}/>
+                        <UploadImageAdv onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrcLogotype}/>
                     </div>
 
                 </div>
