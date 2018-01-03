@@ -9,6 +9,7 @@ import Divider from 'material-ui/Divider';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import util from "../Module/util.js";
+import WithImageViewer from "../Component/withImageViewer.jsx";
 
 import uuid from "uuid";
 
@@ -29,7 +30,7 @@ class ImageThumb extends React.Component
             <div className="ImageThumb" style={{width:"100%", height:"13%", minHeight:"13%", display:"flex", flexWrap:"wrap", borderBottom:"1px solid lightgrey"}} >
 
                 <div style={{width:"13%", height:"100%", display:"flex", padding:"4px"}} >
-                    <img src={this.props.src} style={{width:"100%", height:"100%"}}/>
+                    <img onContextMenu={e=>this.props.ImageViewerShow(e,this.props.src)} src={this.props.src} style={{width:"100%", height:"100%"}}/>
                 </div>
 
                 <div style={{width:"65%", height:"100%"}}>
@@ -51,6 +52,7 @@ class ImageThumb extends React.Component
         );
     }
 }
+const ImageThumbAdv = WithImageViewer(ImageThumb);
 
 const DndZoneReplacer = p => (
     <div style={{ fontSize:"2.5em", color:"lightgrey", margin:"auto", border:"2px dashed lightgrey", borderRadius:"10px", padding:"10px"}}>
@@ -156,7 +158,7 @@ export default class ImageGallery extends React.Component
 
     render(){
         var imageThumbs = this.state.images.map(
-            i=><ImageThumb OnDescriptionChange={this.OnDescriptionChange} key={i.id} src={i.src} language={this.props.language} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
+            i=><ImageThumbAdv OnDescriptionChange={this.OnDescriptionChange} key={i.id} src={i.src} language={this.props.language} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
         );
         return (
             <div className="ImageGallery" style={{display:"flex", height:"100%", flexWrap:"wrap"}} >
