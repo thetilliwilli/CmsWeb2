@@ -5,7 +5,7 @@ const config = require("./config.js");
 const bodyParser = require("body-parser");
 var authRouter = require("./Server/Router/authRouter.js");
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+// var logger = require('morgan');
 var auth = require("./Server/auth.js");
 var path = require("path");
 const compression = require('compression');
@@ -16,7 +16,7 @@ Promise.resolve()
     .then(() => {
         var app = express();
         
-        app.use(logger('dev'));
+        // app.use(logger('dev'));
         app.use(compression());
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: false }));

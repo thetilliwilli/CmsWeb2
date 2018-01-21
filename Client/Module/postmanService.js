@@ -1,6 +1,8 @@
 import config from "./config.js";
 import store from "../App/store";
 
+const blobHeader = { "Blob": document.cookie.split(";").find(x=>x.split("=")[0]==="blob").split("=")[1]};
+
 class PostmanService
 {
     constructor(config, store){
@@ -16,6 +18,7 @@ class PostmanService
         const options = {
             method: "GET",
             mode: "cors",
+            headers: new Headers(blobHeader),
         };
 
         var urlEndPoint = `${this.rootUrl}/${channel}/status`;
@@ -31,6 +34,7 @@ class PostmanService
         const options = {
             method: "GET",
             mode: "cors",
+            headers: new Headers(blobHeader),
         };
 
         var urlEndPoint = `${this.rootUrl}/${channel}`;
@@ -46,6 +50,7 @@ class PostmanService
         const options = {
             method: "GET",
             mode: "cors",
+            headers: new Headers(blobHeader),
         };
 
         var urlEndPoint = `${this.rootUrl}/${channel}/${id}`;
@@ -58,13 +63,13 @@ class PostmanService
         if(!channel || !data)
             throw new Error("Invalid arguments");
 
-        var headers = new Headers();
+        var headers = new Headers(blobHeader);
         headers.append("Content-Type", "application/json");
 
         const options = {
             method: "POST",
             mode: "cors",
-            headers,
+            headers: headers,
             body: (typeof data === "string" ? data : JSON.stringify(data))
         };
         
@@ -78,13 +83,13 @@ class PostmanService
         if(!channel || id === undefined || !data)
             throw new Error("Invalid arguments");
 
-        var headers = new Headers();
+        var headers = new Headers(blobHeader);
         headers.append("Content-Type", "application/json");
 
         const options = {
             method: "Put",
             mode: "cors",
-            headers,
+            headers: headers,
             body: (typeof data === "string" ? data : JSON.stringify(data))
         };
 
@@ -98,13 +103,13 @@ class PostmanService
         if(!channel || id === undefined)
             throw new Error("Invalid arguments");
 
-        var headers = new Headers();
+        var headers = new Headers(blobHeader);
         headers.append("Content-Type", "application/json");
 
         const options = {
             method: "Delete",
             mode: "cors",
-            headers
+            headers: headers,
         };
 
         var urlEndPoint = `${this.rootUrl}/${channel}/${id}`;
