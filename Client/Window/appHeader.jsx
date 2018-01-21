@@ -12,8 +12,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import util from "../Module/util.js";
 
 function ClearCookieAndRefresh(){
-    document.cookie = "login=; Max-Age=0";
-    document.cookie = "password=; Max-Age=0";
+    document.cookie = "blob=; Max-Age=0";
     window.location.reload();
 }
 

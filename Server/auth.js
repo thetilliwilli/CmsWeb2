@@ -1,4 +1,6 @@
+"use strict";
 var userInfoService = require("./userInfoService.js");
+const jwt = require("./jwt.js");
 
 
 class Auth
@@ -11,10 +13,9 @@ class Auth
     IsAuth(req){
         var isAuth = false;
         
-        if(req.cookies)
+        if(req.cookies && req.cookies.blob)
         {
-            var login = req.cookies.login;
-            var password = req.cookies.password;
+            const {login, password} = jwt.Decode(req.cookies.blob);
         
             if(login && password)
             {
@@ -39,8 +40,8 @@ class Auth
         var userInfo = userInfoService.GetUserInfo(user.login);
         if(userInfo && (user.login === userInfo.login) && (user.password === userInfo.password))
         {
-            res.cookie("login", userInfo.login, { maxAge: 14400 * 1000/* , httpOnly: true  */});
-            res.cookie("password", userInfo.password, { maxAge: 14400 * 1000/* , httpOnly: true  */});
+            const token = jwt.Encode({login: userInfo.login, password: userInfo.password});
+            res.cookie("blob", token, { maxAge: 14400 * 1000});
             return true;
         }
         else
@@ -48,8 +49,7 @@ class Auth
     }
 
     TryLogout(res){
-        res.clearCookie("login");
-        res.clearCookie("password");
+        res.clearCookie("blob");
         return true;
     }
 }
