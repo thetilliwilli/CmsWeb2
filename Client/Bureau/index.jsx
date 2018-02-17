@@ -15,6 +15,7 @@ import ControlPanel from "./controlPanel.jsx";
 import Placeholder from "../Component/placeholder.jsx";
 
 import {DEFAULT_IMAGE_AVATAR} from "../Module/consts.js";
+import util from "../Module/util.js";
 
 export default class Bureau extends React.Component
 {
@@ -48,8 +49,7 @@ export default class Bureau extends React.Component
     }
 
     SubscribeToWindowResize(){
-        const isLandscape = (window.innerWidth / window.innerHeight) > 1.0;
-        const columnWidth = isLandscape ? "33.33%" : "100%";
+        const columnWidth = util.IsLandscape("33.33%", "100%");
         window.document.querySelectorAll(".AdaptiveLayoutColumn").forEach(el => el.style.width = columnWidth);
     }
 

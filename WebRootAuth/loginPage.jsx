@@ -4,6 +4,7 @@ import { Card, CardTitle, CardText } from "material-ui/Card";
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
+import util from "../Client/Module/util.js";
 
 export default class LoginPage extends React.Component {
   constructor(props) {
@@ -55,23 +56,27 @@ export default class LoginPage extends React.Component {
   }
 
   render() {
+    const wholePageWidth = util.IsLandscape("50%", "85%");
+    const imageWidth = util.IsLandscape("20%", "30%");
     return (
-      <div style={{width:"50%", height:"100%", margin:"auto", display:"flex", flexDirection:"column", justifyContent:"flex-start"}} >
+      
+
+      <div style={{width:wholePageWidth, height:"100%", margin:"auto", display:"flex", flexDirection:"column", justifyContent:"flex-start"}} >
         
-        <div style={{width:"20%", margin:"5% auto 5% auto"}} >
-          <img style={{width:"100%", height:"auto"}} src="/Static/icon/visualsMuseumIcon.png" />
-          <img style={{width:"100%", height:"auto"}} src="/Static/icon/visualsIcon.png" />
+        <div style={{zIndex:0, height:"100%", width:wholePageWidth, margin:"0px auto 0px auto", display:"flex", position:"absolute"}} >
+          <div style={{width:imageWidth, margin:"5% auto 5% auto"}} >
+            <img style={{width:"100%", height:"auto"}} src="/Static/icon/visualsMuseumIcon.png" />
+            <img style={{width:"100%", height:"auto"}} src="/Static/icon/visualsIcon.png" />
+          </div>
         </div>
 
-        <div className="LoginPage" zDepth={3} style={{width:"100%", margin:"0px auto 0px auto", display:"flex", padding:"10%", boxShadow:"0px 0px 80px 0px lightgrey", borderRadius:"15px"}} >
+        <div className="LoginPage" style={{zIndex:1, backgroundColor:"white", width:"100%", margin:"auto", display:"flex", padding:"10%", boxShadow:"0px 0px 80px 0px lightgrey", borderRadius:"15px"}} >
             <form action="/" onSubmit={this.OnSubmit} style={{width:"70%", margin:"auto"}} >
-              <CardTitle title="Вход" style={{width:"100%", margin:"auto", textAlign:"center"}} titleColor="grey" />
               <TextField style={{width:"100%",}} autoFocus name="login" value={this.state.login} onChange={this.OnChange} hintText="Введите логин" floatingLabelText="Логин" /><br />
               <TextField style={{width:"100%",}} name="password" value={this.state.password} onChange={this.OnChange} type="password" hintText="Введите пароль" floatingLabelText="Пароль" /><br />
               <div style={{width:"60%", margin:"auto"}} >
                 <RaisedButton type="submit" label="Войти" primary fullWidth />
               </div>
-              {/* <CardText>Doesn't have an account? <Link to={'/signup'}>Signup</Link></CardText> */}
             </form>
         </div>
         
