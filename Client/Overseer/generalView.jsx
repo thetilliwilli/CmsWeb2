@@ -1,5 +1,7 @@
 "use strict";
 import React from "react";
+import {List} from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
 
 import CategoryBadge from "./categoryBadge.jsx";
 
@@ -11,21 +13,21 @@ export default class GeneralView extends React.Component
             const okCount = category.statuses.filter(i => i.status==="ok").length;
             const poorCount = category.statuses.filter(i => i.status==="poor").length;
             const alertCount = category.statuses.filter(i => i.status==="alert").length;
-            return <CategoryBadge 
-                key={category.type}
-                type={category.type}
-                okCount={okCount}
-                poorCount={poorCount}
-                alertCount={alertCount}
-                totalCount={totalCount}
-                SetDetailView={this.props.SetDetailView}
-                 />;
+            return <CategoryBadge
+                    key={category.type}
+                    type={category.type}
+                    okCount={okCount}
+                    poorCount={poorCount}
+                    alertCount={alertCount}
+                    totalCount={totalCount}
+                    SetDetailView={this.props.SetDetailView}
+                />;
         });
 
         return (
-            <div style={{display:"flex", flexWrap:"wrap", width:"100%", height:"100%"}}>
+            <List>
                 {categoryBadgeList}
-            </div>
+            </List>
         );
     }
 }

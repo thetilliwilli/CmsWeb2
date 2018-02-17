@@ -1,52 +1,51 @@
 "use strict";
 import React from "react";
+import {ListItem} from 'material-ui/List';
+import FileFolder from 'material-ui/svg-icons/file/folder';
+import Avatar from 'material-ui/Avatar';
 
 const okCountStyle = {
     color: "LimeGreen",
-    fontSize:"2em"
 };
 
 const poorCountStyle = {
     color: "DarkOrange",
-    fontSize:"2em"
 };
 
 const alertCountStyle = {
     color: "crimson",
-    fontSize:"2em"
 };
 
 const totalCountStyle = {
     color: "lightslategrey",
-    fontSize:"2em"
 };
 
+const categoryToTitle = {
+    tuple: "Энциклопедия",
+    exhibit: "Электронные этикетки",
+    golo: "Сенсорные этикетки",
+    bureau: "Предприятия",
+    designer: "Конструкторы",
+};
 
 export default class CategoryBadge extends React.Component
 {
     render(){
         return (
-            <div
-                className="CategoryBadge"
-                style={{display:"flex", flexWrap:"wrap"}}
+            <ListItem
+                leftAvatar={<Avatar icon={<FileFolder />} />}
                 onClick={()=>this.props.SetDetailView(this.props.type)}
-            >
-                <div style={{display:"flex", flexWrap:"wrap", margin:"auto"}}>
-                    
-                    <div className="CategoryBadgeTitle" >
-                        {this.props.type.trim().toUpperCase()}
-                    </div>
-
-                    <div>
+                primaryText={categoryToTitle[this.props.type]}
+                secondaryText={
+                    <span>
                         <span style={okCountStyle} >{this.props.okCount}</span>
                         <span style={totalCountStyle} >/</span>
                         <span style={poorCountStyle} >{this.props.poorCount}</span>
                         <span style={totalCountStyle} >/</span>
                         <span style={alertCountStyle} >{this.props.alertCount}</span>
-                    </div>
-
-                </div>
-            </div>
+                    </span>
+                }
+            />
         );
     }
 }
