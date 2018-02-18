@@ -9,7 +9,7 @@ export default {
         pages: [
             {title: "NEW", ruTitle: "СОЗДАТЬ", subtitle:"Создать экспонат"},
             {title: "OVERVIEW", ruTitle: "ОБЗОР", subtitle:"Обзор экспонатов"},
-            {title: "EDIT", ruTitle: "РЕДАКТИРОВАТЬ", subtitle:"Редактировать\u00A0экспонат"},
+            {title: "EDIT", ruTitle: "ИЗМЕНИТЬ", subtitle:"Редактировать\u00A0экспонат"},
         ],
         language: "ru",
         isNavbarOpen: false,

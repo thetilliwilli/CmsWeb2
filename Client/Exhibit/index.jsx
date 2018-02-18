@@ -32,25 +32,12 @@ export default class Exhibit extends React.Component
         this.RegisterImageGalleryRef = this.RegisterImageGalleryRef.bind(this);
         this.SubmitNewExhibit = this.SubmitNewExhibit.bind(this);
         this.SubmitExhibitUpdate = this.SubmitExhibitUpdate.bind(this);
-        this.SubscribeToWindowResize = this.SubscribeToWindowResize.bind(this);
     }
 
     shouldComponentUpdate(){
         return true;
     }
 
-    componentDidMount(){
-        window.addEventListener("resize", this.SubscribeToWindowResize);
-    }
-
-    componentWillUnmount(){
-        window.removeEventListener("resize", this.SubscribeToWindowResize);
-    }
-
-    SubscribeToWindowResize(){
-        const columnWidth = util.IfLandscape("33.33%", "100%");
-        window.document.querySelectorAll(".AdaptiveLayoutColumn").forEach(el => el.style.width = columnWidth);
-    }
 
     Data(){
         var staticProps = this.StaticPropsRef.Data();
@@ -120,13 +107,12 @@ export default class Exhibit extends React.Component
 
     render(){
         const exhibitData = this.ToExhibitData(this.props.data);
-        const columnWidth = (window.innerWidth / window.innerHeight) > 1.0
-            ? "33.33%"
-            : "100%";
+        const columnWidth = util.IfLandscape("33.33%", "100%");
+        const columnHeight = util.IfLandscape("100%", "");
         return (
             <div key={this.props.uuid} className="Exhibit" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}}>
 
-                <div style={{width:"100%", height:"6%"}}>
+                <div style={{width:"100%"}}>
                     <ControlPanel 
                         handlers={{OnClear: this.props.Clear, OnSubmitNewExhibit: this.SubmitNewExhibit, OnSubmitExhibitUpdate: this.SubmitExhibitUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
@@ -135,21 +121,21 @@ export default class Exhibit extends React.Component
                     />
                 </div>
 
-                <div className="ExhibitForm" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
+                <div className="ExhibitForm" style={{width:"100%", display:"flex", flexWrap:"wrap"}}>
                     
-                    <div style={{width:"100%", height:"6%"}}>
+                    <div style={{width:"100%"}}>
                         <LangSelector />
                     </div>
 
-                    <div className="ExhibitParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
-                        <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                    <div className="ExhibitParts" style={{width:"100%", display:"flex", flexWrap:"wrap"}}>
+                        <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={exhibitData.coverImage}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={exhibitData.staticProps} language={this.props.language}/>
                         </div>
-                        <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                        <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <VariableProps RegCom={this.RegisterVariablePropsRef} items={exhibitData.variableProps} language={this.props.language} />
                         </div>
-                        <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
+                        <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey"}} >
                             <ImageGallery RegCom={this.RegisterImageGalleryRef} images={exhibitData.imageGallery} language={this.props.language}/>
                         </div>
                     </div>
