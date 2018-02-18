@@ -17,7 +17,11 @@ export default class OverseerPage extends React.Component
     }
 
     SetDetailView(type){
-        this.setState({detailView: type});
+        //Если пришло сообщение от одной и той же категории второй раз значит надо свернуть список
+        if(this.state.detailView === type)
+            this.setState({detailView: null});
+        else
+            this.setState({detailView: type});
     }
 
     ResetDetailView(){
@@ -32,11 +36,7 @@ export default class OverseerPage extends React.Component
 
         return (
             <div style={{height:"100%", width:"100%", display:"flex", flexWrap:"wrap"}} >
-                {
-                    this.state.detailView
-                        ? <DetailView data={statusList} ResetDetailView={this.ResetDetailView}  />
-                        : <GeneralView data={this.props.data} SetDetailView={this.SetDetailView} />
-                }
+                <GeneralView detailType={this.state.detailView} data={this.props.data} listData={statusList} SetDetailView={this.SetDetailView} />
             </div>
         );
     }
