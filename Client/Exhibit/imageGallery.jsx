@@ -27,13 +27,14 @@ class ImageThumb extends React.Component
 
     render(){
         return (
-            <div className="ImageThumb" style={{width:"100%", height:"13%", minHeight:"13%", display:"flex", flexWrap:"wrap", borderBottom:"1px solid lightgrey"}} >
-
-                <div style={{width:"13%", height:"100%", display:"flex", padding:"4px"}} >
-                    <img onContextMenu={e=>this.props.ImageViewerShow(e,this.props.src)} src={this.props.src} style={{width:"100%", height:"100%"}}/>
+            <div className="ImageThumb" style={{width:"100%", borderBottom:"1px solid lightgrey"}} >
+                    
+                
+                <div style={{maxWidth:"13%", float:"left"}} >
+                    <img onContextMenu={e=>this.props.ImageViewerShow(e,this.props.src)} src={this.props.src} style={{maxWidth:"100%"}} />
                 </div>
 
-                <div style={{width:"65%", height:"100%"}}>
+                <div style={{width:"65%", height:"100%", float:"left", display:"flex"}}>
                     <TextField
                         style={{display:(this.props.language==="ru"?"initial":"none")}}
                         name="ru" onChange={this.OnChange} hintText="Описание на русском" value={this.props.description.ru} underlineShow={false}
@@ -44,7 +45,7 @@ class ImageThumb extends React.Component
                     />
                 </div>
 
-                <div style={{width:"10%", height:"100%", display:"flex"}}>
+                <div style={{width:"10%", height:"100%", display:"flex", float:"left"}}>
                     <IconButton iconStyle={{color:"grey"}} style={{margin:"auto"}} onClick={()=>{this.props.OnDelete(this.props.id)}} ><ActionDelete /></IconButton>
                 </div>
 
@@ -160,15 +161,13 @@ export default class ImageGallery extends React.Component
         var imageThumbs = this.state.images.map(
             i=><ImageThumbAdv OnDescriptionChange={this.OnDescriptionChange} key={i.id} src={i.src} language={this.props.language} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
         );
-        const heights = util.IfLandscape({header:"10%", body:"90%"}, {header:"initial", body:"initial"});
+        // const heights = util.IfLandscape({header:"10%", body:"90%"}, {header:"initial", body:"initial"});
         return (
-            <div className="ImageGallery" style={{display:"flex", height:"100%", flexWrap:"wrap"}} >
-
-                <div style={{width:"100%", height:heights.header, display:"flex", flexWrap:"wrap", borderBottom:"1px solid lightgrey"}}>
+            <div className="ImageGallery" style={{display:"flex", flexWrap:"wrap"}} >
+                <div style={{width:"100%", display:"flex", flexWrap:"wrap", borderBottom:"1px solid lightgrey"}}>
                     <div style={{width:"40%"}} >
                         <CardHeader  subtitle="ФОТОГАЛЛЕРЕЯ" />
                     </div>
-
                     <div style={{width:"60%", display:"flex"}}>
                             <FlatButton
                                 style={{width:"70%", borderRadius: "15px", color:"grey", pointer:"cursor",  margin:"auto", boxShadow:"0px 1px 3px 1px lightgrey"}}
@@ -177,14 +176,11 @@ export default class ImageGallery extends React.Component
                             </FlatButton>
                     </div>
                 </div>
-
-                <div style={{width:"100%", height:heights.body, display:"flex"}}>
-                    <div className="DropZone" style={{width:"100%", height:"100%", overflow:"auto", display:"flex", flexDirection:"column"}} ref={el=>this.DropZone=el}>
+                <div style={{width:"100%", display:"flex"}}>
+                    <div className="DropZone" style={{width:"100%", overflow:"auto", display:"flex", flexDirection:"column"}} ref={el=>this.DropZone=el}>
                         {this.state.images.length === 0 ? <DndZoneReplacer/> : imageThumbs}
                     </div>
                 </div>
-
-                
             </div>
         );
     }
