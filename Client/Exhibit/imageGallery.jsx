@@ -160,10 +160,11 @@ export default class ImageGallery extends React.Component
         var imageThumbs = this.state.images.map(
             i=><ImageThumbAdv OnDescriptionChange={this.OnDescriptionChange} key={i.id} src={i.src} language={this.props.language} description={i.description} id={i.id} OnDelete={this.DeleteImage}/>
         );
+        const heights = util.IfLandscape({header:"10%", body:"90%"}, {header:"initial", body:"initial"});
         return (
             <div className="ImageGallery" style={{display:"flex", height:"100%", flexWrap:"wrap"}} >
 
-                <div style={{width:"100%", height:"10%", display:"flex", flexWrap:"wrap", borderBottom:"1px solid lightgrey"}}>
+                <div style={{width:"100%", height:heights.header, display:"flex", flexWrap:"wrap", borderBottom:"1px solid lightgrey"}}>
                     <div style={{width:"40%"}} >
                         <CardHeader  subtitle="ФОТОГАЛЛЕРЕЯ" />
                     </div>
@@ -177,7 +178,7 @@ export default class ImageGallery extends React.Component
                     </div>
                 </div>
 
-                <div style={{width:"100%", height:"90%", display:"flex"}}>
+                <div style={{width:"100%", height:heights.body, display:"flex"}}>
                     <div className="DropZone" style={{width:"100%", height:"100%", overflow:"auto", display:"flex", flexDirection:"column"}} ref={el=>this.DropZone=el}>
                         {this.state.images.length === 0 ? <DndZoneReplacer/> : imageThumbs}
                     </div>
