@@ -48,7 +48,7 @@ export default class Exhibit extends React.Component
     }
 
     SubscribeToWindowResize(){
-        const columnWidth = util.IsLandscape("33.33%", "100%");
+        const columnWidth = util.IfLandscape("33.33%", "100%");
         window.document.querySelectorAll(".AdaptiveLayoutColumn").forEach(el => el.style.width = columnWidth);
     }
 

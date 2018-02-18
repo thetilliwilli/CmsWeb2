@@ -56,8 +56,8 @@ export default class LoginPage extends React.Component {
   }
 
   render() {
-    const wholePageWidth = util.IsLandscape("50%", "85%");
-    const imageWidth = util.IsLandscape("20%", "30%");
+    const wholePageWidth = util.IfLandscape("50%", "85%");
+    const imageWidth = util.IfLandscape("20%", "30%");
     return (
       
 
