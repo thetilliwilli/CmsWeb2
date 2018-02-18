@@ -15,7 +15,7 @@ export default class MainLayout extends React.Component
     }
 
     render(){
-        const heights = util.IfLandscape({header:"7%",middle:"86%",footer:"7%"}, {header:"10%",middle:"83%",footer:"7%"});
+        const heights = util.IfLandscape({header:"7%",middle:"86%",footer:"7%"}, {header:"10%",middle:"80%",footer:"10%"});
         return (
             <div className="MainLayout" style={{display:"flex", height:"100%", width:"100%", flexWrap:"wrap"}}>
                     

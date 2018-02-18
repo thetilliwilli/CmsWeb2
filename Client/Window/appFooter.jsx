@@ -1,8 +1,21 @@
+"use strict";
 import React from 'react';
 import {withRouter} from "react-router-dom";
 import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
+
+import AddIcon from "material-ui/svg-icons/content/add";
+import CreateIcon from "material-ui/svg-icons/content/create";
+import FilterListIcon from "material-ui/svg-icons/content/filter-list";
+
+
 import util from "../Module/util.js";
+
+const TitleToIconMap = {
+    NEW: <AddIcon />,
+    OVERVIEW: <FilterListIcon />,
+    EDIT: <CreateIcon />,
+};
 
 class AppFooter extends React.Component
 {
@@ -42,8 +55,8 @@ class AppFooter extends React.Component
         const pageItems = pages.map( (i, index) => 
             <BottomNavigationItem
                 key={i.subtitle}
-                label={i.subtitle}
-                icon={<FontIcon className="material-icons">{i.title}</FontIcon>}
+                label={i.ruTitle}
+                icon={TitleToIconMap[i.title]}
                 onClick={() => this.Select(index)}
             />
         );
