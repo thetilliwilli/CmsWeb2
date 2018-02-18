@@ -20,19 +20,20 @@ export default class ControlPanel extends React.Component
     render(){
         return (
             <div className="ExhibitOverview_ControlPanel" style={{display:"flex", flexWrap:"wrap"}} >
-            <TextField
-                value={this.props.filterValue}
-                onChange={this.props.OnChange}
-                onMouseUp={this.Reset}
-                floatingLabelText="Поиск экспоната" floatingLabelFixed={true}
-                fullWidth
-            />
-            <FlatButton
-                label="Обновить"
-                style={{color:"grey", margin:"auto auto 10px auto"}}
-                icon={<RefreshIcon />}
-                onClick={this.props.OnRefresh}
-            />
+                <TextField
+                    value={this.props.filterValue}
+                    onChange={this.props.OnChange}
+                    onMouseUp={this.Reset}
+                    floatingLabelText="Поиск экспоната"
+                    floatingLabelFixed={true}
+                    fullWidth
+                />
+                <FlatButton
+                    label="Обновить"
+                    style={{color:"grey", margin:"0px auto 0px auto"}}
+                    icon={<RefreshIcon />}
+                    onClick={this.props.OnRefresh}
+                />
             </div>
         );
     }

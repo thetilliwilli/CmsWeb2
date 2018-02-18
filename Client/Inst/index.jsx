@@ -4,8 +4,12 @@ import React from "react";
 import InstSelector from "./selector.jsx";
 import InstEditor from "./editor.jsx";
 import ControlPanel from "./cp.jsx";
+import {List, ListItem} from 'material-ui/List';
 
-const Warning = (props) => <span style={{color:"Chocolate "}}>{props.message || ""}</span>;
+
+import util from "../Module/util.js";
+
+const Warning = (props) => <span style={{color:"Chocolate "}}>{"\u2b05"} {props.message || ""}</span>;
 
 export default class Inst extends React.Component
 {
@@ -36,17 +40,18 @@ export default class Inst extends React.Component
             ? "exhibit"
             : this.props.domain;
         const theInst = this.props.instList.find(i => i.id === this.state.selectedInstId);
+        const heights = util.IfLandscape({control:"14%", list:"86%"}, {control:"initial", list:"initial"});
         return (
             <div style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}} >
-                <div className="Inst.ControlPanel.layout" style={{width:"100%", height:"10%"}}>
+                <div className="Inst.ControlPanel.layout" style={{width:"100%", height:heights.control}}>
                     <ControlPanel filterValue={this.state.filterValue} OnChange={this.OnFilterChange} OnRefresh={this.props.InstRefresh} />
                 </div>
                 {
                     this.props.instList.filter(ex => ex.type ? ex.type === typeFilter : false).length === 0
                         ? <Warning message="В системе не зарегистрировано ни одного Устройства"/>
                         :
-                            <div className="Inst.EditorSelector.layout" style={{width:"100%", height:"90%", display:"flex", flexWrap:"wrap"}}>
-                                <div style={{width:"40%", height:"100%", wordBreak:"break-all", overflow:"auto"}} >
+                            <div className="Inst.EditorSelector.layout" style={{width:"100%", height:heights.list, display:"flex", flexWrap:"wrap"}}>
+                                <div style={{width:"40%", height:"100%", wordBreak:"break-all", overflow:"auto", paddingTop:"8px"}} >
                                     <InstSelector
                                         OnSelect={this.OnSelect}
                                         items={this.props.instList}
@@ -55,7 +60,7 @@ export default class Inst extends React.Component
                                         selectedInstId={this.state.selectedInstId}
                                     />
                                 </div>
-                                <div style={{width:"60%", height:"100%", padding:"0px 0px 0px 6px"}} >
+                                <div style={{width:"60%", height:"100%", paddingTop:"8px"}} >
                                     {
                                         theInst
                                             ?
@@ -66,7 +71,7 @@ export default class Inst extends React.Component
                                                     SubmitDelete={this.props.SubmitDelete}
                                                     EditEntity={this.props.EditEntity}
                                                 />
-                                            : <Warning message="Выберите устройства из списка"/>
+                                            : <List><ListItem primaryText={<Warning message="Выберите устройство"/>} disabled /></List>
                                     }
                                 </div>
                             </div>

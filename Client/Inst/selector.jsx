@@ -32,7 +32,7 @@ export default class InstSelector extends React.Component
             );
         return (
             <div style={{display:"flex", flexWrap:"wrap", overflow:"auto"}}>
-                <List style={{height:"100%", width:"100%"}} >
+                <List style={{height:"100%", width:"100%", paddingTop:"0px"}} >{/* paddingTop чтобы убить дефолтное смещение у List'a */}
                     {il}
                 </List>
             </div>
