@@ -68,7 +68,7 @@ export default class Avatar extends React.Component {
     render() {
         return (
             <div className="ExhibitCard">
-                <CardHeader  subtitle="КАРТОЧКА" style={{padding:"6px 16px 6px 16px"}} />
+                <CardHeader  subtitle="КАРТОЧКА" />
                 <UploadImageAdv onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrc} />
             </div>
         );
