@@ -7,9 +7,9 @@ import CORE from "./core.js";
 export default {
         page: 0,
         pages: [
-            {title: "NEW", subtitle:"Создать бюро"},
-            {title: "OVERVIEW", subtitle:"Обзор бюро"},
-            {title: "EDIT", subtitle:"Редактировать\u00A0бюро"},
+            {title: "NEW", ruTitle: "СОЗДАТЬ", subtitle:"Создать бюро"},
+            {title: "OVERVIEW", ruTitle: "ОБЗОР", subtitle:"Обзор бюро"},
+            {title: "EDIT", ruTitle: "РЕДАКТИРОВАТЬ", subtitle:"Редактировать\u00A0бюро"},
         ],
         language: "ru",
         isNavbarOpen: false,
