@@ -33,24 +33,10 @@ export default class Bureau extends React.Component
         this.RegisterImageGalleryRef = this.RegisterImageGalleryRef.bind(this);
         this.SubmitNewBureau = this.SubmitNewBureau.bind(this);
         this.SubmitBureauUpdate = this.SubmitBureauUpdate.bind(this);
-        this.SubscribeToWindowResize = this.SubscribeToWindowResize.bind(this);
     }
 
     shouldComponentUpdate(){
         return true;
-    }
-
-    componentDidMount(){
-        window.addEventListener("resize", this.SubscribeToWindowResize);
-    }
-
-    componentWillUnmount(){
-        window.removeEventListener("resize", this.SubscribeToWindowResize);
-    }
-
-    SubscribeToWindowResize(){
-        const columnWidth = util.IfLandscape("33.33%", "100%");
-        window.document.querySelectorAll(".AdaptiveLayoutColumn").forEach(el => el.style.width = columnWidth);
     }
 
     Data(){
@@ -111,13 +97,14 @@ export default class Bureau extends React.Component
 
     render(){
         const bureauData = this.ToBureauData(this.props.data);
-        const columnWidth = (window.innerWidth / window.innerHeight) > 1.0
-            ? "33.33%"
-            : "100%";
+        const columnWidth = util.IfLandscape("33.33%", "100%");
+        const columnHeight = util.IfLandscape("100%", "initial");
+        const outerHeights = util.IfLandscape({header:"6%", body:"94%"}, {header:"initial", body:"initial"});
+        const hiddenInPortrait = util.IfLandscape("initial", "none");
         return (
             <div key={this.props.uuid} className="Bureau" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}}>
 
-                <div style={{width:"100%", height:"6%"}}>
+                <div style={{width:"100%", height:outerHeights.header}}>
                     <ControlPanel 
                         handlers={{OnClear: this.props.Clear, OnSubmitNewBureau: this.SubmitNewBureau, OnSubmitBureauUpdate: this.SubmitBureauUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
@@ -126,21 +113,21 @@ export default class Bureau extends React.Component
                     />
                 </div>
 
-                <div className="BureauForm" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
+                <div className="BureauForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto", flexDirection:"column"}}>
                     
-                    <div style={{width:"100%", height:"6%"}}>
-                        <LangSelector />
+                    <div style={{width:"100%"}}>
+                        <LangSelector/>
                     </div>
 
-                    <div className="BureauParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
-                        <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                    <div className="BureauParts" style={{width:"100%", display:"flex", flexWrap:"wrap", flex:"1"}}>
+                        <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} previewHref={bureauData.previewImage} logotypeHref={bureauData.logotypeImage}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={bureauData.staticProps} language={this.props.language}/>
                         </div>
-                        <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                        <div className="VariablePropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto", display:hiddenInPortrait}} >
                             <Placeholder />
                         </div>
-                        <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
+                        <div className="GalleryField" style={{width:columnWidth, border:"1px solid lightgrey", display:hiddenInPortrait}} >
                             <Placeholder />
                         </div>
                     </div>

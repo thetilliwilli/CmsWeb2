@@ -76,7 +76,7 @@ export default class Avatar extends React.Component {
     render() {
         return (
             <div className="BureauCard" >
-                <CardHeader  subtitle="КАРТОЧКА" style={{padding:"6px 16px 6px 16px"}}/>
+                <CardHeader  subtitle="КАРТОЧКА" />
                 <div style={{display:"flex", flexWrap:"wrap"}} >
 
                     <div style={{width:"40%", display:"flex", flexWrap:"wrap"}}>

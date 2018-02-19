@@ -28,8 +28,7 @@ class ImageThumb extends React.Component
     render(){
         return (
             <div className="ImageThumb" style={{width:"100%", borderBottom:"1px solid lightgrey"}} >
-                    
-                
+
                 <div style={{maxWidth:"13%", float:"left"}} >
                     <img onContextMenu={e=>this.props.ImageViewerShow(e,this.props.src)} src={this.props.src} style={{maxWidth:"100%"}} />
                 </div>
@@ -114,7 +113,7 @@ export default class ImageGallery extends React.Component
     }
 
     OnDragEnter(event){ this.PreventDefaultBehaviour(event); }
-    
+
     OnDragOver(event){ this.PreventDefaultBehaviour(event); }
 
     OnDrop(event){
@@ -131,7 +130,7 @@ export default class ImageGallery extends React.Component
         newState.images.find(i => i.id===id).description[lang] = data;
         this.setState(newState);
     }
-    
+
     //METHODS-------------------------------------
     HandleFiles(files){
         var images = this.state.images.slice();
