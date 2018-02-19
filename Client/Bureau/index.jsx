@@ -113,7 +113,7 @@ export default class Bureau extends React.Component
                     />
                 </div>
 
-                <div className="BureauForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto", flexDirection:"column"}}>
+                <div className="BureauForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto", flexDirection:"column", justifyContent:"flex-start"}}>
                     
                     <div style={{width:"100%"}}>
                         <LangSelector/>
@@ -127,7 +127,7 @@ export default class Bureau extends React.Component
                         <div className="VariablePropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto", display:hiddenInPortrait}} >
                             <Placeholder />
                         </div>
-                        <div className="GalleryField" style={{width:columnWidth, border:"1px solid lightgrey", display:hiddenInPortrait}} >
+                        <div className="GalleryField" style={{width:columnWidth, border:"1px solid lightgrey", display:hiddenInPortrait, overflow:"auto"}} >
                             <Placeholder />
                         </div>
                     </div>

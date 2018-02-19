@@ -117,13 +117,13 @@ export default class Golo extends React.Component
                     />
                 </div>
 
-                <div className="GoloForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto"}}>
+                <div className="GoloForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto", flexDirection:"column", justifyContent:"flex-start"}}>
                     
                     <div style={{width:"100%"}}>
                         <LangSelector />
                     </div>
 
-                    <div className="GoloParts" style={{width:"100%", display:"flex", flexWrap:"wrap"}}>
+                    <div className="GoloParts" style={{width:"100%", display:"flex", flexWrap:"wrap", flex:"1"}}>
                         <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={goloData.video}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={goloData.staticProps} language={this.props.language}/>
@@ -131,7 +131,7 @@ export default class Golo extends React.Component
                         <div className="VariablePropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <VariableProps RegCom={this.RegisterVariablePropsRef} items={goloData.variableProps} language={this.props.language} />
                         </div>
-                        <div className="GalleryField" style={{width:columnWidth, border:"1px solid lightgrey"}} >
+                        <div className="GalleryField" style={{width:columnWidth, border:"1px solid lightgrey", overflow:"auto"}} >
                             <ImageGallery RegCom={this.RegisterImageGalleryRef} images={goloData.imageGallery} language={this.props.language}/>
                         </div>
                     </div>

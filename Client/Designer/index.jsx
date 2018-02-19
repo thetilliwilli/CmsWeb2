@@ -141,13 +141,13 @@ export default class Designer extends React.Component
                     />
                 </div>
 
-                <div className="DesignerForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto"}}>
+                <div className="DesignerForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto", flexDirection:"column", justifyContent:"flex-start"}}>
                     
                     <div style={{width:"100%"}}>
                         <LangSelector />
                     </div>
 
-                    <div className="DesignerParts" style={{width:"100%", display:"flex", flexWrap:"wrap"}}>
+                    <div className="DesignerParts" style={{width:"100%", display:"flex", flexWrap:"wrap", flex:"1"}}>
                         <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={designerData.coverImage} />
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={designerData.staticProps} language={this.props.language}/>
@@ -155,7 +155,7 @@ export default class Designer extends React.Component
                         <div className="VariablePropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <StaticProps RegCom={this.RegisterStaticPropsRef2} propList={designerData.staticProps2} language={this.props.language} bureauEnum={bureauEnum}/>
                         </div>
-                        <div className="GalleryField" style={{width:columnWidth, border:"1px solid lightgrey"}} >
+                        <div className="GalleryField" style={{width:columnWidth, border:"1px solid lightgrey", overflow:"auto"}} >
                             <StaticProps RegCom={this.RegisterStaticPropsRef3} propList={designerData.staticProps3} language={this.props.language}/>
                         </div>
                     </div>

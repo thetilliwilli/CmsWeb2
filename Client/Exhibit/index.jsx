@@ -123,13 +123,13 @@ export default class Exhibit extends React.Component
                     />
                 </div>
 
-                <div className="ExhibitForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto"}}>
+                <div className="ExhibitForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto", flexDirection:"column", justifyContent:"flex-start"}}>
                     
                     <div style={{width:"100%"}}>
                         <LangSelector />
                     </div>
 
-                    <div className="ExhibitParts" style={{width:"100%", display:"flex", flexWrap:"wrap"}}>
+                    <div className="ExhibitParts" style={{width:"100%", display:"flex", flexWrap:"wrap", flex:"1"}}>
                         <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={exhibitData.coverImage}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={exhibitData.staticProps} language={this.props.language}/>
@@ -137,7 +137,7 @@ export default class Exhibit extends React.Component
                         <div className="VariablePropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <VariableProps RegCom={this.RegisterVariablePropsRef} items={exhibitData.variableProps} language={this.props.language} />
                         </div>
-                        <div className="GalleryField" style={{width:columnWidth, border:"1px solid lightgrey"}} >
+                        <div className="GalleryField" style={{width:columnWidth, border:"1px solid lightgrey", overflow:"auto"}} >
                             <ImageGallery RegCom={this.RegisterImageGalleryRef} images={exhibitData.imageGallery} language={this.props.language}/>
                         </div>
                     </div>
