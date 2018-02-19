@@ -27,7 +27,7 @@ class TupleOverview extends React.Component
 
     render(){
         return (
-            <div className="TupleOverview">
+            <div className="TupleOverview" style={{padding:"20px 20px 20px 20px"}} >
                 <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter} OnRefresh={this.props.FetchOverview}/>
                 <TupleList OnDelete={this.props.DeleteTuple} tupleList={this.props.model} filter={this.state.filter} filterValue={this.state.filter}/>
             </div>

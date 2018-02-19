@@ -32,7 +32,6 @@ export default class Tuple extends React.Component
         this.RegisterImageGalleryRef = this.RegisterImageGalleryRef.bind(this);
         this.SubmitNewTuple = this.SubmitNewTuple.bind(this);
         this.SubmitTupleUpdate = this.SubmitTupleUpdate.bind(this);
-        this.SubscribeToWindowResize = this.SubscribeToWindowResize.bind(this);
         this.OnCatsubChange = this.OnCatsubChange.bind(this);
         this.OnCountriesChange = this.OnCountriesChange.bind(this);
         this.Clear = this.Clear.bind(this);
@@ -45,19 +44,6 @@ export default class Tuple extends React.Component
 
     shouldComponentUpdate(){
         return true;
-    }
-
-    componentDidMount(){
-        window.addEventListener("resize", this.SubscribeToWindowResize);
-    }
-
-    componentWillUnmount(){
-        window.removeEventListener("resize", this.SubscribeToWindowResize);
-    }
-
-    SubscribeToWindowResize(){
-        const columnWidth = util.IfLandscape("33.33%", "100%");
-        window.document.querySelectorAll(".AdaptiveLayoutColumn").forEach(el => el.style.width = columnWidth);
     }
 
     Data(){
@@ -143,13 +129,13 @@ export default class Tuple extends React.Component
 
     render(){
         const tupleData = this.ToTupleData(this.props.data);
-        const columnWidth = (window.innerWidth / window.innerHeight) > 1.0
-            ? "33.33%"
-            : "100%";
+        const columnWidth = util.IfLandscape("33.33%", "100%");
+        const columnHeight = util.IfLandscape("100%", "initial");
+        const outerHeights = util.IfLandscape({header:"6%", body:"94%"}, {header:"initial", body:"initial"});
         return (
             <div key={this.props.uuid} className="Tuple" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}}>
 
-                <div style={{width:"100%", height:"6%"}}>
+                <div style={{width:"100%", height:outerHeights.header}}>
                     <ControlPanel 
                         handlers={{OnClear: this.Clear, OnSubmitNewTuple: this.SubmitNewTuple, OnSubmitTupleUpdate: this.SubmitTupleUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
@@ -158,21 +144,21 @@ export default class Tuple extends React.Component
                     />
                 </div>
 
-                <div className="TupleForm" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
+                <div className="TupleForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto", flexDirection:"column", justifyContent:"flex-start"}}>
                     
-                    <div style={{width:"100%", height:"6%"}}>
+                    <div style={{width:"100%"}}>
                         <LangSelector />
                     </div>
 
-                    <div className="TupleParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
-                        <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                    <div className="TupleParts" style={{width:"100%", display:"flex", flexWrap:"wrap", flex:"1"}}>
+                        <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={tupleData.coverImage}/>
                             <StaticProps isEditMode={this.props.isEditMode} OnCountriesChange={this.OnCountriesChange} OnCatsubChange={this.OnCatsubChange} RegCom={this.RegisterStaticPropsRef} propList={tupleData.staticProps} language={this.props.language}/>
                         </div>
-                        <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                        <div className="VariablePropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <VariableProps isEditMode={this.props.isEditMode} RegCom={this.RegisterVariablePropsRef} language={this.props.language} />
                         </div>
-                        <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
+                        <div className="GalleryField" style={{width:columnWidth, border:"1px solid lightgrey", overflow:"auto"}} >
                             <ImageGallery RegCom={this.RegisterImageGalleryRef} images={tupleData.imageGallery} language={this.props.language}/>
                         </div>
                     </div>
