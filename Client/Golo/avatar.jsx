@@ -71,7 +71,7 @@ export default class Avatar extends React.Component {
     render() {
         return (
             <div className="GoloCard">
-                <CardHeader  subtitle="ВИДЕО" style={{padding:"6px 16px 6px 16px"}} />
+                <CardHeader  subtitle="ВИДЕО" />
                 <UploadImage onFileChanged={this.ChangeImage} imageSrc={this.state.imageSrc} ResetVideo={this.ResetVideo} />
             </div>
         );

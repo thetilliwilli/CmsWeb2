@@ -32,7 +32,7 @@ import BureauEditDataProvider from "../BureauDataProvider/edit.jsx";
 import OverseerDataProvider from "../Overseer/dataProvider.jsx";
 
 const TagContent = p => (
-    <div className="PageSwitcher" style={{height:"100%"}}>
+    <div className="PageSwitcher" style={{height:"100%", width:"100%"}}>
         <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><ExhibitCreateDataProvider /></div>
         <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><ExhibitOverviewDataProvider /></div>
         <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><ExhibitEditDataProvider /></div>
@@ -40,7 +40,7 @@ const TagContent = p => (
 );
 
 const TupleContent = p => (
-    <div className="PageSwitcher" style={{height:"100%"}}>
+    <div className="PageSwitcher" style={{height:"100%", width:"100%"}}>
         <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><TupleCreateDataProvider /></div>
         <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><TupleOverviewDataProvider /></div>
         <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><TupleEditDataProvider /></div>
@@ -48,7 +48,7 @@ const TupleContent = p => (
 );
 
 const GoloContent = p => (
-    <div className="PageSwitcher" style={{height:"100%"}}>
+    <div className="PageSwitcher" style={{height:"100%", width:"100%"}}>
         <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><GoloCreateDataProvider /></div>
         <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><GoloOverviewDataProvider /></div>
         <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><GoloEditDataProvider /></div>

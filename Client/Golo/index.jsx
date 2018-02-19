@@ -31,24 +31,10 @@ export default class Golo extends React.Component
         this.RegisterImageGalleryRef = this.RegisterImageGalleryRef.bind(this);
         this.SubmitNewGolo = this.SubmitNewGolo.bind(this);
         this.SubmitGoloUpdate = this.SubmitGoloUpdate.bind(this);
-        this.SubscribeToWindowResize = this.SubscribeToWindowResize.bind(this);
     }
 
     shouldComponentUpdate(){
         return true;
-    }
-
-    componentDidMount(){
-        window.addEventListener("resize", this.SubscribeToWindowResize);
-    }
-
-    componentWillUnmount(){
-        window.removeEventListener("resize", this.SubscribeToWindowResize);
-    }
-
-    SubscribeToWindowResize(){
-        const columnWidth = util.IfLandscape("33.33%", "100%");
-        window.document.querySelectorAll(".AdaptiveLayoutColumn").forEach(el => el.style.width = columnWidth);
     }
 
     Data(){
@@ -116,13 +102,13 @@ export default class Golo extends React.Component
 
     render(){
         const goloData = this.ToGoloData(this.props.data);
-        const columnWidth = (window.innerWidth / window.innerHeight) > 1.0
-            ? "33.33%"
-            : "100%";
+        const columnWidth = util.IfLandscape("33.33%", "100%");
+        const columnHeight = util.IfLandscape("100%", "initial");
+        const outerHeights = util.IfLandscape({header:"6%", body:"94%"}, {header:"initial", body:"initial"});
         return (
             <div key={this.props.uuid} className="Golo" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}}>
 
-                <div style={{width:"100%", height:"6%"}}>
+                <div style={{width:"100%", height:outerHeights.header}}>
                     <ControlPanel 
                         handlers={{OnClear: this.props.Clear, OnSubmitNewGolo: this.SubmitNewGolo, OnSubmitGoloUpdate: this.SubmitGoloUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
@@ -131,21 +117,21 @@ export default class Golo extends React.Component
                     />
                 </div>
 
-                <div className="GoloForm" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
+                <div className="GoloForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto"}}>
                     
-                    <div style={{width:"100%", height:"6%"}}>
+                    <div style={{width:"100%"}}>
                         <LangSelector />
                     </div>
 
-                    <div className="GoloParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
-                        <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                    <div className="GoloParts" style={{width:"100%", display:"flex", flexWrap:"wrap"}}>
+                        <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={goloData.video}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={goloData.staticProps} language={this.props.language}/>
                         </div>
-                        <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                        <div className="VariablePropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <VariableProps RegCom={this.RegisterVariablePropsRef} items={goloData.variableProps} language={this.props.language} />
                         </div>
-                        <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey"}} >
+                        <div className="GalleryField" style={{width:columnWidth, border:"1px solid lightgrey"}} >
                             <ImageGallery RegCom={this.RegisterImageGalleryRef} images={goloData.imageGallery} language={this.props.language}/>
                         </div>
                     </div>

@@ -1,8 +1,7 @@
 "use strict";
 import React from "react";
-import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import RefreshIcon from 'material-ui/svg-icons/navigation/refresh';
 
 export default class ControlPanel extends React.Component
@@ -21,18 +20,20 @@ export default class ControlPanel extends React.Component
     render(){
         return (
             <div className="GoloOverview_ControlPanel" style={{display:"flex", flexWrap:"wrap"}} >
-                <div style={{width:"10%", display:"flex", flexWrap:"wrap"}} >
-                    <RaisedButton style={{ margin:"auto auto 10px auto"}} icon={<RefreshIcon />} onClick={this.props.OnRefresh}/>
-                </div>
-                <div style={{width:"90%"}} >
-                    <TextField 
+                    <TextField
                         value={this.props.filterValue}
                         onChange={this.props.OnChange}
                         onMouseUp={this.Reset}
-                        floatingLabelText="Поиск экспоната" floatingLabelFixed={true}
+                        floatingLabelText="Поиск экспоната"
+                        floatingLabelFixed={true}
                         fullWidth
                     />
-                </div>
+                    <FlatButton
+                        label="Обновить"
+                        style={{color:"grey", margin:"0px auto 0px auto"}}
+                        icon={<RefreshIcon />}
+                        onClick={this.props.OnRefresh}
+                    />
             </div>
         );
     }
