@@ -8,6 +8,8 @@ import ControlPanel from "./controlPanel.jsx";
 import DesignerList from "./designerList.jsx";
 import InstProvider from "../Inst/provider.jsx";
 
+import util from "../Module/util.js";
+
 class DesignerOverview extends React.Component
 {
     constructor(props){
@@ -32,13 +34,14 @@ class DesignerOverview extends React.Component
     }
 
     render(){
+        const rightContentHeights = util.IfLandscape({control:"14%", list:"86%"}, {control:"initial", list:"initial"});
         return (
             <div className="DesignerOverview" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}}>
-                <div style={{width:"55%", height:"100%", display:"flex", flexWrap:"wrap", padding: "20px 20px 20px 20px", borderLeft:"1px solid lightgrey"}} >
-                    <div style={{width:"100%", height:"10%"}} >
+                <div style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap", padding: "20px 20px 20px 20px", borderLeft:"1px solid lightgrey"}} >
+                    <div style={{width:"100%", height:rightContentHeights.control}} >
                         <ControlPanel OnChange={this.OnFilterChange} filterValue={this.state.filter} OnRefresh={this.props.FetchOverview}/>
                     </div>
-                    <div style={{width:"100%", height:"90%", overflow:"auto"}} >
+                    <div style={{width:"100%", height:rightContentHeights.list, overflow:"auto"}} >
                         <DesignerList
                             OnBadgeSelect={this.OnBadgeSelect}
                             OnDelete={this.props.DeleteDesigner}

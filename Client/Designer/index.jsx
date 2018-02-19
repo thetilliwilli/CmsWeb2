@@ -35,7 +35,6 @@ export default class Designer extends React.Component
         this.RegisterImageGalleryRef = this.RegisterImageGalleryRef.bind(this);
         this.SubmitNewDesigner = this.SubmitNewDesigner.bind(this);
         this.SubmitDesignerUpdate = this.SubmitDesignerUpdate.bind(this);
-        this.SubscribeToWindowResize = this.SubscribeToWindowResize.bind(this);
     }
 
     shouldComponentUpdate(){
@@ -43,18 +42,8 @@ export default class Designer extends React.Component
     }
 
     componentDidMount(){
-        window.addEventListener("resize", this.SubscribeToWindowResize);
         if(this.props.bureauOverview.length === 0)
             this.props.FetchOverview();//обновляем данные по КБ - для bureauID enum'a
-    }
-
-    componentWillUnmount(){
-        window.removeEventListener("resize", this.SubscribeToWindowResize);
-    }
-
-    SubscribeToWindowResize(){
-        const columnWidth = util.IfLandscape("33.33%", "100%");
-        window.document.querySelectorAll(".AdaptiveLayoutColumn").forEach(el => el.style.width = columnWidth);
     }
 
     Data(){
@@ -137,13 +126,13 @@ export default class Designer extends React.Component
     render(){
         const bureauEnum = this.props.bureauOverview.map(kb => kb.fullName);
         const designerData = this.ToDesignerData(this.props.data);
-        const columnWidth = (window.innerWidth / window.innerHeight) > 1.0
-            ? "33.33%"
-            : "100%";
+        const columnWidth = util.IfLandscape("33.33%", "100%");
+        const columnHeight = util.IfLandscape("100%", "initial");
+        const outerHeights = util.IfLandscape({header:"6%", body:"94%"}, {header:"initial", body:"initial"});
         return (
             <div key={this.props.uuid} className="Designer" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}}>
 
-                <div style={{width:"100%", height:"6%"}}>
+                <div style={{width:"100%", height:outerHeights.header}}>
                     <ControlPanel 
                         handlers={{OnClear: this.props.Clear, OnSubmitNewDesigner: this.SubmitNewDesigner, OnSubmitDesignerUpdate: this.SubmitDesignerUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
@@ -152,21 +141,21 @@ export default class Designer extends React.Component
                     />
                 </div>
 
-                <div className="DesignerForm" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
+                <div className="DesignerForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto"}}>
                     
-                    <div style={{width:"100%", height:"6%"}}>
+                    <div style={{width:"100%"}}>
                         <LangSelector />
                     </div>
 
-                    <div className="DesignerParts" style={{width:"100%", height:"94%", display:"flex", flexWrap:"wrap"}}>
-                        <div className="StaticPropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                    <div className="DesignerParts" style={{width:"100%", display:"flex", flexWrap:"wrap"}}>
+                        <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={designerData.coverImage} />
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={designerData.staticProps} language={this.props.language}/>
                         </div>
-                        <div className="VariablePropsField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                        <div className="VariablePropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <StaticProps RegCom={this.RegisterStaticPropsRef2} propList={designerData.staticProps2} language={this.props.language} bureauEnum={bureauEnum}/>
                         </div>
-                        <div className="GalleryField AdaptiveLayoutColumn" style={{width:columnWidth, height:"100%", border:"1px solid lightgrey", overflow:"auto"}} >
+                        <div className="GalleryField" style={{width:columnWidth, border:"1px solid lightgrey"}} >
                             <StaticProps RegCom={this.RegisterStaticPropsRef3} propList={designerData.staticProps3} language={this.props.language}/>
                         </div>
                     </div>

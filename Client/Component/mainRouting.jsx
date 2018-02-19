@@ -56,7 +56,7 @@ const GoloContent = p => (
 );
 
 const DesignerContent = p => (
-    <div className="PageSwitcher" style={{height:"100%"}}>
+    <div className="PageSwitcher" style={{height:"100%", width:"100%"}}>
         <div style={{display:( p.curIndex === 0 ? "initial":"none")}}><DesignerCreateDataProvider /></div>
         <div style={{display:( p.curIndex === 1 ? "initial":"none")}}><DesignerOverviewDataProvider /></div>
         <div style={{display:( p.curIndex === 2 ? "initial":"none")}}><DesignerEditDataProvider /></div>
