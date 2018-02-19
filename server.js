@@ -22,7 +22,8 @@ Promise.resolve()
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(cookieParser());
         
-        app.use("/Static", express.static(config.staticPath));//Serve static assets (images, css, js, html) from Static
+        const staticOptions = { maxAge: "1w" };
+        app.use("/Static", express.static(config.staticPath, staticOptions));//Serve static assets (images, css, js, html) from Static
         app.use("/auth", authRouter);//Все что связано с авторизацией, логаутами и логинами
         app.use(auth.AuthFirewall);//Access decider
         /* Вот здесь надо будет переделать на app.get("*",file.readAll("index.html")) */app.use("/", express.static(config.webRootPath));//Serve static assets from WebRoot
