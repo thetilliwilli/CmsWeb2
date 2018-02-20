@@ -150,7 +150,7 @@ export default class Tuple extends React.Component
                         <LangSelector />
                     </div>
 
-                    <div className="TupleParts" style={{width:"100%", display:"flex", flex:"1"}}>
+                    <div className="TupleParts" style={{width:"100%", display:"flex", flex:"1", flexWrap:"wrap"}}>
                         <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={tupleData.coverImage}/>
                             <StaticProps isEditMode={this.props.isEditMode} OnCountriesChange={this.OnCountriesChange} OnCatsubChange={this.OnCatsubChange} RegCom={this.RegisterStaticPropsRef} propList={tupleData.staticProps} language={this.props.language}/>

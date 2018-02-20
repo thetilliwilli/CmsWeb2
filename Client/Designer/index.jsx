@@ -147,7 +147,7 @@ export default class Designer extends React.Component
                         <LangSelector />
                     </div>
 
-                    <div className="DesignerParts" style={{width:"100%", display:"flex", flex:"1"}}>
+                    <div className="DesignerParts" style={{width:"100%", display:"flex", flex:"1", flexWrap:"wrap"}}>
                         <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={designerData.coverImage} />
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={designerData.staticProps} language={this.props.language}/>

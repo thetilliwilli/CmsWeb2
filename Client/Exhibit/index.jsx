@@ -129,7 +129,7 @@ export default class Exhibit extends React.Component
                         <LangSelector />
                     </div>
 
-                    <div className="ExhibitParts" style={{width:"100%", display:"flex", flex:"1"}}>
+                    <div className="ExhibitParts" style={{width:"100%", display:"flex", flex:"1", flexWrap:"wrap"}}>
                         <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={exhibitData.coverImage}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={exhibitData.staticProps} language={this.props.language}/>

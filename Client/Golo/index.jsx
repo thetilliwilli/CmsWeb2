@@ -123,7 +123,7 @@ export default class Golo extends React.Component
                         <LangSelector />
                     </div>
 
-                    <div className="GoloParts" style={{width:"100%", display:"flex", flex:"1"}}>
+                    <div className="GoloParts" style={{width:"100%", display:"flex", flex:"1", flexWrap:"wrap"}}>
                         <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={goloData.video}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={goloData.staticProps} language={this.props.language}/>

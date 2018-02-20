@@ -119,7 +119,7 @@ export default class Bureau extends React.Component
                         <LangSelector/>
                     </div>
 
-                    <div className="BureauParts" style={{width:"100%", display:"flex", flex:"1"}}>
+                    <div className="BureauParts" style={{width:"100%", display:"flex", flex:"1", flexWrap:"wrap"}}>
                         <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} previewHref={bureauData.previewImage} logotypeHref={bureauData.logotypeImage}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={bureauData.staticProps} language={this.props.language}/>
