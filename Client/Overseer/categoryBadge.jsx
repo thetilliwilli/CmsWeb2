@@ -6,6 +6,8 @@ import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import ExpandLess from 'material-ui/svg-icons/navigation/expand-less';
 import Avatar from 'material-ui/Avatar';
 
+import util from "../Module/util.js";
+
 const okCountStyle = {
     color: "LimeGreen",
 };
@@ -61,30 +63,51 @@ export default class CategoryBadge extends React.Component
     }
 
     render(){
+        const isLandscape = util.isLandscape;
         var items = [];
         if(this.props.detailType === this.props.type)
         {
             items = this.props.list.statuses
                 .sort((a,b) => b.lastPing-a.lastPing)
                 .map(
-                    (ex)=>(
-                        <ListItem
+                    (ex)=>{
+                        var primaryText = isLandscape
+                            ? 
+                                <span style={{display:"flex", flexWrap:"wrap"}}>
+                                    <span style={{flex:"1"}} >
+                                        <span style={{color:"lightgrey"}}>{`#${ex.id}`}</span>
+                                    </span>
+                                    <span style={{flex:"1"}} >
+                                        <span className="OverseerUptimeLabel" style={{color:this.StatusToColor(ex.status),borderColor:this.StatusToColor(ex.status), flex:"1"}}>{this.PingToLabel(ex.lastPing)}</span>
+                                    </span>
+                                    <span style={{flex:"1"}} >
+                                        <span>{"\u00a0\u00a0"}{ex.hardname}</span>
+                                    </span>
+                                </span>
+                            :
+                                <span style={{color:"lightgrey"}}>{`#${ex.id}`}</span>
+                            ;
+                        var secondaryText = isLandscape
+                            ?
+                                null
+                            :
+                                <span style={{display:"flex", flexWrap:"wrap"}}>
+                                    <span style={{flex:"1"}} >
+                                        <span className="OverseerUptimeLabel" style={{color:this.StatusToColor(ex.status),border:"0px solid black", flex:"1"}}>{this.PingToLabel(ex.lastPing)}</span>
+                                    </span>
+                                    <span style={{flex:"1"}} >
+                                        <span>{"\u00a0\u00a0"}{ex.hardname}</span>
+                                    </span>
+                                </span>
+                            ;
+
+                        return <ListItem
                             style={{borderBottom:"1px solid lightgrey"}}
                             key={ex.id}
-                        >
-                            <span style={{display:"flex", flexWrap:"wrap"}}>
-                                <span style={{flex:"1"}} >
-                                    <span style={{color:"lightgrey"}}>{`#${ex.id}`}</span>
-                                </span>
-                                <span style={{flex:"1"}} >
-                                    <span className="OverseerUptimeLabel" style={{color:this.StatusToColor(ex.status),borderColor:this.StatusToColor(ex.status), flex:"1"}}>{this.PingToLabel(ex.lastPing)}</span>
-                                </span>
-                                <span style={{flex:"1"}} >
-                                    <span>{"\u00a0\u00a0"}{ex.hardname}</span>
-                                </span>
-                            </span>
-                        </ListItem>
-                    )
+                            primaryText={primaryText}
+                            secondaryText={secondaryText}
+                        />;
+                    }
             );
         }
 

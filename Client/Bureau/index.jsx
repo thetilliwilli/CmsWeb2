@@ -104,7 +104,7 @@ export default class Bureau extends React.Component
         return (
             <div key={this.props.uuid} className="Bureau" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}}>
 
-                <div style={{width:"100%", height:outerHeights.header}}>
+                <div style={{width:"100%", height:outerHeights.header, borderBottom:"2px solid lightgrey"}}>
                     <ControlPanel 
                         handlers={{OnClear: this.props.Clear, OnSubmitNewBureau: this.SubmitNewBureau, OnSubmitBureauUpdate: this.SubmitBureauUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
@@ -113,13 +113,13 @@ export default class Bureau extends React.Component
                     />
                 </div>
 
-                <div className="BureauForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto", flexDirection:"column", justifyContent:"flex-start"}}>
+                <div className="BureauForm" style={{width:"100%", height:outerHeights.body, display:"flex", overflow:"auto", flexDirection:"column", justifyContent:"flex-start"}}>
                     
                     <div style={{width:"100%"}}>
                         <LangSelector/>
                     </div>
 
-                    <div className="BureauParts" style={{width:"100%", display:"flex", flexWrap:"wrap", flex:"1"}}>
+                    <div className="BureauParts" style={{width:"100%", display:"flex", flex:"1"}}>
                         <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} previewHref={bureauData.previewImage} logotypeHref={bureauData.logotypeImage}/>
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={bureauData.staticProps} language={this.props.language}/>

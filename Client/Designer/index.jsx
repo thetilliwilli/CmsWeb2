@@ -132,7 +132,7 @@ export default class Designer extends React.Component
         return (
             <div key={this.props.uuid} className="Designer" style={{width:"100%", height:"100%", display:"flex", flexWrap:"wrap"}}>
 
-                <div style={{width:"100%", height:outerHeights.header}}>
+                <div style={{width:"100%", height:outerHeights.header, borderBottom:"2px solid lightgrey"}}>
                     <ControlPanel 
                         handlers={{OnClear: this.props.Clear, OnSubmitNewDesigner: this.SubmitNewDesigner, OnSubmitDesignerUpdate: this.SubmitDesignerUpdate, ResetEditData: this.props.ResetEditData}}
                         blockControl={this.props.blockControl} isEditMode={this.props.isEditMode}
@@ -141,13 +141,13 @@ export default class Designer extends React.Component
                     />
                 </div>
 
-                <div className="DesignerForm" style={{width:"100%", height:outerHeights.body, display:"flex", flexWrap:"wrap", overflow:"auto", flexDirection:"column", justifyContent:"flex-start"}}>
+                <div className="DesignerForm" style={{width:"100%", height:outerHeights.body, display:"flex", overflow:"auto", flexDirection:"column", justifyContent:"flex-start"}}>
                     
                     <div style={{width:"100%"}}>
                         <LangSelector />
                     </div>
 
-                    <div className="DesignerParts" style={{width:"100%", display:"flex", flexWrap:"wrap", flex:"1"}}>
+                    <div className="DesignerParts" style={{width:"100%", display:"flex", flex:"1"}}>
                         <div className="StaticPropsField" style={{width:columnWidth, height:columnHeight, border:"1px solid lightgrey", overflow:"auto"}} >
                             <Avatar RegCom={this.RegisterAvatarRef} imageHref={designerData.coverImage} />
                             <StaticProps RegCom={this.RegisterStaticPropsRef} propList={designerData.staticProps} language={this.props.language}/>
