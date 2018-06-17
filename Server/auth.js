@@ -29,10 +29,19 @@ class Auth
     }
 
     AuthFirewall(req, res, next){
-        if(this.IsAuth(req))
-            next();
-        else
+        var isAuth = false;
+        try
+        {
+            isAuth = this.IsAuth(req);
+            if(isAuth)
+                next();
+            else
+                return res.redirect(this.redirectUrl);
+        }
+        catch(error)
+        {
             return res.redirect(this.redirectUrl);
+        }
     }
 
     TryLogin(res, user){
@@ -40,7 +49,10 @@ class Auth
         var userInfo = userInfoService.GetUserInfo(user.login);
         if(userInfo && (user.login === userInfo.login) && (user.password === userInfo.password))
         {
-            const token = jwt.Encode({login: userInfo.login, password: userInfo.password});
+            var exp = undefined;
+            if(userInfo.readOnly)
+                exp = userInfo.startExpiration + userInfo.expiration;
+            const token = jwt.Encode({login: userInfo.login, password: userInfo.password}, exp);
             res.cookie("blob", token, { maxAge: 14400 * 1000});
             return true;
         }
