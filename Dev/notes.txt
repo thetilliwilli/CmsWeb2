@@ -14,3 +14,8 @@ componentDidMount: function() {
   -> withRouter(connect(S2P,D2P)(Component))
 -5-
   фейковый коммит чтобы исправить git push
+
+-6-
+startExpiration macros
+copy(Date.now()/1000-24*60*60+ 120 )//2 минуты от сейчас
+copy(Date.now()/1000)//24 часа от сейчас
