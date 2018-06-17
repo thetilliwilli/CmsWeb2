@@ -2,7 +2,6 @@ var path = require('path');
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: "development",
     entry: './Client/index.jsx',
     output: {
         filename: 'bundle.js',
@@ -16,5 +15,5 @@ module.exports = {
         ]
     },
     // plugins: [new HtmlWebpackPlugin()],
-    devtool: "source-map"
+    // devtool: "source-map"
 };
