@@ -4,6 +4,7 @@ import {ChangeLanguage as TagChangeLanguage} from "../App/ac.js";
 import {ChangeLanguage as GoloChangeLanguage} from "../App/goloAc.js";
 import util from "../Module/util.js";
 
+//Change Language Function
 const CLF = {
     TagChangeLanguage,
     GoloChangeLanguage,
