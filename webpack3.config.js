@@ -2,7 +2,6 @@ var path = require('path');
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: "development",
     entry: './Client/index.jsx',
     output: {
         filename: 'bundle.js',
@@ -11,10 +10,10 @@ module.exports = {
     },
     devServer: {contentBase: "./WebRoot", port: 80, historyApiFallback: true},
     module: {
-        rules: [
+        loaders: [
             { test: /\.jsx?$/, loader: 'babel-loader'/* , options: {"plugins": ["transform-object-rest-spread"], presets:["es2015","react","camo"]} */}
         ]
     },
     // plugins: [new HtmlWebpackPlugin()],
-    devtool: "source-map"
+    // devtool: "source-map"
 };

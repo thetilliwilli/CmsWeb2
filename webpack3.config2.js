@@ -10,7 +10,7 @@ module.exports = {
     },
     devServer: {contentBase: "./WebRootAuth", port: 80, historyApiFallback: true},
     module: {
-        rules: [
+        loaders: [
             { test: /\.jsx?$/, loader: 'babel-loader'}
         ]
     },
